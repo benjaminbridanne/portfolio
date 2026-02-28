@@ -1462,10 +1462,10 @@
             revealObserver.unobserve(entry.target);
           }
         });
-      }, { threshold: 0.08, rootMargin: '0px 0px -20px 0px' });
+      }, { threshold: 0, rootMargin: '0px 0px 0px 0px' });
 
       revealEls.forEach(el => revealObserver.observe(el));
-    }, 200);
+    }, 500);
 
     // ---- Tilt effect (skill cards + projet cards) ----
     function addTilt(el) {
