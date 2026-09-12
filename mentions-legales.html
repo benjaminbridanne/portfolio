@@ -1,0 +1,599 @@
+<!DOCTYPE html>
+<html lang="fr" data-theme="dark">
+
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Mentions légales - Benjamin Bridanne</title>
+  <meta name="description"
+    content="Mentions légales du portfolio de Benjamin Bridanne, chargé de communication digitale et éditoriale." />
+
+  <link rel="canonical" href="https://benjaminbridanne.github.io/portfolio/mentions-legales.html" />
+  <link rel="icon" href="Images/image-logo-inverse.png" type="image/png" />
+
+  <meta property="og:type" content="website" />
+  <meta property="og:url" content="https://benjaminbridanne.github.io/portfolio/mentions-legales.html" />
+  <meta property="og:title" content="Mentions légales - Benjamin Bridanne" />
+  <meta property="og:description" content="Mentions légales du portfolio de Benjamin Bridanne, chargé de communication digitale et éditoriale." />
+  <meta property="og:image" content="https://benjaminbridanne.github.io/portfolio/Images/og-image.jpg" />
+  <meta property="og:locale" content="fr_FR" />
+
+  <meta name="twitter:card" content="summary_large_image" />
+
+  <style>
+    /* =========================================================
+       TOKENS (identiques aux autres pages)
+       ========================================================= */
+    :root {
+      --font-system: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
+      --radius: 22px;
+      --radius-sm: 14px;
+      --gap: 14px;
+      --max-width: 1280px;
+
+      --ease: cubic-bezier(.2, .8, .2, 1);
+      --transition-fast: 250ms var(--ease);
+      --transition-med: 400ms var(--ease);
+
+      --apple-blue-dark: #0A84FF;
+      --apple-blue-light: #007AFF;
+      --sun-moon: #F7E27B;
+    }
+
+    /* -------- Light mode -------- */
+    [data-theme="light"] {
+      --bg: #f2f2f4;
+      --bg-halo-1: rgba(205, 214, 232, 0.30);
+      --bg-halo-2: rgba(214, 220, 234, 0.24);
+
+      --card-bg: rgba(255, 255, 255, 0.74);
+      --card-bg-soft: rgba(255, 255, 255, 0.56);
+      --card-border: rgba(60, 60, 67, 0.16);
+      --card-shadow: 0 4px 20px rgba(0, 0, 0, 0.05);
+      --card-highlight-top: rgba(255, 255, 255, 0.9);
+      --card-blur: 18px;
+
+      --text: #0a0a0d;
+      --text-secondary: rgba(60, 60, 67, 0.62);
+      --text-muted: rgba(60, 60, 67, 0.34);
+      --line: rgba(60, 60, 67, 0.12);
+
+      --toggle-track-bg: #e8e8ea;
+      --toggle-track-border: rgba(60, 60, 67, 0.22);
+      --toggle-thumb-bg: #0a0a0d;
+
+      --apple-blue: var(--apple-blue-light);
+
+      --nav-bg: rgba(242, 242, 244, 0.72);
+      --nav-border: rgba(60, 60, 67, 0.12);
+    }
+
+    /* -------- Dark mode -------- */
+    [data-theme="dark"] {
+      --bg: #000000;
+      --bg-halo-1: rgba(44, 44, 52, 0.22);
+      --bg-halo-2: rgba(24, 34, 52, 0.18);
+
+      --card-bg: rgba(18, 18, 20, 0.74);
+      --card-bg-soft: rgba(20, 20, 22, 0.56);
+      --card-border: rgba(255, 255, 255, 0.10);
+      --card-shadow: 0 6px 26px rgba(0, 0, 0, 0.50);
+      --card-highlight-top: rgba(255, 255, 255, 0.14);
+      --card-blur: 16px;
+
+      --text: #F5F5F7;
+      --text-secondary: rgba(235, 235, 245, 0.62);
+      --text-muted: rgba(235, 235, 245, 0.34);
+      --line: rgba(255, 255, 255, 0.10);
+
+      --toggle-track-bg: #1c1c1e;
+      --toggle-track-border: rgba(255, 255, 255, 0.16);
+      --toggle-thumb-bg: #0a0a0a;
+
+      --apple-blue: var(--apple-blue-dark);
+
+      --nav-bg: rgba(0, 0, 0, 0.62);
+      --nav-border: rgba(255, 255, 255, 0.08);
+    }
+
+    /* =========================================================
+       BASE
+       ========================================================= */
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
+
+    html { scroll-behavior: smooth; }
+
+    body {
+      font-family: var(--font-system);
+      -webkit-font-smoothing: antialiased;
+      -moz-osx-font-smoothing: grayscale;
+      background: var(--bg);
+      color: var(--text);
+      min-height: 100vh;
+      position: relative;
+      overflow-x: hidden;
+      transition: background var(--transition-med), color var(--transition-med);
+    }
+
+    body::before {
+      content: "";
+      position: fixed;
+      inset: 0;
+      background:
+        radial-gradient(ellipse 60% 45% at 12% 8%, var(--bg-halo-1) 0%, transparent 60%),
+        radial-gradient(ellipse 55% 45% at 92% 96%, var(--bg-halo-2) 0%, transparent 62%);
+      pointer-events: none;
+      z-index: 0;
+    }
+
+    :focus-visible {
+      outline: 2px solid var(--text);
+      outline-offset: 3px;
+      border-radius: 6px;
+    }
+
+    a {
+      color: inherit;
+      text-decoration: none;
+    }
+
+    button {
+      font-family: inherit;
+      background: transparent;
+      border: none;
+      cursor: pointer;
+      color: inherit;
+    }
+
+    .sr-only {
+      position: absolute;
+      width: 1px;
+      height: 1px;
+      padding: 0;
+      margin: -1px;
+      overflow: hidden;
+      clip: rect(0, 0, 0, 0);
+      white-space: nowrap;
+      border: 0;
+    }
+
+    /* =========================================================
+       NAV STICKY (identique aux pages projets)
+       ========================================================= */
+    .project-nav {
+      position: sticky;
+      top: 0;
+      z-index: 30;
+      display: flex;
+      align-items: center;
+      gap: 20px;
+      padding: 12px 24px;
+      background: var(--nav-bg);
+      border-bottom: 1px solid var(--nav-border);
+      backdrop-filter: blur(18px) saturate(130%);
+      -webkit-backdrop-filter: blur(18px) saturate(130%);
+    }
+
+    .nav-back {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      font-size: 0.875rem;
+      font-weight: 500;
+      color: var(--text);
+      padding: 6px 10px;
+      border-radius: 10px;
+      transition: background var(--transition-fast);
+    }
+
+    .nav-back:hover { background: var(--card-bg-soft); }
+
+    .nav-back svg { width: 16px; height: 16px; }
+
+    .nav-crumb {
+      font-size: 0.8125rem;
+      color: var(--text-secondary);
+      flex: 1;
+      min-width: 0;
+      overflow: hidden;
+      text-overflow: ellipsis;
+      white-space: nowrap;
+    }
+
+    .nav-crumb strong { color: var(--text); font-weight: 500; }
+
+    /* Toggle iOS */
+    .theme-toggle-btn {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      padding: 0;
+    }
+
+    .toggle-switch {
+      position: relative;
+      width: 52px;
+      height: 28px;
+      border-radius: 999px;
+      background: var(--toggle-track-bg);
+      border: 1px solid var(--toggle-track-border);
+      transition: background var(--transition-med), border-color var(--transition-med);
+    }
+
+    .toggle-thumb {
+      position: absolute;
+      top: 50%;
+      left: 3px;
+      width: 22px;
+      height: 22px;
+      border-radius: 50%;
+      background: var(--toggle-thumb-bg);
+      transform: translateY(-50%);
+      transition: left var(--transition-med), background var(--transition-med);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+
+    .toggle-thumb svg {
+      width: 12px;
+      height: 12px;
+      color: var(--sun-moon);
+      position: absolute;
+      transition: opacity var(--transition-fast);
+    }
+
+    [data-theme="dark"] .toggle-thumb { left: 3px; }
+    [data-theme="light"] .toggle-thumb { left: calc(100% - 25px); }
+    [data-theme="dark"] .icon-sun { opacity: 0; }
+    [data-theme="light"] .icon-moon { opacity: 0; }
+
+    /* =========================================================
+       CONTENU MENTIONS LEGALES
+       ========================================================= */
+    .legal-main {
+      max-width: 780px;
+      margin: 0 auto;
+      padding: 56px 24px 40px;
+      position: relative;
+      z-index: 1;
+    }
+
+    .legal-eyebrow {
+      font-size: 0.75rem;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+      color: var(--text-muted);
+      margin-bottom: 12px;
+    }
+
+    .legal-title {
+      font-size: clamp(2rem, 4vw, 2.75rem);
+      font-weight: 600;
+      letter-spacing: -0.02em;
+      line-height: 1.1;
+      margin-bottom: 12px;
+    }
+
+    .legal-intro {
+      font-size: 1rem;
+      color: var(--text-secondary);
+      line-height: 1.6;
+      margin-bottom: 40px;
+    }
+
+    .legal-section {
+      padding: 24px 0;
+      border-top: 1px solid var(--line);
+    }
+
+    .legal-section h2 {
+      font-size: 1.125rem;
+      font-weight: 600;
+      letter-spacing: -0.01em;
+      margin-bottom: 12px;
+    }
+
+    .legal-section p {
+      font-size: 0.9375rem;
+      color: var(--text-secondary);
+      line-height: 1.65;
+      margin-bottom: 10px;
+    }
+
+    .legal-section p:last-child { margin-bottom: 0; }
+
+    .legal-section a {
+      color: var(--text);
+      text-decoration: underline;
+      text-decoration-color: var(--text-muted);
+      text-underline-offset: 3px;
+      transition: text-decoration-color var(--transition-fast);
+    }
+
+    .legal-section a:hover { text-decoration-color: var(--text); }
+
+    .legal-section address {
+      font-style: normal;
+      color: var(--text-secondary);
+      font-size: 0.9375rem;
+      line-height: 1.65;
+    }
+
+    .legal-updated {
+      margin-top: 40px;
+      padding-top: 24px;
+      border-top: 1px solid var(--line);
+      font-size: 0.8125rem;
+      color: var(--text-muted);
+    }
+
+    /* =========================================================
+       FOOTER (identique aux autres pages)
+       ========================================================= */
+    .site-footer {
+      max-width: var(--max-width);
+      margin: 0 auto;
+      padding: 40px 24px 56px;
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: space-between;
+      align-items: center;
+      gap: 16px;
+      border-top: 1px solid var(--line);
+      margin-top: 32px;
+      position: relative;
+      z-index: 1;
+    }
+
+    .footer-identity {
+      font-size: 0.8125rem;
+      color: var(--text-secondary);
+    }
+
+    .footer-links {
+      display: flex;
+      gap: 22px;
+      flex-wrap: wrap;
+    }
+
+    .footer-links a {
+      font-size: 0.8125rem;
+      color: var(--text-secondary);
+      transition: color var(--transition-fast);
+    }
+
+    .footer-links a:hover { color: var(--text); }
+
+    .footer-top {
+      display: inline-flex;
+      align-items: center;
+      gap: 7px;
+    }
+
+    .footer-top svg {
+      width: 14px;
+      height: 14px;
+      transition: transform var(--transition-fast);
+    }
+
+    .footer-top:hover svg { transform: translateY(-2px); }
+
+    /* =========================================================
+       RESPONSIVE
+       ========================================================= */
+    @media (max-width: 640px) {
+      .project-nav { padding: 10px 16px; gap: 12px; }
+      .legal-main { padding: 40px 20px 32px; }
+      .site-footer {
+        flex-direction: column;
+        align-items: flex-start;
+        padding: 32px 20px 40px;
+      }
+      .footer-links { gap: 16px; }
+    }
+  </style>
+</head>
+
+<body>
+
+  <!-- =============================================================
+       NAV STICKY
+       ============================================================= -->
+  <nav class="project-nav" aria-label="Navigation principale">
+    <a href="index.html" class="nav-back">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"
+        stroke-linejoin="round" aria-hidden="true">
+        <line x1="19" y1="12" x2="5" y2="12" />
+        <polyline points="12 19 5 12 12 5" />
+      </svg>
+      Retour
+    </a>
+    <span class="nav-crumb"><strong>Mentions légales</strong></span>
+    <button id="theme-toggle" class="theme-toggle-btn" aria-label="Basculer entre le mode sombre et le mode clair"
+      aria-live="polite">
+      <span class="sr-only" id="theme-toggle-label">Passer en mode clair</span>
+      <span class="toggle-switch" aria-hidden="true">
+        <span class="toggle-thumb">
+          <svg class="icon-moon" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true">
+            <path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z" />
+          </svg>
+          <svg class="icon-sun" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
+            stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+            <circle cx="12" cy="12" r="4" />
+            <path d="M12 2v2M12 20v2M4.93 4.93l1.41 1.41M17.66 17.66l1.41 1.41M2 12h2M20 12h2M4.93 19.07l1.41-1.41M17.66 6.34l1.41-1.41" />
+          </svg>
+        </span>
+      </span>
+    </button>
+  </nav>
+
+  <!-- =============================================================
+       CONTENU
+       ============================================================= -->
+  <main class="legal-main" id="top">
+    <p class="legal-eyebrow">Informations légales</p>
+    <h1 class="legal-title">Mentions légales</h1>
+    <p class="legal-intro">
+      Cette page rassemble les informations légales relatives à l'édition et à l'hébergement de ce site,
+      conformément à la loi n° 2004-575 du 21 juin 2004 pour la confiance dans l'économie numérique.
+    </p>
+
+    <section class="legal-section">
+      <h2>Éditeur du site</h2>
+      <p>
+        Ce portfolio est édité à titre personnel par <strong>Benjamin Bridanne</strong>,
+        étudiant en stage dans le domaine de la communication digitale et éditoriale.
+      </p>
+      <p>Directeur de la publication : Benjamin Bridanne.</p>
+    </section>
+
+    <section class="legal-section">
+      <h2>Contact</h2>
+      <p>
+        Pour toute question relative au site ou à son contenu :
+        <a href="mailto:benjaminbridanne@gmail.com">benjaminbridanne@gmail.com</a>.
+      </p>
+      <p>
+        Profil professionnel :
+        <a href="https://www.linkedin.com/in/benjamin-bridanne-ba9a64285/" target="_blank" rel="noopener">LinkedIn</a>.
+      </p>
+    </section>
+
+    <section class="legal-section">
+      <h2>Hébergement</h2>
+      <p>
+        Le site est hébergé par <strong>GitHub, Inc.</strong> via le service GitHub Pages.
+      </p>
+      <address>
+        GitHub, Inc.<br />
+        88 Colin P. Kelly Jr. Street<br />
+        San Francisco, CA 94107<br />
+        États-Unis<br />
+        <a href="https://github.com" target="_blank" rel="noopener">github.com</a>
+      </address>
+    </section>
+
+    <section class="legal-section">
+      <h2>Propriété intellectuelle</h2>
+      <p>
+        L'ensemble des contenus présents sur ce site (textes, illustrations, mises en page, code source, visuels de projets)
+        est la propriété de Benjamin Bridanne, sauf mention contraire explicite, et est protégé par le droit d'auteur.
+      </p>
+      <p>
+        Toute reproduction, représentation, modification ou exploitation, totale ou partielle, des éléments du site,
+        par quelque procédé que ce soit et sur quelque support que ce soit, est interdite sans autorisation écrite préalable.
+      </p>
+      <p>
+        Les marques, logos et identifiants d'outils cités (Adobe Illustrator, Photoshop, InDesign, Figma, Trello, WordPress,
+        Elementor, Canva, CapCut, Notion) sont la propriété exclusive de leurs détenteurs respectifs et ne sont mentionnés
+        qu'à titre informatif dans le cadre de la présentation des projets réalisés.
+      </p>
+    </section>
+
+    <section class="legal-section">
+      <h2>Données personnelles</h2>
+      <p>
+        Ce site est un portfolio statique. Il ne collecte aucune donnée personnelle,
+        ne propose pas de formulaire d'inscription et ne dispose pas de système de commentaires.
+      </p>
+      <p>
+        Aucun outil de mesure d'audience ni de suivi tiers n'est mis en œuvre.
+        Les échanges éventuels s'effectuent uniquement par le biais de l'adresse mail indiquée dans la section « Contact ».
+      </p>
+      <p>
+        Conformément au Règlement général sur la protection des données (RGPD) et à la loi Informatique et Libertés,
+        toute personne ayant écrit à cette adresse dispose d'un droit d'accès, de rectification et de suppression des
+        informations la concernant, exerçable sur simple demande.
+      </p>
+    </section>
+
+    <section class="legal-section">
+      <h2>Cookies</h2>
+      <p>
+        Ce site ne dépose aucun cookie de mesure d'audience, de publicité ou de suivi.
+        Seule une préférence d'affichage (mode sombre ou clair) est enregistrée localement dans le navigateur
+        via l'API <em>localStorage</em>, afin de conserver le choix visuel de la personne visitant le site.
+        Cette information reste sur l'appareil de la personne et n'est jamais transmise à un serveur.
+      </p>
+    </section>
+
+    <section class="legal-section">
+      <h2>Responsabilité</h2>
+      <p>
+        L'éditeur met tout en œuvre pour offrir aux utilisateurs des informations disponibles et vérifiées,
+        mais ne peut être tenu responsable des erreurs, d'une absence de disponibilité des informations
+        ou de la présence de virus sur son site.
+      </p>
+      <p>
+        Les liens externes proposés dans les études de cas ou les mentions relèvent de la seule responsabilité des sites concernés.
+      </p>
+    </section>
+
+    <section class="legal-section">
+      <h2>Droit applicable</h2>
+      <p>
+        Les présentes mentions légales sont soumises au droit français.
+        En cas de litige, les tribunaux français seront seuls compétents.
+      </p>
+    </section>
+
+    <p class="legal-updated">Dernière mise à jour : septembre 2026.</p>
+  </main>
+
+  <!-- =============================================================
+       FOOTER MINIMAL
+       ============================================================= -->
+  <footer class="site-footer" role="contentinfo">
+    <p class="footer-identity">Benjamin Bridanne · Chargé de communication digitale</p>
+    <div class="footer-links">
+      <a href="index.html">Accueil</a>
+      <a href="projets.html">Mes projets</a>
+      <a href="mailto:benjaminbridanne@gmail.com">Mail</a>
+      <a href="https://www.linkedin.com/in/benjamin-bridanne-ba9a64285/" target="_blank" rel="noopener">LinkedIn</a>
+      <a href="#top" class="footer-top">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"
+          stroke-linejoin="round" aria-hidden="true">
+          <line x1="12" y1="19" x2="12" y2="5" />
+          <polyline points="5 12 12 5 19 12" />
+        </svg>
+        Retour en haut
+      </a>
+    </div>
+  </footer>
+
+  <script>
+    /* =========================================================
+       THEME SOMBRE / CLAIR - meme cle localStorage que les autres pages
+       ========================================================= */
+    (function () {
+      const root = document.documentElement;
+      const btn = document.getElementById('theme-toggle');
+      const label = document.getElementById('theme-toggle-label');
+      const saved = localStorage.getItem('theme');
+      const systemPrefersDark = window.matchMedia('(prefers-color-scheme: dark)').matches;
+      const initial = saved || (systemPrefersDark ? 'dark' : 'light');
+      root.setAttribute('data-theme', initial);
+      updateLabel(initial);
+
+      btn.addEventListener('click', () => {
+        const current = root.getAttribute('data-theme');
+        const next = current === 'dark' ? 'light' : 'dark';
+        root.setAttribute('data-theme', next);
+        localStorage.setItem('theme', next);
+        updateLabel(next);
+      });
+
+      function updateLabel(mode) {
+        label.textContent = mode === 'dark' ? 'Passer en mode clair' : 'Passer en mode sombre';
+      }
+    })();
+  </script>
+
+</body>
+
+</html>

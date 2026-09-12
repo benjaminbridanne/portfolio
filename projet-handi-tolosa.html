@@ -1,0 +1,1574 @@
+<!DOCTYPE html>
+<html lang="fr" data-theme="dark">
+
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Handi Tolosa - Projet de Benjamin Bridanne</title>
+  <meta name="description"
+    content="Étude de cas du projet Handi Tolosa par Benjamin Bridanne : stratégie réseaux sociaux, recommandations éditoriales et prototype web pour une association engagée sur le handicap et l’inclusion." />
+<link rel="canonical" href="https://benjaminbridanne.github.io/portfolio/projet-handi-tolosa.html" />
+  <link rel="icon" href="Images/image-logo-inverse.png" type="image/png" />
+
+  <meta property="og:type" content="website" />
+  <meta property="og:url" content="https://benjaminbridanne.github.io/portfolio/projet-handi-tolosa.html" />
+  <meta property="og:title" content="Handi Tolosa - Stratégie réseaux sociaux et prototype web" />
+  <meta property="og:description"
+    content="Stratégie réseaux sociaux, recommandations éditoriales et prototype web pour une association engagée sur le handicap et l'inclusion." />
+  <meta property="og:image" content="https://benjaminbridanne.github.io/portfolio/Images/image_fond.png" />
+  <meta property="og:locale" content="fr_FR" />
+
+  <meta name="twitter:card" content="summary_large_image" />
+  <style>
+    /* =========================================================
+       TOKENS (identiques à l'accueil - cohérence stricte)
+       ========================================================= */
+    :root {
+      --font-system: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
+      --radius: 22px;
+      --radius-sm: 14px;
+      --gap: 14px;
+      --max-width: 1280px;
+
+      --ease: cubic-bezier(.2, .8, .2, 1);
+      --transition-fast: 250ms var(--ease);
+      --transition-med: 400ms var(--ease);
+
+      --apple-blue-dark: #0A84FF;
+      --apple-blue-light: #007AFF;
+      --sun-moon: #F7E27B;
+    }
+
+    /* -------- Light mode -------- */
+    [data-theme="light"] {
+      --bg: #f2f2f4;
+      --bg-halo-1: rgba(205, 214, 232, 0.30);
+      --bg-halo-2: rgba(214, 220, 234, 0.24);
+
+      --card-bg: rgba(255, 255, 255, 0.74);
+      --card-bg-soft: rgba(255, 255, 255, 0.56);
+      --card-bg-solid: #ffffff;
+      --card-border: rgba(60, 60, 67, 0.16);
+      --card-border-hover: rgba(60, 60, 67, 0.28);
+      --card-edge: rgba(255, 255, 255, 0.95);
+      --card-shadow: 0 4px 20px rgba(0, 0, 0, 0.05);
+      --card-shadow-hover: 0 14px 38px rgba(0, 0, 0, 0.09);
+      --card-highlight-top: rgba(255, 255, 255, 0.9);
+      --card-blur: 18px;
+
+      --text: #0a0a0d;
+      --text-secondary: rgba(60, 60, 67, 0.62);
+      --text-muted: rgba(60, 60, 67, 0.34);
+      --eyebrow: rgba(60, 60, 67, 0.58);
+      --line: rgba(60, 60, 67, 0.12);
+
+      --arrow-bg: rgba(255, 255, 255, 0.60);
+      --arrow-border: rgba(60, 60, 67, 0.20);
+      --arrow-color: #0a0a0d;
+
+      --toggle-track-bg: #e8e8ea;
+      --toggle-track-border: rgba(60, 60, 67, 0.22);
+      --toggle-thumb-bg: #0a0a0d;
+
+      --apple-blue: var(--apple-blue-light);
+
+      --nav-bg: rgba(242, 242, 244, 0.72);
+      --nav-border: rgba(60, 60, 67, 0.12);
+
+      --pill-bg: rgba(0, 0, 0, 0.04);
+      --pill-border: rgba(60, 60, 67, 0.14);
+
+      --tool-bg: rgba(0, 0, 0, 0.05);
+      --tool-border: rgba(60, 60, 67, 0.12);
+    }
+
+    /* -------- Dark mode -------- */
+    [data-theme="dark"] {
+      --bg: #000000;
+      --bg-halo-1: rgba(44, 44, 52, 0.22);
+      --bg-halo-2: rgba(24, 34, 52, 0.18);
+
+      --card-bg: rgba(18, 18, 20, 0.74);
+      --card-bg-soft: rgba(20, 20, 22, 0.56);
+      --card-bg-solid: #0e0e10;
+      --card-border: rgba(255, 255, 255, 0.10);
+      --card-border-hover: rgba(255, 255, 255, 0.20);
+      --card-edge: rgba(255, 255, 255, 0.28);
+      --card-shadow: 0 6px 26px rgba(0, 0, 0, 0.50);
+      --card-shadow-hover: 0 18px 46px rgba(0, 0, 0, 0.62);
+      --card-highlight-top: rgba(255, 255, 255, 0.14);
+      --card-blur: 16px;
+
+      --text: #F5F5F7;
+      --text-secondary: rgba(235, 235, 245, 0.62);
+      --text-muted: rgba(235, 235, 245, 0.34);
+      --eyebrow: rgba(235, 235, 245, 0.56);
+      --line: rgba(255, 255, 255, 0.10);
+
+      --arrow-bg: rgba(255, 255, 255, 0.06);
+      --arrow-border: rgba(255, 255, 255, 0.18);
+      --arrow-color: #F5F5F7;
+
+      --toggle-track-bg: #1c1c1e;
+      --toggle-track-border: rgba(255, 255, 255, 0.16);
+      --toggle-thumb-bg: #0a0a0a;
+
+      --apple-blue: var(--apple-blue-dark);
+
+      --nav-bg: rgba(0, 0, 0, 0.62);
+      --nav-border: rgba(255, 255, 255, 0.08);
+
+      --pill-bg: rgba(255, 255, 255, 0.05);
+      --pill-border: rgba(255, 255, 255, 0.10);
+
+      --tool-bg: rgba(255, 255, 255, 0.04);
+      --tool-border: rgba(255, 255, 255, 0.08);
+    }
+
+    /* =========================================================
+       BASE
+       ========================================================= */
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
+
+    html {
+      scroll-behavior: smooth;
+    }
+
+    body {
+      font-family: var(--font-system);
+      -webkit-font-smoothing: antialiased;
+      -moz-osx-font-smoothing: grayscale;
+      background: var(--bg);
+      color: var(--text);
+      min-height: 100vh;
+      position: relative;
+      overflow-x: hidden;
+      transition: background var(--transition-med), color var(--transition-med);
+    }
+
+    body::before {
+      content: "";
+      position: fixed;
+      inset: 0;
+      background:
+        radial-gradient(ellipse 60% 45% at 12% 8%, var(--bg-halo-1) 0%, transparent 60%),
+        radial-gradient(ellipse 55% 45% at 92% 96%, var(--bg-halo-2) 0%, transparent 62%);
+      pointer-events: none;
+      z-index: 0;
+    }
+
+    :focus-visible {
+      outline: 2px solid var(--text);
+      outline-offset: 3px;
+      border-radius: 6px;
+    }
+
+    a {
+      color: inherit;
+      text-decoration: none;
+    }
+
+    button {
+      font-family: inherit;
+      background: none;
+      border: none;
+      cursor: pointer;
+      color: inherit;
+    }
+
+    img {
+      max-width: 100%;
+      display: block;
+    }
+
+    .sr-only {
+      position: absolute;
+      width: 1px;
+      height: 1px;
+      padding: 0;
+      margin: -1px;
+      overflow: hidden;
+      clip: rect(0, 0, 0, 0);
+      white-space: nowrap;
+      border: 0;
+    }
+
+    /* =========================================================
+       CARD BASE (identique à l'accueil)
+       ========================================================= */
+    .card {
+      position: relative;
+      border-radius: var(--radius);
+      background: var(--card-bg);
+      border: 1px solid var(--card-border);
+      box-shadow: var(--card-shadow);
+      padding: 22px;
+      overflow: hidden;
+      backdrop-filter: blur(var(--card-blur)) saturate(118%);
+      -webkit-backdrop-filter: blur(var(--card-blur)) saturate(118%);
+      transition:
+        transform var(--transition-med),
+        box-shadow var(--transition-med),
+        border-color var(--transition-med),
+        background var(--transition-med);
+    }
+
+    .card::before {
+      content: "";
+      position: absolute;
+      inset: 0;
+      padding: 1px;
+      border-radius: inherit;
+      background: linear-gradient(145deg, var(--card-edge), transparent 42%);
+      -webkit-mask: linear-gradient(#000 0 0) content-box, linear-gradient(#000 0 0);
+      -webkit-mask-composite: xor;
+      mask: linear-gradient(#000 0 0) content-box, linear-gradient(#000 0 0);
+      mask-composite: exclude;
+      opacity: 0.75;
+      pointer-events: none;
+      z-index: 4;
+    }
+
+    .card::after {
+      content: "";
+      position: absolute;
+      top: 0;
+      left: 0;
+      right: 0;
+      height: 1px;
+      background: linear-gradient(90deg,
+          transparent 0%,
+          var(--card-highlight-top) 22%,
+          var(--card-highlight-top) 78%,
+          transparent 100%);
+      pointer-events: none;
+      z-index: 4;
+    }
+
+    .card:hover {
+      transform: scale(1.015);
+      z-index: 6;
+      border-color: var(--card-border-hover);
+      box-shadow: var(--card-shadow-hover);
+    }
+
+    .card>* {
+      position: relative;
+      z-index: 2;
+    }
+
+    .card--soft {
+      background: var(--card-bg-soft);
+    }
+
+    /* =========================================================
+       HEADER STICKY
+       ========================================================= */
+    .project-nav {
+      position: sticky;
+      top: 0;
+      z-index: 30;
+      display: flex;
+      align-items: center;
+      gap: 20px;
+      padding: 12px 24px;
+      background: var(--nav-bg);
+      border-bottom: 1px solid var(--nav-border);
+      backdrop-filter: blur(18px) saturate(130%);
+      -webkit-backdrop-filter: blur(18px) saturate(130%);
+    }
+
+    .nav-back {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      font-size: 0.875rem;
+      font-weight: 500;
+      color: var(--text);
+      padding: 6px 10px;
+      border-radius: 10px;
+      transition: background var(--transition-fast);
+    }
+
+    .nav-back:hover {
+      background: var(--card-bg-soft);
+    }
+
+    .nav-back svg {
+      width: 16px;
+      height: 16px;
+    }
+
+    .nav-crumb {
+      font-size: 0.8125rem;
+      color: var(--text-secondary);
+      flex: 1;
+      min-width: 0;
+      overflow: hidden;
+      text-overflow: ellipsis;
+      white-space: nowrap;
+    }
+
+    .nav-crumb strong {
+      color: var(--text);
+      font-weight: 500;
+    }
+
+    /* Toggle iOS */
+    .theme-toggle-btn {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      padding: 0;
+    }
+
+    .toggle-switch {
+      position: relative;
+      width: 52px;
+      height: 28px;
+      border-radius: 999px;
+      background: var(--toggle-track-bg);
+      border: 1px solid var(--toggle-track-border);
+      transition: background var(--transition-med), border-color var(--transition-med);
+    }
+
+    .toggle-thumb {
+      position: absolute;
+      top: 50%;
+      left: 3px;
+      width: 22px;
+      height: 22px;
+      border-radius: 50%;
+      background: var(--toggle-thumb-bg);
+      transform: translateY(-50%);
+      transition: left var(--transition-med), background var(--transition-med);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+
+    .toggle-thumb svg {
+      width: 12px;
+      height: 12px;
+      color: var(--sun-moon);
+      position: absolute;
+      transition: opacity var(--transition-fast);
+    }
+
+    [data-theme="dark"] .toggle-thumb {
+      left: 3px;
+    }
+
+    [data-theme="light"] .toggle-thumb {
+      left: calc(100% - 25px);
+    }
+
+    [data-theme="dark"] .icon-sun {
+      opacity: 0;
+    }
+
+    [data-theme="light"] .icon-moon {
+      opacity: 0;
+    }
+
+    /* =========================================================
+       PROJECT BENTO GRID
+       ========================================================= */
+    .project-main {
+      max-width: var(--max-width);
+      margin: 0 auto;
+      padding: 28px 24px 56px;
+      position: relative;
+      z-index: 1;
+    }
+
+    .project-grid {
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      grid-auto-rows: minmax(150px, auto);
+      gap: var(--gap);
+    }
+
+    /* --- Positionnement des cartes --- */
+    .card--hero-meta {
+      grid-column: span 2;
+      grid-row: span 1;
+    }
+
+    .card--hero-visual {
+      grid-column: span 2;
+      grid-row: span 1;
+      padding: 0;
+      min-height: 320px;
+    }
+
+    .card--info {
+      grid-column: span 1;
+      grid-row: span 1;
+    }
+
+    /* Galerie : le calendrier a gauche, quatre vignettes en 2 x 2 a droite */
+    .card--gallery-large {
+      grid-column: 1 / 3;
+      grid-row: 3 / 5;
+      padding: 0;
+      min-height: 424px;
+    }
+
+    .card--gallery-1 {
+      grid-column: 3;
+      grid-row: 3;
+      padding: 0;
+    }
+
+    .card--gallery-2 {
+      grid-column: 4;
+      grid-row: 3;
+      padding: 0;
+    }
+
+    .card--gallery-3 {
+      grid-column: 3;
+      grid-row: 4;
+      padding: 0;
+    }
+
+    .card--gallery-4 {
+      grid-column: 4;
+      grid-row: 4;
+      padding: 0;
+    }
+
+    .card--gallery {
+      min-height: 205px;
+    }
+
+    /* =========================================================
+       HERO - MÉTA
+       ========================================================= */
+    .card--hero-meta {
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      gap: 18px;
+      padding: 32px 30px;
+    }
+
+    .hero-eyebrow {
+      font-size: 0.75rem;
+      font-weight: 500;
+      color: var(--eyebrow);
+      text-transform: uppercase;
+      letter-spacing: 0.14em;
+    }
+
+    .hero-title {
+      font-size: clamp(1.75rem, 3.2vw, 2.75rem);
+      font-weight: 700;
+      letter-spacing: -0.03em;
+      line-height: 1.02;
+    }
+
+    .hero-tags {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 8px;
+    }
+
+    .hero-tag {
+      display: inline-flex;
+      align-items: center;
+      padding: 6px 12px;
+      border-radius: 999px;
+      background: var(--pill-bg);
+      border: 1px solid var(--pill-border);
+      font-size: 0.75rem;
+      font-weight: 500;
+      color: var(--text-secondary);
+      letter-spacing: 0.01em;
+    }
+
+    .hero-pitch {
+      font-size: 0.9375rem;
+      color: var(--text-secondary);
+      line-height: 1.55;
+      max-width: 90ch;
+    }
+
+    /* Bouton principal : le bleu Apple reste reserve a cette action */
+    .btn-primary {
+      align-self: flex-start;
+      display: inline-flex;
+      align-items: center;
+      gap: 9px;
+      padding: 11px 20px;
+      border-radius: 999px;
+      background: var(--apple-blue);
+      color: #fff;
+      font-size: 0.875rem;
+      font-weight: 600;
+      letter-spacing: -0.005em;
+      transition:
+        background var(--transition-med),
+        transform var(--transition-med),
+        box-shadow var(--transition-med);
+    }
+
+    .btn-primary svg {
+      width: 15px;
+      height: 15px;
+      flex: none;
+    }
+
+    .btn-primary:hover {
+      transform: translateY(-1px);
+      box-shadow: 0 10px 24px rgba(10, 132, 255, 0.22);
+    }
+
+    /* =========================================================
+       HERO - VISUEL
+       ========================================================= */
+    .card--hero-visual {
+      overflow: hidden;
+    }
+
+    .hero-image {
+      position: absolute;
+      inset: 0;
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      z-index: 1;
+    }
+
+    /* Bouton pose sur la photographie : lisible dans les deux themes */
+    .proto-btn {
+      position: absolute;
+      bottom: 16px;
+      right: 16px;
+      z-index: 5;
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      max-width: calc(100% - 32px);
+      padding: 9px 15px;
+      border-radius: 999px;
+      background: rgba(12, 12, 14, 0.78);
+      border: 1px solid rgba(255, 255, 255, 0.24);
+      color: #fff;
+      font-size: 0.8125rem;
+      font-weight: 600;
+      letter-spacing: -0.005em;
+      -webkit-backdrop-filter: blur(10px);
+      backdrop-filter: blur(10px);
+      transition:
+        background var(--transition-med),
+        border-color var(--transition-med),
+        transform var(--transition-med);
+    }
+
+    .proto-btn svg {
+      width: 14px;
+      height: 14px;
+      flex: none;
+    }
+
+    .proto-btn:hover {
+      background: rgba(12, 12, 14, 0.9);
+      border-color: rgba(255, 255, 255, 0.45);
+      transform: translateY(-1px);
+    }
+
+    .proto-btn:focus-visible {
+      outline: 2px solid #fff;
+      outline-offset: 3px;
+    }
+
+    /* =========================================================
+       CARTES INFO (défi / réponse / impact / outils)
+       ========================================================= */
+    .card--info {
+      display: flex;
+      flex-direction: column;
+      gap: 12px;
+      padding: 22px 22px 20px;
+    }
+
+    .info-title {
+      font-size: 0.95rem;
+      font-weight: 600;
+      color: var(--text);
+      letter-spacing: -0.01em;
+    }
+
+    .info-body {
+      font-size: 0.87rem;
+      color: var(--text-secondary);
+      line-height: 1.55;
+    }
+
+    /* --- Retour de l'association : citation sobre --- */
+    .info-quote {
+      margin: 6px 0 0;
+      padding: 2px 0 2px 14px;
+      border-left: 2px solid var(--apple-blue);
+      color: var(--text);
+      font-size: 0.87rem;
+      font-style: italic;
+      line-height: 1.55;
+    }
+
+    .info-quote p {
+      margin: 0;
+    }
+
+    .info-quote footer {
+      margin-top: 9px;
+      color: var(--text-muted);
+      font-size: 0.75rem;
+      font-style: normal;
+      font-weight: 500;
+      letter-spacing: 0.11em;
+      text-transform: uppercase;
+    }
+
+    /* --- Outils : badges sobres, nom complet visible --- */
+    /* =========================================================
+   CARTE OUTILS — STYLE GLASS
+   ========================================================= */
+
+    .tools-grid {
+      display: grid;
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+      gap: 10px;
+      margin-top: 4px;
+    }
+
+    .tool-item {
+      display: flex;
+      align-items: center;
+      gap: 9px;
+      min-width: 0;
+      padding: 10px;
+      border: 1px solid rgba(255, 255, 255, 0.12);
+      border-radius: 14px;
+
+      background:
+        linear-gradient(145deg,
+          rgba(255, 255, 255, 0.11),
+          rgba(255, 255, 255, 0.035));
+
+      box-shadow:
+        inset 0 1px 0 rgba(255, 255, 255, 0.12),
+        0 8px 24px rgba(0, 0, 0, 0.18);
+
+      -webkit-backdrop-filter: blur(14px) saturate(130%);
+      backdrop-filter: blur(14px) saturate(130%);
+
+      transition:
+        transform var(--transition-med),
+        border-color var(--transition-med),
+        background var(--transition-med);
+    }
+
+    .tool-item:hover {
+      transform: translateY(-2px);
+      border-color: rgba(255, 255, 255, 0.24);
+      background:
+        linear-gradient(145deg,
+          rgba(255, 255, 255, 0.16),
+          rgba(255, 255, 255, 0.06));
+    }
+
+    .tool-icon {
+      width: 32px;
+      height: 32px;
+      flex: 0 0 32px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      padding: 0;
+      border: none;
+      border-radius: 10px;
+      background: #ffffff;
+      overflow: hidden;
+    }
+
+    .tool-icon img {
+      display: block;
+      width: 80%;
+      height: 80%;
+      object-fit: contain;
+    }
+
+    .tool-name {
+      min-width: 0;
+      color: var(--text-secondary);
+      font-size: 0.75rem;
+      font-weight: 600;
+      line-height: 1.2;
+    }
+
+    /* Adaptation au mode clair */
+    [data-theme="light"] .tool-item {
+      background:
+        linear-gradient(145deg,
+          rgba(255, 255, 255, 0.90),
+          rgba(255, 255, 255, 0.52));
+
+      border-color: rgba(60, 60, 67, 0.13);
+
+      box-shadow:
+        inset 0 1px 0 rgba(255, 255, 255, 0.95),
+        0 8px 20px rgba(0, 0, 0, 0.06);
+    }
+
+    [data-theme="light"] .tool-icon {
+      background: rgba(255, 255, 255, 0.75);
+      border-color: rgba(60, 60, 67, 0.10);
+    }
+
+    /* =========================================================
+       GALERIE
+       ========================================================= */
+    /* Les visuels sont des documents remplis de texte : ils sont montres en entier */
+    .card--gallery-large,
+    .card--gallery {
+      overflow: hidden;
+      background: var(--card-bg-solid);
+      backdrop-filter: none;
+      -webkit-backdrop-filter: none;
+    }
+
+    .gallery-img {
+      position: absolute;
+      inset: 0;
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      object-position: center;
+      z-index: 1;
+      transition: transform var(--transition-med);
+    }
+
+    .card--gallery-large:hover .gallery-img,
+    .card--gallery:hover .gallery-img {
+      transform: scale(1.03);
+    }
+
+    /* =========================================================
+       AGRANDISSEMENT DES IMAGES
+       ========================================================= */
+    .zoom-btn {
+      position: absolute;
+      inset: 0;
+      z-index: 3;
+      width: 100%;
+      height: 100%;
+      padding: 0;
+      border: 0;
+      background: none;
+      cursor: zoom-in;
+      border-radius: inherit;
+    }
+
+    .zoom-btn:focus-visible {
+      outline: 2px solid var(--text);
+      outline-offset: -5px;
+      border-radius: inherit;
+    }
+
+    .lightbox {
+      position: fixed;
+      inset: 0;
+      z-index: 100;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      padding: clamp(16px, 4vw, 48px);
+      background: rgba(0, 0, 0, 0.86);
+      -webkit-backdrop-filter: blur(6px);
+      backdrop-filter: blur(6px);
+    }
+
+    [data-theme="light"] .lightbox {
+      background: rgba(20, 20, 24, 0.82);
+    }
+
+    .lightbox[hidden] {
+      display: none;
+    }
+
+    .lightbox-img {
+      max-width: 100%;
+      max-height: 100%;
+      width: auto;
+      height: auto;
+      object-fit: contain;
+      border-radius: var(--radius-sm);
+      box-shadow: 0 24px 70px rgba(0, 0, 0, 0.55);
+    }
+
+    .lightbox-close {
+      position: absolute;
+      top: clamp(12px, 2.5vw, 28px);
+      right: clamp(12px, 2.5vw, 28px);
+      width: 44px;
+      height: 44px;
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      border-radius: 50%;
+      background: rgba(255, 255, 255, 0.12);
+      border: 1px solid rgba(255, 255, 255, 0.28);
+      color: #fff;
+      transition: background var(--transition-fast), border-color var(--transition-fast);
+    }
+
+    .lightbox-close svg {
+      width: 20px;
+      height: 20px;
+    }
+
+    .lightbox-close:hover {
+      background: rgba(255, 255, 255, 0.22);
+      border-color: rgba(255, 255, 255, 0.5);
+    }
+
+    .lightbox-close:focus-visible {
+      outline: 2px solid #fff;
+      outline-offset: 3px;
+    }
+
+    /* Le fond de page ne defile plus quand la modale est ouverte */
+    body.is-locked {
+      overflow: hidden;
+    }
+
+    /* =========================================================
+       FOOTER MINIMAL
+       ========================================================= */
+    .site-footer {
+      max-width: var(--max-width);
+      margin: 0 auto;
+      padding: 40px 24px 56px;
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: space-between;
+      align-items: center;
+      gap: 16px;
+      border-top: 1px solid var(--line);
+      margin-top: 32px;
+      position: relative;
+      z-index: 1;
+    }
+
+    .footer-identity {
+      font-size: 0.8125rem;
+      color: var(--text-secondary);
+    }
+
+    .footer-links {
+      display: flex;
+      gap: 22px;
+    }
+
+    .footer-links a {
+      font-size: 0.8125rem;
+      color: var(--text-secondary);
+      transition: color var(--transition-fast);
+    }
+
+    .footer-links a:hover {
+      color: var(--text);
+    }
+
+    .footer-top {
+      display: inline-flex;
+      align-items: center;
+      gap: 7px;
+    }
+
+    .footer-top svg {
+      width: 14px;
+      height: 14px;
+      transition: transform var(--transition-fast);
+    }
+
+    .footer-top:hover svg {
+      transform: translateY(-2px);
+    }
+
+    /* =========================================================
+       RESPONSIVE
+       ========================================================= */
+
+    /* Ecrans tres larges / 4K : meme traitement que l'accueil */
+    @media (min-width: 1800px) {
+      :root {
+        --max-width: 1920px;
+        --gap: 20px;
+        --radius: 26px;
+      }
+
+      html {
+        font-size: 18px;
+      }
+
+      .project-main {
+        padding: 42px 36px 76px;
+      }
+
+      .project-grid {
+        grid-auto-rows: minmax(190px, auto);
+      }
+
+      .card--hero-visual {
+        min-height: 420px;
+      }
+
+      .card--gallery-large {
+        min-height: 570px;
+      }
+
+      .card--gallery {
+        min-height: 278px;
+      }
+    }
+
+    /* Tablette : deux colonnes, ordre calendrier puis les quatre vignettes */
+    @media (max-width: 1100px) {
+      .project-grid {
+        grid-template-columns: repeat(2, 1fr);
+      }
+
+      .card--hero-meta {
+        grid-column: span 2;
+        grid-row: auto;
+      }
+
+      .card--hero-visual {
+        grid-column: span 2;
+        grid-row: auto;
+        /* Le visuel principal garde son ratio 16:9 */
+        aspect-ratio: 16 / 9;
+        min-height: 0;
+      }
+
+      .card--info {
+        grid-column: span 1;
+        grid-row: auto;
+      }
+
+      .card--gallery-large {
+        grid-column: 1 / 3;
+        grid-row: auto;
+        /* Le calendrier garde son format : aucune etape n'est coupee */
+        aspect-ratio: 16 / 9;
+        min-height: 0;
+      }
+
+      .card--gallery-1,
+      .card--gallery-2,
+      .card--gallery-3,
+      .card--gallery-4 {
+        grid-column: span 1;
+        grid-row: auto;
+        aspect-ratio: 4 / 3;
+        min-height: 0;
+      }
+    }
+
+    /* Mobile : une colonne */
+    @media (max-width: 720px) {
+
+      /* Le fil d'ariane passe sur sa propre ligne plutot que d'etre tronque */
+      .project-nav {
+        flex-wrap: wrap;
+        padding: 10px 16px;
+        gap: 6px 12px;
+      }
+
+      .theme-toggle-btn {
+        margin-left: auto;
+      }
+
+      .nav-crumb {
+        order: 3;
+        flex: 1 0 100%;
+        white-space: normal;
+        overflow: visible;
+        text-overflow: clip;
+        line-height: 1.4;
+      }
+
+      .project-main {
+        padding: 20px 16px 40px;
+      }
+
+      .project-grid {
+        grid-template-columns: 1fr;
+      }
+
+      .card--hero-meta,
+      .card--hero-visual,
+      .card--info,
+      .card--gallery-large,
+      .card--gallery-1,
+      .card--gallery-2,
+      .card--gallery-3,
+      .card--gallery-4 {
+        grid-column: span 1;
+        grid-row: auto;
+      }
+
+      .card--hero-visual {
+        min-height: 0;
+        aspect-ratio: 16 / 9;
+      }
+
+      .card--gallery-large {
+        aspect-ratio: 16 / 9;
+        min-height: 0;
+      }
+
+      .card--gallery-1,
+      .card--gallery-2,
+      .card--gallery-3,
+      .card--gallery-4 {
+        aspect-ratio: 4 / 3;
+        min-height: 0;
+      }
+
+      .card--hero-meta {
+        padding: 26px 22px;
+      }
+
+      .hero-title {
+        font-size: clamp(1.5rem, 6vw, 2rem);
+      }
+
+      .site-footer {
+        flex-direction: column;
+        align-items: flex-start;
+      }
+
+      .footer-links {
+        flex-wrap: wrap;
+        gap: 16px;
+      }
+    }
+
+    /* =========================================================
+       REDUCED MOTION
+       ========================================================= */
+    @media (prefers-reduced-motion: reduce) {
+
+      *,
+      *::before,
+      *::after {
+        animation-duration: 0.01ms !important;
+        transition-duration: 0.01ms !important;
+      }
+
+      html {
+        scroll-behavior: auto;
+      }
+
+      /* Aucune transformation non essentielle */
+      .card:hover,
+      .card--gallery-large:hover .gallery-img,
+      .card--gallery:hover .gallery-img,
+      .btn-primary:hover,
+      .proto-btn:hover,
+      .footer-top:hover svg {
+        transform: none;
+      }
+    }
+
+    /* Formats fixes des trois cartes d’images */
+    .card--hero-visual {
+      aspect-ratio: 19 / 10;
+      min-height: 0;
+    }
+
+    .card--gallery-large {
+      aspect-ratio: 36 / 25;
+      min-height: 0;
+    }
+
+    .card--gallery {
+      aspect-ratio: 29 / 20;
+      min-height: 0;
+    }
+
+    .hero-image,
+    .gallery-img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      object-position: center;
+    }
+
+    /* =========================================================
+   NAVIGATION ENTRE PROJETS (pager en bas de page)
+   ========================================================= */
+    .project-pager {
+      grid-column: 1 / -1;
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: var(--gap);
+      margin-top: 8px;
+    }
+
+    .pager-link {
+      display: flex;
+      align-items: center;
+      gap: 18px;
+      padding: 22px 26px;
+      border-radius: var(--radius);
+      background: var(--card-bg);
+      border: 1px solid var(--card-border);
+      box-shadow: var(--card-shadow);
+      backdrop-filter: blur(var(--card-blur)) saturate(118%);
+      -webkit-backdrop-filter: blur(var(--card-blur)) saturate(118%);
+      color: var(--text);
+      transition:
+        transform var(--transition-med),
+        box-shadow var(--transition-med),
+        border-color var(--transition-med);
+    }
+
+    .pager-link:hover {
+      transform: scale(1.015);
+      border-color: var(--card-border-hover);
+      box-shadow: var(--card-shadow-hover);
+    }
+
+    .pager-prev {
+      justify-content: flex-start;
+      text-align: left;
+    }
+
+    .pager-next {
+      justify-content: flex-end;
+      text-align: right;
+    }
+
+    .pager-text {
+      display: flex;
+      flex-direction: column;
+      gap: 2px;
+    }
+
+    .pager-label {
+      font-size: 12px;
+      letter-spacing: 0.04em;
+      text-transform: uppercase;
+      color: var(--eyebrow);
+    }
+
+    .pager-title {
+      font-size: 17px;
+      font-weight: 600;
+      color: var(--text);
+    }
+
+    .pager-arrow {
+      font-size: 22px;
+      line-height: 1;
+      color: var(--text-secondary);
+      transition: transform var(--transition-fast), color var(--transition-fast);
+    }
+
+    .pager-link:hover .pager-arrow {
+      color: var(--text);
+    }
+
+    .pager-prev:hover .pager-arrow {
+      transform: translateX(-4px);
+    }
+
+    .pager-next:hover .pager-arrow {
+      transform: translateX(4px);
+    }
+
+    /* Responsive : sur mobile, on empile */
+    @media (max-width: 720px) {
+      .project-pager {
+        grid-template-columns: 1fr;
+      }
+    }
+  </style>
+</head>
+
+<body>
+
+  <!-- =============================================================
+       BARRE DE NAV STICKY : retour vers Mes projets, fil d’ariane, theme
+       ============================================================= -->
+  <nav class="project-nav" aria-label="Navigation principale">
+    <a href="projets.html" class="nav-back">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"
+        stroke-linejoin="round" aria-hidden="true">
+        <path d="M19 12H5M12 19l-7-7 7-7" />
+      </svg>
+      Mes projets
+    </a>
+
+    <span class="nav-crumb">Projet 02 · <strong>Handi Tolosa</strong></span>
+
+    <button id="theme-toggle" class="theme-toggle-btn" aria-label="Basculer entre le mode sombre et le mode clair"
+      type="button">
+      <span class="sr-only" id="theme-toggle-label">Passer en mode clair</span>
+      <span class="toggle-switch" aria-hidden="true">
+        <span class="toggle-thumb">
+          <svg class="icon-sun" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"
+            stroke-linecap="round" stroke-linejoin="round">
+            <circle cx="12" cy="12" r="4" />
+            <path
+              d="M12 2v2M12 20v2M4.93 4.93l1.41 1.41M17.66 17.66l1.41 1.41M2 12h2M20 12h2M4.93 19.07l1.41-1.41M17.66 6.34l1.41-1.41" />
+          </svg>
+          <svg class="icon-moon" viewBox="0 0 24 24" fill="currentColor">
+            <path d="M20.354 15.354A9 9 0 018.646 3.646 9.003 9.003 0 0012 21a9.003 9.003 0 008.354-5.646z" />
+          </svg>
+        </span>
+      </span>
+    </button>
+  </nav>
+
+  <main class="project-main" id="top">
+    <div class="project-grid">
+
+      <!-- ========== CARTE 01 · PRESENTATION ========== -->
+      <article class="card card--hero-meta" aria-labelledby="hero-title">
+        <span class="hero-eyebrow">02 · Projet</span>
+        <h1 class="hero-title" id="hero-title">Handi Tolosa</h1>
+
+        <div class="hero-tags">
+          <span class="hero-tag">Projet tutoré</span>
+          <span class="hero-tag">Stratégie réseaux sociaux</span>
+          <span class="hero-tag">Prototype web</span>
+          <span class="hero-tag">Handicap &amp; inclusion</span>
+        </div>
+
+        <p class="hero-pitch">
+          Projet tutoré de Master 1, équipe de cinq, sur l'année. Accompagner Handi Tolosa, une association de
+          supporters du TFC en situation de handicap, créée six mois plus tôt, dans la construction de sa communication
+          digitale.
+        </p>
+
+        <a class="btn-primary" href="Images/Livrable_Handi_Tolosa.pdf" target="_blank" rel="noopener"
+          aria-label="Voir le livrable Handi Tolosa au format PDF - nouvel onglet">
+          Voir le livrable
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"
+            stroke-linejoin="round" aria-hidden="true">
+            <path d="M14 3H7a2 2 0 0 0-2 2v14a2 2 0 0 0 2 2h10a2 2 0 0 0 2-2V8z" />
+            <polyline points="14 3 14 8 19 8" />
+            <line x1="9" y1="13" x2="15" y2="13" />
+            <line x1="9" y1="17" x2="13" y2="17" />
+          </svg>
+        </a>
+      </article>
+
+      <!-- ========== CARTE 02 · VISUEL PRINCIPAL ET PROTOTYPE ========== -->
+      <div class="card card--hero-visual">
+        <img class="hero-image" src="Images/handi_tolosa_accueil.webp"
+          alt="Page d’accueil du prototype web de Handi Tolosa" width="3200" height="1800" loading="eager" />
+        <button type="button" class="zoom-btn" data-zoom-src="Images/handi_tolosa_accueil.webp"
+          aria-label="Agrandir l’image : page d’accueil du prototype web de Handi Tolosa"></button>
+        <a class="proto-btn" href="https://handitolosa311.weebly.com/" target="_blank" rel="noopener noreferrer"
+          aria-label="Voir le prototype web de Handi Tolosa - nouvel onglet">
+          Voir le prototype
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"
+            stroke-linejoin="round" aria-hidden="true">
+            <path d="M14 4h6v6" />
+            <path d="M20 4l-8.5 8.5" />
+            <path d="M18 14v4a2 2 0 0 1-2 2H6a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h4" />
+          </svg>
+        </a>
+      </div>
+
+      <!-- ========== CARTE 03 · LE DEFI ========== -->
+      <article class="card card--info card--soft">
+        <h2 class="info-title">Le défi</h2>
+        <p class="info-body">
+          L'association venait de naître et cherchait à recruter des adhérents, mais le réflexe était de s'adresser
+          uniquement aux personnes en situation de handicap. Or pour grandir et exister dans l'écosystème du TFC, il
+          fallait aussi toucher les supporters valides, les familles, les partenaires potentiels. Le vrai enjeu :
+          identifier les bons publics et construire une parole qui donne envie de rejoindre le projet, sans réduire
+          l'association à la question du handicap seul.
+        </p>
+      </article>
+
+      <!-- ========== CARTE 04 · MA REPONSE ========== -->
+      <article class="card card--info card--soft">
+        <h2 class="info-title">Ma réponse</h2>
+        <p class="info-body">
+          J'ai pris en charge deux volets. Sur les réseaux sociaux : banque d'idées de posts, visuels types et
+          calendrier éditorial pensés pour alterner entre les temps forts du club, la vie de l'asso et la
+          sensibilisation. Sur le site web : arborescence, wireframes et prototype fonctionnel sur Weebly. On se voyait
+          avec l'asso une fois par mois, en visio ou en face à face, d'abord pour poser leurs objectifs puis pour
+          ajuster les productions au fil de l'eau. Le tout a été livré dans un dossier de plus de 100 pages : analyse de
+          l'existant, recommandations et productions finales.
+        </p>
+      </article>
+
+      <!-- ========== CARTE 05 · IMPACT ========== -->
+      <article class="card card--info card--soft">
+        <h2 class="info-title">Impact</h2>
+        <p class="info-body">
+          Un dossier complet remis au fondateur de l'association, avec des outils directement utilisables pour lancer
+          leur communication. Projet noté 16,5/20.
+        </p>
+        <blockquote class="info-quote">
+          <p>
+            « Vous avez fait un super boulot, c’est hyper qualitatif et ça va nous permettre
+            d’avancer dans le bon sens. [...] Vous nous avez grandement facilité le travail. »
+          </p>
+          <footer>Retour de l’association</footer>
+        </blockquote>
+      </article>
+
+      <!-- ========== CARTE 06 · OUTILS MOBILISÉS ========== -->
+      <article class="card card--info card--soft">
+        <h2 class="info-title">Outils mobilisés</h2>
+
+        <div class="tools-grid" role="list">
+
+          <div class="tool-item" role="listitem">
+            <span class="tool-icon">
+              <img src="Images/icone_canva.svg" alt="" width="32" height="32" loading="lazy" />
+            </span>
+            <span class="tool-name">Canva</span>
+          </div>
+
+          <div class="tool-item" role="listitem">
+            <span class="tool-icon">
+              <img src="Images/icone_weebly.svg" alt="" width="32" height="32" loading="lazy" />
+            </span>
+            <span class="tool-name">Weebly</span>
+          </div>
+
+          <div class="tool-item" role="listitem">
+            <span class="tool-icon">
+              <img src="Images/icone_google.svg" alt="" width="32" height="32" loading="lazy" />
+            </span>
+            <span class="tool-name">Google Workspace</span>
+          </div>
+
+          <div class="tool-item" role="listitem">
+            <span class="tool-icon">
+              <img src="Images/icone_figma.svg" alt="" width="32" height="32" loading="lazy" />
+            </span>
+            <span class="tool-name">Figma</span>
+          </div>
+
+        </div>
+      </article>
+
+      <!-- ========== CARTE 07 · CALENDRIER EDITORIAL, GRAND FORMAT ========== -->
+      <div class="card card--gallery-large">
+        <img class="gallery-img" src="Images/handi_tolosa_calendrier.webp"
+          alt="Calendrier éditorial Instagram conçu pour Handi Tolosa" width="3200" height="1800" loading="lazy" />
+        <button type="button" class="zoom-btn" data-zoom-src="Images/handi_tolosa_calendrier.webp"
+          aria-label="Agrandir l’image : calendrier éditorial Instagram conçu pour Handi Tolosa"></button>
+      </div>
+
+      <!-- ========== CARTE 08 · INSTAGRAM ========== -->
+      <div class="card card--gallery card--gallery-1">
+        <img class="gallery-img" src="Images/handi_tolosa_instagram.webp"
+          alt="Recommandations stratégiques pour le compte Instagram de Handi Tolosa" width="1600" height="1200"
+          loading="lazy" />
+        <button type="button" class="zoom-btn" data-zoom-src="Images/handi_tolosa_instagram.webp"
+          aria-label="Agrandir l’image : recommandations stratégiques pour le compte Instagram de Handi Tolosa"></button>
+      </div>
+
+      <!-- ========== CARTE 09 · FACEBOOK ========== -->
+      <div class="card card--gallery card--gallery-2">
+        <img class="gallery-img" src="Images/handi_tolosa_facebook.webp"
+          alt="Recommandations stratégiques pour la page Facebook de Handi Tolosa" width="1600" height="1200"
+          loading="lazy" />
+        <button type="button" class="zoom-btn" data-zoom-src="Images/handi_tolosa_facebook.webp"
+          aria-label="Agrandir l’image : recommandations stratégiques pour la page Facebook de Handi Tolosa"></button>
+      </div>
+
+      <!-- ========== CARTE 10 · X ========== -->
+      <div class="card card--gallery card--gallery-3">
+        <img class="gallery-img" src="Images/handi_tolosa_x.webp"
+          alt="Recommandations stratégiques pour le compte X de Handi Tolosa" width="1600" height="1200"
+          loading="lazy" />
+        <button type="button" class="zoom-btn" data-zoom-src="Images/handi_tolosa_x.webp"
+          aria-label="Agrandir l’image : recommandations stratégiques pour le compte X de Handi Tolosa"></button>
+      </div>
+
+      <!-- ========== CARTE 11 · LINKEDIN ========== -->
+      <div class="card card--gallery card--gallery-4">
+        <img class="gallery-img" src="Images/handi_tolosa_linkedIn.webp"
+          alt="Recommandations stratégiques pour la page LinkedIn de Handi Tolosa" width="1600" height="1200"
+          loading="lazy" />
+        <button type="button" class="zoom-btn" data-zoom-src="Images/handi_tolosa_linkedIn.webp"
+          aria-label="Agrandir l’image : recommandations stratégiques pour la page LinkedIn de Handi Tolosa"></button>
+      </div>
+
+      <!-- ========== NAVIGATION ENTRE PROJETS ========== -->
+      <nav class="project-pager" aria-label="Navigation entre les projets">
+        <a href="projet-ecohabitat.html" class="pager-link pager-prev">
+          <span class="pager-arrow" aria-hidden="true">←</span>
+          <span class="pager-text">
+            <span class="pager-label">Projet précédent</span>
+            <span class="pager-title">Projet 01</span>
+          </span>
+        </a>
+
+        <a href="projet-papi-restaurant.html" class="pager-link pager-next">
+          <span class="pager-text">
+            <span class="pager-label">Projet suivant</span>
+            <span class="pager-title">Projet 03</span>
+          </span>
+          <span class="pager-arrow" aria-hidden="true">→</span>
+        </a>
+      </nav>
+
+    </div>
+  </main>
+
+  <!-- =============================================================
+       MODALE D’AGRANDISSEMENT
+       ============================================================= -->
+  <div class="lightbox" id="lightbox" role="dialog" aria-modal="true" aria-labelledby="lightbox-title" hidden>
+    <p class="sr-only" id="lightbox-title">Image agrandie</p>
+    <button type="button" class="lightbox-close" id="lightbox-close" aria-label="Fermer l’image agrandie">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round"
+        aria-hidden="true">
+        <line x1="6" y1="6" x2="18" y2="18" />
+        <line x1="18" y1="6" x2="6" y2="18" />
+      </svg>
+    </button>
+    <img class="lightbox-img" id="lightbox-img" src="" alt="" />
+  </div>
+
+  <!-- =============================================================
+       FOOTER MINIMAL
+       ============================================================= -->
+  <footer class="site-footer" role="contentinfo">
+    <p class="footer-identity">Benjamin Bridanne · Chargé de communication digitale</p>
+    <div class="footer-links">
+      <a href="index.html">Accueil</a>
+      <a href="projets.html">Mes projets</a>
+      <a href="mailto:benjaminbridanne@gmail.com">Mail</a>
+      <a href="https://www.linkedin.com/in/benjamin-bridanne-ba9a64285/" target="_blank" rel="noopener">LinkedIn</a>
+      <a href="mentions-legales.html">Mentions légales</a>
+      <a href="#top" class="footer-top">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"
+          stroke-linejoin="round" aria-hidden="true">
+          <line x1="12" y1="19" x2="12" y2="5" />
+          <polyline points="5 12 12 5 19 12" />
+        </svg>
+        Retour en haut
+      </a>
+    </div>
+  </footer>
+
+  <script>
+    /* =========================================================
+       THEME SOMBRE / CLAIR - meme cle localStorage que l’accueil
+       ========================================================= */
+    (function () {
+      const root = document.documentElement;
+      const btn = document.getElementById('theme-toggle');
+      const label = document.getElementById('theme-toggle-label');
+      const saved = localStorage.getItem('theme');
+      const systemPrefersDark = window.matchMedia('(prefers-color-scheme: dark)').matches;
+      const initial = saved || (systemPrefersDark ? 'dark' : 'light');
+      root.setAttribute('data-theme', initial);
+      updateLabel(initial);
+
+      btn.addEventListener('click', () => {
+        const current = root.getAttribute('data-theme');
+        const next = current === 'dark' ? 'light' : 'dark';
+        root.setAttribute('data-theme', next);
+        localStorage.setItem('theme', next);
+        updateLabel(next);
+      });
+
+      function updateLabel(mode) {
+        label.textContent = mode === 'dark' ? 'Passer en mode clair' : 'Passer en mode sombre';
+      }
+    })();
+
+    /* =========================================================
+       AGRANDISSEMENT DES IMAGES
+       Modale accessible : Echap, clic sur le fond, croix.
+       Le focus entre dans la modale puis revient au declencheur.
+       ========================================================= */
+    (function () {
+      const lightbox = document.getElementById('lightbox');
+      const image = document.getElementById('lightbox-img');
+      const title = document.getElementById('lightbox-title');
+      const closeBtn = document.getElementById('lightbox-close');
+      const triggers = [...document.querySelectorAll('.zoom-btn')];
+      if (!lightbox || !image || !closeBtn || !triggers.length) return;
+
+      let lastFocused = null;
+
+      function open(trigger) {
+        const source = trigger.dataset.zoomSrc;
+        const picture = trigger.parentElement.querySelector('img');
+        const description = picture ? picture.getAttribute('alt') : '';
+
+        lastFocused = trigger;
+        image.setAttribute('src', source);
+        image.setAttribute('alt', description);
+        title.textContent = description || 'Image agrandie';
+
+        lightbox.hidden = false;
+        document.body.classList.add('is-locked');
+        closeBtn.focus();
+      }
+
+      function close() {
+        lightbox.hidden = true;
+        document.body.classList.remove('is-locked');
+        image.setAttribute('src', '');
+        image.setAttribute('alt', '');
+        if (lastFocused) {
+          lastFocused.focus();
+          lastFocused = null;
+        }
+      }
+
+      triggers.forEach(trigger => {
+        trigger.addEventListener('click', () => open(trigger));
+      });
+
+      closeBtn.addEventListener('click', close);
+
+      /* Clic sur le fond assombri, jamais sur l’image elle-meme */
+      lightbox.addEventListener('click', event => {
+        if (event.target === lightbox) close();
+      });
+
+      document.addEventListener('keydown', event => {
+        if (lightbox.hidden) return;
+        if (event.key === 'Escape') {
+          event.preventDefault();
+          close();
+          return;
+        }
+        /* La croix est le seul element focusable : le focus y reste */
+        if (event.key === 'Tab') {
+          event.preventDefault();
+          closeBtn.focus();
+        }
+      });
+    })();
+  </script>
+
+</body>
+
+</html>

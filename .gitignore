@@ -1,0 +1,46 @@
+# ===== Système =====
+# Windows
+desktop.ini
+Thumbs.db
+ehthumbs.db
+ehthumbs_vista.db
+$RECYCLE.BIN/
+
+# macOS
+.DS_Store
+.AppleDouble
+.LSOverride
+._*
+
+# Linux
+*~
+.Trash-*
+
+# ===== Éditeurs =====
+.vscode/
+.idea/
+*.swp
+*.swo
+*.sublime-workspace
+*.sublime-project
+
+# ===== Outils IA / assistants =====
+.claude/
+.cursor/
+.aider*
+
+# ===== Dossiers de travail (à garder en local) =====
+consignes/
+references/
+
+# ===== Fichiers temporaires / brouillons =====
+*.bak
+*.tmp
+*.log
+*~
+*.orig
+
+# ===== Archives (le zip d'origine ne va pas dans le repo) =====
+*.zip
+*.rar
+*.7z
