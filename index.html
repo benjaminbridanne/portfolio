@@ -1,0 +1,3180 @@
+<!DOCTYPE html>
+<html lang="fr" data-theme="light">
+
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Benjamin Bridanne - Portfolio</title>
+  <meta name="description"
+    content="Portfolio de Benjamin Bridanne, chargé de communication digitale. Projets, parcours, compétences." />
+  <link rel="canonical" href="https://benjaminbridanne.github.io/portfolio/" />
+  <link rel="icon" href="Images/image-logo-inverse.png" type="image/png" />
+
+  <meta property="og:type" content="website" />
+  <meta property="og:url" content="https://benjaminbridanne.github.io/portfolio/" />
+  <meta property="og:title" content="Benjamin Bridanne - Chargé de communication digitale" />
+  <meta property="og:description"
+    content="Portfolio de Benjamin Bridanne. Projets, parcours et compétences en communication digitale et éditoriale." />
+  <meta property="og:image" content="https://benjaminbridanne.github.io/portfolio/Images/image_fond.png" />
+  <meta property="og:locale" content="fr_FR" />
+
+  <meta name="twitter:card" content="summary_large_image" />
+
+  <style>
+    /* =========================================================
+       TOKENS
+       ========================================================= */
+    :root {
+      --font-system: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
+      --radius: 22px;
+      --radius-sm: 14px;
+      --gap: 14px;
+      --max-width: 1280px;
+
+      /* Une seule courbe pour tout le site : douce, sans rebond */
+      --ease: cubic-bezier(.2, .8, .2, 1);
+      --transition-fast: 250ms var(--ease);
+      --transition-med: 400ms var(--ease);
+
+      /* Seul accent autorisé : le bleu Apple, réservé aux interactions importantes */
+      --apple-blue-dark: #0A84FF;
+      --apple-blue-light: #007AFF;
+      --sun-moon: #F7E27B;
+    }
+
+    /* -------- Light mode -------- */
+    [data-theme="light"] {
+      --bg: #f2f2f4;
+      --bg-halo-1: rgba(205, 214, 232, 0.30);
+      --bg-halo-2: rgba(214, 220, 234, 0.24);
+
+      --card-bg: rgba(255, 255, 255, 0.74);
+      --card-bg-soft: rgba(255, 255, 255, 0.56);
+      --card-bg-solid: #ffffff;
+      --card-border: rgba(60, 60, 67, 0.16);
+      --card-border-hover: rgba(60, 60, 67, 0.28);
+      --card-edge: rgba(255, 255, 255, 0.95);
+      --card-shadow: 0 4px 20px rgba(0, 0, 0, 0.05);
+      --card-shadow-hover: 0 14px 38px rgba(0, 0, 0, 0.09);
+      --card-highlight-top: rgba(255, 255, 255, 0.9);
+      --card-blur: 18px;
+
+      --text: #0a0a0d;
+      --text-secondary: rgba(60, 60, 67, 0.62);
+      --text-muted: rgba(60, 60, 67, 0.34);
+      /* Titres de section : lisibles sans être en plein contraste */
+      --eyebrow: rgba(60, 60, 67, 0.58);
+      --line: rgba(60, 60, 67, 0.12);
+
+      --arrow-bg: rgba(255, 255, 255, 0.60);
+      --arrow-border: rgba(60, 60, 67, 0.20);
+      --arrow-color: #0a0a0d;
+      --arrow-border-hover: rgba(60, 60, 67, 0.38);
+
+      --toggle-track-bg: #e8e8ea;
+      --toggle-track-border: rgba(60, 60, 67, 0.22);
+      --toggle-thumb-bg: #0a0a0d;
+
+      --apple-blue: var(--apple-blue-light);
+
+      --tools-bg: linear-gradient(145deg, #ffffff, #eeeff2 72%);
+      --tool-bg: linear-gradient(145deg, rgba(255, 255, 255, 0.96), rgba(255, 255, 255, 0.70));
+      --tool-border: rgba(60, 60, 67, 0.16);
+      --tool-shadow: 0 6px 14px rgba(0, 0, 0, 0.10), inset 0 1px 0 rgba(255, 255, 255, 0.95);
+      --tool-shadow-hover: 0 10px 20px rgba(0, 0, 0, 0.14), inset 0 1px 0 rgba(255, 255, 255, 1);
+
+      --pill-bg: rgba(60, 60, 67, 0.05);
+      --pill-border: rgba(60, 60, 67, 0.14);
+      --pill-text: rgba(60, 60, 67, 0.85);
+      --pill-active-bg: #0a0a0d;
+      --pill-active-text: #ffffff;
+
+      --contact-btn-bg: rgba(60, 60, 67, 0.08);
+      --contact-btn-border: rgba(60, 60, 67, 0.16);
+      --contact-btn-text: #0a0a0d;
+
+      --avatar-green-bg: #E4F3E8;
+      --avatar-green-text: #1E6B35;
+      --avatar-pink-bg: #FBE7EF;
+      --avatar-pink-text: #A3245A;
+      --avatar-blue-bg: #E6EEFC;
+      --avatar-blue-text: #1D4FA8;
+    }
+
+    /* -------- Dark mode -------- */
+    [data-theme="dark"] {
+      --bg: #000000;
+      --bg-halo-1: rgba(44, 44, 52, 0.22);
+      --bg-halo-2: rgba(24, 34, 52, 0.18);
+
+      /* Verre fumé : fonds sombres, transparence variable selon le rôle de la carte */
+      --card-bg: rgba(18, 18, 20, 0.74);
+      --card-bg-soft: rgba(20, 20, 22, 0.56);
+      --card-bg-solid: #0e0e10;
+      --card-border: rgba(255, 255, 255, 0.10);
+      --card-border-hover: rgba(255, 255, 255, 0.20);
+      --card-edge: rgba(255, 255, 255, 0.28);
+      --card-shadow: 0 6px 26px rgba(0, 0, 0, 0.50);
+      --card-shadow-hover: 0 18px 46px rgba(0, 0, 0, 0.62);
+      --card-highlight-top: rgba(255, 255, 255, 0.14);
+      --card-blur: 16px;
+
+      --text: #F5F5F7;
+      --text-secondary: rgba(235, 235, 245, 0.62);
+      --text-muted: rgba(235, 235, 245, 0.34);
+      /* Titres de section : éclaircis pour rester lisibles sur fond noir */
+      --eyebrow: rgba(235, 235, 245, 0.56);
+      --line: rgba(255, 255, 255, 0.10);
+
+      --arrow-bg: rgba(255, 255, 255, 0.06);
+      --arrow-border: rgba(255, 255, 255, 0.18);
+      --arrow-color: #F5F5F7;
+      --arrow-border-hover: rgba(255, 255, 255, 0.42);
+
+      --toggle-track-bg: #1c1c1e;
+      --toggle-track-border: rgba(255, 255, 255, 0.16);
+      --toggle-thumb-bg: #0a0a0a;
+
+      --apple-blue: var(--apple-blue-dark);
+
+      --tools-bg: linear-gradient(145deg, #121214, #09090a 72%);
+      --tool-bg: linear-gradient(145deg, rgba(255, 255, 255, 0.09), rgba(255, 255, 255, 0.035));
+      --tool-border: rgba(255, 255, 255, 0.12);
+      --tool-shadow: 0 8px 18px rgba(0, 0, 0, 0.28), inset 0 1px 0 rgba(255, 255, 255, 0.14);
+      --tool-shadow-hover: 0 12px 24px rgba(0, 0, 0, 0.38), inset 0 1px 0 rgba(255, 255, 255, 0.20);
+
+      --pill-bg: #151517;
+      --pill-border: rgba(255, 255, 255, 0.14);
+      --pill-text: #d1d1d6;
+      --pill-active-bg: #e8e8ea;
+      --pill-active-text: #111113;
+
+      --contact-btn-bg: rgba(255, 255, 255, 0.09);
+      --contact-btn-border: rgba(255, 255, 255, 0.16);
+      --contact-btn-text: #F5F5F7;
+
+      --avatar-green-bg: rgba(48, 209, 88, 0.18);
+      --avatar-green-text: #6EE08F;
+      --avatar-pink-bg: rgba(255, 55, 135, 0.18);
+      --avatar-pink-text: #FF8AB8;
+      --avatar-blue-bg: rgba(10, 132, 255, 0.20);
+      --avatar-blue-text: #7DB7FF;
+    }
+
+    /* =========================================================
+       BASE
+       ========================================================= */
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
+
+    html {
+      scroll-behavior: smooth;
+    }
+
+    body {
+      font-family: var(--font-system);
+      -webkit-font-smoothing: antialiased;
+      -moz-osx-font-smoothing: grayscale;
+      background: var(--bg);
+      color: var(--text);
+      min-height: 100vh;
+      position: relative;
+      overflow-x: hidden;
+      transition: background var(--transition-med), color var(--transition-med);
+    }
+
+    /* Halos de fond discrets */
+    body::before {
+      content: "";
+      position: fixed;
+      inset: 0;
+      background:
+        radial-gradient(ellipse 60% 45% at 12% 8%, var(--bg-halo-1) 0%, transparent 60%),
+        radial-gradient(ellipse 55% 45% at 92% 96%, var(--bg-halo-2) 0%, transparent 62%);
+      pointer-events: none;
+      z-index: 0;
+    }
+
+    :focus-visible {
+      outline: 2px solid var(--text);
+      outline-offset: 3px;
+      border-radius: 6px;
+    }
+
+    a {
+      color: inherit;
+      text-decoration: none;
+    }
+
+    button {
+      font-family: inherit;
+      background: none;
+      border: none;
+      cursor: pointer;
+      color: inherit;
+    }
+
+    img {
+      max-width: 100%;
+      display: block;
+    }
+
+    /* Utilitaire pour libellés accessibles cachés visuellement */
+    .sr-only {
+      position: absolute;
+      width: 1px;
+      height: 1px;
+      padding: 0;
+      margin: -1px;
+      overflow: hidden;
+      clip: rect(0, 0, 0, 0);
+      white-space: nowrap;
+      border: 0;
+    }
+
+    /* =========================================================
+       BENTO GRID - 5 colonnes
+       ========================================================= */
+    .bento-grid {
+      max-width: var(--max-width);
+      margin: 0 auto;
+      padding: 28px 24px;
+      display: grid;
+      grid-template-columns: repeat(5, 1fr);
+      grid-auto-rows: minmax(160px, auto);
+      gap: var(--gap);
+      position: relative;
+      z-index: 1;
+    }
+
+    /* Placements desktop */
+    .card--profile {
+      grid-column: 1 / 4;
+      grid-row: 1;
+    }
+
+    .card--projects {
+      grid-column: 4 / 6;
+      grid-row: 1 / 3;
+    }
+
+    .card--cv-video {
+      grid-column: 1 / 3;
+      grid-row: 2;
+    }
+
+    .icons-grid {
+      grid-column: 3;
+      grid-row: 2;
+    }
+
+    .card--journey {
+      grid-column: 1 / 3;
+      grid-row: 3;
+    }
+
+    .card--skills {
+      grid-column: 3 / 5;
+      grid-row: 3;
+    }
+
+    .card--tools {
+      grid-column: 5;
+      grid-row: 3;
+    }
+
+    .card--news {
+      grid-column: 1 / 3;
+      grid-row: 4;
+    }
+
+    .card--reviews {
+      grid-column: 3 / 5;
+      grid-row: 4;
+    }
+
+    .card--contact {
+      grid-column: 5 / 6;
+      grid-row: 4;
+    }
+
+    /* =========================================================
+       CARD - base (le verre est une finition, pas une identité)
+       ========================================================= */
+    .card {
+      position: relative;
+      border-radius: var(--radius);
+      background: var(--card-bg);
+      border: 1px solid var(--card-border);
+      box-shadow: var(--card-shadow);
+      padding: 22px;
+      overflow: hidden;
+      backdrop-filter: blur(var(--card-blur)) saturate(118%);
+      -webkit-backdrop-filter: blur(var(--card-blur)) saturate(118%);
+      transition:
+        transform var(--transition-med),
+        box-shadow var(--transition-med),
+        border-color var(--transition-med),
+        background var(--transition-med);
+    }
+
+    /* Bordure plus lumineuse sur l'angle exposé (haut-gauche), puis fondue */
+    .card::before {
+      content: "";
+      position: absolute;
+      inset: 0;
+      padding: 1px;
+      border-radius: inherit;
+      background: linear-gradient(145deg, var(--card-edge), transparent 42%);
+      -webkit-mask: linear-gradient(#000 0 0) content-box, linear-gradient(#000 0 0);
+      -webkit-mask-composite: xor;
+      mask: linear-gradient(#000 0 0) content-box, linear-gradient(#000 0 0);
+      mask-composite: exclude;
+      opacity: 0.75;
+      pointer-events: none;
+      z-index: 4;
+    }
+
+    /* Reflet lumineux très fin sur le haut de la carte */
+    .card::after {
+      content: "";
+      position: absolute;
+      top: 0;
+      left: 0;
+      right: 0;
+      height: 1px;
+      background: linear-gradient(90deg,
+          transparent 0%,
+          var(--card-highlight-top) 22%,
+          var(--card-highlight-top) 78%,
+          transparent 100%);
+      pointer-events: none;
+      z-index: 4;
+    }
+
+    .card:hover {
+      transform: scale(1.015);
+      z-index: 6;
+      border-color: var(--card-border-hover);
+      box-shadow: var(--card-shadow-hover);
+    }
+
+    .card>* {
+      position: relative;
+      z-index: 2;
+    }
+
+    .card--link {
+      cursor: pointer;
+    }
+
+    /* Lien fantôme couvrant la carte */
+    .card--link .card-link-overlay {
+      position: absolute;
+      inset: 0;
+      z-index: 3;
+    }
+
+    /* Transparences différenciées : les cartes informatives reculent */
+    .card--profile,
+    .card--journey,
+    .card--skills,
+    .card--news,
+    .card--reviews,
+    .card--contact {
+      background: var(--card-bg-soft);
+    }
+
+    /* Cartes visuelles : pas de verre, l'image porte la carte */
+    .card--projects,
+    .card--cv-video {
+      background: var(--card-bg-solid);
+      backdrop-filter: none;
+      -webkit-backdrop-filter: none;
+    }
+
+    /* =========================================================
+       Bouton flèche diagonale (cartes menant à une page)
+       ========================================================= */
+    .arrow-btn {
+      position: absolute;
+      bottom: 18px;
+      right: 18px;
+      width: 38px;
+      height: 38px;
+      border-radius: 50%;
+      background: var(--arrow-bg);
+      border: 1px solid var(--arrow-border);
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      color: var(--arrow-color);
+      z-index: 5;
+      pointer-events: none;
+      backdrop-filter: blur(10px);
+      -webkit-backdrop-filter: blur(10px);
+      transition:
+        border-color var(--transition-med),
+        background var(--transition-med),
+        transform var(--transition-med);
+    }
+
+    .arrow-btn svg {
+      width: 15px;
+      height: 15px;
+      transition: transform var(--transition-med);
+    }
+
+    .card:hover .arrow-btn {
+      border-color: var(--arrow-border-hover);
+    }
+
+    .card:hover .arrow-btn svg:not(.cv-video-play-icon) {
+      transform: translate(2px, -2px);
+    }
+
+    /* Pastilles posées sur une image (Projets, CV vidéo) : verre blanc */
+    .card--projects .arrow-btn,
+    .card--cv-video .arrow-btn {
+      background: rgba(255, 255, 255, 0.14);
+      border-color: rgba(255, 255, 255, 0.28);
+      color: #fff;
+      backdrop-filter: blur(14px);
+      -webkit-backdrop-filter: blur(14px);
+    }
+
+    .card--projects:hover .arrow-btn {
+      border-color: rgba(255, 255, 255, 0.5);
+    }
+
+    /* =========================================================
+       CARD PROFIL
+       ========================================================= */
+    /* Une seule variable pilote la largeur de la photo ET la marge du texte :
+       les deux ne peuvent plus se chevaucher. */
+    .card--profile {
+      --photo-w: clamp(220px, 34%, 340px);
+      display: flex;
+      padding: 0;
+      min-height: 230px;
+    }
+
+    .profile-text {
+      flex: 1;
+      width: 100%;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      gap: 12px;
+      padding: 26px calc(var(--photo-w) + 26px) 26px 26px;
+    }
+
+    .profile-photo {
+      position: absolute;
+      top: 0;
+      right: 0;
+      bottom: 0;
+      width: var(--photo-w);
+      height: 100%;
+      object-fit: cover;
+      object-position: 52% 30%;
+    }
+
+    .profile-name {
+      font-size: clamp(1.55rem, 2.5vw, 2rem);
+      font-weight: 700;
+      letter-spacing: -0.025em;
+      line-height: 1.04;
+    }
+
+    .profile-title {
+      font-size: 0.9375rem;
+      font-weight: 500;
+      color: var(--text-secondary);
+      margin-top: 4px;
+      letter-spacing: -0.005em;
+    }
+
+    .profile-bio {
+      font-size: 0.875rem;
+      color: var(--text-secondary);
+      line-height: 1.5;
+    }
+
+    .profile-bio p+p {
+      margin-top: 8px;
+    }
+
+    /* =========================================================
+       ICONS GRID - 4 mini-cartes 2×2
+       ========================================================= */
+    .icons-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      grid-template-rows: 1fr 1fr;
+      gap: var(--gap);
+      min-height: 0;
+    }
+
+    .icon-card {
+      position: relative;
+      border-radius: var(--radius-sm);
+      background: var(--card-bg);
+      border: 1px solid var(--card-border);
+      box-shadow: var(--card-shadow);
+      backdrop-filter: blur(var(--card-blur)) saturate(118%);
+      -webkit-backdrop-filter: blur(var(--card-blur)) saturate(118%);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      color: var(--text);
+      overflow: hidden;
+      /* Montée progressive de la couleur : pas de passage brutal au bleu */
+      transition:
+        background-color 450ms var(--ease),
+        border-color 450ms var(--ease),
+        color 350ms ease,
+        box-shadow 450ms var(--ease),
+        transform 400ms var(--ease);
+    }
+
+    .icon-card::after {
+      content: "";
+      position: absolute;
+      top: 0;
+      left: 0;
+      right: 0;
+      height: 1px;
+      background: linear-gradient(90deg, transparent, var(--card-highlight-top), transparent);
+      pointer-events: none;
+    }
+
+    .icon-card svg {
+      width: 26px;
+      height: 26px;
+    }
+
+    /* Survol bleu partagé : mini-cartes de liens et bouton Contact */
+    .icon-card--link:hover,
+    .icon-card--link:focus-visible,
+    .contact-btn:hover {
+      background-color: var(--apple-blue);
+      border-color: var(--apple-blue);
+      color: #fff;
+      box-shadow: 0 10px 24px rgba(10, 132, 255, 0.18);
+    }
+
+    .icon-card--link:hover,
+    .icon-card--link:focus-visible {
+      transform: translateY(-2px);
+    }
+
+    /* Le toggle ne devient jamais bleu */
+    .icon-card--toggle:hover {
+      transform: translateY(-2px);
+      border-color: var(--card-border-hover);
+    }
+
+    /* =========================================================
+       TOGGLE clair/sombre - switch iOS horizontal
+       ========================================================= */
+    .toggle-switch {
+      position: relative;
+      width: 56px;
+      height: 30px;
+      border-radius: 999px;
+      background: var(--toggle-track-bg);
+      border: 1px solid var(--toggle-track-border);
+      transition: background var(--transition-med), border-color var(--transition-med);
+    }
+
+    .toggle-thumb {
+      position: absolute;
+      top: 50%;
+      left: 3px;
+      width: 24px;
+      height: 24px;
+      border-radius: 50%;
+      background: var(--toggle-thumb-bg);
+      transform: translateY(-50%);
+      transition: left var(--transition-med), background var(--transition-med);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+
+    .toggle-thumb svg {
+      width: 14px;
+      height: 14px;
+      color: var(--sun-moon);
+      position: absolute;
+      transition: opacity var(--transition-fast);
+    }
+
+    [data-theme="dark"] .toggle-thumb .icon-moon {
+      opacity: 1;
+    }
+
+    [data-theme="dark"] .toggle-thumb .icon-sun {
+      opacity: 0;
+    }
+
+    [data-theme="light"] .toggle-thumb {
+      left: calc(100% - 27px);
+    }
+
+    [data-theme="light"] .toggle-thumb .icon-moon {
+      opacity: 0;
+    }
+
+    [data-theme="light"] .toggle-thumb .icon-sun {
+      opacity: 1;
+    }
+
+    /* =========================================================
+       CARD CV VIDÉO
+       ========================================================= */
+    .card--cv-video {
+      padding: 0;
+      --tools-min-height: 220px;
+      min-height: var(--tools-min-height);
+    }
+
+    /* Bouton de lecture centré horizontalement et verticalement */
+    .card--cv-video .arrow-btn {
+      top: 50%;
+      left: 50%;
+      right: auto;
+      bottom: auto;
+      width: 54px;
+      height: 54px;
+      transform: translate(-50%, -50%);
+      background: rgba(255, 255, 255, 0.16);
+      border-color: rgba(255, 255, 255, 0.34);
+    }
+
+    .card--cv-video .arrow-btn svg {
+      width: 20px;
+      height: 20px;
+    }
+
+    .card--cv-video:hover .arrow-btn {
+      transform: translate(-50%, -50%) scale(1.08);
+      background: rgba(255, 255, 255, 0.26);
+      border-color: rgba(255, 255, 255, 0.5);
+    }
+
+    .cv-video-image {
+      position: absolute;
+      inset: 0;
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      object-position: 50% 46%;
+      z-index: 0;
+    }
+
+    /* Le contenu se cale sur la carte, sans lui imposer sa propre hauteur */
+    .card--cv-video .cv-video-inner {
+      position: absolute;
+      inset: 0;
+      display: flex;
+      align-items: flex-end;
+      padding: 22px;
+      color: #fff;
+    }
+
+    /* Dégradé noir en bas uniquement, pour la lisibilité du texte */
+    .cv-video-inner::before {
+      content: "";
+      position: absolute;
+      inset: 0;
+      background: linear-gradient(to top, rgba(0, 0, 0, 0.78) 0%, rgba(0, 0, 0, 0.30) 42%, transparent 72%);
+      pointer-events: none;
+    }
+
+    .cv-video-content {
+      position: relative;
+      z-index: 2;
+      display: flex;
+      flex-direction: column;
+      gap: 4px;
+    }
+
+    .cv-video-eyebrow {
+      font-size: 0.68rem;
+      font-weight: 600;
+      opacity: 0.78;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+    }
+
+    .cv-video-title {
+      font-size: 1.3rem;
+      font-weight: 600;
+      letter-spacing: -0.02em;
+    }
+
+    .cv-video-tagline {
+      font-size: 0.85rem;
+      opacity: 0.8;
+      margin-top: 2px;
+    }
+
+    /* Le triangle de lecture est décalé pour paraître optiquement centré */
+    .cv-video-play-icon {
+      transform: translateX(1px);
+    }
+
+    /* Fenêtre de lecture du CV vidéo */
+    .video-modal:not([open]) {
+      display: none;
+    }
+
+    .video-modal {
+      margin: 0;
+      width: 100%;
+      height: 100%;
+      max-width: none;
+      max-height: none;
+      border: 0;
+      color: inherit;
+      position: fixed;
+      inset: 0;
+      z-index: 1000;
+      display: grid;
+      place-items: center;
+      padding: 24px;
+      background: rgba(0, 0, 0, 0.76);
+      backdrop-filter: blur(12px);
+      -webkit-backdrop-filter: blur(12px);
+      opacity: 0;
+      transition: opacity 250ms ease;
+    }
+
+    .video-modal.is-open {
+      opacity: 1;
+    }
+
+    .video-modal::backdrop {
+      background: transparent;
+    }
+
+    .video-modal-dialog {
+      position: relative;
+      width: min(100%, 1100px, calc((100dvh - 48px) * 16 / 9));
+      aspect-ratio: 16 / 9;
+      overflow: hidden;
+      border-radius: 20px;
+      background: #000;
+      box-shadow: 0 24px 70px rgba(0, 0, 0, 0.5);
+      transform: scale(0.96);
+      transition: transform 250ms var(--ease);
+    }
+
+    .video-modal.is-open .video-modal-dialog {
+      transform: scale(1);
+    }
+
+    .video-modal-frame {
+      width: 100%;
+      height: 100%;
+      border: 0;
+    }
+
+    .video-modal-close {
+      position: absolute;
+      top: 14px;
+      right: 14px;
+      z-index: 2;
+      width: 38px;
+      height: 38px;
+      display: grid;
+      place-items: center;
+      border-radius: 50%;
+      background: rgba(0, 0, 0, 0.62);
+      color: #fff;
+      font-size: 1.6rem;
+      line-height: 1;
+      transition: background var(--transition-fast), transform var(--transition-fast);
+    }
+
+    .video-modal-close:hover {
+      background: rgba(255, 255, 255, 0.22);
+      transform: scale(1.08);
+    }
+
+    /* =========================================================
+       CARD PROJETS - pièce maîtresse du Bento
+       ========================================================= */
+    .card--projects {
+      padding: 0;
+      display: flex;
+      min-height: 360px;
+    }
+
+    .projects-carousel {
+      position: relative;
+      width: 100%;
+      height: 100%;
+      overflow: hidden;
+    }
+
+    .projects-track {
+      position: absolute;
+      inset: 0;
+    }
+
+    /* Défilement vertical commun aux Projets et aux Actualités :
+       l'élément suivant entre par le haut, l'actuel sort par le bas. */
+    .project-slide,
+    .news-slide,
+    .review-slide {
+      opacity: 0;
+      transform: translateY(-100%);
+      pointer-events: none;
+    }
+
+    .project-slide.is-active,
+    .project-slide.is-leaving,
+    .news-slide.is-active,
+    .news-slide.is-leaving,
+    .review-slide.is-active,
+    .review-slide.is-leaving {
+      transition: transform 900ms var(--ease), opacity 900ms var(--ease);
+    }
+
+    .project-slide.is-active,
+    .news-slide.is-active,
+    .review-slide.is-active {
+      opacity: 1;
+      transform: translateY(0);
+      z-index: 2;
+    }
+
+    .news-slide.is-active,
+    .review-slide.is-active {
+      pointer-events: auto;
+    }
+
+    .project-slide.is-leaving,
+    .news-slide.is-leaving,
+    .review-slide.is-leaving {
+      opacity: 0;
+      transform: translateY(100%);
+      z-index: 1;
+    }
+
+    /* Points de navigation des carrousels */
+    .projects-dot,
+    .news-dot,
+    .reviews-dot {
+      padding: 0;
+      border-radius: 50%;
+      transition:
+        background-color var(--transition-med),
+        height var(--transition-med),
+        border-radius var(--transition-med);
+    }
+
+    .projects-dot.is-active,
+    .news-dot.is-active,
+    .reviews-dot.is-active {
+      border-radius: 3px;
+    }
+
+    .project-slide {
+      position: absolute;
+      inset: 0;
+      display: flex;
+      align-items: flex-end;
+      padding: 26px;
+      color: #fff;
+    }
+
+    .project-image {
+      position: absolute;
+      inset: 0;
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      z-index: 0;
+    }
+
+    /* Léger dégradé noir en bas uniquement */
+    .project-slide::before {
+      content: "";
+      position: absolute;
+      inset: 0;
+      background: linear-gradient(to top, rgba(0, 0, 0, 0.80) 0%, rgba(0, 0, 0, 0.28) 38%, transparent 66%);
+      z-index: 1;
+    }
+
+    .project-content {
+      position: relative;
+      z-index: 2;
+      display: flex;
+      flex-direction: column;
+      gap: 4px;
+      max-width: 80%;
+    }
+
+    .project-eyebrow {
+      font-size: 0.68rem;
+      font-weight: 600;
+      opacity: 0.8;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+    }
+
+    .project-title {
+      font-size: 1.45rem;
+      font-weight: 600;
+      letter-spacing: -0.02em;
+      line-height: 1.15;
+    }
+
+    /* Points de navigation : un par projet, sur le côté droit */
+    .projects-dots {
+      position: absolute;
+      right: 18px;
+      top: 50%;
+      transform: translateY(-50%);
+      display: flex;
+      flex-direction: column;
+      gap: 8px;
+      z-index: 6;
+      /* Les points restent lisibles, y compris sur un visuel clair */
+      filter: drop-shadow(0 1px 3px rgba(0, 0, 0, 0.55));
+    }
+
+    .projects-dot {
+      width: 6px;
+      height: 6px;
+      background: rgba(255, 255, 255, 0.35);
+    }
+
+    .projects-dot:hover {
+      background: rgba(255, 255, 255, 0.72);
+    }
+
+    .projects-dot.is-active {
+      background: #fff;
+      height: 20px;
+    }
+
+    /* =========================================================
+       CARD COMPÉTENCES - 4 capsules sur une ligne + description
+       ========================================================= */
+    .card--skills {
+      display: flex;
+      flex-direction: column;
+      gap: 10px;
+      padding: 18px 20px;
+    }
+
+    .card-eyebrow {
+      font-size: 0.68rem;
+      font-weight: 600;
+      color: var(--eyebrow);
+      letter-spacing: 0.13em;
+      text-transform: uppercase;
+    }
+
+    .skill-tabs {
+      display: grid;
+      grid-template-columns: 0.8fr 1fr 1.2fr 1.5fr;
+      gap: 6px;
+      width: 100%;
+      padding: 6px 0 0;
+    }
+
+    .skill-tab {
+      min-height: 32px;
+      width: 100%;
+      padding: 0 3px;
+      border: 1px solid var(--pill-border);
+      border-radius: 999px;
+      background: var(--pill-bg);
+      color: var(--pill-text);
+      font: inherit;
+      font-size: 0.8rem;
+      font-weight: 500;
+      white-space: nowrap;
+      transition:
+        background-color 280ms ease,
+        color 280ms ease,
+        border-color 280ms ease,
+        transform 280ms ease;
+    }
+
+    .skill-tab:hover {
+      transform: translateY(-1px);
+      border-color: var(--apple-blue);
+    }
+
+    .skill-tab[aria-selected="true"] {
+      background: var(--apple-blue);
+      border-color: var(--apple-blue);
+      color: #ffffff;
+    }
+
+    .skill-copy {
+      display: grid;
+      align-content: center;
+      flex: 1;
+      min-height: 58px;
+      padding: 0 2px;
+      text-align: center;
+    }
+
+    .skill-description {
+      max-width: 620px;
+      margin: 0 auto;
+      color: var(--text);
+      font-size: clamp(14px, 1.3vw, 16px);
+      font-weight: 400;
+      line-height: 1.5;
+      letter-spacing: -0.012em;
+      animation: skill-reveal 320ms ease both;
+    }
+
+    @keyframes skill-reveal {
+      from {
+        opacity: 0;
+        transform: translateY(5px);
+      }
+
+      to {
+        opacity: 1;
+        transform: translateY(0);
+      }
+    }
+
+    /* =========================================================
+       CARD PARCOURS
+       ========================================================= */
+    .card--journey {
+      display: flex;
+      flex-direction: column;
+      gap: 12px;
+      padding: 18px 20px;
+    }
+
+    .journey-header {
+      display: flex;
+      justify-content: space-between;
+      align-items: baseline;
+      gap: 16px;
+    }
+
+    /* Lien texte simple avec une petite flèche horizontale */
+    .cta-link {
+      display: inline-flex;
+      align-items: baseline;
+      gap: 6px;
+      color: var(--text-secondary);
+      font-size: 0.8125rem;
+      font-weight: 500;
+      position: relative;
+      z-index: 5;
+      transition: color var(--transition-med);
+    }
+
+    .cta-link .cta-arrow {
+      font-size: 0.85em;
+      transition: transform var(--transition-med);
+    }
+
+    .cta-link:hover {
+      color: var(--apple-blue);
+    }
+
+    .cta-link:hover .cta-arrow {
+      transform: translateX(3px);
+    }
+
+    .journey-list {
+      list-style: none;
+      display: flex;
+      flex-direction: column;
+      gap: 8px;
+    }
+
+    .journey-item {
+      display: grid;
+      grid-template-columns: 112px minmax(0, 1fr);
+      gap: 4px 14px;
+      align-items: start;
+      padding: 8px 0 0;
+      border-top: 1px solid var(--line);
+    }
+
+    .journey-item:first-child {
+      border-top: none;
+      padding-top: 0;
+    }
+
+    /* Le type et la date sont empiles dans la colonne de gauche */
+    .journey-meta {
+      display: flex;
+      flex-direction: column;
+      gap: 3px;
+    }
+
+    .journey-type {
+      font-size: 0.66rem;
+      font-weight: 600;
+      color: var(--eyebrow);
+      letter-spacing: 0.11em;
+      text-transform: uppercase;
+    }
+
+    .journey-date {
+      font-size: 0.75rem;
+      color: var(--text-muted);
+      font-variant-numeric: tabular-nums;
+    }
+
+    .journey-details {
+      display: flex;
+      flex-direction: column;
+      gap: 2px;
+    }
+
+    .journey-title {
+      font-size: 0.875rem;
+      font-weight: 600;
+      color: var(--text);
+      line-height: 1.25;
+    }
+
+    .journey-place {
+      font-size: 0.8125rem;
+      color: var(--text-secondary);
+    }
+
+    /* =========================================================
+       CARD ACTUALITÉS - image à gauche, contenu à droite
+       ========================================================= */
+    .card--news {
+      display: flex;
+      padding: 0;
+      min-height: 210px;
+    }
+
+    /* Toutes les actualités occupent la même cellule : la carte prend la hauteur
+       de la plus longue, puis elles défilent comme les projets. */
+    .news-track {
+      flex: 1;
+      display: grid;
+      min-width: 0;
+    }
+
+    .news-slide {
+      grid-area: 1 / 1;
+    }
+
+    .news-inner {
+      display: grid;
+      grid-template-columns: minmax(110px, 34%) minmax(0, 1fr);
+      gap: 16px;
+      align-items: stretch;
+      height: 100%;
+      padding: 14px;
+    }
+
+    .news-visual-wrap {
+      position: relative;
+      border-radius: var(--radius-sm);
+      overflow: hidden;
+      /* Fond de repli si l'image n'est pas encore en ligne */
+      background: linear-gradient(145deg, var(--pill-bg), var(--line));
+    }
+
+    .news-image {
+      position: absolute;
+      inset: 0;
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      object-position: 50% 45%;
+    }
+
+    .news-content-wrap {
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      gap: 2px;
+      /* Réserve à droite pour les points de navigation */
+      padding: 4px 26px 4px 0;
+      min-width: 0;
+    }
+
+    .news-date {
+      font-size: 0.8125rem;
+      color: var(--text-secondary);
+      margin-top: 6px;
+    }
+
+    .news-title {
+      font-size: 1.0625rem;
+      font-weight: 600;
+      color: var(--text);
+      letter-spacing: -0.015em;
+      line-height: 1.25;
+      margin-top: 4px;
+    }
+
+    .news-summary {
+      font-size: 0.8125rem;
+      color: var(--text-secondary);
+      line-height: 1.5;
+      margin-top: 6px;
+      display: -webkit-box;
+      -webkit-line-clamp: 4;
+      line-clamp: 4;
+      -webkit-box-orient: vertical;
+      overflow: hidden;
+    }
+
+    .news-link {
+      align-self: flex-start;
+      margin-top: 8px;
+    }
+
+    .news-dots {
+      position: absolute;
+      right: 14px;
+      top: 50%;
+      transform: translateY(-50%);
+      display: flex;
+      flex-direction: column;
+      gap: 7px;
+      z-index: 6;
+    }
+
+    .news-dot {
+      width: 5px;
+      height: 5px;
+      background: var(--text-muted);
+    }
+
+    .news-dot:hover {
+      background: var(--text-secondary);
+    }
+
+    .news-dot.is-active {
+      background: var(--text);
+      height: 16px;
+    }
+
+    /* =========================================================
+       CARD AVIS DE STAGE - un avis à la fois, défilement comme les projets
+       ========================================================= */
+    .card--reviews {
+      display: flex;
+      flex-direction: column;
+      gap: 12px;
+      padding: 18px 20px;
+    }
+
+    .reviews-header {
+      display: flex;
+      justify-content: space-between;
+      align-items: baseline;
+      gap: 16px;
+    }
+
+    .reviews-count {
+      font-size: 0.75rem;
+      color: var(--text-secondary);
+    }
+
+    /* Tous les avis dans la même cellule : la carte garde une hauteur stable */
+    .reviews-track {
+      flex: 1;
+      display: grid;
+      min-width: 0;
+    }
+
+    .review-slide {
+      grid-area: 1 / 1;
+      display: flex;
+      flex-direction: column;
+      gap: 10px;
+      /* Réserve à droite pour les points de navigation */
+      padding-right: 22px;
+      min-width: 0;
+    }
+
+    .review-author {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+    }
+
+    .review-avatar {
+      flex: none;
+      width: 40px;
+      height: 40px;
+      display: grid;
+      place-items: center;
+      border-radius: 50%;
+      font-size: 0.875rem;
+      font-weight: 600;
+    }
+
+    .review-avatar--green {
+      background: var(--avatar-green-bg);
+      color: var(--avatar-green-text);
+    }
+
+    .review-avatar--pink {
+      background: var(--avatar-pink-bg);
+      color: var(--avatar-pink-text);
+    }
+
+    .review-avatar--blue {
+      background: var(--avatar-blue-bg);
+      color: var(--avatar-blue-text);
+    }
+
+    .review-identity {
+      display: flex;
+      flex-direction: column;
+      gap: 2px;
+      min-width: 0;
+    }
+
+    .review-org {
+      font-size: 0.875rem;
+      font-weight: 600;
+      color: var(--text);
+      line-height: 1.25;
+    }
+
+    .review-meta {
+      font-size: 0.75rem;
+      color: var(--text-secondary);
+    }
+
+    /* Texte limité à 4 lignes : « Lire la suite » apparaît s'il dépasse */
+    .review-text {
+      font-size: 0.8125rem;
+      color: var(--text-secondary);
+      line-height: 1.5;
+      display: -webkit-box;
+      -webkit-line-clamp: 4;
+      line-clamp: 4;
+      -webkit-box-orient: vertical;
+      overflow: hidden;
+    }
+
+    .review-more {
+      align-self: flex-start;
+      padding: 0;
+    }
+
+    .review-more[hidden] {
+      display: none;
+    }
+
+    .reviews-dots {
+      position: absolute;
+      right: 14px;
+      top: 50%;
+      transform: translateY(-50%);
+      display: flex;
+      flex-direction: column;
+      gap: 7px;
+      z-index: 6;
+    }
+
+    .reviews-dot {
+      width: 5px;
+      height: 5px;
+      background: var(--text-muted);
+    }
+
+    .reviews-dot:hover {
+      background: var(--text-secondary);
+    }
+
+    .reviews-dot.is-active {
+      background: var(--text);
+      height: 16px;
+    }
+
+    /* Fenêtre « Lire la suite » : l'avis complet */
+    .review-modal:not([open]) {
+      display: none;
+    }
+
+    .review-modal {
+      margin: auto;
+      width: min(100% - 32px, 600px);
+      max-height: min(80dvh, 720px);
+      padding: 0;
+      border: 1px solid var(--card-border);
+      border-radius: var(--radius);
+      background: var(--card-bg-solid);
+      color: var(--text);
+      box-shadow: 0 24px 70px rgba(0, 0, 0, 0.28);
+    }
+
+    .review-modal::backdrop {
+      background: rgba(0, 0, 0, 0.45);
+      backdrop-filter: blur(8px);
+      -webkit-backdrop-filter: blur(8px);
+    }
+
+    .review-modal-inner {
+      position: relative;
+      display: flex;
+      flex-direction: column;
+      gap: 16px;
+      padding: 26px;
+    }
+
+    .review-modal-close {
+      position: absolute;
+      top: 14px;
+      right: 14px;
+      width: 36px;
+      height: 36px;
+      display: grid;
+      place-items: center;
+      border-radius: 50%;
+      background: var(--pill-bg);
+      border: 1px solid var(--pill-border);
+      color: var(--text);
+      font-size: 1.4rem;
+      line-height: 1;
+      transition: background var(--transition-fast);
+    }
+
+    .review-modal-close:hover {
+      background: var(--line);
+    }
+
+    .review-modal-body {
+      display: flex;
+      flex-direction: column;
+      gap: 10px;
+      font-size: 0.875rem;
+      line-height: 1.6;
+      color: var(--text-secondary);
+    }
+
+    .review-modal-body a {
+      color: var(--apple-blue);
+      text-decoration: underline;
+      text-underline-offset: 2px;
+    }
+
+    /* =========================================================
+       CARD OUTILS - capsules physiques (gravité, collisions, glisser-déposer)
+       ========================================================= */
+    .card--tools {
+      padding: 0;
+      --tools-min-height: 220px;
+      min-height: var(--tools-min-height);
+      background: var(--tools-bg);
+      backdrop-filter: none;
+      -webkit-backdrop-filter: none;
+      isolation: isolate;
+    }
+
+    .card--tools .tools-header {
+      position: relative;
+      z-index: 6;
+      display: flex;
+      align-items: center;
+      padding: 17px 18px 0;
+      pointer-events: none;
+    }
+
+    .card--tools .tool-field {
+      position: absolute;
+      inset: 42px 9px 9px;
+      z-index: 3;
+      overflow: hidden;
+      border-radius: 17px;
+      touch-action: pan-y;
+    }
+
+    /* La capsule n'a que quelques pixels de verre autour du logo */
+    .tool {
+      --x: 0px;
+      --y: 0px;
+      --r: 0deg;
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 52px;
+      height: 52px;
+      display: grid;
+      place-items: center;
+      padding: 0;
+      border: 1px solid var(--tool-border);
+      border-radius: 16px;
+      outline: none;
+      background: var(--tool-bg);
+      box-shadow: var(--tool-shadow);
+      color: var(--text);
+      cursor: grab;
+      user-select: none;
+      touch-action: none;
+      transform: translate3d(var(--x), var(--y), 0) rotate(var(--r));
+      will-change: transform;
+      -webkit-tap-highlight-color: transparent;
+    }
+
+    .tool::after {
+      content: "";
+      position: absolute;
+      top: 3px;
+      left: 11px;
+      right: 11px;
+      height: 1px;
+      background: linear-gradient(90deg, transparent, var(--card-highlight-top), transparent);
+      pointer-events: none;
+    }
+
+    .tool:hover,
+    .tool:focus-visible,
+    .tool.is-dragging {
+      z-index: 40;
+      border-color: var(--card-border-hover);
+      box-shadow: var(--tool-shadow-hover);
+    }
+
+    .tool.is-dragging {
+      cursor: grabbing;
+    }
+
+    /* Photoshop, Illustrator, InDesign */
+    .adobe-tile {
+      width: 37px;
+      height: 37px;
+      display: grid;
+      place-items: center;
+      border: 1.5px solid currentColor;
+      border-radius: 8px;
+      font-size: 1rem;
+      font-weight: 650;
+      letter-spacing: -0.055em;
+      line-height: 1;
+      pointer-events: none;
+    }
+
+    .ps {
+      color: #31a8ff;
+      background: #001e36;
+    }
+
+    .ai {
+      color: #ff9a00;
+      background: #330000;
+    }
+
+    .id {
+      color: #ff3366;
+      background: #49021f;
+    }
+
+    /* Figma : cinq formes */
+    .figma-mark {
+      width: 25px;
+      height: 38px;
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      grid-template-rows: repeat(3, 1fr);
+      pointer-events: none;
+    }
+
+    .figma-mark span:nth-child(1) {
+      grid-area: 1 / 1;
+      border-radius: 8px 0 0 8px;
+      background: #f24e1e;
+    }
+
+    .figma-mark span:nth-child(2) {
+      grid-area: 1 / 2;
+      border-radius: 0 8px 8px 0;
+      background: #ff7262;
+    }
+
+    .figma-mark span:nth-child(3) {
+      grid-area: 2 / 1;
+      border-radius: 8px 0 0 8px;
+      background: #a259ff;
+    }
+
+    .figma-mark span:nth-child(4) {
+      grid-area: 2 / 2;
+      border-radius: 50%;
+      background: #1abcfe;
+    }
+
+    .figma-mark span:nth-child(5) {
+      grid-area: 3 / 1;
+      border-radius: 8px 0 8px 8px;
+      background: #0acf83;
+    }
+
+    .wp-mark {
+      width: 38px;
+      height: 38px;
+      display: grid;
+      place-items: center;
+      border: 1.7px solid #fff;
+      border-radius: 50%;
+      background: #21759b;
+      color: #fff;
+      font-family: Georgia, serif;
+      font-size: 1.45rem;
+      font-weight: 700;
+      letter-spacing: -0.14em;
+      line-height: 1;
+      text-indent: -0.1em;
+      pointer-events: none;
+    }
+
+    .trello-mark {
+      width: 38px;
+      height: 38px;
+      display: flex;
+      gap: 4px;
+      padding: 7px;
+      border-radius: 9px;
+      background: #0c66e4;
+      pointer-events: none;
+    }
+
+    .trello-mark span {
+      flex: 1;
+      height: 72%;
+      border-radius: 2px;
+      background: #fff;
+    }
+
+    .trello-mark span:last-child {
+      height: 52%;
+    }
+
+    /* CapCut, Canva et Notion */
+    .tool-logo {
+      width: 36px;
+      height: 36px;
+      object-fit: contain;
+      pointer-events: none;
+      user-select: none;
+    }
+
+    .tool-logo--capcut {
+      width: 40px;
+      height: 40px;
+    }
+
+    .tool-logo--canva {
+      width: 39px;
+      height: 39px;
+    }
+
+    .tool-logo--notion {
+      width: 35px;
+      height: 35px;
+    }
+
+    /* Les logos noirs restent visibles en mode sombre */
+    [data-theme="dark"] .tool-logo--mono {
+      filter: invert(1);
+    }
+
+    /* =========================================================
+       CARD CONTACT
+       ========================================================= */
+    .card--contact {
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      gap: 10px;
+      min-height: 176px;
+      padding: 20px;
+    }
+
+    .contact-title {
+      font-size: 1.0625rem;
+      font-weight: 600;
+      letter-spacing: -0.015em;
+      line-height: 1.25;
+    }
+
+    .contact-subtitle {
+      font-size: 0.8125rem;
+      color: var(--text-secondary);
+      line-height: 1.5;
+    }
+
+    .contact-btn {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      align-self: flex-start;
+      margin-top: 2px;
+      padding: 9px 18px;
+      border-radius: 100px;
+      background: var(--contact-btn-bg);
+      border: 1px solid var(--contact-btn-border);
+      color: var(--contact-btn-text);
+      font-size: 0.8125rem;
+      font-weight: 600;
+      letter-spacing: -0.005em;
+      position: relative;
+      z-index: 5;
+      transition:
+        background-color 450ms var(--ease),
+        border-color 450ms var(--ease),
+        color 350ms ease,
+        box-shadow 450ms var(--ease),
+        transform 400ms var(--ease);
+    }
+
+    .contact-btn svg {
+      width: 14px;
+      height: 14px;
+      transition: transform var(--transition-med);
+    }
+
+    .contact-btn:hover {
+      transform: translateY(-1px);
+    }
+
+    .contact-btn:hover svg {
+      transform: translateX(3px);
+    }
+
+    /* =========================================================
+       FOOTER
+       ========================================================= */
+    .site-footer {
+      max-width: var(--max-width);
+      margin: 32px auto 0;
+      padding: 40px 24px 56px;
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: space-between;
+      align-items: center;
+      gap: 16px;
+      border-top: 1px solid var(--line);
+      position: relative;
+      z-index: 1;
+    }
+
+    .footer-identity {
+      font-size: 0.8125rem;
+      color: var(--text-secondary);
+    }
+
+    .footer-links {
+      display: flex;
+      gap: 22px;
+      flex-wrap: wrap;
+    }
+
+    .footer-links a {
+      font-size: 0.8125rem;
+      color: var(--text-secondary);
+      transition: color var(--transition-fast);
+    }
+
+    .footer-links a:hover {
+      color: var(--text);
+    }
+
+    /* =========================================================
+       RESPONSIVE - écrans très larges / 4K
+       ========================================================= */
+    @media (min-width: 1800px) {
+      :root {
+        --max-width: 1920px;
+        --gap: 20px;
+        --radius: 26px;
+      }
+
+      html {
+        font-size: 18px;
+      }
+
+      .bento-grid {
+        padding: 42px 36px;
+        grid-auto-rows: minmax(210px, auto);
+      }
+
+      .card--projects {
+        min-height: 500px;
+      }
+
+      .card--tools {
+        --tools-min-height: 270px;
+        min-height: var(--tools-min-height);
+      }
+
+      .tool {
+        width: 60px;
+        height: 60px;
+        border-radius: 18px;
+      }
+    }
+
+    /* =========================================================
+       RESPONSIVE - tablette
+       ========================================================= */
+    @media (max-width: 1100px) {
+      .bento-grid {
+        grid-template-columns: repeat(4, 1fr);
+      }
+
+      .card--profile {
+        grid-column: 1 / 5;
+        grid-row: 1;
+      }
+
+      .card--projects {
+        grid-column: 1 / 5;
+        grid-row: 2;
+      }
+
+      .card--cv-video {
+        grid-column: 1 / 3;
+        grid-row: 3;
+      }
+
+      .icons-grid {
+        grid-column: 3 / 5;
+        grid-row: 3;
+      }
+
+      .card--skills {
+        grid-column: 1 / 4;
+        grid-row: 4;
+      }
+
+      .card--tools {
+        grid-column: 4 / 5;
+        grid-row: 4;
+      }
+
+      .card--journey {
+        grid-column: 1 / 3;
+        grid-row: 5;
+      }
+
+      .card--news {
+        grid-column: 3 / 5;
+        grid-row: 5;
+      }
+
+      .card--reviews {
+        grid-column: 1 / 3;
+        grid-row: 6;
+      }
+
+      .card--contact {
+        grid-column: 3 / 5;
+        grid-row: 6;
+      }
+
+      /* La carte s'élargit : le portrait reprend une part plus modeste */
+      .card--profile {
+        --photo-w: clamp(200px, 30%, 300px);
+      }
+
+      .card--projects {
+        min-height: 420px;
+      }
+
+      /* Les outils gardent assez de place dans la colonne étroite des tablettes. */
+      @media (min-width: 721px) {
+        .tool {
+          width: 40px;
+          height: 40px;
+          border-radius: 12px;
+        }
+
+        .tool>* {
+          max-width: 28px;
+          max-height: 28px;
+        }
+      }
+
+      .card--news,
+      .card--contact {
+        min-height: 0;
+      }
+    }
+
+    /* =========================================================
+       RESPONSIVE - mobile
+       ========================================================= */
+    @media (max-width: 720px) {
+      .bento-grid {
+        grid-template-columns: 1fr;
+        padding: 20px 16px;
+      }
+
+      /* Une seule colonne : chaque carte suit l'ordre du HTML */
+      .bento-grid>* {
+        grid-column: 1;
+        grid-row: auto;
+      }
+
+      .card--profile {
+        flex-direction: column;
+        align-items: center;
+        min-height: 0;
+      }
+
+      .profile-text {
+        padding: 22px 22px 18px;
+      }
+
+      .profile-photo {
+        position: static;
+        flex: none;
+        width: min(68%, 260px);
+        height: auto;
+        aspect-ratio: 3 / 4;
+        margin: 0 auto 22px;
+        object-fit: cover;
+        object-position: 50% 12%;
+        border-radius: 16px;
+      }
+
+      .card--projects {
+        min-height: 320px;
+      }
+
+      .project-title {
+        font-size: 1.3rem;
+      }
+
+      .icons-grid {
+        min-height: 170px;
+      }
+
+      /* Les quatre capsules restent sur une seule ligne : on resserre le texte */
+      .card--skills {
+        padding: 18px;
+      }
+
+      .skill-tabs {
+        gap: 5px;
+      }
+
+      .skill-tab {
+        padding: 0 4px;
+        font-size: 0.6rem;
+        letter-spacing: -0.01em;
+      }
+
+      .journey-item {
+        grid-template-columns: 78px minmax(0, 1fr);
+      }
+
+      .news-inner {
+        grid-template-columns: 1fr;
+        gap: 14px;
+      }
+
+      .news-visual-wrap {
+        min-height: 150px;
+      }
+
+      .news-content-wrap {
+        padding: 0 4px 8px;
+      }
+
+      .news-summary {
+        -webkit-line-clamp: unset;
+        line-clamp: none;
+        display: block;
+      }
+
+      /* Sur mobile les points passent en haut à droite, sur l'image */
+      .news-dots {
+        top: 26px;
+        right: 26px;
+        transform: none;
+        flex-direction: row;
+        filter: drop-shadow(0 1px 3px rgba(0, 0, 0, 0.55));
+      }
+
+      .news-dot {
+        background: rgba(255, 255, 255, 0.5);
+      }
+
+      .news-dot.is-active {
+        background: #fff;
+        width: 16px;
+        height: 5px;
+      }
+
+      .card--tools {
+        --tools-min-height: 240px;
+        min-height: var(--tools-min-height);
+      }
+
+      .review-text {
+        -webkit-line-clamp: 6;
+        line-clamp: 6;
+      }
+    }
+
+    @media (max-width: 380px) {
+      .journey-item {
+        grid-template-columns: 1fr;
+        gap: 2px;
+      }
+    }
+
+    /* =========================================================
+       MOUVEMENT RÉDUIT
+       ========================================================= */
+    @media (prefers-reduced-motion: reduce) {
+      html {
+        scroll-behavior: auto;
+      }
+
+      *,
+      *::before,
+      *::after {
+        animation: none !important;
+        transition: none !important;
+      }
+
+      .card:hover {
+        transform: none;
+      }
+
+      /* Exception voulue : le défilement des Projets et des Actualités reste animé */
+      .project-slide.is-active,
+      .project-slide.is-leaving,
+      .news-slide.is-active,
+      .news-slide.is-leaving,
+      .review-slide.is-active,
+      .review-slide.is-leaving {
+        transition: transform 900ms var(--ease), opacity 900ms var(--ease) !important;
+      }
+    }
+  </style>
+</head>
+
+<body>
+
+  <main class="bento-grid">
+
+    <!-- ============ PROFIL ============ -->
+    <article class="card card--profile" aria-labelledby="profile-name">
+      <div class="profile-text">
+        <div>
+          <h1 class="profile-name" id="profile-name">Benjamin Bridanne</h1>
+          <p class="profile-title">Chargé de communication digitale</p>
+        </div>
+        <div class="profile-bio">
+          <p>Après un stage à la Coopérative ÉcoHabitat, terminé le 30 septembre 2026, je poursuis mon activité en
+            freelance pour consolider mes compétences et travailler sur de nouveaux projets.</p>
+          <p>Je recherche actuellement un CDI ou un CDD dans le domaine de la communication digitale.</p>
+        </div>
+      </div>
+      <img class="profile-photo" src="Images/photo_benjamin.webp" alt="Portrait de Benjamin Bridanne">
+    </article>
+
+    <!-- ============ PROJETS ============ -->
+    <article class="card card--projects card--link">
+      <div class="projects-carousel">
+        <div class="projects-track" id="projects-track">
+          <div class="project-slide is-active">
+            <img class="project-image" src="Images/projet-handi-tolosa.webp" alt="" width="1831" height="1504" />
+            <div class="project-content">
+              <span class="project-eyebrow">Projet</span>
+              <h3 class="project-title">Handi Tolosa</h3>
+            </div>
+          </div>
+          <div class="project-slide">
+            <img class="project-image" src="Images/projet-papi.webp" alt="" loading="lazy" width="1168" height="946" />
+            <div class="project-content">
+              <span class="project-eyebrow">Projet</span>
+              <h3 class="project-title">Papi Restaurant</h3>
+            </div>
+          </div>
+          <div class="project-slide">
+            <img class="project-image" src="Images/projet-sound.webp" alt="" loading="lazy" width="1200"
+              height="1080" />
+            <div class="project-content">
+              <span class="project-eyebrow">Projet</span>
+              <h3 class="project-title">Festival Sound</h3>
+            </div>
+          </div>
+          <div class="project-slide">
+            <img class="project-image" src="Images/projet-journalisme.webp" alt="" loading="lazy" width="1200"
+              height="1080" />
+            <div class="project-content">
+              <span class="project-eyebrow">Projet</span>
+              <h3 class="project-title">Article Journalistique</h3>
+            </div>
+          </div>
+          <div class="project-slide">
+            <img class="project-image" src="Images/projet-trait-union.webp" alt="" loading="lazy" width="1200"
+              height="1080" />
+            <div class="project-content">
+              <span class="project-eyebrow">Projet</span>
+              <h3 class="project-title">Le Trait d’Union</h3>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="projects-dots" id="projects-dots" role="group" aria-label="Navigation des projets"></div>
+      <span class="arrow-btn" aria-hidden="true">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"
+          stroke-linejoin="round">
+          <line x1="7" y1="17" x2="17" y2="7" />
+          <polyline points="7 7 17 7 17 17" />
+        </svg>
+      </span>
+      <a href="projets.html" class="card-link-overlay" aria-label="Voir tous les projets"></a>
+    </article>
+
+    <!-- ============ CV VIDÉO ============ -->
+    <article class="card card--cv-video card--link">
+      <img class="cv-video-image" src="Images/miniature-cv-video.webp" alt="" loading="lazy" width="1672"
+        height="941" />
+      <div class="cv-video-inner">
+        <div class="cv-video-content">
+          <span class="cv-video-eyebrow">CV vidéo</span>
+          <span class="cv-video-title">Motion design</span>
+          <span class="cv-video-tagline">1 minute 10 pour faire connaissance.</span>
+        </div>
+      </div>
+      <span class="arrow-btn" aria-hidden="true">
+        <svg class="cv-video-play-icon" viewBox="0 0 24 24" fill="currentColor">
+          <path d="M8 5.5v13a1 1 0 0 0 1.53.85l10.2-6.5a1 1 0 0 0 0-1.7L9.53 4.65A1 1 0 0 0 8 5.5z" />
+        </svg>
+      </span>
+      <button type="button" class="card-link-overlay" id="cv-video-play" aria-label="Lire le CV vidéo"></button>
+    </article>
+
+    <!-- ============ 4 MINI-CARTES : LinkedIn / Mail / CV / Toggle ============ -->
+    <div class="icons-grid">
+      <a href="https://www.linkedin.com/in/benjamin-bridanne-ba9a64285/" target="_blank" rel="noopener"
+        class="icon-card icon-card--link" aria-label="Profil LinkedIn">
+        <svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true">
+          <path
+            d="M20.447 20.452h-3.554v-5.569c0-1.328-.027-3.037-1.852-3.037-1.853 0-2.136 1.445-2.136 2.939v5.667H9.351V9h3.414v1.561h.046c.477-.9 1.637-1.85 3.37-1.85 3.601 0 4.267 2.37 4.267 5.455v6.286zM5.337 7.433a2.062 2.062 0 01-2.063-2.065 2.063 2.063 0 112.063 2.065zm1.782 13.019H3.555V9h3.564v11.452zM22.225 0H1.771C.792 0 0 .774 0 1.729v20.542C0 23.227.792 24 1.771 24h20.451C23.2 24 24 23.227 24 22.271V1.729C24 .774 23.2 0 22.222 0h.003z" />
+        </svg>
+      </a>
+
+      <a href="mailto:benjaminbridanne@gmail.com" class="icon-card icon-card--link" aria-label="Envoyer un mail">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"
+          stroke-linejoin="round" aria-hidden="true">
+          <rect x="2" y="4" width="20" height="16" rx="3" />
+          <path d="m22 7-10 6L2 7" />
+        </svg>
+      </a>
+
+      <a href="Images/CV_benjamin_bridanne.pdf" target="_blank" rel="noopener" class="icon-card icon-card--link"
+        aria-label="Voir le CV en PDF">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"
+          stroke-linejoin="round" aria-hidden="true">
+          <path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z" />
+          <polyline points="14 2 14 8 20 8" />
+          <line x1="12" y1="18" x2="12" y2="12" />
+          <polyline points="9 15 12 18 15 15" />
+        </svg>
+      </a>
+
+      <button type="button" class="icon-card icon-card--toggle" id="theme-toggle" aria-labelledby="theme-toggle-label">
+        <span class="sr-only" id="theme-toggle-label">Passer en mode sombre</span>
+        <span class="toggle-switch" aria-hidden="true">
+          <span class="toggle-thumb">
+            <svg class="icon-moon" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true">
+              <path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z" />
+            </svg>
+            <svg class="icon-sun" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4"
+              stroke-linecap="round" aria-hidden="true">
+              <circle cx="12" cy="12" r="4.5" />
+              <line x1="12" y1="2" x2="12" y2="4.5" />
+              <line x1="12" y1="19.5" x2="12" y2="22" />
+              <line x1="4.22" y1="4.22" x2="6" y2="6" />
+              <line x1="18" y1="18" x2="19.78" y2="19.78" />
+              <line x1="2" y1="12" x2="4.5" y2="12" />
+              <line x1="19.5" y1="12" x2="22" y2="12" />
+              <line x1="4.22" y1="19.78" x2="6" y2="18" />
+              <line x1="18" y1="6" x2="19.78" y2="4.22" />
+            </svg>
+          </span>
+        </span>
+      </button>
+    </div>
+
+    <!-- ============ PARCOURS ============ -->
+    <article class="card card--journey" aria-labelledby="journey-eyebrow">
+      <div class="journey-header">
+        <span class="card-eyebrow" id="journey-eyebrow">Parcours</span>
+        <a href="Images/CV_benjamin_bridanne.pdf" target="_blank" rel="noopener" class="cta-link"
+          aria-label="Voir le CV">
+          Voir le CV
+          <span class="cta-arrow" aria-hidden="true">→</span>
+        </a>
+      </div>
+      <ul class="journey-list">
+        <li class="journey-item">
+          <div class="journey-meta">
+            <span class="journey-type">Stage</span>
+            <span class="journey-date">Terminé le 30 septembre 2026</span>
+          </div>
+          <div class="journey-details">
+            <span class="journey-title">Coopérative ÉcoHabitat</span>
+            <span class="journey-place">Chargé de communication</span>
+          </div>
+        </li>
+        <li class="journey-item">
+          <div class="journey-meta">
+            <span class="journey-type">Formation</span>
+            <span class="journey-date">2024-2026</span>
+          </div>
+          <div class="journey-details">
+            <span class="journey-title">Master Information et Communication - Culture Numérique</span>
+          </div>
+        </li>
+        <li class="journey-item">
+          <div class="journey-meta">
+            <span class="journey-type">Stage</span>
+            <span class="journey-date">2024-2025</span>
+          </div>
+          <div class="journey-details">
+            <span class="journey-title">Beauté2Reine</span>
+            <span class="journey-place">Chargé de communication</span>
+          </div>
+        </li>
+      </ul>
+    </article>
+
+    <!-- ============ COMPÉTENCES ============ -->
+    <section class="card card--skills" aria-labelledby="skills-eyebrow">
+      <h2 class="card-eyebrow" id="skills-eyebrow">Compétences</h2>
+
+      <div class="skill-tabs" role="tablist" aria-label="Domaines de compétences">
+        <button class="skill-tab" type="button" role="tab" id="skill-tab-1" tabindex="0" aria-selected="true"
+          aria-controls="skill-description"
+          data-description="J’aime voir comment une image, un montage ou une mise en page peuvent donner du relief à une idée et guider le regard vers l’essentiel.">Création</button>
+        <button class="skill-tab" type="button" role="tab" id="skill-tab-2" tabindex="-1" aria-selected="false"
+          aria-controls="skill-description"
+          data-description="Pas besoin d'être un magicien du code pour faire un site qui tourne. J’aime en penser la structure et le design pour que l’information soit claire, agréable à parcourir et adaptée à tous les écrans.">Web
+          &amp; CMS</button>
+        <button class="skill-tab" type="button" role="tab" id="skill-tab-3" tabindex="-1" aria-selected="false"
+          aria-controls="skill-description"
+          data-description="Le cerveau d'un créatif peut vite devenir un bazar. Organiser les étapes et suivre l’avancement m’aide à passer de l’idée au résultat sans perdre le fil.">Organisation</button>
+        <button class="skill-tab" type="button" role="tab" id="skill-tab-4" tabindex="-1" aria-selected="false"
+          aria-controls="skill-description"
+          data-description="Créer ne suffit pas. J’aime comprendre à qui l’on s’adresse, observer les retours et ajuster les contenus pour qu’ils trouvent vraiment leur public.">Communication</button>
+      </div>
+
+      <div class="skill-copy" role="tabpanel" id="skill-description" aria-labelledby="skill-tab-1" tabindex="0"
+        aria-live="polite">
+        <p class="skill-description">J’aime voir comment une image, un montage ou une mise en page peuvent donner du
+          relief à une idée et guider le regard vers l’essentiel.</p>
+      </div>
+    </section>
+
+    <!-- ============ OUTILS ============ -->
+    <section class="card card--tools" aria-labelledby="tools-title">
+      <header class="tools-header">
+        <h2 class="card-eyebrow" id="tools-title">Outils</h2>
+      </header>
+
+      <p class="sr-only" id="tools-help">Déplacez les outils par glisser-déposer, ou utilisez les touches fléchées quand
+        un outil est sélectionné au clavier.</p>
+      <div class="tool-field" id="tool-field" aria-describedby="tools-help">
+        <button class="tool" type="button" aria-label="Photoshop">
+          <span class="adobe-tile ps" aria-hidden="true">Ps</span>
+        </button>
+
+        <button class="tool" type="button" aria-label="Illustrator">
+          <span class="adobe-tile ai" aria-hidden="true">Ai</span>
+        </button>
+
+        <button class="tool" type="button" aria-label="InDesign">
+          <span class="adobe-tile id" aria-hidden="true">Id</span>
+        </button>
+
+        <button class="tool" type="button" aria-label="Figma">
+          <span class="figma-mark"
+            aria-hidden="true"><span></span><span></span><span></span><span></span><span></span></span>
+        </button>
+
+        <button class="tool" type="button" aria-label="WordPress">
+          <span class="wp-mark" aria-hidden="true">W</span>
+        </button>
+
+        <button class="tool" type="button" aria-label="Trello">
+          <span class="trello-mark" aria-hidden="true"><span></span><span></span></span>
+        </button>
+
+        <button class="tool" type="button" aria-label="CapCut">
+          <img class="tool-logo tool-logo--capcut tool-logo--mono" src="Images/icone_capcut.svg" alt=""
+            aria-hidden="true" draggable="false" />
+        </button>
+
+        <button class="tool" type="button" aria-label="Canva">
+          <img class="tool-logo tool-logo--canva tool-logo--mono" src="Images/icone_canva.svg" alt="" aria-hidden="true"
+            draggable="false" />
+        </button>
+
+        <button class="tool" type="button" aria-label="Notion">
+          <img class="tool-logo tool-logo--notion tool-logo--mono" src="Images/icone_notion.svg" alt=""
+            aria-hidden="true" draggable="false" />
+        </button>
+      </div>
+    </section>
+
+    <!-- ============ ACTUALITÉS (défilement comme les projets) ============ -->
+    <article class="card card--news" aria-label="Actualités">
+      <div class="news-track" id="news-track">
+
+        <div class="news-slide is-active">
+          <div class="news-inner">
+            <div class="news-visual-wrap">
+              <img class="news-image" src="Images/actualite-fin-stage.webp" alt="" width="1200" height="900"
+                onerror="this.remove()" />
+            </div>
+            <div class="news-content-wrap">
+              <span class="card-eyebrow">Actualités</span>
+              <span class="news-date">30 septembre 2026</span>
+              <h3 class="news-title">Fin de mon stage à la Coopérative ÉcoHabitat</h3>
+              <p class="news-summary">Mon stage à la Coopérative ÉcoHabitat s’est terminé le 30 septembre 2026. Cette
+                expérience m’a permis de travailler sur la stratégie de communication, la création de contenus et la
+                refonte du site web, tout en développant mon autonomie et ma capacité d’adaptation.</p>
+            </div>
+          </div>
+        </div>
+
+        <div class="news-slide">
+          <div class="news-inner">
+            <div class="news-visual-wrap">
+              <img class="news-image" src="Images/actualite-adapter-message.webp" alt="" loading="lazy" width="1200"
+                height="900" onerror="this.remove()" />
+            </div>
+            <div class="news-content-wrap">
+              <span class="card-eyebrow">Actualités</span>
+              <span class="news-date">15 septembre 2026</span>
+              <h3 class="news-title">Adapter un message selon son support</h3>
+              <p class="news-summary">Une affiche, un tract, un site web ou une publication sur les réseaux sociaux ne
+                se lisent pas dans les mêmes conditions. Dans ce carrousel LinkedIn, je présente un exemple fictif
+                d’atelier gratuit de réparation de vélos, décliné sur ces quatre supports. L’objectif : montrer comment
+                adapter l’ordre des informations, le niveau de détail et l’appel à l’action à chaque situation de
+                lecture.</p>
+              <a href="https://www.linkedin.com/posts/benjamin-bridanne-ba9a64285_adapter-un-message-selon-son-support-ugcPost-7505422164024778752-xtsN/"
+                target="_blank" rel="noopener" class="cta-link news-link"
+                aria-label="Voir le post LinkedIn « Adapter un message selon son support »">
+                Voir le post
+                <span class="cta-arrow" aria-hidden="true">→</span>
+              </a>
+            </div>
+          </div>
+        </div>
+
+        <div class="news-slide">
+          <div class="news-inner">
+            <div class="news-visual-wrap">
+              <img class="news-image" src="Images/actualite-prolongation-stage.webp" alt="" loading="lazy" width="1200"
+                height="900" onerror="this.remove()" />
+            </div>
+            <div class="news-content-wrap">
+              <span class="card-eyebrow">Actualités</span>
+              <span class="news-date">28 août 2026</span>
+              <h3 class="news-title">Prolongation de mon stage</h3>
+              <p class="news-summary">La Coopérative ÉcoHabitat m’a proposé de prolonger mon stage afin de poursuivre
+                son accompagnement en communication pendant le lancement de ses activités.</p>
+            </div>
+          </div>
+        </div>
+
+      </div>
+      <div class="news-dots" id="news-dots" role="group" aria-label="Navigation des actualités"></div>
+    </article>
+
+    <!-- ============ AVIS DE STAGE (un avis à la fois, défilement toutes les 5 s) ============ -->
+    <section class="card card--reviews" aria-labelledby="reviews-eyebrow">
+      <div class="reviews-header">
+        <h2 class="card-eyebrow" id="reviews-eyebrow">Avis de stage</h2>
+        <span class="reviews-count">3 avis</span>
+      </div>
+
+      <div class="reviews-track" id="reviews-track">
+
+        <article class="review-slide is-active">
+          <div class="review-author">
+            <span class="review-avatar review-avatar--green" aria-hidden="true">ÉH</span>
+            <div class="review-identity">
+              <h3 class="review-org">Coopérative ÉcoHabitat</h3>
+              <span class="review-meta">Stage · 2026</span>
+            </div>
+          </div>
+          <p class="review-text">Benjamin a su rapidement intégrer les informations essentielles de la coopérative,
+            ceci lui permettant tout autant de pouvoir établir un diagnostic des besoins pertinent que de s'adapter à
+            un mode d'organisation contraignant (cogérance bénévole, travail 100 % en distanciel, priorités de travail
+            changeantes). Benjamin sait également mener un travail de fond sur l'élaboration de notre stratégie de
+            communication et en parallèle gérer les priorités de l'activité au quotidien.</p>
+          <button type="button" class="cta-link review-more" hidden>
+            Lire la suite
+            <span class="cta-arrow" aria-hidden="true">→</span>
+          </button>
+          <!-- Texte complet affiché dans la fenêtre « Lire la suite » -->
+          <template class="review-full">
+            <p>Benjamin a su rapidement intégrer les informations essentielles de la coopérative, ceci lui permettant
+              tout autant de pouvoir établir un diagnostic des besoins pertinent que de s'adapter à un mode
+              d'organisation contraignant (cogérance bénévole, travail 100 % en distanciel, priorités de travail
+              changeantes).</p>
+            <p>Benjamin sait également mener un travail de fond sur l'élaboration de notre stratégie de communication
+              et en parallèle gérer les priorités de l'activité au quotidien.</p>
+            <p>En effet, il a été en mesure de s'adapter rapidement aux différentes missions qui lui ont été confiées
+              et surtout de passer de l'une à l'autre, sur des temps très courts, tout en conservant une production de
+              qualité sur les différents aspects de son travail, notamment graphique et concernant la synthèse
+              d'informations parcellaires pour aboutir à des rédactions de contenus de qualité.</p>
+            <p>J'ajouterais que, compte tenu du faible degré de qualification de notre structure sur les questions de
+              communication, Benjamin a également su tenir un rôle de transmission d'informations sur sa démarche de
+              travail et ses aspects techniques, contribuant ainsi à une meilleure compréhension des enjeux et de la
+              marche à suivre au sein du groupe de cogérance.</p>
+            <p>Un travail qui nous a permis d'établir une organisation claire de nos axes de travail en communication
+              et surtout d'aboutir à la création de notre principal outil numérique, à savoir le site web ÉcoHabitat
+              (consultable ici : <a href="https://www.ecohabitat.coop/" target="_blank" rel="noopener">ecohabitat.coop</a>),
+              dont le bénéfice pour notre organisation dépasse la simple visibilité, dans la mesure où il deviendra
+              notre principal support pour la campagne de financement que nous souhaitons lancer prochainement.</p>
+            <p>Pour conclure, Benjamin a montré tout au long de son investissement des compétences techniques et des
+              qualités professionnelles permettant de transformer nos tentatives déstructurées de communication en un
+              ensemble cohérent et lisible.</p>
+          </template>
+        </article>
+
+        <article class="review-slide">
+          <div class="review-author">
+            <span class="review-avatar review-avatar--pink" aria-hidden="true">B2R</span>
+            <div class="review-identity">
+              <h3 class="review-org">Beauté2Reine</h3>
+              <span class="review-meta">Stage · 2025</span>
+            </div>
+          </div>
+          <p class="review-text">J’ai été très contente d’accueillir Benjamin pour son stage. Il a pris le temps de
+            comprendre ce que je voulais et m’a proposé de bonnes idées. Je ne m’y connais pas en communication, donc
+            son aide m’a été bien utile. Il est sérieux et c’était agréable de travailler avec lui.</p>
+          <button type="button" class="cta-link review-more" hidden>
+            Lire la suite
+            <span class="cta-arrow" aria-hidden="true">→</span>
+          </button>
+        </article>
+
+        <article class="review-slide">
+          <div class="review-author">
+            <span class="review-avatar review-avatar--blue" aria-hidden="true">M</span>
+            <div class="review-identity">
+              <h3 class="review-org">Médiathèque</h3>
+              <span class="review-meta">Stage · 2024</span>
+            </div>
+          </div>
+          <p class="review-text">M. Bridanne a su répondre aux attentes grâce à ses compétences et à sa créativité. Il
+            a fait preuve d'initiative. Il a permis à l'équipe de la médiathèque de monter en compétence dans le
+            domaine de la communication.</p>
+          <button type="button" class="cta-link review-more" hidden>
+            Lire la suite
+            <span class="cta-arrow" aria-hidden="true">→</span>
+          </button>
+        </article>
+
+      </div>
+      <div class="reviews-dots" id="reviews-dots" role="group" aria-label="Navigation des avis"></div>
+    </section>
+
+    <!-- ============ CONTACT ============ -->
+    <article class="card card--contact">
+      <h2 class="contact-title">Vous recrutez en communication&nbsp;?</h2>
+      <p class="contact-subtitle">Une opportunité, un projet, une simple question ? Je serai ravi d'en discuter.</p>
+      <a href="mailto:benjaminbridanne@gmail.com" class="contact-btn">
+        <span>Me contacter</span>
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round"
+          stroke-linejoin="round" aria-hidden="true">
+          <line x1="5" y1="12" x2="19" y2="12" />
+          <polyline points="12 5 19 12 12 19" />
+        </svg>
+      </a>
+    </article>
+
+  </main>
+  <footer class="site-footer">
+    <p class="footer-identity">Benjamin Bridanne · Chargé de communication digitale</p>
+    <div class="footer-links">
+      <a href="projets.html">Mes projets</a>
+      <a href="mailto:benjaminbridanne@gmail.com">Mail</a>
+      <a href="https://www.linkedin.com/in/benjamin-bridanne-ba9a64285/" target="_blank" rel="noopener">LinkedIn</a>
+      <a href="mentions-legales.html">Mentions légales</a>
+    </div>
+  </footer>
+  <dialog class="review-modal" id="review-modal" aria-labelledby="review-modal-title">
+    <div class="review-modal-inner">
+      <button type="button" class="review-modal-close" id="review-modal-close" aria-label="Fermer l'avis">×</button>
+      <div class="review-author">
+        <span class="review-avatar" id="review-modal-avatar" aria-hidden="true"></span>
+        <div class="review-identity">
+          <h2 class="review-org" id="review-modal-title"></h2>
+          <span class="review-meta" id="review-modal-meta"></span>
+        </div>
+      </div>
+      <div class="review-modal-body" id="review-modal-body"></div>
+    </div>
+  </dialog>
+  <dialog class="video-modal" id="video-modal" aria-labelledby="video-modal-title">
+    <div class="video-modal-dialog">
+      <h2 class="sr-only" id="video-modal-title">CV vidéo de Benjamin Bridanne</h2>
+
+      <button type="button" class="video-modal-close" id="video-modal-close" aria-label="Fermer la vidéo" autofocus>
+        ×
+      </button>
+
+      <iframe class="video-modal-frame" id="video-modal-frame" title="CV vidéo de Benjamin Bridanne"
+        allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
+        allowfullscreen referrerpolicy="strict-origin-when-cross-origin"></iframe>
+    </div>
+  </dialog>
+  <script>
+    /* Préférence système partagée par toutes les animations */
+    const prefersReducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+
+    /* =========================================================
+       THÈME CLAIR/SOMBRE - choix mémorisé dans localStorage
+       ========================================================= */
+    (function () {
+      const root = document.documentElement;
+      const btn = document.getElementById('theme-toggle');
+      const label = document.getElementById('theme-toggle-label');
+      let saved = null;
+      try { saved = localStorage.getItem('theme'); } catch { /* Stockage indisponible : le site reste utilisable. */ }
+      /* Mode clair par défaut : seul un choix explicite du visiteur passe en sombre */
+      const initial = saved === 'dark' ? 'dark' : 'light';
+      root.setAttribute('data-theme', initial);
+      updateLabel(initial);
+
+      btn.addEventListener('click', () => {
+        const current = root.getAttribute('data-theme');
+        const next = current === 'dark' ? 'light' : 'dark';
+        root.setAttribute('data-theme', next);
+        updateLabel(next);
+        try { localStorage.setItem('theme', next); } catch { /* Le thème fonctionne sans mémorisation. */ }
+      });
+
+      function updateLabel(mode) {
+        label.textContent = mode === 'dark' ? 'Passer en mode clair' : 'Passer en mode sombre';
+      }
+    })();
+
+    /* =========================================================
+       CARROUSELS - Projets et Actualités
+       Défilement vertical toutes les 5 s, points de navigation,
+       pause au survol et quand l'onglet est masqué.
+       ========================================================= */
+    function initCarousel({ card, track, dotsContainer, slideSelector, dotClass, label }) {
+      if (!card || !track || !dotsContainer) return;
+
+      const slides = [...track.querySelectorAll(slideSelector)];
+      const total = slides.length;
+      if (total < 2) return;
+
+      const DURATION = 5000;
+      const TRANSITION = 900;
+      let current = 0;
+      let interval = null;
+      let hovered = false;
+      let locked = false;
+      let focused = false;
+      track.setAttribute('aria-live', 'off');
+
+      /* Les éléments masqués ne doivent pas être atteignables au clavier */
+      slides.forEach((slide, i) => {
+        slide.inert = i !== 0;
+        slide.id = track.id + '-slide-' + (i + 1);
+        slide.setAttribute('role', 'group');
+        slide.setAttribute('aria-roledescription', 'diapositive');
+        slide.setAttribute('aria-label', label + ' ' + (i + 1) + ' sur ' + total);
+      });
+
+      slides.forEach((slide, i) => {
+        const dot = document.createElement('button');
+        dot.type = 'button';
+        dot.className = dotClass + (i === 0 ? ' is-active' : '');
+        dot.setAttribute('aria-controls', slide.id);
+        dot.setAttribute('aria-label', label + ' ' + (i + 1));
+        dot.setAttribute('aria-current', i === 0 ? 'true' : 'false');
+        dot.addEventListener('click', () => { goTo(i); stop(); start(); });
+        dotsContainer.appendChild(dot);
+      });
+
+      const dots = [...dotsContainer.children];
+
+      function goTo(index) {
+        if (index === current) return;
+
+        const previous = slides[current];
+        previous.classList.remove('is-active');
+        previous.classList.add('is-leaving');
+        previous.inert = true;
+        setTimeout(() => {
+          if (!previous.classList.contains('is-active')) previous.classList.remove('is-leaving');
+        }, TRANSITION);
+
+        dots[current].classList.remove('is-active');
+        dots[current].setAttribute('aria-current', 'false');
+
+        current = index;
+        slides[current].classList.remove('is-leaving');
+        slides[current].classList.add('is-active');
+        slides[current].inert = false;
+        dots[current].classList.add('is-active');
+        dots[current].setAttribute('aria-current', 'true');
+      }
+
+      function next() { goTo((current + 1) % total); }
+      function start() {
+        const canRun = !locked && !hovered && !focused && !document.hidden;
+        track.setAttribute('aria-live', canRun ? 'off' : 'polite');
+        if (canRun && interval === null) interval = setInterval(next, DURATION);
+      }
+      function stop() { clearInterval(interval); interval = null; }
+
+      start();
+
+      card.addEventListener('mouseenter', () => { hovered = true; stop(); start(); });
+      card.addEventListener('mouseleave', () => { hovered = false; start(); });
+      card.addEventListener('focusin', () => { focused = true; stop(); start(); });
+      card.addEventListener('focusout', (event) => {
+        focused = card.contains(event.relatedTarget);
+        if (!focused) start();
+      });
+
+      document.addEventListener('visibilitychange', () => {
+        if (document.hidden) stop();
+        else start();
+      });
+
+      /* Permet de figer le défilement, par exemple pendant la lecture d'un avis */
+      return {
+        lock() { locked = true; stop(); },
+        unlock() { locked = false; start(); }
+      };
+    }
+
+    initCarousel({
+      card: document.querySelector('.card--projects'),
+      track: document.getElementById('projects-track'),
+      dotsContainer: document.getElementById('projects-dots'),
+      slideSelector: '.project-slide',
+      dotClass: 'projects-dot',
+      label: 'Projet'
+    });
+
+    initCarousel({
+      card: document.querySelector('.card--news'),
+      track: document.getElementById('news-track'),
+      dotsContainer: document.getElementById('news-dots'),
+      slideSelector: '.news-slide',
+      dotClass: 'news-dot',
+      label: 'Actualité'
+    });
+
+    const reviewsCarousel = initCarousel({
+      card: document.querySelector('.card--reviews'),
+      track: document.getElementById('reviews-track'),
+      dotsContainer: document.getElementById('reviews-dots'),
+      slideSelector: '.review-slide',
+      dotClass: 'reviews-dot',
+      label: 'Avis'
+    });
+
+    /* =========================================================
+       AVIS DE STAGE - « Lire la suite » quand le texte dépasse
+       ========================================================= */
+    (function () {
+      const slides = [...document.querySelectorAll('.review-slide')];
+      const modal = document.getElementById('review-modal');
+      const closeButton = document.getElementById('review-modal-close');
+      const avatar = document.getElementById('review-modal-avatar');
+      const title = document.getElementById('review-modal-title');
+      const meta = document.getElementById('review-modal-meta');
+      const body = document.getElementById('review-modal-body');
+      if (!slides.length || !modal) return;
+
+      let lastTrigger = null;
+
+      /* Le bouton n'apparaît que si le texte est réellement coupé */
+      function updateMoreButtons() {
+        slides.forEach(slide => {
+          const text = slide.querySelector('.review-text');
+          const more = slide.querySelector('.review-more');
+          more.hidden = text.scrollHeight <= text.clientHeight + 1 && !slide.querySelector('.review-full');
+        });
+      }
+
+      function openReview(slide, trigger) {
+        const sourceAvatar = slide.querySelector('.review-avatar');
+        const full = slide.querySelector('.review-full');
+        avatar.className = sourceAvatar.className;
+        avatar.textContent = sourceAvatar.textContent;
+        title.textContent = slide.querySelector('.review-org').textContent;
+        meta.textContent = slide.querySelector('.review-meta').textContent;
+        body.replaceChildren();
+        if (full) {
+          body.appendChild(full.content.cloneNode(true));
+        } else {
+          const paragraph = document.createElement('p');
+          paragraph.textContent = slide.querySelector('.review-text').textContent.replace(/\s+/g, ' ').trim();
+          body.appendChild(paragraph);
+        }
+        lastTrigger = trigger;
+        reviewsCarousel && reviewsCarousel.lock();
+        modal.showModal();
+        modal.scrollTop = 0;
+      }
+
+      slides.forEach(slide => {
+        slide.querySelector('.review-more').addEventListener('click', (event) => openReview(slide, event.currentTarget));
+      });
+
+      closeButton.addEventListener('click', () => modal.close());
+      modal.addEventListener('click', (event) => {
+        if (event.target === modal) modal.close();
+      });
+      modal.addEventListener('close', () => {
+        reviewsCarousel && reviewsCarousel.unlock();
+        if (lastTrigger) lastTrigger.focus();
+      });
+
+      updateMoreButtons();
+      if (document.fonts) document.fonts.ready.then(updateMoreButtons);
+      let resizeTimer;
+      addEventListener('resize', () => {
+        clearTimeout(resizeTimer);
+        resizeTimer = setTimeout(updateMoreButtons, 120);
+      }, { passive: true });
+    })();
+
+    /* =========================================================
+       CV VIDÉO - lecture dans une fenêtre intégrée
+       ========================================================= */
+    (function () {
+      const trigger = document.getElementById('cv-video-play');
+      const modal = document.getElementById('video-modal');
+      const closeButton = document.getElementById('video-modal-close');
+      const frame = document.getElementById('video-modal-frame');
+
+      if (!trigger || !modal || !closeButton || !frame) return;
+
+      let closeTimer = null;
+      let openFrame = null;
+      let previousOverflow = '';
+
+      function openModal() {
+        clearTimeout(closeTimer);
+        cancelAnimationFrame(openFrame);
+        if (!modal.open) {
+          previousOverflow = document.body.style.overflow;
+          modal.showModal();
+        }
+        frame.src = 'https://www.youtube.com/embed/vdtzH1IfEkM?autoplay=1&rel=0';
+        openFrame = requestAnimationFrame(() => modal.classList.add('is-open'));
+        document.body.style.overflow = 'hidden';
+        closeButton.focus();
+      }
+
+      function closeModal() {
+        if (!modal.open) return;
+        clearTimeout(closeTimer);
+        cancelAnimationFrame(openFrame);
+        modal.classList.remove('is-open');
+        frame.removeAttribute('src');
+        closeTimer = setTimeout(() => {
+          modal.close();
+          document.body.style.overflow = previousOverflow;
+          trigger.focus();
+        }, prefersReducedMotion ? 0 : 250);
+      }
+
+      trigger.addEventListener('click', openModal);
+      closeButton.addEventListener('click', closeModal);
+
+      modal.addEventListener('click', (event) => {
+        if (event.target === modal) closeModal();
+      });
+
+      modal.addEventListener('cancel', (event) => {
+        event.preventDefault();
+        closeModal();
+      });
+    })();
+
+    /* =========================================================
+       COMPÉTENCES - capsules et description synchronisées
+       ========================================================= */
+    (function () {
+      const tabs = [...document.querySelectorAll('.skill-tab')];
+      const description = document.querySelector('.skill-description');
+      const panel = document.getElementById('skill-description');
+      if (!tabs.length || !description) return;
+
+      function selectTab(tab) {
+        tabs.forEach((item) => {
+          item.setAttribute('aria-selected', String(item === tab));
+          item.tabIndex = item === tab ? 0 : -1;
+        });
+        panel.setAttribute('aria-labelledby', tab.id);
+        description.getAnimations().forEach(animation => animation.cancel());
+        description.textContent = tab.dataset.description;
+        if (prefersReducedMotion) return;
+        description.animate(
+          [{ opacity: 0, transform: 'translateY(5px)' }, { opacity: 1, transform: 'translateY(0)' }],
+          { duration: 280, easing: 'ease-out' }
+        );
+      }
+
+      tabs.forEach((tab, index) => {
+        tab.addEventListener('click', () => selectTab(tab));
+        tab.addEventListener('keydown', (event) => {
+          if (!['ArrowRight', 'ArrowLeft', 'Home', 'End'].includes(event.key)) return;
+          event.preventDefault();
+          const nextIndex = event.key === 'Home'
+            ? 0
+            : event.key === 'End'
+              ? tabs.length - 1
+              : (index + (event.key === 'ArrowRight' ? 1 : -1) + tabs.length) % tabs.length;
+          tabs[nextIndex].focus();
+          selectTab(tabs[nextIndex]);
+        });
+      });
+    })();
+
+    /* =========================================================
+       OUTILS - moteur physique (gravité, collisions, glisser-déposer souris + tactile)
+       ========================================================= */
+    (function () {
+      const field = document.getElementById('tool-field');
+      if (!field) return;
+
+      const elements = [...field.querySelectorAll('.tool')];
+      const toolsCard = field.closest('.card--tools');
+      const gravity = 1450;
+      const restitution = 0.34;
+      const bodies = [];
+      let dragged = null;
+      let lastTime = performance.now();
+      let rafId = null;
+      let idleFrames = 0;
+      let wakeTime = 0;
+      /* Au-delà de ce délai sans interaction, la simulation s'arrête quoi qu'il arrive */
+      const MAX_AWAKE = 6000;
+
+      function fitTools() {
+        const size = elements[0].offsetWidth;
+        const columns = Math.max(1, Math.floor((field.clientWidth + 6) / (size + 6)));
+        const rows = Math.ceil(elements.length / columns);
+        const minimum = parseFloat(getComputedStyle(toolsCard).getPropertyValue('--tools-min-height'));
+        toolsCard.style.minHeight = Math.max(minimum, rows * (size + 6) - 6 + 53) + 'px';
+        return columns;
+      }
+
+      function fieldSize() {
+        return { width: field.clientWidth, height: field.clientHeight };
+      }
+
+      function render(body) {
+        body.el.style.setProperty('--x', `${body.x - body.radius}px`);
+        body.el.style.setProperty('--y', `${body.y - body.radius}px`);
+        body.el.style.setProperty('--r', `${body.angle}rad`);
+      }
+
+      function createBodies() {
+        const { width } = fieldSize();
+        bodies.length = 0;
+
+        elements.forEach((el, index) => {
+          const radius = el.offsetWidth / 2;
+          const row = Math.floor(index / 3);
+          const x = radius + Math.random() * (width - radius * 2);
+
+          const body = {
+            el,
+            radius,
+            x,
+            y: -radius - row * 55 - Math.random() * 35,
+            vx: (Math.random() - 0.5) * 90,
+            vy: 0,
+            angle: (Math.random() - 0.5) * 0.5,
+            va: (Math.random() - 0.5) * 0.14,
+            dragging: false,
+            targetX: 0,
+            targetY: 0,
+            pointerVX: 0,
+            pointerVY: 0,
+            lastPointerX: 0,
+            lastPointerY: 0,
+            lastPointerTime: 0
+          };
+
+          el._body = body;
+          bodies.push(body);
+          render(body);
+        });
+      }
+
+      function keepInside(body) {
+        const { width, height } = fieldSize();
+        const r = body.radius;
+
+        if (body.x < r) {
+          body.x = r;
+          body.vx = Math.abs(body.vx) * restitution;
+          body.va -= body.vy * 0.0007;
+        } else if (body.x > width - r) {
+          body.x = width - r;
+          body.vx = -Math.abs(body.vx) * restitution;
+          body.va += body.vy * 0.0007;
+        }
+
+        if (body.y < r) {
+          body.y = r;
+          body.vy = Math.abs(body.vy) * restitution;
+        } else if (body.y > height - r) {
+          body.y = height - r;
+          body.vy = -Math.abs(body.vy) * restitution;
+          body.vx *= 0.82;
+          body.va *= 0.72;
+          if (Math.abs(body.vy) < 18) body.vy = 0;
+        }
+      }
+
+      function solveCollision(a, b) {
+        const dx = b.x - a.x;
+        const dy = b.y - a.y;
+        const minDistance = a.radius + b.radius - 2;
+        const distanceSquared = dx * dx + dy * dy;
+        if (distanceSquared >= minDistance * minDistance) return;
+
+        const distance = Math.max(0.001, Math.sqrt(distanceSquared));
+        /* Deux capsules exactement superposées n'ont pas de normale : on les sépare
+           verticalement, sinon elles restent l'une dans l'autre. */
+        const degenerate = distance <= 0.001;
+        const nx = degenerate ? 0 : dx / distance;
+        const ny = degenerate ? -1 : dy / distance;
+        const overlap = minDistance - distance;
+        const invA = a.dragging ? 0 : 1;
+        const invB = b.dragging ? 0 : 1;
+        const invTotal = invA + invB || 1;
+
+        a.x -= nx * overlap * invA / invTotal;
+        a.y -= ny * overlap * invA / invTotal;
+        b.x += nx * overlap * invB / invTotal;
+        b.y += ny * overlap * invB / invTotal;
+
+        const relativeVX = b.vx - a.vx;
+        const relativeVY = b.vy - a.vy;
+        const speedAlongNormal = relativeVX * nx + relativeVY * ny;
+
+        if (speedAlongNormal < 0) {
+          const impulse = -(1 + restitution) * speedAlongNormal / invTotal;
+          a.vx -= impulse * nx * invA;
+          a.vy -= impulse * ny * invA;
+          b.vx += impulse * nx * invB;
+          b.vy += impulse * ny * invB;
+
+          const tangentSpeed = relativeVX * -ny + relativeVY * nx;
+          a.va -= tangentSpeed * 0.0007 * invA;
+          b.va += tangentSpeed * 0.0007 * invB;
+        }
+      }
+
+      function step(now) {
+        const dt = Math.min(0.024, Math.max(0.008, (now - lastTime) / 1000));
+        lastTime = now;
+        const before = bodies.map(body => [body.x, body.y, body.angle]);
+
+        bodies.forEach(body => {
+          if (body.dragging) {
+            const follow = Math.min(1, dt * 32);
+            const previousX = body.x;
+            const previousY = body.y;
+            body.x += (body.targetX - body.x) * follow;
+            body.y += (body.targetY - body.y) * follow;
+            body.vx = (body.x - previousX) / dt;
+            body.vy = (body.y - previousY) / dt;
+            body.angle += body.vx * dt * 0.0012;
+          } else {
+            body.vy += gravity * dt;
+            body.x += body.vx * dt;
+            body.y += body.vy * dt;
+            body.angle += body.va * dt;
+            body.vx *= 0.997;
+            body.va *= 0.994;
+          }
+          keepInside(body);
+        });
+
+        for (let pass = 0; pass < 3; pass++) {
+          for (let i = 0; i < bodies.length; i++) {
+            for (let j = i + 1; j < bodies.length; j++) {
+              solveCollision(bodies[i], bodies[j]);
+            }
+          }
+          bodies.forEach(keepInside);
+        }
+
+        bodies.forEach(render);
+
+        /* Mise en veille dès que les icônes ne bougent plus visiblement
+           (on mesure le déplacement réel, pas la vitesse : des icônes empilées
+           gardent une petite vitesse sans jamais se déplacer). */
+        const moving = bodies.some((body, i) =>
+          Math.abs(body.x - before[i][0]) > 0.2 ||
+          Math.abs(body.y - before[i][1]) > 0.2 ||
+          Math.abs(body.angle - before[i][2]) > 0.002);
+
+        if (dragged || moving) idleFrames = 0;
+        else idleFrames += 1;
+
+        if (idleFrames > 30 || (!dragged && now - wakeTime > MAX_AWAKE)) {
+          sleep();
+          return;
+        }
+        rafId = requestAnimationFrame(step);
+      }
+
+      function sleep() {
+        rafId = null;
+        bodies.forEach(body => { body.vx = body.vy = body.va = 0; });
+      }
+
+      function ensureRunning() {
+        wakeTime = performance.now();
+        if (rafId !== null) return;
+        lastTime = wakeTime;
+        idleFrames = 0;
+        rafId = requestAnimationFrame(step);
+      }
+
+      function pointerPosition(event) {
+        const rect = field.getBoundingClientRect();
+        return {
+          x: (event.clientX - rect.left) * field.clientWidth / rect.width,
+          y: (event.clientY - rect.top) * field.clientHeight / rect.height
+        };
+      }
+
+      function startDrag(event) {
+        const body = event.currentTarget._body;
+        if (!body || dragged || event.button !== 0) return;
+        const point = pointerPosition(event);
+        body.dragging = true;
+        body.targetX = point.x;
+        body.targetY = point.y;
+        body.lastPointerX = point.x;
+        body.lastPointerY = point.y;
+        body.lastPointerTime = performance.now();
+        body.pointerVX = 0;
+        body.pointerVY = 0;
+        body.el.classList.add('is-dragging');
+        body.el.setPointerCapture(event.pointerId);
+        dragged = { body, pointerId: event.pointerId };
+        ensureRunning();
+      }
+
+      function moveDrag(event) {
+        if (!dragged || dragged.pointerId !== event.pointerId) return;
+        const point = pointerPosition(event);
+        const now = performance.now();
+        const dt = Math.max(8, now - dragged.body.lastPointerTime);
+        dragged.body.pointerVX = (point.x - dragged.body.lastPointerX) / dt * 1000;
+        dragged.body.pointerVY = (point.y - dragged.body.lastPointerY) / dt * 1000;
+        dragged.body.targetX = point.x;
+        dragged.body.targetY = point.y;
+        dragged.body.lastPointerX = point.x;
+        dragged.body.lastPointerY = point.y;
+        dragged.body.lastPointerTime = now;
+      }
+
+      function endDrag(event) {
+        if (!dragged || dragged.pointerId !== event.pointerId) return;
+        const body = dragged.body;
+        body.dragging = false;
+        const cancelled = event.type !== 'pointerup';
+        body.vx = cancelled ? 0 : Math.max(-1500, Math.min(1500, body.pointerVX * 0.72));
+        body.vy = cancelled ? 0 : Math.max(-1500, Math.min(1500, body.pointerVY * 0.72));
+        body.va = cancelled ? 0 : body.va + body.vx * 0.0012;
+        body.el.classList.remove('is-dragging');
+        dragged = null;
+        if (!cancelled) ensureRunning();
+        if (body.el.hasPointerCapture(event.pointerId)) body.el.releasePointerCapture(event.pointerId);
+      }
+
+      elements.forEach(el => {
+        el.addEventListener('pointerdown', startDrag);
+        el.addEventListener('pointermove', moveDrag);
+        el.addEventListener('pointerup', endDrag);
+        el.addEventListener('pointercancel', endDrag);
+        el.addEventListener('lostpointercapture', endDrag);
+        el.addEventListener('keydown', (event) => {
+          const moves = { ArrowLeft: [-12, 0], ArrowRight: [12, 0], ArrowUp: [0, -12], ArrowDown: [0, 12] };
+          const move = moves[event.key];
+          if (!move || dragged) return;
+          event.preventDefault();
+          const body = el._body;
+          body.x += move[0];
+          body.y += move[1];
+          body.vx = body.vy = body.va = 0;
+          keepInside(body);
+          render(body);
+          ensureRunning();
+        });
+        el.addEventListener('dragstart', event => event.preventDefault());
+      });
+
+      fitTools();
+      createBodies();
+      ensureRunning();
+
+      let resizeTimer;
+      addEventListener('resize', () => {
+        clearTimeout(resizeTimer);
+        resizeTimer = setTimeout(() => {
+          fitTools();
+          bodies.forEach(body => {
+            body.radius = body.el.offsetWidth / 2;
+            keepInside(body);
+            render(body);
+          });
+          ensureRunning();
+        }, 120);
+      }, { passive: true });
+
+      document.addEventListener('visibilitychange', () => {
+        if (document.hidden) {
+          cancelAnimationFrame(rafId);
+          rafId = null;
+          if (dragged) endDrag({ type: 'pointercancel', pointerId: dragged.pointerId });
+        } else ensureRunning();
+      });
+    })();
+  </script>
+
+</body>
+
+</html>
