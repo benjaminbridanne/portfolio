@@ -1,0 +1,2529 @@
+<!DOCTYPE html>
+<html lang="fr" data-theme="dark">
+
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>La Place des Matériaux - Projet de Benjamin Bridanne</title>
+  <meta name="description"
+    content="Étude de cas de la campagne de financement participatif de La Place des Matériaux par Benjamin Bridanne : veille sur dix campagnes de l’ESS, stratégie par cercles, mailing, affiche et plaquette financière." />
+  <link rel="canonical" href="https://benjaminbridanne.github.io/portfolio/projet-campagne-financement.html" />
+  <link rel="icon" href="Images/image-logo-inverse.png" type="image/png" />
+
+  <meta property="og:type" content="website" />
+  <meta property="og:url" content="https://benjaminbridanne.github.io/portfolio/projet-campagne-financement.html" />
+  <meta property="og:title" content="Financer La Place des Matériaux - Stratégie de campagne" />
+  <meta property="og:description"
+    content="Stratégie de communication d’une campagne de financement participatif de 70 000 € pour un lieu de réemploi des matériaux du bâtiment dans le Gers." />
+  <meta property="og:image" content="https://benjaminbridanne.github.io/portfolio/Images/image_fond.png" />
+  <meta property="og:locale" content="fr_FR" />
+
+  <meta name="twitter:card" content="summary_large_image" />
+  <style>
+    /* =========================================================
+       TOKENS (identiques à l'accueil - cohérence stricte)
+       ========================================================= */
+    :root {
+      --font-system: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
+      --radius: 22px;
+      --radius-sm: 14px;
+      --gap: 14px;
+      --max-width: 1280px;
+
+      --ease: cubic-bezier(.2, .8, .2, 1);
+      --transition-fast: 250ms var(--ease);
+      --transition-med: 400ms var(--ease);
+
+      --apple-blue-dark: #0A84FF;
+      --apple-blue-light: #007AFF;
+      --sun-moon: #F7E27B;
+    }
+
+    /* -------- Light mode -------- */
+    [data-theme="light"] {
+      --bg: #f2f2f4;
+      --bg-halo-1: rgba(205, 214, 232, 0.30);
+      --bg-halo-2: rgba(214, 220, 234, 0.24);
+
+      --card-bg: rgba(255, 255, 255, 0.74);
+      --card-bg-soft: rgba(255, 255, 255, 0.56);
+      --card-bg-solid: #ffffff;
+      --card-border: rgba(60, 60, 67, 0.16);
+      --card-border-hover: rgba(60, 60, 67, 0.28);
+      --card-edge: rgba(255, 255, 255, 0.95);
+      --card-shadow: 0 4px 20px rgba(0, 0, 0, 0.05);
+      --card-shadow-hover: 0 14px 38px rgba(0, 0, 0, 0.09);
+      --card-highlight-top: rgba(255, 255, 255, 0.9);
+      --card-blur: 18px;
+
+      --text: #0a0a0d;
+      --text-secondary: rgba(60, 60, 67, 0.62);
+      --text-muted: rgba(60, 60, 67, 0.34);
+      --eyebrow: rgba(60, 60, 67, 0.58);
+      --line: rgba(60, 60, 67, 0.12);
+
+      --toggle-track-bg: #e8e8ea;
+      --toggle-track-border: rgba(60, 60, 67, 0.22);
+      --toggle-thumb-bg: #0a0a0d;
+
+      --apple-blue: var(--apple-blue-light);
+
+      --nav-bg: rgba(242, 242, 244, 0.72);
+      --nav-border: rgba(60, 60, 67, 0.12);
+
+      --pill-bg: rgba(0, 0, 0, 0.04);
+      --pill-border: rgba(60, 60, 67, 0.14);
+    }
+
+    /* -------- Dark mode -------- */
+    [data-theme="dark"] {
+      --bg: #000000;
+      --bg-halo-1: rgba(44, 44, 52, 0.22);
+      --bg-halo-2: rgba(24, 34, 52, 0.18);
+
+      --card-bg: rgba(18, 18, 20, 0.74);
+      --card-bg-soft: rgba(20, 20, 22, 0.56);
+      --card-bg-solid: #0e0e10;
+      --card-border: rgba(255, 255, 255, 0.10);
+      --card-border-hover: rgba(255, 255, 255, 0.20);
+      --card-edge: rgba(255, 255, 255, 0.28);
+      --card-shadow: 0 6px 26px rgba(0, 0, 0, 0.50);
+      --card-shadow-hover: 0 18px 46px rgba(0, 0, 0, 0.62);
+      --card-highlight-top: rgba(255, 255, 255, 0.14);
+      --card-blur: 16px;
+
+      --text: #F5F5F7;
+      --text-secondary: rgba(235, 235, 245, 0.62);
+      --text-muted: rgba(235, 235, 245, 0.34);
+      --eyebrow: rgba(235, 235, 245, 0.56);
+      --line: rgba(255, 255, 255, 0.10);
+
+      --toggle-track-bg: #1c1c1e;
+      --toggle-track-border: rgba(255, 255, 255, 0.16);
+      --toggle-thumb-bg: #0a0a0a;
+
+      --apple-blue: var(--apple-blue-dark);
+
+      --nav-bg: rgba(0, 0, 0, 0.62);
+      --nav-border: rgba(255, 255, 255, 0.08);
+
+      --pill-bg: rgba(255, 255, 255, 0.05);
+      --pill-border: rgba(255, 255, 255, 0.10);
+    }
+
+    /* =========================================================
+       BASE
+       ========================================================= */
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
+
+    html {
+      scroll-behavior: smooth;
+    }
+
+    body {
+      font-family: var(--font-system);
+      -webkit-font-smoothing: antialiased;
+      -moz-osx-font-smoothing: grayscale;
+      background: var(--bg);
+      color: var(--text);
+      min-height: 100vh;
+      position: relative;
+      overflow-x: hidden;
+      transition: background var(--transition-med), color var(--transition-med);
+    }
+
+    body::before {
+      content: "";
+      position: fixed;
+      inset: 0;
+      background:
+        radial-gradient(ellipse 60% 45% at 12% 8%, var(--bg-halo-1) 0%, transparent 60%),
+        radial-gradient(ellipse 55% 45% at 92% 96%, var(--bg-halo-2) 0%, transparent 62%);
+      pointer-events: none;
+      z-index: 0;
+    }
+
+    :focus-visible {
+      outline: 2px solid var(--text);
+      outline-offset: 3px;
+      border-radius: 6px;
+    }
+
+    a {
+      color: inherit;
+      text-decoration: none;
+    }
+
+    button {
+      font-family: inherit;
+      background: none;
+      border: none;
+      cursor: pointer;
+      color: inherit;
+    }
+
+    img {
+      max-width: 100%;
+      display: block;
+    }
+
+    .sr-only {
+      position: absolute;
+      width: 1px;
+      height: 1px;
+      padding: 0;
+      margin: -1px;
+      overflow: hidden;
+      clip: rect(0, 0, 0, 0);
+      white-space: nowrap;
+      border: 0;
+    }
+
+    /* =========================================================
+       CARD BASE (identique à l'accueil)
+       ========================================================= */
+    .card {
+      position: relative;
+      border-radius: var(--radius);
+      background: var(--card-bg);
+      border: 1px solid var(--card-border);
+      box-shadow: var(--card-shadow);
+      padding: 22px;
+      overflow: hidden;
+      backdrop-filter: blur(var(--card-blur)) saturate(118%);
+      -webkit-backdrop-filter: blur(var(--card-blur)) saturate(118%);
+      transition:
+        transform var(--transition-med),
+        box-shadow var(--transition-med),
+        border-color var(--transition-med),
+        background var(--transition-med);
+    }
+
+    .card::before {
+      content: "";
+      position: absolute;
+      inset: 0;
+      padding: 1px;
+      border-radius: inherit;
+      background: linear-gradient(145deg, var(--card-edge), transparent 42%);
+      -webkit-mask: linear-gradient(#000 0 0) content-box, linear-gradient(#000 0 0);
+      -webkit-mask-composite: xor;
+      mask: linear-gradient(#000 0 0) content-box, linear-gradient(#000 0 0);
+      mask-composite: exclude;
+      opacity: 0.75;
+      pointer-events: none;
+      z-index: 4;
+    }
+
+    .card::after {
+      content: "";
+      position: absolute;
+      top: 0;
+      left: 0;
+      right: 0;
+      height: 1px;
+      background: linear-gradient(90deg,
+          transparent 0%,
+          var(--card-highlight-top) 22%,
+          var(--card-highlight-top) 78%,
+          transparent 100%);
+      pointer-events: none;
+      z-index: 4;
+    }
+
+    .card:hover {
+      transform: scale(1.015);
+      z-index: 6;
+      border-color: var(--card-border-hover);
+      box-shadow: var(--card-shadow-hover);
+    }
+
+    .card>* {
+      position: relative;
+      z-index: 2;
+    }
+
+    .card--soft {
+      background: var(--card-bg-soft);
+    }
+
+    /* =========================================================
+       HEADER STICKY
+       ========================================================= */
+    .project-nav {
+      position: sticky;
+      top: 0;
+      z-index: 30;
+      display: flex;
+      align-items: center;
+      gap: 20px;
+      padding: 12px 24px;
+      background: var(--nav-bg);
+      border-bottom: 1px solid var(--nav-border);
+      backdrop-filter: blur(18px) saturate(130%);
+      -webkit-backdrop-filter: blur(18px) saturate(130%);
+    }
+
+    .nav-back {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      font-size: 0.875rem;
+      font-weight: 500;
+      color: var(--text);
+      padding: 6px 10px;
+      border-radius: 10px;
+      transition: background var(--transition-fast);
+    }
+
+    .nav-back:hover {
+      background: var(--card-bg-soft);
+    }
+
+    .nav-back svg {
+      width: 16px;
+      height: 16px;
+    }
+
+    .nav-crumb {
+      font-size: 0.8125rem;
+      color: var(--text-secondary);
+      flex: 1;
+      min-width: 0;
+      overflow: hidden;
+      text-overflow: ellipsis;
+      white-space: nowrap;
+    }
+
+    .nav-crumb strong {
+      color: var(--text);
+      font-weight: 500;
+    }
+
+    /* Toggle iOS */
+    .theme-toggle-btn {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      padding: 0;
+    }
+
+    .toggle-switch {
+      position: relative;
+      width: 52px;
+      height: 28px;
+      border-radius: 999px;
+      background: var(--toggle-track-bg);
+      border: 1px solid var(--toggle-track-border);
+      transition: background var(--transition-med), border-color var(--transition-med);
+    }
+
+    .toggle-thumb {
+      position: absolute;
+      top: 50%;
+      left: 3px;
+      width: 22px;
+      height: 22px;
+      border-radius: 50%;
+      background: var(--toggle-thumb-bg);
+      transform: translateY(-50%);
+      transition: left var(--transition-med), background var(--transition-med);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+
+    .toggle-thumb svg {
+      width: 12px;
+      height: 12px;
+      color: var(--sun-moon);
+      position: absolute;
+      transition: opacity var(--transition-fast);
+    }
+
+    [data-theme="dark"] .toggle-thumb {
+      left: 3px;
+    }
+
+    [data-theme="light"] .toggle-thumb {
+      left: calc(100% - 25px);
+    }
+
+    [data-theme="dark"] .icon-sun {
+      opacity: 0;
+    }
+
+    [data-theme="light"] .icon-moon {
+      opacity: 0;
+    }
+
+    /* =========================================================
+       PROJECT BENTO GRID
+       ========================================================= */
+    .project-main {
+      max-width: var(--max-width);
+      margin: 0 auto;
+      padding: 28px 24px 56px;
+      position: relative;
+      z-index: 1;
+    }
+
+    .project-grid {
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      grid-auto-rows: minmax(150px, auto);
+      gap: var(--gap);
+    }
+
+    /* --- Positionnement des cartes --- */
+    .card--hero-meta {
+      grid-column: span 2;
+      grid-row: span 1;
+    }
+
+    .card--hero-visual {
+      grid-column: span 2;
+      grid-row: span 1;
+      padding: 0;
+    }
+
+    .card--info {
+      grid-column: span 1;
+      grid-row: span 1;
+    }
+
+    /* Galerie : deux cartes verticales cote a cote a gauche, quatre vignettes en 2 x 2 a droite.
+       Chaque carte verticale couvre deux rangees : sa hauteur suit celle des vignettes. */
+    .card--wide-1 {
+      grid-column: 1;
+      grid-row: 3 / 5;
+      padding: 0;
+    }
+
+    .card--wide-2 {
+      grid-column: 2;
+      grid-row: 3 / 5;
+      padding: 0;
+    }
+
+    .card--gallery-1 {
+      grid-column: 3;
+      grid-row: 3;
+      padding: 0;
+    }
+
+    .card--gallery-2 {
+      grid-column: 4;
+      grid-row: 3;
+      padding: 0;
+    }
+
+    .card--gallery-3 {
+      grid-column: 3;
+      grid-row: 4;
+      padding: 0;
+    }
+
+    .card--gallery-4 {
+      grid-column: 4;
+      grid-row: 4;
+      padding: 0;
+    }
+
+    /* Formats des cartes d’images */
+    .card--hero-visual {
+      aspect-ratio: 19 / 10;
+      min-height: 0;
+    }
+
+    .card--gallery {
+      aspect-ratio: 29 / 20;
+      min-height: 0;
+    }
+
+    .card--wide {
+      min-height: 0;
+    }
+
+    /* =========================================================
+       HERO - MÉTA
+       ========================================================= */
+    .card--hero-meta {
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      gap: 18px;
+      padding: 32px 30px;
+    }
+
+    .hero-eyebrow {
+      font-size: 0.75rem;
+      font-weight: 500;
+      color: var(--eyebrow);
+      text-transform: uppercase;
+      letter-spacing: 0.14em;
+    }
+
+    .hero-title {
+      font-size: clamp(1.75rem, 3.2vw, 2.75rem);
+      font-weight: 700;
+      letter-spacing: -0.03em;
+      line-height: 1.02;
+    }
+
+    .hero-tags {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 8px;
+    }
+
+    .hero-tag {
+      display: inline-flex;
+      align-items: center;
+      padding: 6px 12px;
+      border-radius: 999px;
+      background: var(--pill-bg);
+      border: 1px solid var(--pill-border);
+      font-size: 0.75rem;
+      font-weight: 500;
+      color: var(--text-secondary);
+      letter-spacing: 0.01em;
+    }
+
+    .hero-pitch {
+      font-size: 0.9375rem;
+      color: var(--text-secondary);
+      line-height: 1.55;
+      max-width: 90ch;
+    }
+
+    /* Bouton principal : le bleu Apple reste reserve a cette action */
+    .btn-primary {
+      align-self: flex-start;
+      display: inline-flex;
+      align-items: center;
+      gap: 9px;
+      padding: 11px 20px;
+      border-radius: 999px;
+      background: var(--apple-blue);
+      color: #fff;
+      font-size: 0.875rem;
+      font-weight: 600;
+      letter-spacing: -0.005em;
+      transition:
+        background var(--transition-med),
+        transform var(--transition-med),
+        box-shadow var(--transition-med);
+    }
+
+    .btn-primary svg {
+      width: 15px;
+      height: 15px;
+      flex: none;
+    }
+
+    .btn-primary:hover {
+      transform: translateY(-1px);
+      box-shadow: 0 10px 24px rgba(10, 132, 255, 0.22);
+    }
+
+    /* =========================================================
+       VISUELS ET BOUTONS POSES SUR LES IMAGES
+       ========================================================= */
+    .card--hero-visual,
+    .card--wide,
+    .card--gallery {
+      overflow: hidden;
+    }
+
+    .card--wide,
+    .card--gallery {
+      background: var(--card-bg-solid);
+      backdrop-filter: none;
+      -webkit-backdrop-filter: none;
+    }
+
+    .hero-image,
+    .gallery-img {
+      position: absolute;
+      inset: 0;
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      object-position: center;
+      z-index: 1;
+    }
+
+    .gallery-img {
+      transition: transform var(--transition-med);
+    }
+
+    .card--wide:hover .gallery-img,
+    .card--gallery:hover .gallery-img {
+      transform: scale(1.03);
+    }
+
+    /* Bouton pose sur une image : lisible dans les deux themes */
+    .proto-btn {
+      position: absolute;
+      bottom: 16px;
+      right: 16px;
+      z-index: 5;
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      max-width: calc(100% - 32px);
+      padding: 9px 15px;
+      border-radius: 999px;
+      background: rgba(12, 12, 14, 0.78);
+      border: 1px solid rgba(255, 255, 255, 0.24);
+      color: #fff;
+      font-size: 0.8125rem;
+      font-weight: 600;
+      letter-spacing: -0.005em;
+      -webkit-backdrop-filter: blur(10px);
+      backdrop-filter: blur(10px);
+      transition:
+        background var(--transition-med),
+        border-color var(--transition-med),
+        transform var(--transition-med);
+    }
+
+    .proto-btn svg {
+      width: 14px;
+      height: 14px;
+      flex: none;
+    }
+
+    .proto-btn:hover {
+      background: rgba(12, 12, 14, 0.9);
+      border-color: rgba(255, 255, 255, 0.45);
+      transform: translateY(-1px);
+    }
+
+    .proto-btn:focus-visible {
+      outline: 2px solid #fff;
+      outline-offset: 3px;
+    }
+
+    /* =========================================================
+       CARTES INFO (défi / réponse / chiffres / outils)
+       ========================================================= */
+    .card--info {
+      display: flex;
+      flex-direction: column;
+      gap: 12px;
+      padding: 22px 22px 20px;
+    }
+
+    .info-title {
+      font-size: 0.95rem;
+      font-weight: 600;
+      color: var(--text);
+      letter-spacing: -0.01em;
+    }
+
+    .info-body {
+      font-size: 0.87rem;
+      color: var(--text-secondary);
+      line-height: 1.55;
+    }
+
+    .info-list {
+      display: flex;
+      flex-direction: column;
+      gap: 5px;
+      list-style: none;
+      font-size: 0.87rem;
+      color: var(--text-secondary);
+      line-height: 1.5;
+    }
+
+    .info-list li {
+      position: relative;
+      padding-left: 14px;
+    }
+
+    .info-list li::before {
+      content: "";
+      position: absolute;
+      left: 2px;
+      top: 0.62em;
+      width: 4px;
+      height: 4px;
+      border-radius: 50%;
+      background: var(--text-muted);
+    }
+
+    .info-motto {
+      color: var(--text);
+      font-style: italic;
+    }
+
+    /* --- En chiffres : l’objectif en tete, puis 2 x 2 --- */
+    .metrics {
+      display: grid;
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+      gap: 8px;
+      margin-top: 2px;
+    }
+
+    .metric {
+      display: flex;
+      flex-direction: column;
+      gap: 3px;
+      padding: 11px 12px;
+      border-radius: var(--radius-sm);
+      background: var(--pill-bg);
+      border: 1px solid var(--pill-border);
+    }
+
+    .metric--lead {
+      grid-column: 1 / -1;
+    }
+
+    .metric-value {
+      font-size: 1.35rem;
+      font-weight: 700;
+      letter-spacing: -0.03em;
+      line-height: 1.05;
+      color: var(--text);
+    }
+
+    .metric--lead .metric-value {
+      font-size: 1.75rem;
+    }
+
+    .metric-label {
+      font-size: 0.75rem;
+      color: var(--text-secondary);
+      line-height: 1.35;
+    }
+
+    /* =========================================================
+       CARTE OUTILS — STYLE GLASS
+       ========================================================= */
+    .tools-grid {
+      display: grid;
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+      gap: 10px;
+      margin-top: 4px;
+    }
+
+    .tool-item {
+      display: flex;
+      align-items: center;
+      gap: 9px;
+      min-width: 0;
+      padding: 10px;
+      border: 1px solid rgba(255, 255, 255, 0.12);
+      border-radius: 14px;
+      background:
+        linear-gradient(145deg,
+          rgba(255, 255, 255, 0.11),
+          rgba(255, 255, 255, 0.035));
+      box-shadow:
+        inset 0 1px 0 rgba(255, 255, 255, 0.12),
+        0 8px 24px rgba(0, 0, 0, 0.18);
+      -webkit-backdrop-filter: blur(14px) saturate(130%);
+      backdrop-filter: blur(14px) saturate(130%);
+      transition:
+        transform var(--transition-med),
+        border-color var(--transition-med),
+        background var(--transition-med);
+    }
+
+    .tool-item:hover {
+      transform: translateY(-2px);
+      border-color: rgba(255, 255, 255, 0.24);
+      background:
+        linear-gradient(145deg,
+          rgba(255, 255, 255, 0.16),
+          rgba(255, 255, 255, 0.06));
+    }
+
+    .tool-icon {
+      width: 32px;
+      height: 32px;
+      flex: 0 0 32px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      border-radius: 10px;
+      background: #ffffff;
+      overflow: hidden;
+    }
+
+    .tool-icon img {
+      display: block;
+      width: 80%;
+      height: 80%;
+      object-fit: contain;
+    }
+
+    .tool-name {
+      min-width: 0;
+      color: var(--text-secondary);
+      font-size: 0.75rem;
+      font-weight: 600;
+      line-height: 1.2;
+    }
+
+    [data-theme="light"] .tool-item {
+      background:
+        linear-gradient(145deg,
+          rgba(255, 255, 255, 0.90),
+          rgba(255, 255, 255, 0.52));
+      border-color: rgba(60, 60, 67, 0.13);
+      box-shadow:
+        inset 0 1px 0 rgba(255, 255, 255, 0.95),
+        0 8px 20px rgba(0, 0, 0, 0.06);
+    }
+
+    [data-theme="light"] .tool-icon {
+      background: rgba(255, 255, 255, 0.75);
+    }
+
+    /* =========================================================
+       AGRANDISSEMENT DES IMAGES
+       ========================================================= */
+    .zoom-btn {
+      position: absolute;
+      inset: 0;
+      z-index: 3;
+      width: 100%;
+      height: 100%;
+      padding: 0;
+      border: 0;
+      background: none;
+      cursor: zoom-in;
+      border-radius: inherit;
+    }
+
+    .zoom-btn:focus-visible {
+      outline: 2px solid var(--text);
+      outline-offset: -5px;
+      border-radius: inherit;
+    }
+
+    .lightbox {
+      position: fixed;
+      inset: 0;
+      z-index: 100;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      padding: clamp(16px, 4vw, 48px);
+      background: rgba(0, 0, 0, 0.86);
+      -webkit-backdrop-filter: blur(6px);
+      backdrop-filter: blur(6px);
+    }
+
+    [data-theme="light"] .lightbox {
+      background: rgba(20, 20, 24, 0.82);
+    }
+
+    .lightbox[hidden] {
+      display: none;
+    }
+
+    .lightbox-img {
+      max-width: 100%;
+      max-height: 100%;
+      width: auto;
+      height: auto;
+      object-fit: contain;
+      border-radius: var(--radius-sm);
+      box-shadow: 0 24px 70px rgba(0, 0, 0, 0.55);
+    }
+
+    .lightbox-close {
+      position: absolute;
+      top: clamp(12px, 2.5vw, 28px);
+      right: clamp(12px, 2.5vw, 28px);
+      width: 44px;
+      height: 44px;
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      border-radius: 50%;
+      background: rgba(255, 255, 255, 0.12);
+      border: 1px solid rgba(255, 255, 255, 0.28);
+      color: #fff;
+      transition: background var(--transition-fast), border-color var(--transition-fast);
+    }
+
+    .lightbox-close svg {
+      width: 20px;
+      height: 20px;
+    }
+
+    .lightbox-close:hover {
+      background: rgba(255, 255, 255, 0.22);
+      border-color: rgba(255, 255, 255, 0.5);
+    }
+
+    .lightbox-close:focus-visible {
+      outline: 2px solid #fff;
+      outline-offset: 3px;
+    }
+
+    /* Le fond de page ne defile plus quand une modale est ouverte */
+    body.is-locked {
+      overflow: hidden;
+    }
+
+    /* =========================================================
+       MODALE DE VEILLE COMPARATIVE
+       ========================================================= */
+    .veille-dialog {
+      width: min(760px, calc(100% - 32px));
+      max-width: none;
+      max-height: min(86vh, 920px);
+      margin: auto;
+      padding: 0;
+      border: 1px solid var(--card-border);
+      border-radius: var(--radius);
+      background: var(--card-bg-solid);
+      color: var(--text);
+      box-shadow: 0 24px 70px rgba(0, 0, 0, 0.45);
+      overflow: hidden;
+    }
+
+    .veille-dialog[open] {
+      display: flex;
+      flex-direction: column;
+      animation: veille-in 260ms var(--ease);
+    }
+
+    /* Les variables ne sont pas heritees par ::backdrop sur tous les navigateurs */
+    .veille-dialog::backdrop {
+      background: rgba(0, 0, 0, 0.72);
+      -webkit-backdrop-filter: blur(6px);
+      backdrop-filter: blur(6px);
+    }
+
+    @keyframes veille-in {
+      from {
+        opacity: 0;
+        transform: translateY(10px) scale(0.985);
+      }
+
+      to {
+        opacity: 1;
+        transform: none;
+      }
+    }
+
+    .veille-head {
+      flex: none;
+      display: flex;
+      align-items: flex-start;
+      justify-content: space-between;
+      gap: 16px;
+      padding: 22px 24px 18px;
+      border-bottom: 1px solid var(--line);
+    }
+
+    .veille-head-text {
+      display: flex;
+      flex-direction: column;
+      gap: 6px;
+    }
+
+    .veille-title {
+      font-size: 1.25rem;
+      font-weight: 700;
+      letter-spacing: -0.02em;
+      line-height: 1.15;
+    }
+
+    .veille-sub {
+      font-size: 0.8125rem;
+      color: var(--text-secondary);
+      line-height: 1.45;
+    }
+
+    .veille-close {
+      flex: none;
+      width: 36px;
+      height: 36px;
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      border-radius: 50%;
+      background: var(--pill-bg);
+      border: 1px solid var(--pill-border);
+      color: var(--text);
+      transition: background var(--transition-fast), border-color var(--transition-fast);
+    }
+
+    .veille-close svg {
+      width: 16px;
+      height: 16px;
+    }
+
+    .veille-close:hover {
+      border-color: var(--card-border-hover);
+    }
+
+    .veille-body {
+      flex: 1 1 auto;
+      min-height: 0;
+      overflow-y: auto;
+      overscroll-behavior: contain;
+      padding: 20px 24px 26px;
+      display: flex;
+      flex-direction: column;
+      gap: 24px;
+    }
+
+    .veille-section-title {
+      font-size: 0.75rem;
+      font-weight: 600;
+      color: var(--eyebrow);
+      text-transform: uppercase;
+      letter-spacing: 0.12em;
+      margin-bottom: 10px;
+    }
+
+    /* Indicateurs de synthese */
+    .veille-stats {
+      display: grid;
+      grid-template-columns: repeat(4, minmax(0, 1fr));
+      gap: 8px;
+    }
+
+    .veille-stat {
+      display: flex;
+      flex-direction: column;
+      gap: 3px;
+      padding: 12px;
+      border-radius: var(--radius-sm);
+      background: var(--pill-bg);
+      border: 1px solid var(--pill-border);
+    }
+
+    .veille-stat-value {
+      font-size: 1.35rem;
+      font-weight: 700;
+      letter-spacing: -0.03em;
+      line-height: 1.05;
+    }
+
+    .veille-stat-label {
+      font-size: 0.75rem;
+      color: var(--text-secondary);
+      line-height: 1.35;
+    }
+
+    /* Liste des campagnes */
+    .veille-list {
+      list-style: none;
+      display: flex;
+      flex-direction: column;
+      gap: 8px;
+    }
+
+    .veille-item {
+      border-radius: var(--radius-sm);
+      border: 1px solid var(--pill-border);
+      background: var(--pill-bg);
+      transition: border-color var(--transition-fast);
+    }
+
+    .veille-item[open] {
+      border-color: var(--card-border-hover);
+    }
+
+    .veille-item summary {
+      list-style: none;
+      display: grid;
+      grid-template-columns: minmax(0, 1fr) auto 16px;
+      align-items: center;
+      gap: 14px;
+      padding: 12px 14px;
+      cursor: pointer;
+      border-radius: var(--radius-sm);
+    }
+
+    .veille-item summary::-webkit-details-marker {
+      display: none;
+    }
+
+    .veille-name {
+      display: block;
+      font-size: 0.9rem;
+      font-weight: 600;
+      letter-spacing: -0.01em;
+    }
+
+    .veille-meta {
+      display: block;
+      margin-top: 2px;
+      font-size: 0.75rem;
+      color: var(--text-secondary);
+      line-height: 1.4;
+    }
+
+    .veille-result {
+      text-align: right;
+    }
+
+    .veille-rate {
+      display: block;
+      font-size: 0.95rem;
+      font-weight: 700;
+      letter-spacing: -0.02em;
+      font-variant-numeric: tabular-nums;
+    }
+
+    .veille-rate--na {
+      color: var(--text-muted);
+    }
+
+    .veille-amount {
+      display: block;
+      margin-top: 1px;
+      font-size: 0.72rem;
+      color: var(--text-secondary);
+      font-variant-numeric: tabular-nums;
+      white-space: nowrap;
+    }
+
+    .veille-chevron {
+      width: 16px;
+      height: 16px;
+      color: var(--text-secondary);
+      transition: transform var(--transition-fast);
+    }
+
+    .veille-item[open] .veille-chevron {
+      transform: rotate(180deg);
+    }
+
+    .veille-detail {
+      display: grid;
+      gap: 10px;
+      padding: 2px 14px 14px;
+    }
+
+    .veille-detail dt {
+      font-size: 0.7rem;
+      font-weight: 600;
+      color: var(--eyebrow);
+      text-transform: uppercase;
+      letter-spacing: 0.1em;
+    }
+
+    .veille-detail dd {
+      margin-top: 3px;
+      font-size: 0.84rem;
+      color: var(--text-secondary);
+      line-height: 1.5;
+    }
+
+    .veille-detail .veille-reco dd {
+      color: var(--text);
+    }
+
+    .veille-sources {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 4px 12px;
+    }
+
+    .veille-sources a {
+      text-decoration: underline;
+      text-underline-offset: 2px;
+      text-decoration-color: var(--text-muted);
+    }
+
+    .veille-sources a:hover {
+      color: var(--text);
+    }
+
+    /* Synthese */
+    .veille-columns {
+      display: grid;
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+      gap: 20px;
+    }
+
+    .veille-note {
+      font-size: 0.75rem;
+      color: var(--text-muted);
+      line-height: 1.5;
+      padding-top: 14px;
+      border-top: 1px solid var(--line);
+    }
+
+    /* =========================================================
+       NAVIGATION ENTRE PROJETS (pager en bas de page)
+       ========================================================= */
+    .project-pager {
+      grid-column: 1 / -1;
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: var(--gap);
+      margin-top: 8px;
+    }
+
+    .pager-link {
+      display: flex;
+      align-items: center;
+      gap: 18px;
+      padding: 22px 26px;
+      border-radius: var(--radius);
+      background: var(--card-bg);
+      border: 1px solid var(--card-border);
+      box-shadow: var(--card-shadow);
+      backdrop-filter: blur(var(--card-blur)) saturate(118%);
+      -webkit-backdrop-filter: blur(var(--card-blur)) saturate(118%);
+      color: var(--text);
+      transition:
+        transform var(--transition-med),
+        box-shadow var(--transition-med),
+        border-color var(--transition-med);
+    }
+
+    .pager-link:hover {
+      transform: scale(1.015);
+      border-color: var(--card-border-hover);
+      box-shadow: var(--card-shadow-hover);
+    }
+
+    .pager-prev {
+      justify-content: flex-start;
+      text-align: left;
+    }
+
+    .pager-next {
+      justify-content: flex-end;
+      text-align: right;
+    }
+
+    .pager-text {
+      display: flex;
+      flex-direction: column;
+      gap: 2px;
+    }
+
+    .pager-label {
+      font-size: 12px;
+      letter-spacing: 0.04em;
+      text-transform: uppercase;
+      color: var(--eyebrow);
+    }
+
+    .pager-title {
+      font-size: 17px;
+      font-weight: 600;
+      color: var(--text);
+    }
+
+    .pager-arrow {
+      font-size: 22px;
+      line-height: 1;
+      color: var(--text-secondary);
+      transition: transform var(--transition-fast), color var(--transition-fast);
+    }
+
+    .pager-link:hover .pager-arrow {
+      color: var(--text);
+    }
+
+    .pager-prev:hover .pager-arrow {
+      transform: translateX(-4px);
+    }
+
+    .pager-next:hover .pager-arrow {
+      transform: translateX(4px);
+    }
+
+    /* =========================================================
+       FOOTER MINIMAL
+       ========================================================= */
+    .site-footer {
+      max-width: var(--max-width);
+      margin: 0 auto;
+      padding: 40px 24px 56px;
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: space-between;
+      align-items: center;
+      gap: 16px;
+      border-top: 1px solid var(--line);
+      margin-top: 32px;
+      position: relative;
+      z-index: 1;
+    }
+
+    .footer-identity {
+      font-size: 0.8125rem;
+      color: var(--text-secondary);
+    }
+
+    .footer-links {
+      display: flex;
+      gap: 22px;
+    }
+
+    .footer-links a {
+      font-size: 0.8125rem;
+      color: var(--text-secondary);
+      transition: color var(--transition-fast);
+    }
+
+    .footer-links a:hover {
+      color: var(--text);
+    }
+
+    .footer-top {
+      display: inline-flex;
+      align-items: center;
+      gap: 7px;
+    }
+
+    .footer-top svg {
+      width: 14px;
+      height: 14px;
+      transition: transform var(--transition-fast);
+    }
+
+    .footer-top:hover svg {
+      transform: translateY(-2px);
+    }
+
+    /* =========================================================
+       RESPONSIVE
+       ========================================================= */
+
+    /* Ecrans tres larges / 4K : meme traitement que l'accueil */
+    @media (min-width: 1800px) {
+      :root {
+        --max-width: 1920px;
+        --gap: 20px;
+        --radius: 26px;
+      }
+
+      html {
+        font-size: 18px;
+      }
+
+      .project-main {
+        padding: 42px 36px 76px;
+      }
+
+      .project-grid {
+        grid-auto-rows: minmax(190px, auto);
+      }
+    }
+
+    /* Tablette : deux colonnes, les deux cartes verticales puis les quatre vignettes */
+    @media (max-width: 1100px) {
+      .project-grid {
+        grid-template-columns: repeat(2, 1fr);
+      }
+
+      .card--hero-meta,
+      .card--hero-visual {
+        grid-column: span 2;
+        grid-row: auto;
+      }
+
+      .card--info {
+        grid-column: span 1;
+        grid-row: auto;
+      }
+
+      .card--wide-1,
+      .card--wide-2 {
+        grid-column: span 1;
+        grid-row: auto;
+        aspect-ratio: 29 / 41;
+      }
+
+      .card--gallery-1,
+      .card--gallery-2,
+      .card--gallery-3,
+      .card--gallery-4 {
+        grid-column: span 1;
+        grid-row: auto;
+      }
+    }
+
+    /* Mobile : une colonne */
+    @media (max-width: 720px) {
+
+      /* Le fil d'ariane passe sur sa propre ligne plutot que d'etre tronque */
+      .project-nav {
+        flex-wrap: wrap;
+        padding: 10px 16px;
+        gap: 6px 12px;
+      }
+
+      .theme-toggle-btn {
+        margin-left: auto;
+      }
+
+      .nav-crumb {
+        order: 3;
+        flex: 1 0 100%;
+        white-space: normal;
+        overflow: visible;
+        text-overflow: clip;
+        line-height: 1.4;
+      }
+
+      .project-main {
+        padding: 20px 16px 40px;
+      }
+
+      .project-grid {
+        grid-template-columns: 1fr;
+      }
+
+      .card--hero-meta,
+      .card--hero-visual,
+      .card--info,
+      .card--wide-1,
+      .card--wide-2,
+      .card--gallery-1,
+      .card--gallery-2,
+      .card--gallery-3,
+      .card--gallery-4 {
+        grid-column: span 1;
+        grid-row: auto;
+      }
+
+      /* Format portrait conserve sur mobile */
+      .card--wide-1,
+      .card--wide-2 {
+        aspect-ratio: 3 / 4;
+      }
+
+      .card--hero-meta {
+        padding: 26px 22px;
+      }
+
+      .hero-title {
+        font-size: clamp(1.5rem, 6vw, 2rem);
+      }
+
+      .project-pager {
+        grid-template-columns: 1fr;
+      }
+
+      .site-footer {
+        flex-direction: column;
+        align-items: flex-start;
+      }
+
+      .footer-links {
+        flex-wrap: wrap;
+        gap: 16px;
+      }
+
+      /* Modale : plein ecran ou presque */
+      .veille-dialog {
+        width: calc(100% - 20px);
+        max-height: calc(100vh - 20px);
+        max-height: calc(100dvh - 20px);
+      }
+
+      .veille-head {
+        padding: 18px 18px 14px;
+      }
+
+      .veille-body {
+        padding: 16px 18px 22px;
+      }
+
+      .veille-stats {
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+      }
+
+      .veille-columns {
+        grid-template-columns: 1fr;
+      }
+
+      /* Le resultat passe sous le nom de la campagne */
+      .veille-item summary {
+        grid-template-columns: minmax(0, 1fr) 16px;
+        gap: 6px 10px;
+      }
+
+      .veille-result {
+        grid-row: 2;
+        grid-column: 1;
+        display: flex;
+        flex-wrap: wrap;
+        align-items: baseline;
+        gap: 2px 8px;
+        text-align: left;
+      }
+
+      .veille-amount {
+        white-space: normal;
+      }
+
+      .veille-chevron {
+        grid-row: 1;
+        grid-column: 2;
+      }
+    }
+
+    /* =========================================================
+       REDUCED MOTION
+       ========================================================= */
+    @media (prefers-reduced-motion: reduce) {
+
+      *,
+      *::before,
+      *::after {
+        animation-duration: 0.01ms !important;
+        transition-duration: 0.01ms !important;
+      }
+
+      html {
+        scroll-behavior: auto;
+      }
+
+      .card:hover,
+      .card--wide:hover .gallery-img,
+      .card--gallery:hover .gallery-img,
+      .btn-primary:hover,
+      .proto-btn:hover,
+      .tool-item:hover,
+      .pager-link:hover,
+      .footer-top:hover svg {
+        transform: none;
+      }
+    }
+  </style>
+</head>
+
+<body>
+
+  <!-- =============================================================
+       BARRE DE NAV STICKY : retour vers Mes projets, fil d’ariane, theme
+       ============================================================= -->
+  <nav class="project-nav" aria-label="Navigation principale">
+    <a href="projets.html" class="nav-back">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"
+        stroke-linejoin="round" aria-hidden="true">
+        <path d="M19 12H5M12 19l-7-7 7-7" />
+      </svg>
+      Mes projets
+    </a>
+
+    <span class="nav-crumb">Projet 02 · <strong>La Place des Matériaux</strong></span>
+
+    <button id="theme-toggle" class="theme-toggle-btn" aria-label="Basculer entre le mode sombre et le mode clair"
+      type="button">
+      <span class="sr-only" id="theme-toggle-label">Passer en mode clair</span>
+      <span class="toggle-switch" aria-hidden="true">
+        <span class="toggle-thumb">
+          <svg class="icon-sun" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"
+            stroke-linecap="round" stroke-linejoin="round">
+            <circle cx="12" cy="12" r="4" />
+            <path
+              d="M12 2v2M12 20v2M4.93 4.93l1.41 1.41M17.66 17.66l1.41 1.41M2 12h2M20 12h2M4.93 19.07l1.41-1.41M17.66 6.34l1.41-1.41" />
+          </svg>
+          <svg class="icon-moon" viewBox="0 0 24 24" fill="currentColor">
+            <path d="M20.354 15.354A9 9 0 018.646 3.646 9.003 9.003 0 0012 21a9.003 9.003 0 008.354-5.646z" />
+          </svg>
+        </span>
+      </span>
+    </button>
+  </nav>
+
+  <main class="project-main" id="top">
+    <div class="project-grid">
+
+      <!-- ========== CARTE 01 · PRESENTATION ========== -->
+      <article class="card card--hero-meta" aria-labelledby="hero-title">
+        <span class="hero-eyebrow">02 · Projet</span>
+        <h1 class="hero-title" id="hero-title">Financer La Place des Matériaux</h1>
+
+        <div class="hero-tags">
+          <span class="hero-tag">Stratégie de campagne</span>
+          <span class="hero-tag">Emailing</span>
+          <span class="hero-tag">Print</span>
+          <span class="hero-tag">Veille</span>
+        </div>
+
+        <p class="hero-pitch">
+          Pendant mon stage à la Coopérative ÉcoHabitat, j’ai conçu la communication de la campagne de financement
+          participatif de La Place des Matériaux. Ce lieu de réemploi de matériaux du bâtiment ouvrira à Lombez, dans le
+          Gers, en janvier 2027. L’objectif de la campagne est de réunir 70&nbsp;000&nbsp;€ auprès du grand public, sous
+          forme de parts sociales, de dons et de relais locaux.
+        </p>
+      </article>
+
+      <!-- ========== CARTE 02 · VISUEL PRINCIPAL ET PAGE WEB ========== -->
+      <div class="card card--hero-visual">
+        <img class="hero-image" src="Images/campagne-couverture.webp"
+          alt="Supports de la campagne de financement participatif de La Place des Matériaux" width="1900"
+          height="1000" loading="eager" />
+        <button type="button" class="zoom-btn" data-zoom-src="Images/campagne-couverture.webp"
+          aria-label="Agrandir l’image : supports de la campagne de financement participatif de La Place des Matériaux"></button>
+        <a class="proto-btn" href="https://www.ecohabitat.coop/financement-participatif/" target="_blank"
+          rel="noopener noreferrer" aria-label="Voir la page web de la campagne - nouvel onglet">
+          Voir la page web
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"
+            stroke-linejoin="round" aria-hidden="true">
+            <path d="M14 4h6v6" />
+            <path d="M20 4l-8.5 8.5" />
+            <path d="M18 14v4a2 2 0 0 1-2 2H6a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h4" />
+          </svg>
+        </a>
+      </div>
+
+      <!-- ========== CARTE 03 · LE DEFI ========== -->
+      <article class="card card--info card--soft">
+        <h2 class="info-title">Le défi</h2>
+        <p class="info-body">
+          Une jeune coopérative, animée par des bénévoles et sans salarié dédié à la communication, devait demander
+          70&nbsp;000&nbsp;€ au grand public. Le projet était solide : terrain acquis, bâtiment en construction, soutiens
+          de la Région Occitanie, de banques et de partenaires techniques. Il restait pourtant difficile à expliquer.
+        </p>
+        <p class="info-body">
+          Il fallait faire comprendre trois choses : la coopérative et le lieu qu’elle porte sont deux entités
+          distinctes, devenir sociétaire est un engagement avec ses propres règles, et chaque public attend autre chose.
+          Les habitants veulent comprendre le projet. Les futurs contributeurs veulent des chiffres. Le tout devait
+          avancer alors que la plateforme, les dates et le mécanisme de collecte n’étaient pas encore arbitrés.
+        </p>
+      </article>
+
+      <!-- ========== CARTE 04 · MA REPONSE ========== -->
+      <article class="card card--info card--soft">
+        <h2 class="info-title">Ma réponse</h2>
+        <p class="info-body">
+          J’ai commencé par analyser dix campagnes de coopératives et de structures de l’ESS pour repérer ce qui
+          fonctionne : la présentation de l’objectif, les preuves de crédibilité et les appels à l’action. J’en ai tiré
+          une synthèse de recommandations pour le groupe communication.
+        </p>
+        <p class="info-body">
+          J’ai ensuite construit la campagne par cercles : les proches et les sociétaires d’abord, puis le territoire,
+          puis les réseaux de l’ESS. Chaque support a un rôle précis :
+        </p>
+        <ul class="info-list">
+          <li>La page web explique le projet.</li>
+          <li>Le mailing lance la mobilisation.</li>
+          <li>La banque d’idées alimente les réseaux sociaux.</li>
+          <li>L’affiche donne de la visibilité locale.</li>
+          <li>La plaquette financière rassure les personnes déjà intéressées.</li>
+        </ul>
+        <p class="info-body">
+          Un même fil rouge relie l’ensemble : <span class="info-motto">« Réemployer les matériaux du bâtiment, ici, dans
+            le Gers. »</span>
+        </p>
+      </article>
+
+      <!-- ========== CARTE 05 · EN CHIFFRES ========== -->
+      <article class="card card--info card--soft">
+        <h2 class="info-title">En chiffres</h2>
+        <dl class="metrics">
+          <div class="metric metric--lead">
+            <dt class="metric-label">Objectif de collecte</dt>
+            <dd class="metric-value">70&nbsp;000&nbsp;€</dd>
+          </div>
+          <div class="metric">
+            <dt class="metric-label">Campagnes analysées en veille</dt>
+            <dd class="metric-value">10</dd>
+          </div>
+          <div class="metric">
+            <dt class="metric-label">Canaux couverts par la banque d’idées</dt>
+            <dd class="metric-value">8</dd>
+          </div>
+          <div class="metric">
+            <dt class="metric-label">Variantes du mailing de lancement</dt>
+            <dd class="metric-value">2</dd>
+          </div>
+          <div class="metric">
+            <dt class="metric-label">Volets pour la plaquette financière</dt>
+            <dd class="metric-value">3</dd>
+          </div>
+        </dl>
+      </article>
+
+      <!-- ========== CARTE 06 · OUTILS MOBILISÉS ========== -->
+      <article class="card card--info card--soft">
+        <h2 class="info-title">Outils mobilisés</h2>
+
+        <div class="tools-grid" role="list">
+          <div class="tool-item" role="listitem">
+            <span class="tool-icon"><img src="Images/icone_brevo.svg" alt="" width="32" height="32"
+                loading="lazy" /></span>
+            <span class="tool-name">Brevo</span>
+          </div>
+          <div class="tool-item" role="listitem">
+            <span class="tool-icon"><img src="Images/icone_wordpress.svg" alt="" width="32" height="32"
+                loading="lazy" /></span>
+            <span class="tool-name">WordPress</span>
+          </div>
+          <div class="tool-item" role="listitem">
+            <span class="tool-icon"><img src="Images/icone_elementor.svg" alt="" width="32" height="32"
+                loading="lazy" /></span>
+            <span class="tool-name">Elementor</span>
+          </div>
+          <div class="tool-item" role="listitem">
+            <span class="tool-icon"><img src="Images/icone_canva.svg" alt="" width="32" height="32"
+                loading="lazy" /></span>
+            <span class="tool-name">Canva</span>
+          </div>
+          <div class="tool-item" role="listitem">
+            <span class="tool-icon"><img src="Images/icone_trello.svg" alt="" width="32" height="32"
+                loading="lazy" /></span>
+            <span class="tool-name">Trello</span>
+          </div>
+          <div class="tool-item" role="listitem">
+            <span class="tool-icon"><img src="Images/icone_google.svg" alt="" width="32" height="32"
+                loading="lazy" /></span>
+            <span class="tool-name">Google Workspace</span>
+          </div>
+          <div class="tool-item" role="listitem">
+            <span class="tool-icon"><img src="Images/icone_feedly.svg" alt="" width="32" height="32"
+                loading="lazy" /></span>
+            <span class="tool-name">Feedly</span>
+          </div>
+        </div>
+      </article>
+
+      <!-- ========== CARTE 07 · VEILLE, CARTE VERTICALE GAUCHE ========== -->
+      <div class="card card--wide card--wide-1">
+        <img class="gallery-img" src="Images/campagne-veille.webp"
+          alt="Extrait de la veille comparative sur dix campagnes de financement participatif de coopératives"
+          width="1200" height="1700" loading="lazy" />
+        <button type="button" class="zoom-btn" data-zoom-src="Images/campagne-veille.webp"
+          aria-label="Agrandir l’image : extrait de la veille comparative sur dix campagnes de financement participatif"></button>
+        <button type="button" class="proto-btn" id="veille-open" aria-haspopup="dialog"
+          aria-controls="veille-dialog">
+          Voir la veille comparative
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"
+            stroke-linejoin="round" aria-hidden="true">
+            <rect x="3" y="4" width="18" height="16" rx="2" />
+            <line x1="3" y1="10" x2="21" y2="10" />
+            <line x1="9" y1="10" x2="9" y2="20" />
+          </svg>
+        </button>
+      </div>
+
+      <!-- ========== CARTE 08 · CALENDRIER ET BANQUE D’IDEES, CARTE VERTICALE DROITE ========== -->
+      <div class="card card--wide card--wide-2">
+        <img class="gallery-img" src="Images/campagne-calendrier.webp"
+          alt="Calendrier éditorial de la campagne, alimenté par la banque d’idées de contenus" width="1200"
+          height="1700" loading="lazy" />
+        <button type="button" class="zoom-btn" data-zoom-src="Images/campagne-calendrier.webp"
+          aria-label="Agrandir l’image : calendrier éditorial de la campagne"></button>
+        <a class="proto-btn" href="Images/banque-idees-contenus.pdf" target="_blank" rel="noopener"
+          aria-label="Voir la banque d’idées de contenus au format PDF - nouvel onglet">
+          Voir la banque d’idées
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"
+            stroke-linejoin="round" aria-hidden="true">
+            <path d="M14 3H7a2 2 0 0 0-2 2v14a2 2 0 0 0 2 2h10a2 2 0 0 0 2-2V8z" />
+            <polyline points="14 3 14 8 19 8" />
+            <line x1="9" y1="13" x2="15" y2="13" />
+            <line x1="9" y1="17" x2="13" y2="17" />
+          </svg>
+        </a>
+      </div>
+
+      <!-- ========== CARTE 09 · MAILING BREVO ========== -->
+      <div class="card card--gallery card--gallery-1">
+        <img class="gallery-img" src="Images/campagne-brevo.webp"
+          alt="Mailing de lancement de la campagne conçu sur Brevo" width="1600" height="1100" loading="lazy" />
+        <button type="button" class="zoom-btn" data-zoom-src="Images/campagne-brevo.webp"
+          aria-label="Agrandir l’image : mailing de lancement de la campagne conçu sur Brevo"></button>
+      </div>
+
+      <!-- ========== CARTE 10 · AFFICHE ========== -->
+      <div class="card card--gallery card--gallery-2">
+        <img class="gallery-img" src="Images/campagne-affiche.webp"
+          alt="Affiche de la campagne de financement participatif de La Place des Matériaux" width="1600"
+          height="1100" loading="lazy" />
+        <button type="button" class="zoom-btn" data-zoom-src="Images/campagne-affiche.webp"
+          aria-label="Agrandir l’image : affiche de la campagne de financement participatif"></button>
+      </div>
+
+      <!-- ========== CARTE 11 · PLAQUETTE RECTO ========== -->
+      <div class="card card--gallery card--gallery-3">
+        <img class="gallery-img" src="Images/campagne-plaquette-recto.webp"
+          alt="Plaquette financière de la campagne, recto" width="1600" height="1100" loading="lazy" />
+        <button type="button" class="zoom-btn" data-zoom-src="Images/campagne-plaquette-recto.webp"
+          aria-label="Agrandir l’image : plaquette financière de la campagne, recto"></button>
+      </div>
+
+      <!-- ========== CARTE 12 · PLAQUETTE VERSO ========== -->
+      <div class="card card--gallery card--gallery-4">
+        <img class="gallery-img" src="Images/campagne-plaquette-verso.webp"
+          alt="Plaquette financière de la campagne, verso" width="1600" height="1100" loading="lazy" />
+        <button type="button" class="zoom-btn" data-zoom-src="Images/campagne-plaquette-verso.webp"
+          aria-label="Agrandir l’image : plaquette financière de la campagne, verso"></button>
+      </div>
+
+      <!-- ========== NAVIGATION ENTRE PROJETS ========== -->
+      <nav class="project-pager" aria-label="Navigation entre les projets">
+        <a href="projet-ecohabitat.html" class="pager-link pager-prev">
+          <span class="pager-arrow" aria-hidden="true">←</span>
+          <span class="pager-text">
+            <span class="pager-label">Projet précédent</span>
+            <span class="pager-title">Projet 01</span>
+          </span>
+        </a>
+
+        <a href="projet-papi-restaurant.html" class="pager-link pager-next">
+          <span class="pager-text">
+            <span class="pager-label">Projet suivant</span>
+            <span class="pager-title">Projet 03</span>
+          </span>
+          <span class="pager-arrow" aria-hidden="true">→</span>
+        </a>
+      </nav>
+
+    </div>
+  </main>
+
+  <!-- =============================================================
+       MODALE D’AGRANDISSEMENT
+       ============================================================= -->
+  <div class="lightbox" id="lightbox" role="dialog" aria-modal="true" aria-labelledby="lightbox-title" hidden>
+    <p class="sr-only" id="lightbox-title">Image agrandie</p>
+    <button type="button" class="lightbox-close" id="lightbox-close" aria-label="Fermer l’image agrandie">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round"
+        aria-hidden="true">
+        <line x1="6" y1="6" x2="18" y2="18" />
+        <line x1="18" y1="6" x2="6" y2="18" />
+      </svg>
+    </button>
+    <img class="lightbox-img" id="lightbox-img" src="" alt="" />
+  </div>
+
+  <!-- =============================================================
+       MODALE DE VEILLE COMPARATIVE
+       Contenu repris du fichier « Financement participatif - Veille -
+       Analyse de 10 campagnes de coopératives ».
+       ============================================================= -->
+  <dialog class="veille-dialog" id="veille-dialog" aria-labelledby="veille-title">
+    <header class="veille-head">
+      <div class="veille-head-text">
+        <span class="hero-eyebrow">Veille comparative</span>
+        <h2 class="veille-title" id="veille-title">Financement participatif : 10 campagnes de coopératives</h2>
+        <p class="veille-sub">Coopératives et structures de l’ESS · sources consultées en août 2026</p>
+      </div>
+      <button type="button" class="veille-close" id="veille-close" aria-label="Fermer la veille comparative">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round"
+          aria-hidden="true">
+          <line x1="6" y1="6" x2="18" y2="18" />
+          <line x1="18" y1="6" x2="6" y2="18" />
+        </svg>
+      </button>
+    </header>
+
+    <div class="veille-body">
+
+      <!-- Indicateurs -->
+      <section aria-labelledby="veille-stats-title">
+        <h3 class="veille-section-title" id="veille-stats-title">Synthèse</h3>
+        <dl class="veille-stats">
+          <div class="veille-stat">
+            <dt class="veille-stat-label">Campagnes analysées</dt>
+            <dd class="veille-stat-value">10</dd>
+          </div>
+          <div class="veille-stat">
+            <dt class="veille-stat-label">Atteignent ou dépassent 100&nbsp;%</dt>
+            <dd class="veille-stat-value">8</dd>
+          </div>
+          <div class="veille-stat">
+            <dt class="veille-stat-label">Taux d’atteinte moyen</dt>
+            <dd class="veille-stat-value">162&nbsp;%</dd>
+          </div>
+          <div class="veille-stat">
+            <dt class="veille-stat-label">Contributeurs en moyenne</dt>
+            <dd class="veille-stat-value">275</dd>
+          </div>
+        </dl>
+      </section>
+
+      <!-- Campagnes -->
+      <section aria-labelledby="veille-list-title">
+        <h3 class="veille-section-title" id="veille-list-title">Les dix campagnes</h3>
+        <ul class="veille-list">
+
+          <li>
+            <details class="veille-item">
+              <summary>
+                <span>
+                  <span class="veille-name">Le Plateau Circulaire</span>
+                  <span class="veille-meta">SAS de l’ESS · Réemploi de matériaux du bâtiment · Ulule · Don avec
+                    contrepartie</span>
+                </span>
+                <span class="veille-result">
+                  <span class="veille-rate veille-rate--na">N/D</span>
+                  <span class="veille-amount">objectif 15&nbsp;000&nbsp;€</span>
+                </span>
+                <svg class="veille-chevron" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
+                  stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+                  <polyline points="6 9 12 15 18 9" />
+                </svg>
+              </summary>
+              <dl class="veille-detail">
+                <div>
+                  <dt>Projet financé</dt>
+                  <dd>Équiper une plateforme locale de réemploi : manutention, stockage, rayonnages et logistique.</dd>
+                </div>
+                <div>
+                  <dt>Bonne pratique</dt>
+                  <dd>Associer chaque palier à un équipement précis et immédiatement compréhensible (15&nbsp;000&nbsp;€ :
+                    palox et transpalette ; 30&nbsp;000&nbsp;€ : rayonnages ; 45&nbsp;000&nbsp;€ : véhicule utilitaire),
+                    plutôt qu’à un montant abstrait.</dd>
+                </div>
+                <div>
+                  <dt>Limite observée</dt>
+                  <dd>Résultat final et nombre de contributeurs non vérifiables dans les archives publiques.</dd>
+                </div>
+                <div class="veille-reco">
+                  <dt>Pour ÉcoHabitat</dt>
+                  <dd>Construire des paliers liés aux capacités concrètes de La Place des Matériaux (stockage,
+                    manutention, transformation, logistique) et prévoir une contrepartie entreprise de visite-formation
+                    au réemploi ou à la terre crue.</dd>
+                </div>
+                <div>
+                  <dt>Sources</dt>
+                  <dd class="veille-sources">
+                    <a href="https://www.plateaucirculaire.fr/" target="_blank" rel="noopener noreferrer">plateaucirculaire.fr</a>
+                    <a href="https://www.anbdd.fr/lanbdd-soutient-le-crowdfunding-du-plateau-circulaire/" target="_blank" rel="noopener noreferrer">ANBDD</a>
+                    <a href="https://neci.normandie.fr/actualites/participez-linstallation-dune-plateforme-de-reemploi-dediee-au-batiment" target="_blank" rel="noopener noreferrer">NECI</a>
+                  </dd>
+                </div>
+              </dl>
+            </details>
+          </li>
+
+          <li>
+            <details class="veille-item">
+              <summary>
+                <span>
+                  <span class="veille-name">HOUSELF</span>
+                  <span class="veille-meta">SCOP · Écoconstruction et rénovation écologique · GoFundMe · Don ·
+                    2020</span>
+                </span>
+                <span class="veille-result">
+                  <span class="veille-rate">88,7&nbsp;%</span>
+                  <span class="veille-amount">11&nbsp;970 / 13&nbsp;500&nbsp;€ · 109 dons</span>
+                </span>
+                <svg class="veille-chevron" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
+                  stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+                  <polyline points="6 9 12 15 18 9" />
+                </svg>
+              </summary>
+              <dl class="veille-detail">
+                <div>
+                  <dt>Projet financé</dt>
+                  <dd>Soutenir la jeune coopérative au démarrage, notamment pour acquérir des logiciels professionnels.
+                  </dd>
+                </div>
+                <div>
+                  <dt>Bonne pratique</dt>
+                  <dd>Faire d’un lieu réel une preuve du discours : la « maison laboratoire » rend tangibles les
+                    convictions techniques de la coopérative.</dd>
+                </div>
+                <div>
+                  <dt>Limite observée</dt>
+                  <dd>Budget peu détaillé par poste ; peu de traces publiques de paliers, de progression ou de clôture.
+                  </dd>
+                </div>
+                <div class="veille-reco">
+                  <dt>Pour ÉcoHabitat</dt>
+                  <dd>Filmer un cas réel (tri, stockage, réemploi ou terre crue) et relier chaque séquence à la dépense
+                    que la collecte doit rendre possible.</dd>
+                </div>
+                <div>
+                  <dt>Sources</dt>
+                  <dd class="veille-sources">
+                    <a href="https://www.gofundme.com/f/houself-la-maison-ecologique-a-besoin-de-vous" target="_blank" rel="noopener noreferrer">GoFundMe</a>
+                    <a href="https://scop-houself.fr/" target="_blank" rel="noopener noreferrer">scop-houself.fr</a>
+                    <a href="https://www.jefinanceunprojetcooperatif.fr/projets" target="_blank" rel="noopener noreferrer">Je finance un projet coopératif</a>
+                  </dd>
+                </div>
+              </dl>
+            </details>
+          </li>
+
+          <li>
+            <details class="veille-item">
+              <summary>
+                <span>
+                  <span class="veille-name">Foncière Terres Habitées</span>
+                  <span class="veille-meta">Foncière citoyenne agréée ESUS · Habitat coopératif · CredoFunding ·
+                    Souscription au capital · 2025</span>
+                </span>
+                <span class="veille-result">
+                  <span class="veille-rate">100,9&nbsp;%</span>
+                  <span class="veille-amount">353&nbsp;000 / 350&nbsp;000&nbsp;€ · 72 investisseurs</span>
+                </span>
+                <svg class="veille-chevron" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
+                  stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+                  <polyline points="6 9 12 15 18 9" />
+                </svg>
+              </summary>
+              <dl class="veille-detail">
+                <div>
+                  <dt>Projet financé</dt>
+                  <dd>Lever du capital citoyen pour l’accès au foncier de coopératives d’habitants, avec le projet
+                    CHABADA à Lyon comme cas concret.</dd>
+                </div>
+                <div>
+                  <dt>Bonne pratique</dt>
+                  <dd>Expliquer un modèle financier complexe à partir d’un projet bénéficiaire concret et d’une chaîne
+                    causale simple.</dd>
+                </div>
+                <div>
+                  <dt>Limite observée</dt>
+                  <dd>Chronologie ambiguë entre la clôture CredoFunding (juillet 2025) et une actualité ultérieure du
+                    site : seul le volet CredoFunding est retenu.</dd>
+                </div>
+                <div class="veille-reco">
+                  <dt>Pour ÉcoHabitat</dt>
+                  <dd>Un schéma très court : votre contribution → ce que nous aménageons → le service rendu → l’impact
+                    territorial.</dd>
+                </div>
+                <div>
+                  <dt>Source</dt>
+                  <dd class="veille-sources">
+                    <a href="https://www.credofunding.fr/fr/terres-habitees" target="_blank" rel="noopener noreferrer">CredoFunding</a>
+                  </dd>
+                </div>
+              </dl>
+            </details>
+          </li>
+
+          <li>
+            <details class="veille-item">
+              <summary>
+                <span>
+                  <span class="veille-name">Villages Vivants</span>
+                  <span class="veille-meta">SCIC immobilière rurale et solidaire · LITA.co · Investissement ·
+                    2021</span>
+                </span>
+                <span class="veille-result">
+                  <span class="veille-rate">200,1&nbsp;%</span>
+                  <span class="veille-amount">400&nbsp;100 / 200&nbsp;000&nbsp;€ · 158 investisseurs</span>
+                </span>
+                <svg class="veille-chevron" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
+                  stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+                  <polyline points="6 9 12 15 18 9" />
+                </svg>
+              </summary>
+              <dl class="veille-detail">
+                <div>
+                  <dt>Projet financé</dt>
+                  <dd>Acquérir et rénover des locaux pour de nouveaux lieux de proximité : hôtel-restaurant, recyclerie,
+                    épicerie coopérative, tiers-lieu, café-atelier.</dd>
+                </div>
+                <div>
+                  <dt>Bonne pratique</dt>
+                  <dd>Traduire les euros en unités de transformation territoriale : nombre de projets, mètres carrés et
+                    activités financées.</dd>
+                </div>
+                <div>
+                  <dt>Limite observée</dt>
+                  <dd>Écart non expliqué entre six projets annoncés au lancement et cinq lieux cités en fin d’opération.
+                  </dd>
+                </div>
+                <div class="veille-reco">
+                  <dt>Pour ÉcoHabitat</dt>
+                  <dd>Choisir avant la collecte un à trois indicateurs physiques : capacité de stockage, surface
+                    d’atelier équipée, volume de réemploi ou nombre d’usagers servis.</dd>
+                </div>
+                <div>
+                  <dt>Source</dt>
+                  <dd class="veille-sources">
+                    <a href="https://www.rtes.fr/villages-vivants-lance-son-appel-a-investissement-pour-2021" target="_blank" rel="noopener noreferrer">RTES</a>
+                  </dd>
+                </div>
+              </dl>
+            </details>
+          </li>
+
+          <li>
+            <details class="veille-item">
+              <summary>
+                <span>
+                  <span class="veille-name">Bellevilles</span>
+                  <span class="veille-meta">Foncière responsable agréée ESUS · Immobilier à impact · LITA.co ·
+                    Obligations à 5&nbsp;% · 2020</span>
+                </span>
+                <span class="veille-result">
+                  <span class="veille-rate">400&nbsp;%</span>
+                  <span class="veille-amount">2&nbsp;M / 500&nbsp;000&nbsp;€ · 728 investisseurs</span>
+                </span>
+                <svg class="veille-chevron" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
+                  stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+                  <polyline points="6 9 12 15 18 9" />
+                </svg>
+              </summary>
+              <dl class="veille-detail">
+                <div>
+                  <dt>Projet financé</dt>
+                  <dd>Les premiers projets immobiliers à impact de Bellevilles, dont les Halles de la Cartoucherie à
+                    Toulouse.</dd>
+                </div>
+                <div>
+                  <dt>Bonne pratique</dt>
+                  <dd>Tourner les contenus dans le lieu où la promesse prend corps, puis utiliser chaque seuil franchi
+                    comme preuve de progression.</dd>
+                </div>
+                <div>
+                  <dt>Limite observée</dt>
+                  <dd>Objectif initial présenté différemment selon les sources (500&nbsp;000&nbsp;€ retenu) ; la presse
+                    arrondit à 700 investisseurs contre 728 dans les bilans.</dd>
+                </div>
+                <div class="veille-reco">
+                  <dt>Pour ÉcoHabitat</dt>
+                  <dd>Filmer La Place des Matériaux ou un chantier partenaire et, à chaque palier, montrer ce que le
+                    seuil débloque. Afficher séparément objectif initial, paliers et budget global.</dd>
+                </div>
+                <div>
+                  <dt>Sources</dt>
+                  <dd class="veille-sources">
+                    <a href="https://www.businessimmo.com/actualites/article/540617961/bellevilles-boucle-sa-premiere-levee-de-fonds-participative" target="_blank" rel="noopener noreferrer">Business Immo</a>
+                    <a href="https://fr.linkedin.com/posts/alexandre-born-0bb86241_kiss-activity-7259093264308260864-obA6" target="_blank" rel="noopener noreferrer">LinkedIn</a>
+                  </dd>
+                </div>
+              </dl>
+            </details>
+          </li>
+
+          <li>
+            <details class="veille-item">
+              <summary>
+                <span>
+                  <span class="veille-name">Ôkhra</span>
+                  <span class="veille-meta">SCIC culturelle · Patrimoine ocrier · KissKissBankBank · Don avec
+                    contrepartie · 2019</span>
+                </span>
+                <span class="veille-result">
+                  <span class="veille-rate">183,3&nbsp;%</span>
+                  <span class="veille-amount">27&nbsp;492 / 15&nbsp;000&nbsp;€ · 203 contributeurs</span>
+                </span>
+                <svg class="veille-chevron" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
+                  stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+                  <polyline points="6 9 12 15 18 9" />
+                </svg>
+              </summary>
+              <dl class="veille-detail">
+                <div>
+                  <dt>Projet financé</dt>
+                  <dd>Restaurer machines et moulins du patrimoine ocrier, puis viser 30&nbsp;000&nbsp;€ pour une pompe à
+                    chaleur une fois les 100&nbsp;% atteints.</dd>
+                </div>
+                <div>
+                  <dt>Bonne pratique</dt>
+                  <dd>Transformer l’atteinte des 100&nbsp;% en nouveau départ de communication, avec des contreparties
+                    qui ramènent les contributeurs vers le lieu et ses savoir-faire.</dd>
+                </div>
+                <div>
+                  <dt>Limite observée</dt>
+                  <dd>Peu d’éléments sur un éventuel pré-lancement ou sur les relais externes de la collecte.</dd>
+                </div>
+                <div class="veille-reco">
+                  <dt>Pour ÉcoHabitat</dt>
+                  <dd>Préparer des contreparties de transmission (visite technique, atelier terre crue, découverte du
+                    réemploi) et un deuxième objectif concret à dévoiler dès les 100&nbsp;%.</dd>
+                </div>
+                <div>
+                  <dt>Sources</dt>
+                  <dd class="veille-sources">
+                    <a href="https://www.kisskissbankbank.com/fr/projects/okhra-25-ans-deja-et-ca-repart/tabs/description" target="_blank" rel="noopener noreferrer">KissKissBankBank</a>
+                    <a href="https://www.kisskissbankbank.com/fr/projects/okhra-25-ans-deja-et-ca-repart/tabs/news" target="_blank" rel="noopener noreferrer">Actualités de campagne</a>
+                    <a href="https://www.banquedesterritoires.fr/roussillon-la-couleur-pillier-du-territoire-84" target="_blank" rel="noopener noreferrer">Banque des Territoires</a>
+                  </dd>
+                </div>
+              </dl>
+            </details>
+          </li>
+
+          <li>
+            <details class="veille-item">
+              <summary>
+                <span>
+                  <span class="veille-name">La Maison écologique</span>
+                  <span class="veille-meta">SCOP · Média de l’habitat écologique · KissKissBankBank · 2016</span>
+                </span>
+                <span class="veille-result">
+                  <span class="veille-rate">158,1&nbsp;%</span>
+                  <span class="veille-amount">47&nbsp;441 / 30&nbsp;000&nbsp;€ · 919 contributions</span>
+                </span>
+                <svg class="veille-chevron" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
+                  stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+                  <polyline points="6 9 12 15 18 9" />
+                </svg>
+              </summary>
+              <dl class="veille-detail">
+                <div>
+                  <dt>Projet financé</dt>
+                  <dd>Pérenniser et développer un média spécialisé dans l’habitat écologique.</dd>
+                </div>
+                <div>
+                  <dt>Bonne pratique</dt>
+                  <dd>Mobiliser une communauté déjà spécialisée autour d’un projet directement lié à ses centres
+                    d’intérêt.</dd>
+                </div>
+                <div>
+                  <dt>Limite observée</dt>
+                  <dd>Campagne ancienne : la chronologie de communication et les contreparties ne sont pas restituées.
+                  </dd>
+                </div>
+                <div class="veille-reco">
+                  <dt>Pour ÉcoHabitat</dt>
+                  <dd>S’appuyer sur les communautés déjà sensibilisées à l’habitat durable pour amorcer la mobilisation,
+                    avant d’élargir le public.</dd>
+                </div>
+                <div>
+                  <dt>Sources</dt>
+                  <dd class="veille-sources">
+                    <a href="https://www.kisskissbankbank.com/fr/projects/soutenez-la-maison-ecologique" target="_blank" rel="noopener noreferrer">KissKissBankBank</a>
+                    <a href="https://www.les-scop.coop/la-maison-ecologique" target="_blank" rel="noopener noreferrer">CG SCOP</a>
+                  </dd>
+                </div>
+              </dl>
+            </details>
+          </li>
+
+          <li>
+            <details class="veille-item">
+              <summary>
+                <span>
+                  <span class="veille-name">MontCapel</span>
+                  <span class="veille-meta">SCIC · Chapellerie coopérative · KissKissBankBank · Don avec contrepartie
+                    · 2020</span>
+                </span>
+                <span class="veille-result">
+                  <span class="veille-rate">111,5&nbsp;%</span>
+                  <span class="veille-amount">16&nbsp;726 / 15&nbsp;000&nbsp;€ · 201 contributions</span>
+                </span>
+                <svg class="veille-chevron" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
+                  stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+                  <polyline points="6 9 12 15 18 9" />
+                </svg>
+              </summary>
+              <dl class="veille-detail">
+                <div>
+                  <dt>Projet financé</dt>
+                  <dd>Remettre en route les machines de fabrication du feutre : « de la laine au chapeau ».</dd>
+                </div>
+                <div>
+                  <dt>Bonne pratique</dt>
+                  <dd>Associer matière locale, équipement de production et savoir-faire territorial dans un même récit.
+                  </dd>
+                </div>
+                <div>
+                  <dt>Limite observée</dt>
+                  <dd>Secteur éloigné du bâtiment ; contreparties et chronologie non restituées.</dd>
+                </div>
+                <div class="veille-reco">
+                  <dt>Pour ÉcoHabitat</dt>
+                  <dd>Un triptyque concret : matière réemployée + équipement financé + savoir-faire rendu possible.</dd>
+                </div>
+                <div>
+                  <dt>Sources</dt>
+                  <dd class="veille-sources">
+                    <a href="https://www.kisskissbankbank.com/fr/projects/de-la-laine-au-chapeau" target="_blank" rel="noopener noreferrer">KissKissBankBank</a>
+                    <a href="https://www.pouruneeconomiehumaine.coop/scic-montcapel" target="_blank" rel="noopener noreferrer">Pour une économie humaine</a>
+                  </dd>
+                </div>
+              </dl>
+            </details>
+          </li>
+
+          <li>
+            <details class="veille-item">
+              <summary>
+                <span>
+                  <span class="veille-name">wOrk’Lys</span>
+                  <span class="veille-meta">SCIC · Tiers-lieu et coworking à Armentières · KissKissBankBank ·
+                    2019</span>
+                </span>
+                <span class="veille-result">
+                  <span class="veille-rate">104,9&nbsp;%</span>
+                  <span class="veille-amount">3&nbsp;670 / 3&nbsp;500&nbsp;€ · 44 contributions</span>
+                </span>
+                <svg class="veille-chevron" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
+                  stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+                  <polyline points="6 9 12 15 18 9" />
+                </svg>
+              </summary>
+              <dl class="veille-detail">
+                <div>
+                  <dt>Projet financé</dt>
+                  <dd>Équiper et ouvrir un tiers-lieu implanté dans d’anciens locaux.</dd>
+                </div>
+                <div>
+                  <dt>Bonne pratique</dt>
+                  <dd>Communiquer sur les usages futurs du lieu, pas seulement sur le bâtiment ou les travaux à
+                    financer.</dd>
+                </div>
+                <div>
+                  <dt>Limite observée</dt>
+                  <dd>Collecte modeste ; contreparties, paliers et chronologie non documentés.</dd>
+                </div>
+                <div class="veille-reco">
+                  <dt>Pour ÉcoHabitat</dt>
+                  <dd>Présenter d’abord ce que les usagers pourront faire à La Place des Matériaux, avant de détailler
+                    son organisation.</dd>
+                </div>
+                <div>
+                  <dt>Sources</dt>
+                  <dd class="veille-sources">
+                    <a href="https://www.kisskissbankbank.com/fr/projects/worklys" target="_blank" rel="noopener noreferrer">KissKissBankBank</a>
+                    <a href="https://www.les-scic.coop/work-lys" target="_blank" rel="noopener noreferrer">Les SCIC</a>
+                  </dd>
+                </div>
+              </dl>
+            </details>
+          </li>
+
+          <li>
+            <details class="veille-item">
+              <summary>
+                <span>
+                  <span class="veille-name">Le Crouz’Art</span>
+                  <span class="veille-meta">SCIC en formation · Lieu rural collectif · KissKissBankBank · 2024</span>
+                </span>
+                <span class="veille-result">
+                  <span class="veille-rate">111,8&nbsp;%</span>
+                  <span class="veille-amount">2&nbsp;963 / 2&nbsp;650&nbsp;€ · 43 contributions</span>
+                </span>
+                <svg class="veille-chevron" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
+                  stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+                  <polyline points="6 9 12 15 18 9" />
+                </svg>
+              </summary>
+              <dl class="veille-detail">
+                <div>
+                  <dt>Projet financé</dt>
+                  <dd>Participer à l’achat et à la réhabilitation d’un bâtiment destiné à des ateliers partagés.</dd>
+                </div>
+                <div>
+                  <dt>Bonne pratique</dt>
+                  <dd>Adapter le financement participatif à une micro-collecte territoriale centrée sur un bâtiment et
+                    ses usages.</dd>
+                </div>
+                <div>
+                  <dt>Limite observée</dt>
+                  <dd>Statut coopératif exact non confirmé : le site actuel parle d’une société « sur le modèle d’une
+                    SCIC ».</dd>
+                </div>
+                <div class="veille-reco">
+                  <dt>Pour ÉcoHabitat</dt>
+                  <dd>Centrer la collecte locale sur le lieu, ses usages et la communauté territoriale plutôt que sur la
+                    seule taille financière.</dd>
+                </div>
+                <div>
+                  <dt>Sources</dt>
+                  <dd class="veille-sources">
+                    <a href="https://www.kisskissbankbank.com/fr/projects/lou-creez-art-un-lieu-collectif-et-solidaire" target="_blank" rel="noopener noreferrer">KissKissBankBank</a>
+                    <a href="https://loucreezart.fr/web/" target="_blank" rel="noopener noreferrer">loucreezart.fr</a>
+                  </dd>
+                </div>
+              </dl>
+            </details>
+          </li>
+
+        </ul>
+      </section>
+
+      <!-- Tendances et recommandations -->
+      <div class="veille-columns">
+        <section aria-labelledby="veille-trends-title">
+          <h3 class="veille-section-title" id="veille-trends-title">Tendances observées</h3>
+          <ul class="info-list">
+            <li>Concrétiser le besoin : équipements, usages, mètres carrés ou foncier rendent les euros tangibles.</li>
+            <li>Incarner le territoire : le lieu, la matière locale et les savoir-faire servent de preuves.</li>
+            <li>Rythmer la collecte : chaque seuil franchi ou objectif supplémentaire relance la communication.</li>
+            <li>Adapter le discours : le don mobilise l’adhésion, l’investissement exige plus de pédagogie financière.
+            </li>
+          </ul>
+        </section>
+
+        <section aria-labelledby="veille-reco-title">
+          <h3 class="veille-section-title" id="veille-reco-title">Recommandations pour ÉcoHabitat</h3>
+          <ul class="info-list">
+            <li>Relier chaque palier à un équipement ou à un usage précis.</li>
+            <li>Faire du lieu, d’un chantier ou du couple matière / savoir-faire une preuve visuelle.</li>
+            <li>Présenter d’abord les usages et quelques indicateurs simples.</li>
+            <li>Préparer l’après-100&nbsp;% et les objectifs supplémentaires.</li>
+            <li>Activer les communautés déjà sensibilisées, puis les relais des partenaires.</li>
+            <li>Privilégier les contreparties d’expérience : visites, ateliers, formations.</li>
+          </ul>
+        </section>
+      </div>
+
+      <p class="veille-note">
+        N/D : donnée non disponible dans les archives publiques, une absence de trace ne valant pas absence d’action.
+        Moyennes calculées sur les neuf campagnes aux données vérifiées. Dons et investissements relèvent d’échelles
+        différentes et ne se comparent pas directement.
+      </p>
+    </div>
+  </dialog>
+
+  <!-- =============================================================
+       FOOTER MINIMAL
+       ============================================================= -->
+  <footer class="site-footer" role="contentinfo">
+    <p class="footer-identity">Benjamin Bridanne · Chargé de communication digitale</p>
+    <div class="footer-links">
+      <a href="index.html">Accueil</a>
+      <a href="projets.html">Mes projets</a>
+      <a href="mailto:benjaminbridanne@gmail.com">Mail</a>
+      <a href="https://www.linkedin.com/in/benjamin-bridanne-ba9a64285/" target="_blank" rel="noopener">LinkedIn</a>
+      <a href="mentions-legales.html">Mentions légales</a>
+      <a href="#top" class="footer-top">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"
+          stroke-linejoin="round" aria-hidden="true">
+          <line x1="12" y1="19" x2="12" y2="5" />
+          <polyline points="5 12 12 5 19 12" />
+        </svg>
+        Retour en haut
+      </a>
+    </div>
+  </footer>
+
+  <script>
+    /* =========================================================
+       THEME SOMBRE / CLAIR - meme cle localStorage que l’accueil
+       ========================================================= */
+    (function () {
+      const root = document.documentElement;
+      const btn = document.getElementById('theme-toggle');
+      const label = document.getElementById('theme-toggle-label');
+      let saved = null;
+      try { saved = localStorage.getItem('theme'); } catch (e) { }
+      const systemPrefersDark = window.matchMedia('(prefers-color-scheme: dark)').matches;
+      const initial = saved || (systemPrefersDark ? 'dark' : 'light');
+      root.setAttribute('data-theme', initial);
+      updateLabel(initial);
+
+      btn.addEventListener('click', () => {
+        const current = root.getAttribute('data-theme');
+        const next = current === 'dark' ? 'light' : 'dark';
+        root.setAttribute('data-theme', next);
+        try { localStorage.setItem('theme', next); } catch (e) { }
+        updateLabel(next);
+      });
+
+      function updateLabel(mode) {
+        label.textContent = mode === 'dark' ? 'Passer en mode clair' : 'Passer en mode sombre';
+      }
+    })();
+
+    /* =========================================================
+       AGRANDISSEMENT DES IMAGES
+       Modale accessible : Echap, clic sur le fond, croix.
+       Le focus entre dans la modale puis revient au declencheur.
+       ========================================================= */
+    (function () {
+      const lightbox = document.getElementById('lightbox');
+      const image = document.getElementById('lightbox-img');
+      const title = document.getElementById('lightbox-title');
+      const closeBtn = document.getElementById('lightbox-close');
+      const triggers = [...document.querySelectorAll('.zoom-btn')];
+      if (!lightbox || !image || !closeBtn || !triggers.length) return;
+
+      let lastFocused = null;
+
+      function open(trigger) {
+        const source = trigger.dataset.zoomSrc;
+        const picture = trigger.parentElement.querySelector('img');
+        const description = picture ? picture.getAttribute('alt') : '';
+
+        lastFocused = trigger;
+        image.setAttribute('src', source);
+        image.setAttribute('alt', description);
+        title.textContent = description || 'Image agrandie';
+
+        lightbox.hidden = false;
+        document.body.classList.add('is-locked');
+        closeBtn.focus();
+      }
+
+      function close() {
+        lightbox.hidden = true;
+        document.body.classList.remove('is-locked');
+        image.setAttribute('src', '');
+        image.setAttribute('alt', '');
+        if (lastFocused) {
+          lastFocused.focus();
+          lastFocused = null;
+        }
+      }
+
+      triggers.forEach(trigger => {
+        trigger.addEventListener('click', () => open(trigger));
+      });
+
+      closeBtn.addEventListener('click', close);
+
+      lightbox.addEventListener('click', event => {
+        if (event.target === lightbox) close();
+      });
+
+      document.addEventListener('keydown', event => {
+        if (lightbox.hidden) return;
+        if (event.key === 'Escape') {
+          event.preventDefault();
+          close();
+          return;
+        }
+        if (event.key === 'Tab') {
+          event.preventDefault();
+          closeBtn.focus();
+        }
+      });
+    })();
+
+    /* =========================================================
+       VEILLE COMPARATIVE
+       <dialog> natif : le reste de la page devient inerte,
+       Echap ferme, le focus revient sur le bouton d’ouverture.
+       ========================================================= */
+    (function () {
+      const dialog = document.getElementById('veille-dialog');
+      const openBtn = document.getElementById('veille-open');
+      const closeBtn = document.getElementById('veille-close');
+      if (!dialog || !openBtn || !closeBtn || typeof dialog.showModal !== 'function') return;
+
+      const body = dialog.querySelector('.veille-body');
+
+      openBtn.addEventListener('click', () => {
+        dialog.showModal();
+        document.body.classList.add('is-locked');
+        if (body) body.scrollTop = 0;
+        closeBtn.focus();
+      });
+
+      closeBtn.addEventListener('click', () => dialog.close());
+
+      /* Clic sur le fond assombri : la cible est la modale elle-meme */
+      dialog.addEventListener('click', event => {
+        if (event.target === dialog) dialog.close();
+      });
+
+      dialog.addEventListener('close', () => {
+        document.body.classList.remove('is-locked');
+        dialog.querySelectorAll('details[open]').forEach(item => item.removeAttribute('open'));
+        openBtn.focus();
+      });
+    })();
+  </script>
+
+</body>
+
+</html>
