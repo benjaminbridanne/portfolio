@@ -1,0 +1,75 @@
+/* =========================================================
+   NAVIGATION - pilule centrée, partagée par toutes les pages
+   Dépend des tokens de chaque page : --card-bg, --card-border,
+   --card-shadow, --text, --text-secondary,
+   --transition-fast, --transition-med.
+   ========================================================= */
+[data-theme="light"] {
+  --site-nav-hover-bg: rgba(60, 60, 67, 0.05);
+  --site-nav-active-bg: #0a0a0d;
+  --site-nav-active-text: #ffffff;
+}
+
+[data-theme="dark"] {
+  --site-nav-hover-bg: #151517;
+  --site-nav-active-bg: #e8e8ea;
+  --site-nav-active-text: #111113;
+}
+
+.site-nav {
+  position: relative;
+  z-index: 10;
+  display: flex;
+  justify-content: center;
+  padding: 18px 16px 0;
+}
+
+.site-nav-list {
+  list-style: none;
+  display: flex;
+  gap: 2px;
+  height: 40px;
+  max-width: 100%;
+  padding: 4px;
+  border-radius: 999px;
+  background: var(--card-bg);
+  border: 1px solid var(--card-border);
+  box-shadow: var(--card-shadow);
+  transition: background var(--transition-med), border-color var(--transition-med);
+}
+
+.site-nav-link {
+  display: flex;
+  align-items: center;
+  height: 100%;
+  padding: 0 16px;
+  border-radius: 999px;
+  color: var(--text-secondary);
+  font-size: 0.8125rem;
+  font-weight: 500;
+  white-space: nowrap;
+  transition: color var(--transition-fast), background-color var(--transition-fast);
+}
+
+.site-nav-link:hover {
+  color: var(--text);
+  background: var(--site-nav-hover-bg);
+}
+
+.site-nav-link[aria-current="page"] {
+  background: var(--site-nav-active-bg);
+  color: var(--site-nav-active-text);
+}
+
+@media (max-width: 380px) {
+  .site-nav-link {
+    padding: 0 12px;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .site-nav-list,
+  .site-nav-link {
+    transition: none;
+  }
+}
