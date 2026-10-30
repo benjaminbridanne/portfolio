@@ -1,0 +1,881 @@
+<!DOCTYPE html>
+<html lang="fr" data-theme="light">
+
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <!-- Thème : clair par défaut, sombre seulement si le visiteur l'a choisi. Appliqué avant l'affichage. -->
+  <script>
+    try {
+      if (localStorage.getItem('bb-theme') === 'dark') document.documentElement.setAttribute('data-theme', 'dark');
+    } catch { /* Stockage indisponible : thème clair par défaut. */ }
+  </script>
+  <title>Politique de confidentialité - Benjamin Bridanne</title>
+  <meta name="description"
+    content="Politique de confidentialité du site de Benjamin Bridanne : données collectées, finalités, durées de conservation et droits des personnes." />
+
+  <link rel="canonical" href="https://benjaminbridanne.fr/politique-confidentialite" />
+  <link rel="icon" href="Images/favicon-b.b.svg" type="image/svg" />
+
+  <meta property="og:type" content="website" />
+  <meta property="og:url" content="https://benjaminbridanne.fr/politique-confidentialite" />
+  <meta property="og:title" content="Politique de confidentialité - Benjamin Bridanne" />
+  <meta property="og:description" content="Politique de confidentialité du site de Benjamin Bridanne : données collectées, finalités, durées de conservation et droits des personnes." />
+  <meta property="og:image" content="https://benjaminbridanne.fr/Images/image_fond.png" />
+  <meta property="og:locale" content="fr_FR" />
+
+  <meta name="twitter:card" content="summary_large_image" />
+
+  <style>
+    /* =========================================================
+       TOKENS (identiques aux autres pages)
+       ========================================================= */
+    :root {
+      --font-system: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
+
+      --ease: cubic-bezier(.2, .8, .2, 1);
+      --transition-fast: 250ms var(--ease);
+      --transition-med: 400ms var(--ease);
+
+      --sun-moon: #F7E27B;
+    }
+
+    /* -------- Light mode -------- */
+    [data-theme="light"] {
+      --bg: #f2f2f4;
+      --bg-halo-1: rgba(205, 214, 232, 0.30);
+      --bg-halo-2: rgba(214, 220, 234, 0.24);
+
+      --card-bg: rgba(255, 255, 255, 0.74);
+      --card-bg-soft: rgba(255, 255, 255, 0.56);
+      --card-border: rgba(60, 60, 67, 0.16);
+      --card-shadow: 0 4px 20px rgba(0, 0, 0, 0.05);
+
+      --text: #0a0a0d;
+      --text-secondary: rgba(60, 60, 67, 0.62);
+      --text-muted: rgba(60, 60, 67, 0.34);
+      --line: rgba(60, 60, 67, 0.12);
+
+      --toggle-track-bg: #e8e8ea;
+      --toggle-track-border: rgba(60, 60, 67, 0.22);
+      --toggle-thumb-bg: #0a0a0d;
+
+      --nav-bg: rgba(242, 242, 244, 0.72);
+      --nav-border: rgba(60, 60, 67, 0.12);
+    }
+
+    /* -------- Dark mode -------- */
+    [data-theme="dark"] {
+      --bg: #000000;
+      --bg-halo-1: rgba(44, 44, 52, 0.22);
+      --bg-halo-2: rgba(24, 34, 52, 0.18);
+
+      --card-bg: rgba(18, 18, 20, 0.74);
+      --card-bg-soft: rgba(20, 20, 22, 0.56);
+      --card-border: rgba(255, 255, 255, 0.10);
+      --card-shadow: 0 6px 26px rgba(0, 0, 0, 0.50);
+
+      --text: #F5F5F7;
+      --text-secondary: rgba(235, 235, 245, 0.62);
+      --text-muted: rgba(235, 235, 245, 0.34);
+      --line: rgba(255, 255, 255, 0.10);
+
+      --toggle-track-bg: #1c1c1e;
+      --toggle-track-border: rgba(255, 255, 255, 0.16);
+      --toggle-thumb-bg: #0a0a0a;
+
+      --nav-bg: rgba(0, 0, 0, 0.62);
+      --nav-border: rgba(255, 255, 255, 0.08);
+    }
+
+    /* =========================================================
+       BASE
+       ========================================================= */
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
+
+    html { scroll-behavior: smooth; }
+
+    body {
+      font-family: var(--font-system);
+      -webkit-font-smoothing: antialiased;
+      -moz-osx-font-smoothing: grayscale;
+      background: var(--bg);
+      color: var(--text);
+      min-height: 100vh;
+      position: relative;
+      overflow-x: hidden;
+      transition: background var(--transition-med), color var(--transition-med);
+    }
+
+    body::before {
+      content: "";
+      position: fixed;
+      inset: 0;
+      background:
+        radial-gradient(ellipse 60% 45% at 12% 8%, var(--bg-halo-1) 0%, transparent 60%),
+        radial-gradient(ellipse 55% 45% at 92% 96%, var(--bg-halo-2) 0%, transparent 62%);
+      pointer-events: none;
+      z-index: 0;
+    }
+
+    :focus-visible {
+      outline: 2px solid var(--text);
+      outline-offset: 3px;
+      border-radius: 6px;
+    }
+
+    a {
+      color: inherit;
+      text-decoration: none;
+    }
+
+    button {
+      font-family: inherit;
+      background: transparent;
+      border: none;
+      cursor: pointer;
+      color: inherit;
+    }
+
+    .sr-only {
+      position: absolute;
+      width: 1px;
+      height: 1px;
+      padding: 0;
+      margin: -1px;
+      overflow: hidden;
+      clip: rect(0, 0, 0, 0);
+      white-space: nowrap;
+      border: 0;
+    }
+
+    /* =========================================================
+       NAV STICKY (identique aux pages projets)
+       ========================================================= */
+    .project-nav {
+      position: sticky;
+      top: 0;
+      z-index: 30;
+      display: flex;
+      align-items: center;
+      gap: 20px;
+      padding: 12px 24px;
+      background: var(--nav-bg);
+      border-bottom: 1px solid var(--nav-border);
+      backdrop-filter: blur(18px) saturate(130%);
+      -webkit-backdrop-filter: blur(18px) saturate(130%);
+    }
+
+    .nav-back {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      font-size: 0.875rem;
+      font-weight: 500;
+      color: var(--text);
+      padding: 6px 10px;
+      border-radius: 10px;
+      transition: background var(--transition-fast);
+    }
+
+    .nav-back:hover { background: var(--card-bg-soft); }
+
+    .nav-back svg { width: 16px; height: 16px; }
+
+    .nav-crumb {
+      font-size: 0.8125rem;
+      color: var(--text-secondary);
+      flex: 1;
+      min-width: 0;
+      overflow: hidden;
+      text-overflow: ellipsis;
+      white-space: nowrap;
+    }
+
+    .nav-crumb strong { color: var(--text); font-weight: 500; }
+
+    /* Toggle iOS */
+    .theme-toggle-btn {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      padding: 0;
+    }
+
+    .toggle-switch {
+      position: relative;
+      width: 52px;
+      height: 28px;
+      border-radius: 999px;
+      background: var(--toggle-track-bg);
+      border: 1px solid var(--toggle-track-border);
+      transition: background var(--transition-med), border-color var(--transition-med);
+    }
+
+    .toggle-thumb {
+      position: absolute;
+      top: 50%;
+      left: 3px;
+      width: 22px;
+      height: 22px;
+      border-radius: 50%;
+      background: var(--toggle-thumb-bg);
+      transform: translateY(-50%);
+      transition: left var(--transition-med), background var(--transition-med);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+
+    .toggle-thumb svg {
+      width: 12px;
+      height: 12px;
+      color: var(--sun-moon);
+      position: absolute;
+      transition: opacity var(--transition-fast);
+    }
+
+    [data-theme="dark"] .toggle-thumb { left: 3px; }
+    [data-theme="light"] .toggle-thumb { left: calc(100% - 25px); }
+    [data-theme="dark"] .icon-sun { opacity: 0; }
+    [data-theme="light"] .icon-moon { opacity: 0; }
+
+    /* =========================================================
+       CONTENU (même gabarit que les mentions légales)
+       ========================================================= */
+    .legal-main {
+      max-width: 780px;
+      margin: 0 auto;
+      padding: 56px 24px 40px;
+      position: relative;
+      z-index: 1;
+    }
+
+    .legal-eyebrow {
+      font-size: 0.75rem;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+      color: var(--text-muted);
+      margin-bottom: 12px;
+    }
+
+    .legal-title {
+      font-size: clamp(2rem, 4vw, 2.75rem);
+      font-weight: 600;
+      letter-spacing: -0.02em;
+      line-height: 1.1;
+      margin-bottom: 12px;
+    }
+
+    .legal-intro {
+      font-size: 1rem;
+      color: var(--text-secondary);
+      line-height: 1.6;
+      margin-bottom: 40px;
+    }
+
+    .legal-section {
+      padding: 24px 0;
+      border-top: 1px solid var(--line);
+      scroll-margin-top: 72px;
+    }
+
+    .legal-section h2 {
+      font-size: 1.125rem;
+      font-weight: 600;
+      letter-spacing: -0.01em;
+      margin-bottom: 12px;
+    }
+
+    .legal-section h3 {
+      font-size: 0.9375rem;
+      font-weight: 600;
+      color: var(--text);
+      margin: 18px 0 8px;
+    }
+
+    .legal-section p {
+      font-size: 0.9375rem;
+      color: var(--text-secondary);
+      line-height: 1.65;
+      margin-bottom: 10px;
+    }
+
+    .legal-section p:last-child { margin-bottom: 0; }
+
+    .legal-section ul {
+      list-style: none;
+      margin: 4px 0 12px;
+    }
+
+    .legal-section ul:last-child { margin-bottom: 0; }
+
+    .legal-section li {
+      position: relative;
+      padding-left: 18px;
+      font-size: 0.9375rem;
+      color: var(--text-secondary);
+      line-height: 1.65;
+      margin-bottom: 8px;
+    }
+
+    .legal-section li::before {
+      content: "";
+      position: absolute;
+      left: 2px;
+      top: 0.7em;
+      width: 6px;
+      height: 6px;
+      border-radius: 50%;
+      background: var(--text-muted);
+    }
+
+    .legal-section strong { color: var(--text); font-weight: 500; }
+
+    .legal-section a {
+      color: var(--text);
+      text-decoration: underline;
+      text-decoration-color: var(--text-muted);
+      text-underline-offset: 3px;
+      transition: text-decoration-color var(--transition-fast);
+    }
+
+    .legal-section a:hover { text-decoration-color: var(--text); }
+
+    .legal-section address {
+      font-style: normal;
+      color: var(--text-secondary);
+      font-size: 0.9375rem;
+      line-height: 1.65;
+      margin-bottom: 10px;
+    }
+
+    .legal-section address:last-child { margin-bottom: 0; }
+
+    /* Sommaire */
+    .legal-toc {
+      margin-bottom: 40px;
+      padding: 20px 22px;
+      border-radius: 18px;
+      background: var(--card-bg);
+      border: 1px solid var(--card-border);
+      box-shadow: var(--card-shadow);
+    }
+
+    .legal-toc-title {
+      font-size: 0.75rem;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+      color: var(--text-muted);
+      margin-bottom: 10px;
+    }
+
+    .legal-toc ol {
+      list-style: none;
+      columns: 2;
+      column-gap: 28px;
+      counter-reset: toc;
+    }
+
+    .legal-toc li {
+      break-inside: avoid;
+      counter-increment: toc;
+      font-size: 0.875rem;
+      line-height: 1.5;
+      padding: 4px 0;
+    }
+
+    .legal-toc li::before {
+      content: counter(toc) ".";
+      display: inline-block;
+      min-width: 22px;
+      color: var(--text-muted);
+      font-variant-numeric: tabular-nums;
+    }
+
+    .legal-toc a {
+      color: var(--text-secondary);
+      transition: color var(--transition-fast);
+    }
+
+    .legal-toc a:hover { color: var(--text); }
+
+    /* Écran tactile : chaque entrée du sommaire offre 44px de haut au doigt */
+    @media (pointer: coarse) {
+      .legal-toc li { padding: 0; }
+      .legal-toc a { display: inline-block; padding: 12px 0; }
+    }
+
+    /* Désactivation de la mesure d'audience : état et bouton en capsule */
+    .audience-control {
+      display: flex;
+      flex-wrap: wrap;
+      align-items: center;
+      gap: 12px;
+      margin-top: 16px;
+    }
+
+    .legal-section .audience-status {
+      width: 100%;
+      margin-bottom: 0;
+      color: var(--text);
+      font-weight: 500;
+    }
+
+    .legal-btn {
+      display: inline-flex;
+      align-items: center;
+      min-height: 44px;
+      padding: 0 18px;
+      border-radius: 999px;
+      background: var(--card-bg);
+      border: 1px solid var(--card-border);
+      box-shadow: var(--card-shadow);
+      color: var(--text);
+      font-size: 0.875rem;
+      font-weight: 500;
+      text-align: left;
+      transition: border-color var(--transition-fast), background var(--transition-fast);
+    }
+
+    .legal-btn:hover { border-color: var(--text-muted); }
+
+    .legal-btn[hidden] { display: none; }
+
+    .legal-updated {
+      margin-top: 40px;
+      padding-top: 24px;
+      border-top: 1px solid var(--line);
+      font-size: 0.8125rem;
+      color: var(--text-muted);
+    }
+
+    /* =========================================================
+       FOOTER (identique aux autres pages)
+       ========================================================= */
+
+    /* =========================================================
+       RESPONSIVE
+       ========================================================= */
+    @media (max-width: 640px) {
+      .project-nav { padding: 10px 16px; gap: 12px; }
+      .legal-main { padding: 40px 20px 32px; }
+      .legal-toc ol { columns: 1; }
+    }
+  </style>
+  <link rel="stylesheet" href="css/site-pages.css" />
+  <script defer src="https://cloud.umami.is/script.js" data-website-id="c992974a-48c8-47e4-9625-85ab5eca2ac3"></script>
+</head>
+
+<body>
+
+  <!-- =============================================================
+       NAV STICKY
+       ============================================================= -->
+  <nav class="project-nav" aria-label="Navigation principale">
+    <a href="/" class="nav-back">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"
+        stroke-linejoin="round" aria-hidden="true">
+        <line x1="19" y1="12" x2="5" y2="12" />
+        <polyline points="12 19 5 12 12 5" />
+      </svg>
+      Retour
+    </a>
+    <span class="nav-crumb"><strong>Politique de confidentialité</strong></span>
+    <button id="theme-toggle" class="theme-toggle-btn" aria-label="Basculer entre le mode sombre et le mode clair"
+      aria-live="polite">
+      <span class="sr-only" id="theme-toggle-label">Passer en mode sombre</span>
+      <span class="toggle-switch" aria-hidden="true">
+        <span class="toggle-thumb">
+          <svg class="icon-moon" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true">
+            <path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z" />
+          </svg>
+          <svg class="icon-sun" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
+            stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+            <circle cx="12" cy="12" r="4" />
+            <path d="M12 2v2M12 20v2M4.93 4.93l1.41 1.41M17.66 17.66l1.41 1.41M2 12h2M20 12h2M4.93 19.07l1.41-1.41M17.66 6.34l1.41-1.41" />
+          </svg>
+        </span>
+      </span>
+    </button>
+  </nav>
+
+  <!-- =============================================================
+       CONTENU
+       ============================================================= -->
+  <main class="legal-main" id="top">
+    <p class="legal-eyebrow">Informations légales</p>
+    <h1 class="legal-title">Politique de confidentialité</h1>
+    <p class="legal-intro">
+      Cette page explique quelles données personnelles sont traitées lorsque vous visitez ce site ou que vous
+      prenez contact, pourquoi elles le sont, combien de temps elles sont conservées et comment exercer vos droits,
+      conformément au Règlement général sur la protection des données (RGPD) et à la loi Informatique et Libertés.
+    </p>
+
+    <nav class="legal-toc" aria-labelledby="toc-title">
+      <p class="legal-toc-title" id="toc-title">Sommaire</p>
+      <ol>
+        <li><a href="#responsable">Responsable du traitement</a></li>
+        <li><a href="#donnees">Données collectées</a></li>
+        <li><a href="#finalites">Finalités et bases légales</a></li>
+        <li><a href="#destinataires">Destinataires et prestataires</a></li>
+        <li><a href="#transferts">Transferts hors de l'Union européenne</a></li>
+        <li><a href="#conservation">Durées de conservation</a></li>
+        <li><a href="#audience">Mesure d'audience</a></li>
+        <li><a href="#cookies">Cookies et contenus intégrés</a></li>
+        <li><a href="#droits">Vos droits</a></li>
+        <li><a href="#securite">Sécurité</a></li>
+        <li><a href="#modifications">Modifications</a></li>
+      </ol>
+    </nav>
+
+    <section class="legal-section" id="responsable">
+      <h2>1. Responsable du traitement</h2>
+      <p>
+        Le responsable du traitement est <strong>Benjamin Bridanne</strong>, entrepreneur individuel (EI),
+        communication digitale.
+      </p>
+      <address>
+        Localisation : Toulouse (France)<br />
+        SIRET : 131 148 793 00014<br />
+        E-mail : <a data-umami-event="clic-contact" href="mailto:benjaminbridanne@gmail.com">benjaminbridanne@gmail.com</a>
+      </address>
+      <p>
+        Pour toute question sur vos données, vous pouvez écrire à cette adresse.
+        Les autres informations légales figurent dans les <a href="/mentions-legales">mentions légales</a>.
+      </p>
+    </section>
+
+    <section class="legal-section" id="donnees">
+      <h2>2. Données collectées</h2>
+      <h3>Lorsque vous prenez contact</h3>
+      <p>
+        Le formulaire de la page <a href="/contact">Contact</a> recueille :
+      </p>
+      <ul>
+        <li>le motif de votre demande (mission freelance, demande de devis ou autre) ;</li>
+        <li>votre nom ;</li>
+        <li>votre adresse e-mail ;</li>
+        <li>le nom de votre entreprise ou structure (facultatif) ;</li>
+        <li>votre message et les informations que vous choisissez d'y indiquer.</li>
+      </ul>
+      <p>
+        Les messages envoyés directement par e-mail sont traités de la même manière. Merci de ne pas transmettre
+        d'informations sensibles (santé, opinions, données bancaires) : elles ne sont pas nécessaires pour répondre
+        à votre demande.
+      </p>
+      <h3>Lorsque vous naviguez sur le site</h3>
+      <ul>
+        <li>
+          des données techniques de connexion (adresse IP, date et heure, page demandée, navigateur), enregistrées
+          par l'hébergeur pour assurer la sécurité du service ;
+        </li>
+        <li>
+          des statistiques de fréquentation anonymes, produites par l'outil de mesure d'audience
+          (voir la section <a href="#audience">Mesure d'audience</a>) ;
+        </li>
+        <li>
+          des données transmises aux services tiers intégrés au site, comme les vidéos YouTube, si vous les lancez
+          (voir la section <a href="#cookies">Cookies et contenus intégrés</a>).
+        </li>
+      </ul>
+    </section>
+
+    <section class="legal-section" id="finalites">
+      <h2>3. Finalités et bases légales</h2>
+      <ul>
+        <li>
+          <strong>Répondre à votre demande et établir un devis</strong> : mesures précontractuelles prises à votre
+          demande (article 6.1.b du RGPD).
+        </li>
+        <li>
+          <strong>Assurer le suivi des échanges</strong> (enregistrement de la demande dans un outil d'organisation,
+          relance au sujet de votre demande) : intérêt légitime de Benjamin Bridanne à organiser son activité et à
+          donner suite aux demandes reçues (article 6.1.f du RGPD).
+        </li>
+        <li>
+          <strong>Vous proposer ponctuellement des services</strong>, si vous avez pris contact à titre professionnel
+          et en lien avec votre activité : intérêt légitime (article 6.1.f du RGPD). Vous pouvez vous y opposer
+          à tout moment, sans justification, par simple réponse à un message ou par e-mail.
+        </li>
+        <li>
+          <strong>Réaliser une mission et gérer la relation client</strong> si un accord est conclu : exécution
+          du contrat (article 6.1.b du RGPD), puis respect des obligations légales de facturation et de
+          comptabilité (article 6.1.c du RGPD).
+        </li>
+        <li>
+          <strong>Mesurer la fréquentation du site</strong> et améliorer son contenu : intérêt légitime
+          (article 6.1.f du RGPD).
+        </li>
+        <li>
+          <strong>Assurer la sécurité du site et du formulaire</strong> (journaux techniques, lutte contre le spam) :
+          intérêt légitime (article 6.1.f du RGPD).
+        </li>
+      </ul>
+      <p>
+        Vos données ne sont jamais vendues, ni utilisées pour de la publicité ciblée.
+      </p>
+    </section>
+
+    <section class="legal-section" id="destinataires">
+      <h2>4. Destinataires et prestataires</h2>
+      <p>
+        Vos données sont destinées uniquement à Benjamin Bridanne. Pour faire fonctionner le site et organiser
+        son activité, il fait appel aux prestataires techniques suivants, qui n'accèdent aux données que dans
+        la mesure nécessaire à leur service :
+      </p>
+      <ul>
+        <li>
+          <strong>GitHub, Inc.</strong> (GitHub Pages) : hébergement du site. GitHub enregistre l'adresse IP
+          des visiteurs à des fins de sécurité.
+          <a href="https://docs.github.com/fr/site-policy/privacy-policies/github-general-privacy-statement" target="_blank" rel="noopener">Politique de confidentialité de GitHub</a>.
+        </li>
+        <li>
+          <strong>Web3Forms</strong> : acheminement des messages du formulaire de contact vers la boîte e-mail
+          de Benjamin Bridanne. Web3Forms conserve une copie des messages pour une durée limitée, puis la supprime
+          automatiquement, et peut soumettre votre adresse IP et votre adresse e-mail à un contrôle anti-spam.
+          <a href="https://web3forms.com" target="_blank" rel="noopener">Site de Web3Forms</a>.
+        </li>
+        <li>
+          <strong>Google</strong> : réception des messages (Gmail) et lecture des vidéos (YouTube), uniquement si
+          vous les lancez.
+          <a href="https://policies.google.com/privacy?hl=fr" target="_blank" rel="noopener">Règles de confidentialité de Google</a>.
+        </li>
+        <li>
+          <strong>Notion Labs, Inc.</strong> : outil d'organisation dans lequel sont enregistrées les demandes
+          de contact pour en assurer le suivi.
+          <a href="https://www.notion.com/fr/trust/privacy-policy" target="_blank" rel="noopener">Politique de confidentialité de Notion</a>.
+        </li>
+        <li>
+          <strong>Umami</strong> (Umami Cloud) : mesure d'audience anonyme du site.
+          <a href="https://umami.is/privacy" target="_blank" rel="noopener">Politique de confidentialité d'Umami</a>.
+        </li>
+      </ul>
+      <p>
+        Vos données peuvent enfin être communiquées aux autorités habilitées, lorsque la loi l'exige.
+      </p>
+    </section>
+
+    <section class="legal-section" id="transferts">
+      <h2>5. Transferts hors de l'Union européenne</h2>
+      <p>
+        Plusieurs prestataires cités ci-dessus sont établis aux États-Unis ou y disposent de serveurs.
+        Certaines données peuvent donc être transférées hors de l'Union européenne. Ces transferts sont encadrés
+        par les garanties prévues par le RGPD : décision d'adéquation de la Commission européenne pour les
+        entreprises certifiées au Data Privacy Framework (cadre de protection des données UE-États-Unis), ou
+        clauses contractuelles types adoptées par la Commission européenne.
+      </p>
+    </section>
+
+    <section class="legal-section" id="conservation">
+      <h2>6. Durées de conservation</h2>
+      <ul>
+        <li>
+          <strong>Demandes de contact sans suite</strong> : 3 ans à compter du dernier échange, puis suppression.
+        </li>
+        <li>
+          <strong>Clients</strong> : pendant toute la durée de la relation commerciale, puis le temps nécessaire
+          au respect des obligations légales. Les factures et pièces comptables sont conservées 10 ans.
+        </li>
+        <li>
+          <strong>Statistiques de fréquentation</strong> : 25 mois au maximum.
+        </li>
+        <li>
+          <strong>Journaux techniques de l'hébergeur</strong> : selon la politique de GitHub.
+        </li>
+        <li>
+          <strong>Préférences enregistrées dans votre navigateur</strong> : jusqu'à ce que vous les modifiiez ou
+          effaciez les données de navigation.
+        </li>
+      </ul>
+      <p>
+        Si vous vous opposez au traitement ou demandez l'effacement de vos données, elles sont supprimées sans
+        attendre ces délais, sauf obligation légale de conservation.
+      </p>
+    </section>
+
+    <section class="legal-section" id="audience">
+      <h2>7. Mesure d'audience</h2>
+      <p>
+        Ce site utilise Umami pour produire des statistiques de fréquentation anonymes et agrégées : pages vues,
+        durée de visite, provenance, type d'appareil et de navigateur, pays, clics sur certains liens et boutons.
+      </p>
+      <p>
+        Umami fonctionne sans cookie, n'enregistre pas votre adresse IP dans les statistiques et ne permet pas
+        de vous identifier.
+        Les statistiques ne sont ni utilisées à des fins publicitaires, ni croisées avec d'autres traitements.
+      </p>
+      <p>
+        Vous pouvez désactiver la mesure d'audience sur cet appareil. Ce choix est enregistré dans votre navigateur
+        et reste actif jusqu'à ce que vous le modifiiez.
+      </p>
+      <div class="audience-control">
+        <p class="audience-status" id="audience-status" role="status">La mesure d'audience est active sur cet appareil.</p>
+        <button type="button" class="legal-btn" id="audience-disable">Désactiver la mesure d'audience sur cet appareil</button>
+        <button type="button" class="legal-btn" id="audience-enable" hidden>Réactiver la mesure d'audience</button>
+      </div>
+    </section>
+
+    <section class="legal-section" id="cookies">
+      <h2>8. Cookies et contenus intégrés</h2>
+      <h3>Ce que le site enregistre</h3>
+      <p>
+        Le site lui-même ne dépose aucun cookie de mesure d'audience, de publicité ou de suivi. Seules deux
+        informations peuvent être enregistrées localement dans votre navigateur via l'API <em>localStorage</em> :
+        votre préférence d'affichage (mode sombre ou clair) et, si vous le choisissez, la désactivation de la
+        mesure d'audience. Ces informations restent sur votre appareil et ne sont jamais transmises à un serveur.
+      </p>
+      <h3>Vidéos YouTube</h3>
+      <p>
+        Les vidéos du site (CV vidéo et projet de montage vidéo) sont hébergées sur YouTube. Le lecteur n'est
+        chargé que si vous cliquez pour lancer une vidéo : aucune donnée n'est transmise à YouTube avant ce clic.
+        Une fois la vidéo lancée, Google peut collecter des données de navigation et déposer des cookies sur votre
+        appareil, selon ses propres règles de confidentialité. Vous pouvez aussi consulter le
+        <a href="/Images/CV_benjamin_bridanne.pdf">CV au format PDF</a>, sans passer par YouTube.
+      </p>
+      <h3>Liens externes</h3>
+      <p>
+        Les liens vers d'autres sites (LinkedIn, sites des projets présentés) vous font quitter ce site.
+        Ces sites appliquent leur propre politique de confidentialité.
+      </p>
+    </section>
+
+    <section class="legal-section" id="droits">
+      <h2>9. Vos droits</h2>
+      <p>
+        Vous disposez des droits suivants sur vos données :
+      </p>
+      <ul>
+        <li>droit d'accès et de rectification ;</li>
+        <li>droit à l'effacement ;</li>
+        <li>droit d'opposition, notamment à toute relance ou proposition de services ;</li>
+        <li>droit à la limitation du traitement ;</li>
+        <li>droit à la portabilité des données que vous avez fournies ;</li>
+        <li>droit de définir des directives relatives au sort de vos données après votre décès.</li>
+      </ul>
+      <p>
+        Pour les exercer, écrivez à
+        <a data-umami-event="clic-contact" href="mailto:benjaminbridanne@gmail.com">benjaminbridanne@gmail.com</a>.
+        Une réponse vous sera apportée dans un délai d'un mois. En cas de doute raisonnable sur votre identité,
+        une information complémentaire pourra vous être demandée.
+      </p>
+      <p>
+        Si vous estimez que vos droits ne sont pas respectés, vous pouvez introduire une réclamation auprès de la
+        Commission nationale de l'informatique et des libertés (CNIL) :
+      </p>
+      <address>
+        CNIL, 3 place de Fontenoy, TSA 80715, 75334 Paris Cedex 07<br />
+        <a href="https://www.cnil.fr/fr/plaintes" target="_blank" rel="noopener">cnil.fr/fr/plaintes</a>
+      </address>
+    </section>
+
+    <section class="legal-section" id="securite">
+      <h2>10. Sécurité</h2>
+      <p>
+        Le site est accessible uniquement en connexion sécurisée (HTTPS), y compris lors de l'envoi du formulaire.
+        L'accès aux messages et à l'outil de suivi est réservé à Benjamin Bridanne et protégé par des comptes
+        personnels sécurisés.
+      </p>
+    </section>
+
+    <section class="legal-section" id="modifications">
+      <h2>11. Modifications</h2>
+      <p>
+        Cette politique peut être mise à jour, par exemple en cas de changement d'outil ou de prestataire.
+        La date de dernière mise à jour figure ci-dessous.
+      </p>
+    </section>
+
+    <p class="legal-updated">Dernière mise à jour : octobre 2026</p>
+  </main>
+
+  <!-- =============================================================
+       FOOTER MINIMAL
+       ============================================================= -->
+  <footer class="site-footer">
+    <p class="footer-identity">Benjamin Bridanne · Chargé de communication digitale</p>
+    <div class="footer-links">
+      <a href="/realisations">Réalisations</a>
+      <a href="/politique-confidentialite">Confidentialité</a>
+      <a data-umami-event="clic-contact" href="mailto:benjaminbridanne@gmail.com">Mail</a>
+      <a data-umami-event="clic-linkedin" href="https://www.linkedin.com/in/benjamin-bridanne-ba9a64285/" target="_blank" rel="noopener">LinkedIn</a>
+      <a href="/mentions-legales">Mentions légales</a>
+    </div>
+  </footer>
+
+  <script>
+    /* =========================================================
+       THEME SOMBRE / CLAIR - clé localStorage bb-theme partagée
+       ========================================================= */
+    (function () {
+      const root = document.documentElement;
+      const btn = document.getElementById('theme-toggle');
+      const label = document.getElementById('theme-toggle-label');
+      /* Thème déjà appliqué dans le <head> : clair sauf choix explicite du sombre */
+      const initial = root.getAttribute('data-theme') === 'dark' ? 'dark' : 'light';
+      updateLabel(initial);
+
+      btn.addEventListener('click', () => {
+        const current = root.getAttribute('data-theme');
+        const next = current === 'dark' ? 'light' : 'dark';
+        root.setAttribute('data-theme', next);
+        try { localStorage.setItem('bb-theme', next); } catch { /* Le thème fonctionne sans mémorisation. */ }
+        updateLabel(next);
+      });
+
+      function updateLabel(mode) {
+        label.textContent = mode === 'dark' ? 'Passer en mode clair' : 'Passer en mode sombre';
+      }
+    })();
+
+    /* =========================================================
+       MESURE D'AUDIENCE - clé localStorage umami.disabled lue par Umami
+       ========================================================= */
+    (function () {
+      const KEY = 'umami.disabled';
+      const status = document.getElementById('audience-status');
+      const disableBtn = document.getElementById('audience-disable');
+      const enableBtn = document.getElementById('audience-enable');
+
+      function isDisabled() {
+        try { return localStorage.getItem(KEY) !== null; } catch { return null; }
+      }
+
+      function render() {
+        const disabled = isDisabled();
+        if (disabled === null) {
+          status.textContent = "Le stockage local n'est pas disponible dans ce navigateur : la désactivation ne peut pas être enregistrée.";
+          disableBtn.hidden = true;
+          enableBtn.hidden = true;
+          return;
+        }
+        status.textContent = disabled
+          ? "La mesure d'audience est désactivée sur cet appareil."
+          : "La mesure d'audience est active sur cet appareil.";
+        disableBtn.hidden = disabled;
+        enableBtn.hidden = !disabled;
+      }
+
+      disableBtn.addEventListener('click', () => {
+        try { localStorage.setItem(KEY, '1'); } catch { /* Affiché par render(). */ }
+        render();
+        enableBtn.focus();
+      });
+
+      enableBtn.addEventListener('click', () => {
+        try { localStorage.removeItem(KEY); } catch { /* Affiché par render(). */ }
+        render();
+        disableBtn.focus();
+      });
+
+      render();
+    })();
+  </script>
+
+</body>
+
+</html>

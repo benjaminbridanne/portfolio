@@ -10,31 +10,31 @@
       if (localStorage.getItem('bb-theme') === 'dark') document.documentElement.setAttribute('data-theme', 'dark');
     } catch { /* Stockage indisponible : thème clair par défaut. */ }
   </script>
-  <title>Handi Tolosa - Projet de Benjamin Bridanne</title>
+  <title>Handi Tolosa · Projet de Benjamin Bridanne</title>
   <meta name="description"
-    content="Étude de cas du projet Handi Tolosa par Benjamin Bridanne : stratégie réseaux sociaux, recommandations éditoriales et prototype web pour une association engagée sur le handicap et l’inclusion." />
+    content="Handi Tolosa, association de supporters du TFC en situation de handicap, voulait recruter au-delà de son public de départ. Trois mois d'accompagnement pour construire sa communication digitale." />
   <link rel="canonical" href="https://benjaminbridanne.fr/projet-handi-tolosa" />
-  <link rel="icon" href="Images/image-logo-inverse.png" type="image/png" />
+  <link rel="icon" href="Images/favicon-b.b.svg" type="image/svg" />
 
   <meta property="og:type" content="website" />
   <meta property="og:url" content="https://benjaminbridanne.fr/projet-handi-tolosa" />
-  <meta property="og:title" content="Handi Tolosa - Stratégie réseaux sociaux et prototype web" />
+  <meta property="og:title" content="Handi Tolosa : stratégie réseaux sociaux et prototype web" />
   <meta property="og:description"
-    content="Stratégie réseaux sociaux, recommandations éditoriales et prototype web pour une association engagée sur le handicap et l'inclusion." />
+    content="Handi Tolosa, association de supporters du TFC en situation de handicap, voulait recruter au-delà de son public de départ. Trois mois d'accompagnement pour construire sa communication digitale." />
   <meta property="og:image" content="https://benjaminbridanne.fr/Images/image_fond.png" />
   <meta property="og:locale" content="fr_FR" />
 
   <meta name="twitter:card" content="summary_large_image" />
+  <link rel="stylesheet" href="css/fiche-projet.css" />
   <style>
     /* =========================================================
-       TOKENS (identiques à l'accueil - cohérence stricte)
+       TOKENS (identiques à l'accueil : cohérence stricte)
        ========================================================= */
     :root {
       --font-system: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
       --radius: 22px;
       --radius-sm: 14px;
       --gap: 14px;
-      --max-width: 1280px;
 
       --ease: cubic-bezier(.2, .8, .2, 1);
       --transition-fast: 250ms var(--ease);
@@ -368,7 +368,7 @@
     }
 
     /* =========================================================
-       PROJECT BENTO GRID
+       CONTENEUR (la grille de l'étude de cas est dans css/fiche-projet.css)
        ========================================================= */
     .project-main {
       max-width: var(--max-width);
@@ -378,91 +378,12 @@
       z-index: 1;
     }
 
-    .project-grid {
-      display: grid;
-      grid-template-columns: repeat(4, 1fr);
-      grid-auto-rows: minmax(150px, auto);
-      gap: var(--gap);
-    }
-
-    /* --- Positionnement des cartes --- */
-    .card--hero-meta {
-      grid-column: span 2;
-      grid-row: span 1;
-    }
-
-    .card--hero-visual {
-      grid-column: span 2;
-      grid-row: span 1;
-      padding: 0;
-      min-height: 320px;
-    }
-
-    .card--info {
-      grid-column: span 1;
-      grid-row: span 1;
-    }
-
-    /* Galerie : le calendrier a gauche, quatre vignettes en 2 x 2 a droite */
-    .card--gallery-large {
-      grid-column: 1 / 3;
-      grid-row: 3 / 5;
-      padding: 0;
-      min-height: 424px;
-    }
-
-    .card--gallery-1 {
-      grid-column: 3;
-      grid-row: 3;
-      padding: 0;
-    }
-
-    .card--gallery-2 {
-      grid-column: 4;
-      grid-row: 3;
-      padding: 0;
-    }
-
-    .card--gallery-3 {
-      grid-column: 3;
-      grid-row: 4;
-      padding: 0;
-    }
-
-    .card--gallery-4 {
-      grid-column: 4;
-      grid-row: 4;
-      padding: 0;
-    }
-
-    .card--gallery {
-      min-height: 205px;
-    }
-
-    /* =========================================================
-       HERO - MÉTA
-       ========================================================= */
-    .card--hero-meta {
-      display: flex;
-      flex-direction: column;
-      justify-content: center;
-      gap: 18px;
-      padding: 32px 30px;
-    }
-
     .hero-eyebrow {
       font-size: 0.75rem;
       font-weight: 500;
       color: var(--eyebrow);
       text-transform: uppercase;
       letter-spacing: 0.14em;
-    }
-
-    .hero-title {
-      font-size: clamp(1.75rem, 3.2vw, 2.75rem);
-      font-weight: 700;
-      letter-spacing: -0.03em;
-      line-height: 1.02;
     }
 
     .hero-tags {
@@ -484,61 +405,8 @@
       letter-spacing: 0.01em;
     }
 
-    .hero-pitch {
-      font-size: 0.9375rem;
-      color: var(--text-secondary);
-      line-height: 1.55;
-      max-width: 90ch;
-    }
-
-    /* Bouton principal : le bleu Apple reste reserve a cette action */
-    .btn-primary {
-      align-self: flex-start;
-      display: inline-flex;
-      align-items: center;
-      gap: 9px;
-      padding: 11px 20px;
-      border-radius: 999px;
-      background: var(--apple-blue);
-      color: #fff;
-      font-size: 0.875rem;
-      font-weight: 600;
-      letter-spacing: -0.005em;
-      transition:
-        background var(--transition-med),
-        transform var(--transition-med),
-        box-shadow var(--transition-med);
-    }
-
-    .btn-primary svg {
-      width: 15px;
-      height: 15px;
-      flex: none;
-    }
-
-    .btn-primary:hover {
-      transform: translateY(-1px);
-      box-shadow: 0 10px 24px rgba(10, 132, 255, 0.22);
-    }
-
-    /* =========================================================
-       HERO - VISUEL
-       ========================================================= */
-    .card--hero-visual {
-      overflow: hidden;
-    }
-
-    .hero-image {
-      position: absolute;
-      inset: 0;
-      width: 100%;
-      height: 100%;
-      object-fit: cover;
-      z-index: 1;
-    }
-
     /* Bouton pose sur la photographie : lisible dans les deux themes */
-    .proto-btn {
+    .hero-action {
       position: absolute;
       bottom: 16px;
       right: 16px;
@@ -563,193 +431,21 @@
         transform var(--transition-med);
     }
 
-    .proto-btn svg {
+    .hero-action svg {
       width: 14px;
       height: 14px;
       flex: none;
     }
 
-    .proto-btn:hover {
+    .hero-action:hover {
       background: rgba(12, 12, 14, 0.9);
       border-color: rgba(255, 255, 255, 0.45);
       transform: translateY(-1px);
     }
 
-    .proto-btn:focus-visible {
+    .hero-action:focus-visible {
       outline: 2px solid #fff;
       outline-offset: 3px;
-    }
-
-    /* =========================================================
-       CARTES INFO (défi / réponse / impact / outils)
-       ========================================================= */
-    .card--info {
-      display: flex;
-      flex-direction: column;
-      gap: 12px;
-      padding: 22px 22px 20px;
-    }
-
-    .info-title {
-      font-size: 0.95rem;
-      font-weight: 600;
-      color: var(--text);
-      letter-spacing: -0.01em;
-    }
-
-    .info-body {
-      font-size: 0.87rem;
-      color: var(--text-secondary);
-      line-height: 1.55;
-    }
-
-    /* --- Retour de l'association : citation sobre --- */
-    .info-quote {
-      margin: 6px 0 0;
-      padding: 2px 0 2px 14px;
-      border-left: 2px solid var(--apple-blue);
-      color: var(--text);
-      font-size: 0.87rem;
-      font-style: italic;
-      line-height: 1.55;
-    }
-
-    .info-quote p {
-      margin: 0;
-    }
-
-    .info-quote footer {
-      margin-top: 9px;
-      color: var(--text-muted);
-      font-size: 0.75rem;
-      font-style: normal;
-      font-weight: 500;
-      letter-spacing: 0.11em;
-      text-transform: uppercase;
-    }
-
-    /* --- Outils : badges sobres, nom complet visible --- */
-    /* =========================================================
-   CARTE OUTILS — STYLE GLASS
-   ========================================================= */
-
-    .tools-grid {
-      display: grid;
-      grid-template-columns: repeat(2, minmax(0, 1fr));
-      gap: 10px;
-      margin-top: 4px;
-    }
-
-    .tool-item {
-      display: flex;
-      align-items: center;
-      gap: 9px;
-      min-width: 0;
-      padding: 10px;
-      border: 1px solid rgba(255, 255, 255, 0.12);
-      border-radius: 14px;
-
-      background:
-        linear-gradient(145deg,
-          rgba(255, 255, 255, 0.11),
-          rgba(255, 255, 255, 0.035));
-
-      box-shadow:
-        inset 0 1px 0 rgba(255, 255, 255, 0.12),
-        0 8px 24px rgba(0, 0, 0, 0.18);
-
-      -webkit-backdrop-filter: blur(14px) saturate(130%);
-      backdrop-filter: blur(14px) saturate(130%);
-
-      transition:
-        transform var(--transition-med),
-        border-color var(--transition-med),
-        background var(--transition-med);
-    }
-
-    .tool-item:hover {
-      transform: translateY(-2px);
-      border-color: rgba(255, 255, 255, 0.24);
-      background:
-        linear-gradient(145deg,
-          rgba(255, 255, 255, 0.16),
-          rgba(255, 255, 255, 0.06));
-    }
-
-    .tool-icon {
-      width: 32px;
-      height: 32px;
-      flex: 0 0 32px;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      padding: 0;
-      border: none;
-      border-radius: 10px;
-      background: #ffffff;
-      overflow: hidden;
-    }
-
-    .tool-icon img {
-      display: block;
-      width: 80%;
-      height: 80%;
-      object-fit: contain;
-    }
-
-    .tool-name {
-      min-width: 0;
-      color: var(--text-secondary);
-      font-size: 0.75rem;
-      font-weight: 600;
-      line-height: 1.2;
-    }
-
-    /* Adaptation au mode clair */
-    [data-theme="light"] .tool-item {
-      background:
-        linear-gradient(145deg,
-          rgba(255, 255, 255, 0.90),
-          rgba(255, 255, 255, 0.52));
-
-      border-color: rgba(60, 60, 67, 0.13);
-
-      box-shadow:
-        inset 0 1px 0 rgba(255, 255, 255, 0.95),
-        0 8px 20px rgba(0, 0, 0, 0.06);
-    }
-
-    [data-theme="light"] .tool-icon {
-      background: rgba(255, 255, 255, 0.75);
-      border-color: rgba(60, 60, 67, 0.10);
-    }
-
-    /* =========================================================
-       GALERIE
-       ========================================================= */
-    /* Les visuels sont des documents remplis de texte : ils sont montres en entier */
-    .card--gallery-large,
-    .card--gallery {
-      overflow: hidden;
-      background: var(--card-bg-solid);
-      backdrop-filter: none;
-      -webkit-backdrop-filter: none;
-    }
-
-    .gallery-img {
-      position: absolute;
-      inset: 0;
-      width: 100%;
-      height: 100%;
-      object-fit: cover;
-      object-position: center;
-      z-index: 1;
-      transition: transform var(--transition-med);
-    }
-
-    .card--gallery-large:hover .gallery-img,
-    .card--gallery:hover .gallery-img {
-      transform: scale(1.03);
     }
 
     /* =========================================================
@@ -842,67 +538,12 @@
     }
 
     /* =========================================================
-       FOOTER MINIMAL
-       ========================================================= */
-    .site-footer {
-      max-width: var(--max-width);
-      margin: 0 auto;
-      padding: 40px 24px 56px;
-      display: flex;
-      flex-wrap: wrap;
-      justify-content: space-between;
-      align-items: center;
-      gap: 16px;
-      border-top: 1px solid var(--line);
-      margin-top: 32px;
-      position: relative;
-      z-index: 1;
-    }
-
-    .footer-identity {
-      font-size: 0.8125rem;
-      color: var(--text-secondary);
-    }
-
-    .footer-links {
-      display: flex;
-      gap: 22px;
-    }
-
-    .footer-links a {
-      font-size: 0.8125rem;
-      color: var(--text-secondary);
-      transition: color var(--transition-fast);
-    }
-
-    .footer-links a:hover {
-      color: var(--text);
-    }
-
-    .footer-top {
-      display: inline-flex;
-      align-items: center;
-      gap: 7px;
-    }
-
-    .footer-top svg {
-      width: 14px;
-      height: 14px;
-      transition: transform var(--transition-fast);
-    }
-
-    .footer-top:hover svg {
-      transform: translateY(-2px);
-    }
-
-    /* =========================================================
        RESPONSIVE
        ========================================================= */
 
-    /* Ecrans tres larges / 4K : meme traitement que l'accueil */
+    /* Écrans très larges / 4K : même traitement que l'accueil */
     @media (min-width: 1800px) {
       :root {
-        --max-width: 1920px;
         --gap: 20px;
         --radius: 26px;
       }
@@ -912,72 +553,13 @@
       }
 
       .project-main {
-        padding: 42px 36px 76px;
-      }
-
-      .project-grid {
-        grid-auto-rows: minmax(190px, auto);
-      }
-
-      .card--hero-visual {
-        min-height: 420px;
-      }
-
-      .card--gallery-large {
-        min-height: 570px;
-      }
-
-      .card--gallery {
-        min-height: 278px;
+        padding: 42px 24px 76px;
       }
     }
 
-    /* Tablette : deux colonnes, ordre calendrier puis les quatre vignettes */
-    @media (max-width: 1100px) {
-      .project-grid {
-        grid-template-columns: repeat(2, 1fr);
-      }
-
-      .card--hero-meta {
-        grid-column: span 2;
-        grid-row: auto;
-      }
-
-      .card--hero-visual {
-        grid-column: span 2;
-        grid-row: auto;
-        /* Le visuel principal garde son ratio 16:9 */
-        aspect-ratio: 16 / 9;
-        min-height: 0;
-      }
-
-      .card--info {
-        grid-column: span 1;
-        grid-row: auto;
-      }
-
-      .card--gallery-large {
-        grid-column: 1 / 3;
-        grid-row: auto;
-        /* Le calendrier garde son format : aucune etape n'est coupee */
-        aspect-ratio: 16 / 9;
-        min-height: 0;
-      }
-
-      .card--gallery-1,
-      .card--gallery-2,
-      .card--gallery-3,
-      .card--gallery-4 {
-        grid-column: span 1;
-        grid-row: auto;
-        aspect-ratio: 4 / 3;
-        min-height: 0;
-      }
-    }
-
-    /* Mobile : une colonne */
+    /* Mobile */
     @media (max-width: 720px) {
-      /* Le fil d'ariane passe sur sa propre ligne plutot que d'etre tronque */
+      /* Le fil d'ariane passe sur sa propre ligne plutôt que d'être tronqué */
       .project-nav {
         flex-wrap: wrap;
         padding: 10px 16px;
@@ -1000,58 +582,6 @@
       .project-main {
         padding: 20px 16px 40px;
       }
-
-      .project-grid {
-        grid-template-columns: 1fr;
-      }
-
-      .card--hero-meta,
-      .card--hero-visual,
-      .card--info,
-      .card--gallery-large,
-      .card--gallery-1,
-      .card--gallery-2,
-      .card--gallery-3,
-      .card--gallery-4 {
-        grid-column: span 1;
-        grid-row: auto;
-      }
-
-      .card--hero-visual {
-        min-height: 0;
-        aspect-ratio: 16 / 9;
-      }
-
-      .card--gallery-large {
-        aspect-ratio: 16 / 9;
-        min-height: 0;
-      }
-
-      .card--gallery-1,
-      .card--gallery-2,
-      .card--gallery-3,
-      .card--gallery-4 {
-        aspect-ratio: 4 / 3;
-        min-height: 0;
-      }
-
-      .card--hero-meta {
-        padding: 26px 22px;
-      }
-
-      .hero-title {
-        font-size: clamp(1.5rem, 6vw, 2rem);
-      }
-
-      .site-footer {
-        flex-direction: column;
-        align-items: flex-start;
-      }
-
-      .footer-links {
-        flex-wrap: wrap;
-        gap: 16px;
-      }
     }
 
     /* =========================================================
@@ -1069,50 +599,21 @@
         scroll-behavior: auto;
       }
 
-      /* Aucune transformation non essentielle */
       .card:hover,
-      .card--gallery-large:hover .gallery-img,
-      .card--gallery:hover .gallery-img,
-      .btn-primary:hover,
-      .proto-btn:hover,
-      .footer-top:hover svg {
+      .hero-action:hover,
+      .pager-link:hover,
+      .pager-link:hover .pager-arrow {
         transform: none;
       }
-    }
-
-    /* Formats fixes des trois cartes d’images */
-    .card--hero-visual {
-      aspect-ratio: 19 / 10;
-      min-height: 0;
-    }
-
-    .card--gallery-large {
-      aspect-ratio: 36 / 25;
-      min-height: 0;
-    }
-
-    .card--gallery {
-      aspect-ratio: 29 / 20;
-      min-height: 0;
-    }
-
-    .hero-image,
-    .gallery-img {
-      width: 100%;
-      height: 100%;
-      object-fit: cover;
-      object-position: center;
     }
 
     /* =========================================================
    NAVIGATION ENTRE PROJETS (pager en bas de page)
    ========================================================= */
     .project-pager {
-      grid-column: 1 / -1;
       display: grid;
       grid-template-columns: 1fr 1fr;
       gap: var(--gap);
-      margin-top: 8px;
     }
 
     .pager-link {
@@ -1194,23 +695,30 @@
       }
     }
   </style>
+  <link rel="stylesheet" href="css/site-pages.css" />
+  <script defer src="https://cloud.umami.is/script.js" data-website-id="c992974a-48c8-47e4-9625-85ab5eca2ac3"></script>
 </head>
 
 <body>
 
   <!-- =============================================================
-       BARRE DE NAV STICKY : retour vers Mes projets, fil d’ariane, theme
+       BARRE DE NAV STICKY : retour vers Réalisations, fil d’ariane, theme
        ============================================================= -->
   <nav class="project-nav" aria-label="Navigation principale">
-    <a href="/projets" class="nav-back">
+    <a href="/realisations" class="nav-back">
       <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"
         stroke-linejoin="round" aria-hidden="true">
         <path d="M19 12H5M12 19l-7-7 7-7" />
       </svg>
-      Mes projets
+      Réalisations
     </a>
 
-    <span class="nav-crumb">Projet 05 · <strong>Handi Tolosa</strong></span>
+    <span class="nav-crumb">Projet 06 · <strong>Handi Tolosa</strong></span>
+
+    <span class="nav-status">
+      <span class="nav-status-dot" aria-hidden="true"></span>
+      <span>Disponible<span class="nav-status-more"> pour de nouvelles missions</span></span>
+    </span>
 
     <button id="theme-toggle" class="theme-toggle-btn" aria-label="Basculer entre le mode sombre et le mode clair"
       type="button">
@@ -1232,193 +740,209 @@
   </nav>
 
   <main class="project-main" id="top">
-    <div class="project-grid">
+    <div class="cs-grid">
 
-      <!-- ========== CARTE 01 · PRESENTATION ========== -->
-      <article class="card card--hero-meta" aria-labelledby="hero-title">
-        <span class="hero-eyebrow">05 · Projet</span>
-        <h1 class="hero-title" id="hero-title">Handi Tolosa</h1>
+      <!-- ========== RANGÉE 1 · PRÉSENTATION ========== -->
+      <article class="card cs-intro" aria-labelledby="hero-title">
+        <span class="hero-eyebrow">06 · Étude de cas</span>
+        <h1 class="cs-title" id="hero-title">
+          Une association de six mois. <span class="cs-title-accent">Un public à élargir.</span>
+        </h1>
+
+        <p class="cs-pitch">
+          Trois mois d'accompagnement pour Handi Tolosa, association de supporters du TFC en situation de handicap,
+          dans la construction de sa communication digitale&nbsp;: stratégie réseaux sociaux, recommandations
+          éditoriales et prototype de site web.
+        </p>
 
         <div class="hero-tags">
-          <span class="hero-tag">Projet tutoré</span>
           <span class="hero-tag">Stratégie réseaux sociaux</span>
           <span class="hero-tag">Prototype web</span>
+          <span class="hero-tag">Accompagnement associatif</span>
           <span class="hero-tag">Handicap &amp; inclusion</span>
         </div>
 
-        <p class="hero-pitch">
-          Projet tutoré de Master 1, équipe de cinq, sur l'année. Accompagner Handi Tolosa, une association de
-          supporters du TFC en situation de handicap, créée six mois plus tôt, dans la construction de sa communication
-          digitale.
-        </p>
-
-        <a class="btn-primary" href="Images/Livrable_Handi_Tolosa.pdf" target="_blank" rel="noopener"
-          aria-label="Voir le livrable Handi Tolosa au format PDF - nouvel onglet">
-          Voir le livrable
-          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"
-            stroke-linejoin="round" aria-hidden="true">
-            <path d="M14 3H7a2 2 0 0 0-2 2v14a2 2 0 0 0 2 2h10a2 2 0 0 0 2-2V8z" />
-            <polyline points="14 3 14 8 19 8" />
-            <line x1="9" y1="13" x2="15" y2="13" />
-            <line x1="9" y1="17" x2="13" y2="17" />
-          </svg>
-        </a>
+        <dl class="cs-facts">
+          <div>
+            <dt>Commanditaire</dt>
+            <dd>Handi Tolosa, Toulouse</dd>
+          </div>
+          <div>
+            <dt>Rôle</dt>
+            <dd>Community manager et prototype du site</dd>
+          </div>
+          <div>
+            <dt>Équipe</dt>
+            <dd>5 personnes</dd>
+          </div>
+          <div>
+            <dt>Durée</dt>
+            <dd>3 mois</dd>
+          </div>
+        </dl>
       </article>
 
-      <!-- ========== CARTE 02 · VISUEL PRINCIPAL ET PROTOTYPE ========== -->
-      <div class="card card--hero-visual">
-        <img class="hero-image" src="Images/handi_tolosa_accueil.webp"
+      <!-- ========== RANGÉE 1 · VISUEL PRINCIPAL, LIVRABLE ET PROTOTYPE ========== -->
+      <div class="card cs-visual">
+        <img class="cs-img" src="Images/handi_tolosa_accueil.webp"
           alt="Page d’accueil du prototype web de Handi Tolosa" width="3200" height="1800" loading="eager" />
         <button type="button" class="zoom-btn" data-zoom-src="Images/handi_tolosa_accueil.webp"
           aria-label="Agrandir l’image : page d’accueil du prototype web de Handi Tolosa"></button>
-        <a class="proto-btn" href="https://handitolosa311.weebly.com/" target="_blank" rel="noopener noreferrer"
-          aria-label="Voir le prototype web de Handi Tolosa - nouvel onglet">
-          Voir le prototype
-          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"
-            stroke-linejoin="round" aria-hidden="true">
-            <path d="M14 4h6v6" />
-            <path d="M20 4l-8.5 8.5" />
-            <path d="M18 14v4a2 2 0 0 1-2 2H6a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h4" />
-          </svg>
-        </a>
+        <div class="cs-actions">
+          <a class="hero-action hero-action--light" href="Images/Livrable_Handi_Tolosa.pdf" target="_blank"
+            rel="noopener" aria-label="Voir le livrable (PDF) de Handi Tolosa, nouvel onglet">
+            Voir le livrable (PDF)
+          </a>
+          <a class="hero-action" href="https://handitolosa311.weebly.com/" target="_blank" rel="noopener noreferrer"
+            aria-label="Voir le prototype web de Handi Tolosa, nouvel onglet">
+            Voir le prototype
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"
+              stroke-linejoin="round" aria-hidden="true">
+              <path d="M7 17L17 7" />
+              <path d="M8 7h9v9" />
+            </svg>
+          </a>
+        </div>
       </div>
 
-      <!-- ========== CARTE 03 · LE DEFI ========== -->
-      <article class="card card--info card--soft">
-        <h2 class="info-title">Le défi</h2>
-        <p class="info-body">
-          L'association venait de naître et cherchait à recruter des adhérents, mais le réflexe était de s'adresser
-          uniquement aux personnes en situation de handicap. Or pour grandir et exister dans l'écosystème du TFC, il
-          fallait aussi toucher les supporters valides, les familles, les partenaires potentiels. Le vrai enjeu :
-          identifier les bons publics et construire une parole qui donne envie de rejoindre le projet, sans réduire
-          l'association à la question du handicap seul.
+      <!-- ========== RANGÉE 2 · LE DÉFI ========== -->
+      <article class="card cs-step" aria-labelledby="defi-title">
+        <h2 class="cs-label" id="defi-title"><span class="cs-num">01</span> Le défi</h2>
+        <p class="cs-lead">
+          Une association qui cherchait des adhérents, mais ne s'adressait qu'aux personnes en situation de handicap.
+        </p>
+        <p class="cs-body">
+          Pour grandir dans l'écosystème du TFC, elle devait aussi toucher les supporters valides, les familles et les
+          partenaires potentiels. L'enjeu&nbsp;: identifier les bons publics et construire un discours qui donne envie de
+          rejoindre le projet, sans réduire l'association à la seule question du handicap.
         </p>
       </article>
 
-      <!-- ========== CARTE 04 · MA REPONSE ========== -->
-      <article class="card card--info card--soft">
-        <h2 class="info-title">Ma réponse</h2>
-        <p class="info-body">
-          J'ai pris en charge deux volets. Sur les réseaux sociaux : banque d'idées de posts, visuels types et
-          calendrier éditorial pensés pour alterner entre les temps forts du club, la vie de l'asso et la
-          sensibilisation. Sur le site web : arborescence, wireframes et prototype fonctionnel sur Weebly. On se voyait
-          avec l'asso une fois par mois, en visio ou en face à face, d'abord pour poser leurs objectifs puis pour
-          ajuster les productions au fil de l'eau. Le tout a été livré dans un dossier de plus de 100 pages : analyse de
-          l'existant, recommandations et productions finales.
-        </p>
+      <!-- ========== RANGÉE 2 · MA RÉPONSE ========== -->
+      <article class="card cs-step" aria-labelledby="reponse-title">
+        <h2 class="cs-label" id="reponse-title"><span class="cs-num">02</span> Ma réponse</h2>
+        <ol class="cs-steps">
+          <li><span><strong>Réseaux sociaux</strong>&nbsp;: banque d'idées de posts, visuels types et calendrier
+              éditorial alternant temps forts du club, vie de l'association et sensibilisation.</span></li>
+          <li><span><strong>Site web</strong>&nbsp;: arborescence, wireframes et prototype fonctionnel sur
+              Weebly.</span></li>
+          <li><span><strong>Un point chaque mois</strong>&nbsp;: avec l'association, en visio ou sur place, pour fixer
+              les objectifs puis ajuster les productions au fil de l'eau.</span></li>
+        </ol>
       </article>
 
-      <!-- ========== CARTE 05 · IMPACT ========== -->
-      <article class="card card--info card--soft">
-        <h2 class="info-title">Impact</h2>
-        <p class="info-body">
-          Un dossier complet remis au fondateur de l'association, avec des outils directement utilisables pour lancer
-          leur communication. Projet noté 16,5/20.
+      <!-- ========== RANGÉE 2 · LE LIVRABLE ========== -->
+      <article class="card cs-step cs-results" aria-labelledby="livrable-title">
+        <h2 class="cs-label" id="livrable-title"><span class="cs-num">03</span> Le livrable</h2>
+        <p class="cs-figure">100+ pages</p>
+        <p class="cs-body">
+          Analyse de l'existant, recommandations et productions finales, remises au fondateur avec des outils prêts à
+          l'emploi.
         </p>
-        <blockquote class="info-quote">
-          <p>
-            « Vous avez fait un super boulot, c’est hyper qualitatif et ça va nous permettre
-            d’avancer dans le bon sens. [...] Vous nous avez grandement facilité le travail. »
-          </p>
-          <footer>Retour de l’association</footer>
-        </blockquote>
-      </article>
-
-      <!-- ========== CARTE 06 · OUTILS MOBILISÉS ========== -->
-      <article class="card card--info card--soft">
-        <h2 class="info-title">Outils mobilisés</h2>
-
-        <div class="tools-grid" role="list">
-
-          <div class="tool-item" role="listitem">
-            <span class="tool-icon">
-              <img src="Images/icone_canva.svg" alt="" width="32" height="32" loading="lazy" />
-            </span>
-            <span class="tool-name">Canva</span>
+        <div class="cs-tiles" role="list">
+          <div class="cs-tile" role="listitem">
+            <span class="cs-tile-value">4</span>
+            <span class="cs-tile-label">réseaux sociaux couverts</span>
           </div>
-
-          <div class="tool-item" role="listitem">
-            <span class="tool-icon">
-              <img src="Images/icone_weebly.svg" alt="" width="32" height="32" loading="lazy" />
-            </span>
-            <span class="tool-name">Weebly</span>
+          <div class="cs-tile" role="listitem">
+            <span class="cs-tile-value">1</span>
+            <span class="cs-tile-label">prototype de site en ligne</span>
           </div>
-
-          <div class="tool-item" role="listitem">
-            <span class="tool-icon">
-              <img src="Images/icone_google.svg" alt="" width="32" height="32" loading="lazy" />
-            </span>
-            <span class="tool-name">Google Workspace</span>
-          </div>
-
-          <div class="tool-item" role="listitem">
-            <span class="tool-icon">
-              <img src="Images/icone_figma.svg" alt="" width="32" height="32" loading="lazy" />
-            </span>
-            <span class="tool-name">Figma</span>
-          </div>
-
         </div>
       </article>
 
-      <!-- ========== CARTE 07 · CALENDRIER EDITORIAL, GRAND FORMAT ========== -->
-      <div class="card card--gallery-large">
-        <img class="gallery-img" src="Images/handi_tolosa_calendrier.webp"
-          alt="Calendrier éditorial Instagram conçu pour Handi Tolosa" width="3200" height="1800" loading="lazy" />
-        <button type="button" class="zoom-btn" data-zoom-src="Images/handi_tolosa_calendrier.webp"
-          aria-label="Agrandir l’image : calendrier éditorial Instagram conçu pour Handi Tolosa"></button>
+      <!-- ========== RANGÉE 3 · RETOUR DE L'ASSOCIATION ========== -->
+      <figure class="card cs-quote">
+        <svg class="cs-quote-mark" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true">
+          <path d="M6 17h3l2-4V7H5v6h3zm8 0h3l2-4V7h-6v6h3z" />
+        </svg>
+        <blockquote>
+          <p>
+            Vous avez fait un super boulot, c’est hyper qualitatif et ça va nous permettre d’avancer dans le bon sens.
+            Vous nous avez grandement facilité le travail.
+          </p>
+          <footer>Association Handi Tolosa</footer>
+        </blockquote>
+      </figure>
+
+      <!-- ========== RANGÉE 3 · GALERIE ========== -->
+      <div class="cs-mosaic cs-mosaic--side">
+
+        <div class="card cs-media cs-media--tall">
+          <img class="cs-img cs-img--start" src="Images/handi_tolosa_calendrier.webp"
+            alt="Calendrier éditorial Instagram conçu pour Handi Tolosa" width="3200" height="1800" loading="lazy" />
+          <button type="button" class="zoom-btn" data-zoom-src="Images/handi_tolosa_calendrier.webp"
+            aria-label="Agrandir l’image : calendrier éditorial Instagram conçu pour Handi Tolosa"></button>
+          <span class="cs-media-label" aria-hidden="true">Calendrier éditorial</span>
+        </div>
+
+        <div class="card cs-media">
+          <img class="cs-img" src="Images/handi_tolosa_instagram.webp"
+            alt="Recommandations stratégiques pour le compte Instagram de Handi Tolosa" width="1600" height="1200"
+            loading="lazy" />
+          <button type="button" class="zoom-btn" data-zoom-src="Images/handi_tolosa_instagram.webp"
+            aria-label="Agrandir l’image : recommandations stratégiques pour le compte Instagram de Handi Tolosa"></button>
+          <span class="cs-media-label" aria-hidden="true">Instagram</span>
+        </div>
+
+        <div class="card cs-media">
+          <img class="cs-img" src="Images/handi_tolosa_facebook.webp"
+            alt="Recommandations stratégiques pour la page Facebook de Handi Tolosa" width="1600" height="1200"
+            loading="lazy" />
+          <button type="button" class="zoom-btn" data-zoom-src="Images/handi_tolosa_facebook.webp"
+            aria-label="Agrandir l’image : recommandations stratégiques pour la page Facebook de Handi Tolosa"></button>
+          <span class="cs-media-label" aria-hidden="true">Facebook</span>
+        </div>
+
+        <div class="card cs-media">
+          <img class="cs-img" src="Images/handi_tolosa_x.webp"
+            alt="Recommandations stratégiques pour le compte X de Handi Tolosa" width="1600" height="1200"
+            loading="lazy" />
+          <button type="button" class="zoom-btn" data-zoom-src="Images/handi_tolosa_x.webp"
+            aria-label="Agrandir l’image : recommandations stratégiques pour le compte X de Handi Tolosa"></button>
+          <span class="cs-media-label" aria-hidden="true">X</span>
+        </div>
+
+        <div class="card cs-media">
+          <img class="cs-img" src="Images/handi_tolosa_linkedIn.webp"
+            alt="Recommandations stratégiques pour la page LinkedIn de Handi Tolosa" width="1600" height="1200"
+            loading="lazy" />
+          <button type="button" class="zoom-btn" data-zoom-src="Images/handi_tolosa_linkedIn.webp"
+            aria-label="Agrandir l’image : recommandations stratégiques pour la page LinkedIn de Handi Tolosa"></button>
+          <span class="cs-media-label" aria-hidden="true">LinkedIn</span>
+        </div>
+
       </div>
 
-      <!-- ========== CARTE 08 · INSTAGRAM ========== -->
-      <div class="card card--gallery card--gallery-1">
-        <img class="gallery-img" src="Images/handi_tolosa_instagram.webp"
-          alt="Recommandations stratégiques pour le compte Instagram de Handi Tolosa" width="1600" height="1200"
-          loading="lazy" />
-        <button type="button" class="zoom-btn" data-zoom-src="Images/handi_tolosa_instagram.webp"
-          aria-label="Agrandir l’image : recommandations stratégiques pour le compte Instagram de Handi Tolosa"></button>
-      </div>
+      <!-- ========== RANGÉE 4 · APPEL À L'ACTION ========== -->
+      <aside class="card cs-cta" aria-label="Me contacter">
+        <div class="cs-cta-text">
+          <p class="cs-cta-title">Votre association veut se faire connaître&nbsp;?</p>
+          <p class="cs-cta-sub">Réseaux sociaux, calendrier éditorial, site web&nbsp;: parlons de votre projet.</p>
+        </div>
+        <a data-umami-event="clic-contact" class="cs-cta-link" href="/contact">
+          Me contacter
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"
+            stroke-linejoin="round" aria-hidden="true">
+            <path d="M5 12h14M12 5l7 7-7 7" />
+          </svg>
+        </a>
+      </aside>
 
-      <!-- ========== CARTE 09 · FACEBOOK ========== -->
-      <div class="card card--gallery card--gallery-2">
-        <img class="gallery-img" src="Images/handi_tolosa_facebook.webp"
-          alt="Recommandations stratégiques pour la page Facebook de Handi Tolosa" width="1600" height="1200"
-          loading="lazy" />
-        <button type="button" class="zoom-btn" data-zoom-src="Images/handi_tolosa_facebook.webp"
-          aria-label="Agrandir l’image : recommandations stratégiques pour la page Facebook de Handi Tolosa"></button>
-      </div>
-
-      <!-- ========== CARTE 10 · X ========== -->
-      <div class="card card--gallery card--gallery-3">
-        <img class="gallery-img" src="Images/handi_tolosa_x.webp"
-          alt="Recommandations stratégiques pour le compte X de Handi Tolosa" width="1600" height="1200"
-          loading="lazy" />
-        <button type="button" class="zoom-btn" data-zoom-src="Images/handi_tolosa_x.webp"
-          aria-label="Agrandir l’image : recommandations stratégiques pour le compte X de Handi Tolosa"></button>
-      </div>
-
-      <!-- ========== CARTE 11 · LINKEDIN ========== -->
-      <div class="card card--gallery card--gallery-4">
-        <img class="gallery-img" src="Images/handi_tolosa_linkedIn.webp"
-          alt="Recommandations stratégiques pour la page LinkedIn de Handi Tolosa" width="1600" height="1200"
-          loading="lazy" />
-        <button type="button" class="zoom-btn" data-zoom-src="Images/handi_tolosa_linkedIn.webp"
-          aria-label="Agrandir l’image : recommandations stratégiques pour la page LinkedIn de Handi Tolosa"></button>
-      </div>
-
-      <!-- ========== NAVIGATION ENTRE PROJETS ========== -->
+      <!-- ========== RANGÉE 4 · NAVIGATION ENTRE PROJETS ========== -->
       <nav class="project-pager" aria-label="Navigation entre les projets">
-        <a href="/projet-communication-culturelle" class="pager-link pager-prev">
+        <a href="/projet-campagne-financement" class="pager-link pager-prev">
           <span class="pager-arrow" aria-hidden="true">←</span>
           <span class="pager-text">
             <span class="pager-label">Projet précédent</span>
-            <span class="pager-title">Projet 04</span>
+            <span class="pager-title">Projet 05</span>
           </span>
         </a>
 
-        <a href="/projet-trait-union" class="pager-link pager-next">
+        <a href="/montage-video-tibo-inshape" class="pager-link pager-next">
           <span class="pager-text">
             <span class="pager-label">Projet suivant</span>
-            <span class="pager-title">Projet 06</span>
+            <span class="pager-title">Montage vidéo</span>
           </span>
           <span class="pager-arrow" aria-hidden="true">→</span>
         </a>
@@ -1448,25 +972,17 @@
   <footer class="site-footer">
     <p class="footer-identity">Benjamin Bridanne · Chargé de communication digitale</p>
     <div class="footer-links">
-      <a href="/">Accueil</a>
-      <a href="/projets">Mes projets</a>
-      <a href="mailto:benjaminbridanne@gmail.com">Mail</a>
-      <a href="https://www.linkedin.com/in/benjamin-bridanne-ba9a64285/" target="_blank" rel="noopener">LinkedIn</a>
+      <a href="/realisations">Réalisations</a>
+      <a href="/politique-confidentialite">Confidentialité</a>
+      <a data-umami-event="clic-contact" href="mailto:benjaminbridanne@gmail.com">Mail</a>
+      <a data-umami-event="clic-linkedin" href="https://www.linkedin.com/in/benjamin-bridanne-ba9a64285/" target="_blank" rel="noopener">LinkedIn</a>
       <a href="/mentions-legales">Mentions légales</a>
-      <a href="#top" class="footer-top">
-        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"
-          stroke-linejoin="round" aria-hidden="true">
-          <line x1="12" y1="19" x2="12" y2="5" />
-          <polyline points="5 12 12 5 19 12" />
-        </svg>
-        Retour en haut
-      </a>
     </div>
   </footer>
 
   <script>
     /* =========================================================
-       THEME SOMBRE / CLAIR - clé localStorage bb-theme partagée
+       THEME SOMBRE / CLAIR : clé localStorage bb-theme partagée
        ========================================================= */
     (function () {
       const root = document.documentElement;

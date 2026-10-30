@@ -30,6 +30,18 @@
 
   <style>
     /* =========================================================
+       POLICE MANUSCRITE (« c’est gratuit ! ») : Caveat 600,
+       sous-ensemble latin hébergé sur le site
+       ========================================================= */
+    @font-face {
+      font-family: "Caveat";
+      font-style: normal;
+      font-weight: 600;
+      font-display: swap;
+      src: url("fonts/caveat-600-latin.woff2") format("woff2");
+    }
+
+    /* =========================================================
        TOKENS
        ========================================================= */
     :root {
@@ -48,6 +60,18 @@
       --apple-blue-dark: #0A84FF;
       --apple-blue-light: #007AFF;
       --sun-moon: #F7E27B;
+
+      /* Carte profil : bleu plein, identique en clair et en sombre.
+         Contrastes WCAG : blanc 5,97:1, bleu très clair 4,71:1 (AA). */
+      --profile-bg: #0A5ECF;
+      --profile-border: rgba(255, 255, 255, 0.16);
+      --profile-text: #ffffff;
+      --profile-text-soft: #D6E6FB;
+      --profile-line: rgba(255, 255, 255, 0.28);
+
+      /* Bouton d'action : bleu plein, texte blanc lisible (5,97:1) en clair comme en sombre */
+      --cta-bg: #0A5ECF;
+      --cta-bg-hover: #094FAF;
     }
 
     /* -------- Light mode -------- */
@@ -93,6 +117,13 @@
       --pill-bg: rgba(60, 60, 67, 0.05);
       --pill-border: rgba(60, 60, 67, 0.14);
       --pill-text: rgba(60, 60, 67, 0.85);
+
+      /* Bleu foncé pour du texte en bleu, lisible sur fond clair (5,6:1 sur une carte) */
+      --blue-ink: #0A5ECF;
+
+      /* Mes services : barre d'onglets et texte des prestations (5,71:1) */
+      --tabbar-bg: #E8EBF0;
+      --services-text: #5B6370;
     }
 
     /* -------- Dark mode -------- */
@@ -139,6 +170,11 @@
       --pill-bg: #151517;
       --pill-border: rgba(255, 255, 255, 0.14);
       --pill-text: #d1d1d6;
+
+      --blue-ink: #4DA3FF;
+
+      --tabbar-bg: #1c1c1e;
+      --services-text: rgba(235, 235, 245, 0.72);
     }
 
     /* =========================================================
@@ -232,7 +268,12 @@
 
     /* Placements desktop */
     .card--profile {
-      grid-column: 1 / 4;
+      grid-column: 1 / 3;
+      grid-row: 1;
+    }
+
+    .card--photo {
+      grid-column: 3;
       grid-row: 1;
     }
 
@@ -342,7 +383,6 @@
     }
 
     /* Transparences différenciées : les cartes informatives reculent */
-    .card--profile,
     .card--journey,
     .card--skills {
       background: var(--card-bg-soft);
@@ -350,7 +390,8 @@
 
     /* Cartes visuelles : pas de verre, l'image porte la carte */
     .card--projects,
-    .card--cv-video {
+    .card--cv-video,
+    .card--photo {
       background: var(--card-bg-solid);
     }
 
@@ -409,34 +450,27 @@
     /* =========================================================
        CARD PROFIL
        ========================================================= */
-    /* Une seule variable pilote la largeur de la photo ET la marge du texte :
-       les deux ne peuvent plus se chevaucher. */
     .card--profile {
-      --photo-w: clamp(220px, 34%, 340px);
       display: flex;
       padding: 0;
       min-height: 230px;
+      background: var(--profile-bg);
+      border-color: var(--profile-border);
+      color: var(--profile-text);
     }
 
+    .card--profile:hover {
+      border-color: var(--profile-border);
+    }
+
+    /* Nom, titre et présentation en haut ; infos clés calées en bas */
     .profile-text {
       flex: 1;
       width: 100%;
       display: flex;
       flex-direction: column;
-      justify-content: center;
       gap: 12px;
-      padding: 26px calc(var(--photo-w) + 26px) 26px 26px;
-    }
-
-    .profile-photo {
-      position: absolute;
-      top: 0;
-      right: 0;
-      bottom: 0;
-      width: var(--photo-w);
-      height: 100%;
-      object-fit: cover;
-      object-position: 52% 30%;
+      padding: 26px;
     }
 
     .profile-name {
@@ -449,19 +483,59 @@
     .profile-title {
       font-size: 0.9375rem;
       font-weight: 500;
-      color: var(--text-secondary);
+      color: var(--profile-text-soft);
       margin-top: 4px;
       letter-spacing: -0.005em;
     }
 
     .profile-bio {
-      font-size: 0.875rem;
-      color: var(--text-secondary);
+      font-size: 0.8125rem;
+      color: var(--profile-text);
       line-height: 1.5;
     }
 
-    .profile-bio p+p {
-      margin-top: 8px;
+    .profile-facts {
+      list-style: none;
+      display: flex;
+      flex-direction: column;
+      gap: 6px;
+      margin-top: auto;
+      padding-top: 12px;
+      border-top: 1px solid var(--profile-line);
+    }
+
+    .profile-facts li {
+      display: flex;
+      align-items: flex-start;
+      gap: 8px;
+      color: var(--profile-text-soft);
+      font-size: 0.8125rem;
+      line-height: 1.35;
+    }
+
+    .profile-facts svg {
+      flex: none;
+      width: 15px;
+      height: 15px;
+      margin-top: 1px;
+      color: var(--profile-text);
+    }
+
+    /* =========================================================
+       CARD PHOTO - le portrait remplit sa carte
+       ========================================================= */
+    .card--photo {
+      padding: 0;
+      min-height: 230px;
+    }
+
+    .profile-photo {
+      position: absolute;
+      inset: 0;
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      object-position: 52% 30%;
     }
 
     /* =========================================================
@@ -676,6 +750,42 @@
     /* Le triangle de lecture est décalé pour paraître optiquement centré */
     .cv-video-play-icon {
       transform: translateX(1px);
+    }
+
+    /* Contour de focus tracé à l'intérieur : la carte rogne ce qui dépasse */
+    .card--cv-video .card-link-overlay:focus-visible {
+      outline: 2px solid #fff;
+      outline-offset: -5px;
+      border-radius: inherit;
+    }
+
+    /* Mention YouTube en haut de la carte, la seule zone libre : le bas porte le titre,
+       le centre le bouton de lecture. Placée au-dessus du bouton pour que son lien reste cliquable. */
+    .cv-video-notice {
+      position: absolute;
+      top: 12px;
+      left: 12px;
+      z-index: 4;
+      max-width: calc(100% - 24px);
+      padding: 7px 10px;
+      border-radius: 12px;
+      background: rgba(10, 10, 13, 0.72);
+      -webkit-backdrop-filter: blur(8px);
+      backdrop-filter: blur(8px);
+      color: rgba(255, 255, 255, 0.9);
+      font-size: 0.6875rem;
+      line-height: 1.4;
+    }
+
+    .cv-video-notice a {
+      color: #fff;
+      text-decoration: underline;
+      text-underline-offset: 2px;
+      white-space: nowrap;
+    }
+
+    .cv-video-notice a:focus-visible {
+      outline-color: #fff;
     }
 
     /* Fenêtre de lecture du CV vidéo */
@@ -897,13 +1007,14 @@
     }
 
     /* =========================================================
-       CARD COMPÉTENCES - 4 capsules sur une ligne + description
+       CARD MES SERVICES - onglets sur une ligne, accroche et prestations
        ========================================================= */
     .card--skills {
       display: flex;
       flex-direction: column;
       gap: 10px;
       padding: 18px 20px;
+      container-type: inline-size;
     }
 
     .card-eyebrow {
@@ -914,62 +1025,120 @@
       text-transform: uppercase;
     }
 
+    /* Barre en pilule : 4 onglets de largeur égale */
     .skill-tabs {
       display: grid;
-      grid-template-columns: 0.8fr 1fr 1.2fr 1.5fr;
-      gap: 6px;
+      grid-template-columns: repeat(4, minmax(0, 1fr));
+      gap: 3px;
       width: 100%;
-      padding: 6px 0 0;
+      padding: 3px;
+      border-radius: 999px;
+      background: var(--tabbar-bg);
     }
 
     .skill-tab {
-      min-height: 32px;
+      min-height: 30px;
       width: 100%;
-      padding: 0 3px;
-      border: 1px solid var(--pill-border);
+      padding: 0 4px;
       border-radius: 999px;
-      background: var(--pill-bg);
       color: var(--pill-text);
       font: inherit;
-      font-size: 0.8rem;
-      font-weight: 500;
+      font-size: clamp(11.5px, 2.4cqi, 13px);
+      font-weight: 600;
+      letter-spacing: -0.01em;
       white-space: nowrap;
       transition:
         background-color 280ms ease,
-        color 280ms ease,
-        border-color 280ms ease,
-        transform 280ms ease;
+        color 280ms ease;
     }
 
     .skill-tab:hover {
-      transform: translateY(-1px);
-      border-color: var(--apple-blue);
+      color: var(--text);
     }
 
     .skill-tab[aria-selected="true"] {
-      background: var(--apple-blue);
-      border-color: var(--apple-blue);
+      background: var(--cta-bg);
       color: #ffffff;
     }
 
+    /* Carte trop étroite pour 4 onglets sur une ligne : 2 lignes de 2 */
+    @container (max-width: 400px) {
+      .skill-tabs {
+        grid-template-columns: 1fr 1fr;
+        border-radius: 18px;
+      }
+    }
+
+    /* Accroche et prestations calées en haut, sous les onglets.
+       Les 4 contenus occupent la même case : la carte prend la hauteur du plus long
+       et ne change pas de taille d'un onglet à l'autre. */
     .skill-copy {
       flex: 1;
       display: grid;
-      align-content: center;
-      min-height: 58px;
-      padding: 0 2px;
-      text-align: center;
+      align-items: start;
+      min-height: 0;
+      padding: 1px 2px 0;
+      text-align: left;
     }
 
-    .skill-description {
-      max-width: 620px;
-      margin: 0 auto;
-      color: var(--text);
-      font-size: clamp(14px, 1.3vw, 16px);
-      font-weight: 400;
-      line-height: 1.5;
-      letter-spacing: -0.012em;
+    .skill-panel {
+      grid-area: 1 / 1;
+      display: flex;
+      flex-direction: column;
+      gap: 8px;
       animation: skill-reveal 320ms ease both;
+    }
+
+    .skill-panel[hidden] {
+      display: flex;
+      visibility: hidden;
+      animation: none;
+    }
+
+    .skill-lead {
+      max-width: 780px;
+      color: var(--text);
+      font-size: clamp(16px, 2.4cqi + 6px, 24px);
+      font-weight: 600;
+      line-height: 1.25;
+      letter-spacing: -0.02em;
+    }
+
+    .skill-list {
+      list-style: none;
+      display: flex;
+      flex-direction: column;
+      gap: 2px;
+    }
+
+    .skill-list li {
+      color: var(--services-text);
+      font-size: clamp(12.5px, 1.2cqi + 7px, 14.5px);
+      line-height: 1.45;
+    }
+
+    .skill-list strong {
+      color: var(--blue-ink);
+      font-weight: 600;
+    }
+
+    /* Arrivée par le lien « Services » du menu : la tuile s'allume puis s'apaise */
+    .card--skills:target {
+      animation: services-highlight 1600ms var(--ease);
+    }
+
+    @keyframes services-highlight {
+
+      0%,
+      35% {
+        border-color: var(--apple-blue);
+        box-shadow: 0 0 0 3px rgba(10, 132, 255, 0.28), var(--card-shadow-hover);
+      }
+
+      100% {
+        border-color: var(--card-border);
+        box-shadow: var(--card-shadow);
+      }
     }
 
     @keyframes skill-reveal {
@@ -985,7 +1154,10 @@
     }
 
     /* =========================================================
-       CARD PARCOURS
+       CARD COMMENT ÇA MARCHE - le parcours
+       Les 4 étapes sont posées sur un chemin en pointillés qui finit sur le bouton.
+       Pastilles, textes et tracé sont placés en % de la zone du parcours :
+       ils restent alignés quelle que soit la taille de la carte.
        ========================================================= */
     .card--journey {
       display: flex;
@@ -1001,90 +1173,238 @@
       gap: 16px;
     }
 
-    /* Lien texte simple avec une petite flèche horizontale */
-    .cta-link {
-      display: inline-flex;
-      align-items: baseline;
-      gap: 6px;
-      color: var(--text-secondary);
-      font-size: 0.8125rem;
-      font-weight: 500;
+    .route {
       position: relative;
-      z-index: 5;
-      transition: color var(--transition-med);
+      flex: 1;
+      min-height: 160px;
+      container-type: inline-size;
     }
 
-    .cta-link .cta-arrow {
-      font-size: 0.85em;
-      transition: transform var(--transition-med);
+    .route-path {
+      position: absolute;
+      inset: 0;
+      width: 100%;
+      height: 100%;
+      overflow: visible;
     }
 
-    .cta-link:hover {
-      color: var(--apple-blue);
+    .route-path path {
+      fill: none;
+      stroke: var(--apple-blue);
+      stroke-width: 2.5;
+      stroke-linecap: round;
+      stroke-dasharray: 1 9;
     }
 
-    .cta-link:hover .cta-arrow {
-      transform: translateX(3px);
-    }
-
-    .journey-list {
+    .route-steps {
       list-style: none;
-      display: flex;
-      flex-direction: column;
-      gap: 8px;
     }
 
-    .journey-item {
+    .route-step {
+      --dot: clamp(30px, 5.4cqi, 40px);
+      position: absolute;
+      left: var(--x);
+      top: var(--y);
+    }
+
+    /* Positions des étapes : carte large (maquette 1000 × 400) */
+    .route-step:nth-child(1) {
+      --x: 13%;
+      --y: 62%;
+      --w: 28cqi;
+    }
+
+    .route-step:nth-child(2) {
+      --x: 33%;
+      --y: 38%;
+      --w: 30cqi;
+    }
+
+    .route-step:nth-child(3) {
+      --x: 52%;
+      --y: 62%;
+      --w: 26cqi;
+    }
+
+    .route-step:nth-child(4) {
+      --x: 72%;
+      --y: 38%;
+      --w: 30cqi;
+    }
+
+    /* Carte étroite : pastilles resserrées, le coin du bouton reste libre */
+    .route-path--narrow {
+      display: none;
+    }
+
+    @container (max-width: 560px) {
+      .route-step:nth-child(1) {
+        --x: 17%;
+        --y: 60%;
+        --w: 34cqi;
+      }
+
+      .route-step:nth-child(2) {
+        --x: 31%;
+        --y: 40%;
+        --w: 30cqi;
+      }
+
+      .route-step:nth-child(3) {
+        --x: 47%;
+        --y: 60%;
+        --w: 18cqi;
+      }
+
+      .route-step:nth-child(4) {
+        --x: 63%;
+        --y: 40%;
+        --w: 30cqi;
+      }
+
+      .route-path--wide {
+        display: none;
+      }
+
+      .route-path--narrow {
+        display: block;
+      }
+
+      /* L'annotation descend vers la pastille pour laisser la place au Devis */
+      .route .route-note {
+        left: -68px;
+        bottom: calc(var(--dot) / 2 + 13px);
+      }
+
+      .route .route-note-arrow {
+        height: 12px;
+        width: 16px;
+      }
+    }
+
+    .route-dot {
+      position: absolute;
+      left: calc(var(--dot) / -2);
+      top: calc(var(--dot) / -2);
+      width: var(--dot);
+      height: var(--dot);
       display: grid;
-      grid-template-columns: 112px minmax(0, 1fr);
-      gap: 4px 14px;
-      align-items: start;
-      padding: 8px 0 0;
-      border-top: 1px solid var(--line);
-    }
-
-    .journey-item:first-child {
-      border-top: none;
-      padding-top: 0;
-    }
-
-    /* Le type et la date sont empiles dans la colonne de gauche */
-    .journey-meta {
-      display: flex;
-      flex-direction: column;
-      gap: 3px;
-    }
-
-    .journey-type {
-      font-size: 0.66rem;
-      font-weight: 600;
-      color: var(--eyebrow);
-      letter-spacing: 0.11em;
-      text-transform: uppercase;
-    }
-
-    .journey-date {
-      font-size: 0.75rem;
-      color: var(--text-muted);
+      place-items: center;
+      border: 2px solid var(--apple-blue);
+      border-radius: 50%;
+      background: var(--card-bg-solid);
+      color: var(--blue-ink);
+      font-size: 0.8125rem;
+      font-weight: 700;
       font-variant-numeric: tabular-nums;
     }
 
-    .journey-details {
-      display: flex;
-      flex-direction: column;
-      gap: 2px;
+    .route-step:first-child .route-dot {
+      border-color: var(--cta-bg);
+      background: var(--cta-bg);
+      color: #fff;
     }
 
-    .journey-title {
-      font-size: 0.875rem;
-      font-weight: 600;
-      color: var(--text);
-      line-height: 1.25;
+    /* Texte centré sous la pastille (01, 03) ou au-dessus (02, 04) */
+    .route-text {
+      position: absolute;
+      left: 0;
+      width: var(--w);
+      transform: translateX(-50%);
+      text-align: center;
     }
 
-    .journey-place {
-      font-size: 0.8125rem;
+    .route-step--below .route-text {
+      top: calc(var(--dot) / 2 + 6px);
+    }
+
+    .route-step--above .route-text {
+      bottom: calc(var(--dot) / 2 + 6px);
+    }
+
+    .route-title {
+      font-size: clamp(12.5px, 2cqi, 16px);
+      font-weight: 700;
+      letter-spacing: -0.015em;
+      line-height: 1.2;
+    }
+
+    .route-desc {
+      margin-top: 2px;
       color: var(--text-secondary);
+      font-size: clamp(11.5px, 1.6cqi, 13.5px);
+      line-height: 1.35;
+    }
+
+    /* Annotation manuscrite au-dessus de la pastille 01 */
+    .route-note {
+      position: absolute;
+      left: clamp(-60px, -9cqi, -40px);
+      bottom: calc(var(--dot) / 2 + clamp(20px, 6cqi, 46px));
+      color: var(--blue-ink);
+      font-family: "Caveat", "Segoe Print", "Bradley Hand", cursive;
+      font-size: clamp(17px, 2.4cqi, 24px);
+      font-weight: 600;
+      line-height: 1;
+      white-space: nowrap;
+      transform: rotate(-6deg);
+    }
+
+    .route-note-arrow {
+      position: absolute;
+      left: calc(var(--dot) * -0.55);
+      bottom: calc(var(--dot) / 2 + 2px);
+      width: clamp(18px, 3.2cqi, 30px);
+      height: clamp(16px, 5cqi, 42px);
+      overflow: visible;
+      color: var(--blue-ink);
+    }
+
+    .route-note-arrow path {
+      fill: none;
+      stroke: currentColor;
+      stroke-width: 1.8;
+      stroke-linecap: round;
+      stroke-linejoin: round;
+    }
+
+    /* Bouton d'action, posé là où le tracé se termine */
+    .btn-cta {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      min-height: 36px;
+      padding: 0 16px;
+      border-radius: 999px;
+      background: var(--cta-bg);
+      color: #fff;
+      font-size: 0.8125rem;
+      font-weight: 600;
+      white-space: nowrap;
+      transition: background-color var(--transition-fast);
+    }
+
+    .btn-cta:hover {
+      background: var(--cta-bg-hover);
+    }
+
+    .btn-cta svg {
+      width: 14px;
+      height: 14px;
+      transition: transform var(--transition-fast);
+    }
+
+    .btn-cta:hover svg {
+      transform: translateX(2px);
+    }
+
+    .route-cta {
+      position: absolute;
+      right: 0;
+      bottom: 0;
+      font-size: clamp(12px, 1.6cqi, 13.5px);
+      min-height: clamp(32px, 5cqi, 38px);
+      padding: 0 clamp(12px, 2.2cqi, 18px);
     }
 
     /* =========================================================
@@ -1389,7 +1709,12 @@
       }
 
       .card--profile {
-        grid-column: 1 / 5;
+        grid-column: 1 / 4;
+        grid-row: 1;
+      }
+
+      .card--photo {
+        grid-column: 4 / 5;
         grid-row: 1;
       }
 
@@ -1423,9 +1748,8 @@
         grid-row: 5;
       }
 
-      /* La carte s'élargit : le portrait reprend une part plus modeste */
-      .card--profile {
-        --photo-w: clamp(200px, 30%, 300px);
+      .route {
+        aspect-ratio: 5 / 2;
       }
 
       .card--projects {
@@ -1509,21 +1833,6 @@
         line-height: 1.6;
       }
 
-      .profile-bio p+p {
-        margin-top: clamp(6px, 1vh, 10px);
-      }
-
-      /* Les expériences se répartissent sur toute la hauteur de la carte */
-      .journey-list {
-        flex: 1;
-        justify-content: space-evenly;
-        gap: clamp(4px, 0.8vh, 8px);
-      }
-
-      .journey-item {
-        padding-top: clamp(4px, 0.8vh, 8px);
-      }
-
       /* Pied de page réduit à une seule ligne */
       .site-footer {
         flex: none;
@@ -1555,40 +1864,18 @@
         line-height: 1.45;
       }
 
-      .profile-bio p+p {
-        margin-top: 4px;
-      }
-
-      .skill-description {
-        font-size: 14px;
-        line-height: 1.4;
-      }
-
-      /* Portrait plus étroit : la présentation tient sur moins de lignes */
-      .card--profile {
-        --photo-w: clamp(180px, 26%, 280px);
+      .profile-facts li {
+        font-size: 0.75rem;
       }
 
       .profile-name {
         font-size: 1.5rem;
       }
 
-      /* La date du parcours tient sur une ligne */
-      .journey-item {
-        grid-template-columns: 170px minmax(0, 1fr);
-      }
-
-      .journey-meta {
-        gap: 0;
-      }
     }
 
     /* Portables (environ 768 px de haut) : présentation plus compacte */
     @media (min-width: 1101px) and (min-height: 640px) and (max-height: 720px) {
-      .card--profile {
-        --photo-w: clamp(170px, 24%, 240px);
-      }
-
       .profile-name {
         font-size: 1.375rem;
       }
@@ -1620,25 +1907,20 @@
       }
 
       .card--profile {
-        flex-direction: column;
-        align-items: center;
         min-height: 0;
       }
 
       .profile-text {
-        padding: 22px 22px 18px;
+        padding: 22px;
+      }
+
+      .card--photo {
+        min-height: 0;
+        aspect-ratio: 4 / 5;
       }
 
       .profile-photo {
-        position: static;
-        flex: none;
-        width: min(68%, 260px);
-        height: auto;
-        aspect-ratio: 3 / 4;
-        margin: 0 auto 22px;
-        object-fit: cover;
         object-position: 50% 12%;
-        border-radius: 16px;
       }
 
       .card--projects {
@@ -1653,35 +1935,105 @@
         min-height: 170px;
       }
 
-      /* Les quatre capsules restent sur une seule ligne : on resserre le texte */
       .card--skills {
         padding: 18px;
       }
 
-      .skill-tabs {
-        gap: 5px;
-      }
-
       .skill-tab {
-        padding: 0 4px;
-        font-size: 0.6rem;
-        letter-spacing: -0.01em;
+        font-size: 0.8125rem;
       }
 
-      .journey-item {
-        grid-template-columns: 78px minmax(0, 1fr);
+      .skill-lead {
+        font-size: 1.0625rem;
+      }
+
+      .skill-list li {
+        font-size: 0.8125rem;
+      }
+
+      /* Parcours vertical : étapes empilées, pointillés qui relient les pastilles */
+      .route {
+        flex: none;
+        min-height: 0;
+        aspect-ratio: auto;
+        display: flex;
+        flex-direction: column;
+        align-items: flex-start;
+        gap: 18px;
+      }
+
+      .route .route-path,
+      .route-note-arrow {
+        display: none;
+      }
+
+      .route-steps {
+        position: relative;
+        display: flex;
+        flex-direction: column;
+        gap: 18px;
+        width: 100%;
+      }
+
+      .route-steps::before {
+        content: "";
+        position: absolute;
+        left: 17px;
+        top: 18px;
+        bottom: 18px;
+        width: 3px;
+        background: radial-gradient(circle, var(--apple-blue) 1.25px, transparent 1.6px) center top / 3px 10px repeat-y;
+      }
+
+      .route-step {
+        --dot: 36px;
+        position: relative;
+        left: auto;
+        top: auto;
+        display: grid;
+        grid-template-columns: var(--dot) minmax(0, 1fr);
+        gap: 14px;
+        align-items: center;
+      }
+
+      .route-dot,
+      .route-text {
+        position: static;
+        width: auto;
+        transform: none;
+      }
+
+      .route-text {
+        text-align: left;
+      }
+
+      .route-title {
+        font-size: 0.9375rem;
+      }
+
+      .route-desc {
+        font-size: 0.8125rem;
+      }
+
+      /* L'annotation se place à côté de l'étape 01 */
+      .route .route-note {
+        left: auto;
+        right: 0;
+        top: -4px;
+        bottom: auto;
+        font-size: 22px;
+      }
+
+      .route-cta {
+        position: static;
+        font-size: 0.8125rem;
+        min-height: 38px;
+        padding: 0 18px;
       }
 
       .card--tools {
         --tools-min-height: 240px;
         min-height: var(--tools-min-height);
-      }
-    }
-
-    @media (max-width: 380px) {
-      .journey-item {
-        grid-template-columns: 1fr;
-        gap: 2px;
       }
     }
 
@@ -1704,6 +2056,11 @@
         transform: none;
       }
 
+      /* Mise en évidence des services sans animation */
+      .card--skills:target {
+        border-color: var(--apple-blue);
+      }
+
       /* Exception voulue : le défilement des Projets reste animé */
       .project-slide.is-active,
       .project-slide.is-leaving {
@@ -1711,6 +2068,7 @@
       }
     }
   </style>
+  <script defer src="https://cloud.umami.is/script.js" data-website-id="c992974a-48c8-47e4-9625-85ab5eca2ac3"></script>
 </head>
 
 <body>
@@ -1718,8 +2076,9 @@
   <nav class="site-nav" aria-label="Navigation principale">
     <ul class="site-nav-list">
       <li><a href="/" class="site-nav-link" aria-current="page">Accueil</a></li>
-      <li><a href="/projets" class="site-nav-link">Projets</a></li>
-      <li><a href="/contact" class="site-nav-link">Contact</a></li>
+      <li><a href="/services" class="site-nav-link">Services</a></li>
+      <li><a href="/realisations" class="site-nav-link">Réalisations</a></li>
+      <li><a data-umami-event="clic-contact" href="/contact" class="site-nav-link">Contact</a></li>
     </ul>
   </nav>
 
@@ -1730,13 +2089,139 @@
       <div class="profile-text">
         <div>
           <h1 class="profile-name" id="profile-name">Benjamin Bridanne</h1>
-          <p class="profile-title">Chargé de communication digitale</p>
+          <p class="profile-title">Chargé de communication freelance</p>
         </div>
-        <div class="profile-bio">
-          <p>Après un stage à la Coopérative ÉcoHabitat, terminé le 30 septembre 2026, je poursuis mon activité en
-            freelance pour consolider mes compétences et travailler sur de nouveaux projets.</p>        </div>
+        <p class="profile-bio">J'aide les entreprises, associations et institutions à communiquer plus
+          clairement&nbsp;: sites web, supports visuels, identité visuelle et réseaux sociaux, de la stratégie à la
+          création.</p>
+        <ul class="profile-facts">
+          <li>
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"
+              stroke-linejoin="round" aria-hidden="true">
+              <path d="M22 10 12 5 2 10l10 5 10-5z" />
+              <path d="M6 12v5c3 2 9 2 12 0v-5" />
+            </svg>
+            Diplômé d’un Master Information et Communication, Université de Toulouse
+          </li>
+        </ul>
       </div>
+    </article>
+
+    <!-- ============ PHOTO ============ -->
+    <div class="card card--photo">
       <img class="profile-photo" src="Images/photo_benjamin-1100.webp" alt="Portrait de Benjamin Bridanne">
+    </div>
+
+    <!-- ============ MES SERVICES ============ -->
+    <section class="card card--skills" id="services" aria-labelledby="skills-eyebrow">
+      <h2 class="card-eyebrow" id="skills-eyebrow">Mes services</h2>
+
+      <div class="skill-tabs" role="tablist" aria-label="Mes services">
+        <button class="skill-tab" type="button" role="tab" id="skill-tab-1" tabindex="0" aria-selected="true"
+          aria-controls="skill-panel-1">Graphisme</button>
+        <button class="skill-tab" type="button" role="tab" id="skill-tab-2" tabindex="-1" aria-selected="false"
+          aria-controls="skill-panel-2">Sites web</button>
+        <button class="skill-tab" type="button" role="tab" id="skill-tab-3" tabindex="-1" aria-selected="false"
+          aria-controls="skill-panel-3">Identité visuelle</button>
+        <button class="skill-tab" type="button" role="tab" id="skill-tab-4" tabindex="-1" aria-selected="false"
+          aria-controls="skill-panel-4">Réseaux sociaux</button>
+      </div>
+
+      <!-- Un panneau par service : seul celui de la capsule active est affiché -->
+      <div class="skill-copy">
+        <div class="skill-panel" role="tabpanel" id="skill-panel-1" aria-labelledby="skill-tab-1" tabindex="0">
+          <p class="skill-lead">Des supports qui donnent envie de lire, prêts à imprimer ou à diffuser.</p>
+          <ul class="skill-list">
+            <li><strong>Print&nbsp;:</strong> affiches, flyers, dépliants, brochures, kakémonos</li>
+            <li><strong>Édition&nbsp;:</strong> catalogues, rapports, cartes de visite</li>
+            <li><strong>Fichiers&nbsp;:</strong> prêts pour l'impression et le digital</li>
+          </ul>
+        </div>
+
+        <div class="skill-panel" role="tabpanel" id="skill-panel-2" aria-labelledby="skill-tab-2" tabindex="0" hidden>
+          <p class="skill-lead">Un site clair, à jour et que vous savez faire vivre.</p>
+          <ul class="skill-list">
+            <li><strong>Conception&nbsp;:</strong> arborescence, maquettes</li>
+            <li><strong>Réalisation&nbsp;:</strong> site vitrine, WordPress, pages de campagne, formulaires</li>
+            <li><strong>Suivi&nbsp;:</strong> actualités, mise à jour des contenus</li>
+          </ul>
+        </div>
+
+        <div class="skill-panel" role="tabpanel" id="skill-panel-3" aria-labelledby="skill-tab-3" tabindex="0" hidden>
+          <p class="skill-lead">Une image reconnaissable, utilisée de la même façon partout.</p>
+          <ul class="skill-list">
+            <li><strong>Création&nbsp;:</strong> logo, couleurs, typographies, direction artistique</li>
+            <li><strong>Cadre&nbsp;:</strong> charte graphique, règles d'utilisation</li>
+            <li><strong>Déclinaisons&nbsp;:</strong> sur tous vos supports</li>
+          </ul>
+        </div>
+
+        <div class="skill-panel" role="tabpanel" id="skill-panel-4" aria-labelledby="skill-tab-4" tabindex="0" hidden>
+          <p class="skill-lead">Des réseaux actifs et cohérents, sans y passer vos soirées.</p>
+          <ul class="skill-list">
+            <li><strong>Stratégie&nbsp;:</strong> audit, choix des réseaux, ligne éditoriale, calendrier</li>
+            <li><strong>Création&nbsp;:</strong> posts, carrousels, stories, vidéos courtes</li>
+            <li><strong>Animation&nbsp;:</strong> programmation, modération, bilan</li>
+          </ul>
+        </div>
+      </div>
+    </section>
+
+    <!-- ============ COMMENT ÇA MARCHE ============ -->
+    <article class="card card--journey" aria-labelledby="journey-eyebrow">
+      <div class="journey-header">
+        <h2 class="card-eyebrow" id="journey-eyebrow">Comment ça marche</h2>
+      </div>
+      <div class="route">
+        <svg class="route-path route-path--wide" viewBox="0 0 100 100" preserveAspectRatio="none" aria-hidden="true">
+          <path d="M 0 62 L 13 62 C 23 62 23 38 33 38 C 42.5 38 42.5 62 52 62 C 62 62 62 38 72 38 C 82.4 38 85 53.4 85 82" vector-effect="non-scaling-stroke" />
+        </svg>
+        <svg class="route-path route-path--narrow" viewBox="0 0 100 100" preserveAspectRatio="none"
+          aria-hidden="true">
+          <path d="M 0 60 L 17 60 C 24 60 24 40 31 40 C 39 40 39 60 47 60 C 55 60 55 40 63 40 C 75.8 40 79 54.7 79 82" vector-effect="non-scaling-stroke" />
+        </svg>
+        <ol class="route-steps">
+        <li class="route-step route-step--below">
+          <span class="route-dot" aria-hidden="true">01</span>
+          <div class="route-text">
+            <h3 class="route-title">Premier échange</h3>
+            <p class="route-desc">On parle de votre projet, sans engagement.</p>
+          </div>
+          <p class="route-note">c’est gratuit&nbsp;!</p>
+          <svg class="route-note-arrow" viewBox="0 0 30 42" aria-hidden="true">
+            <path d="M 4 2 C 2 18 10 32 24 38 M 15 38.5 L 24 38 L 20.5 30" />
+          </svg>
+        </li>
+        <li class="route-step route-step--above">
+          <span class="route-dot" aria-hidden="true">02</span>
+          <div class="route-text">
+            <h3 class="route-title">Devis</h3>
+            <p class="route-desc">Contenu, délais, prix&nbsp;: tout est clair.</p>
+          </div>
+        </li>
+        <li class="route-step route-step--below">
+          <span class="route-dot" aria-hidden="true">03</span>
+          <div class="route-text">
+            <h3 class="route-title">Réalisation</h3>
+            <p class="route-desc">Je crée, vous ajustez.</p>
+          </div>
+        </li>
+        <li class="route-step route-step--above">
+          <span class="route-dot" aria-hidden="true">04</span>
+          <div class="route-text">
+            <h3 class="route-title">Livraison</h3>
+            <p class="route-desc">Vos fichiers, prêts à servir.</p>
+          </div>
+        </li>
+        </ol>
+        <a data-umami-event="clic-contact" href="/contact" class="btn-cta route-cta">
+          Discutons de votre projet
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round"
+            stroke-linejoin="round" aria-hidden="true">
+            <path d="M5 12h14M13 6l6 6-6 6" />
+          </svg>
+        </a>
+      </div>
     </article>
 
     <!-- ============ PROJETS ============ -->
@@ -1795,7 +2280,7 @@
           <polyline points="7 7 17 7 17 17" />
         </svg>
       </span>
-      <a href="/projets" class="card-link-overlay" aria-label="Voir tous les projets"></a>
+      <a href="/realisations" class="card-link-overlay" aria-label="Voir tous les projets"></a>
     </article>
 
     <!-- ============ CV VIDÉO ============ -->
@@ -1808,7 +2293,7 @@
         <div class="cv-video-content">
           <span class="cv-video-eyebrow">CV vidéo</span>
           <span class="cv-video-title">Motion design</span>
-          <span class="cv-video-tagline">1 minute 30 pour faire connaissance.</span>
+          <span class="cv-video-tagline">1 minute 58 pour faire connaissance.</span>
         </div>
       </div>
       <span class="arrow-btn" aria-hidden="true">
@@ -1816,12 +2301,13 @@
           <path d="M8 5.5v13a1 1 0 0 0 1.53.85l10.2-6.5a1 1 0 0 0 0-1.7L9.53 4.65A1 1 0 0 0 8 5.5z" />
         </svg>
       </span>
-      <button type="button" class="card-link-overlay" id="cv-video-play" aria-label="Lire le CV vidéo"></button>
+      <button type="button" class="card-link-overlay" id="cv-video-play" aria-label="Lire le CV vidéo"
+        aria-describedby="cv-video-notice"></button>
     </article>
 
     <!-- ============ 4 MINI-CARTES : LinkedIn / Mail / CV / Toggle ============ -->
     <div class="icons-grid">
-      <a href="https://www.linkedin.com/in/benjamin-bridanne-ba9a64285/" target="_blank" rel="noopener"
+      <a data-umami-event="clic-linkedin" href="https://www.linkedin.com/in/benjamin-bridanne-ba9a64285/" target="_blank" rel="noopener"
         class="icon-card icon-card--link" aria-label="Profil LinkedIn">
         <svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true">
           <path
@@ -1829,7 +2315,7 @@
         </svg>
       </a>
 
-      <a href="mailto:benjaminbridanne@gmail.com" class="icon-card icon-card--link" aria-label="Envoyer un mail">
+      <a data-umami-event="clic-contact" href="mailto:benjaminbridanne@gmail.com" class="icon-card icon-card--link" aria-label="Envoyer un mail">
         <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"
           stroke-linejoin="round" aria-hidden="true">
           <rect x="2" y="4" width="20" height="16" rx="3" />
@@ -1837,7 +2323,7 @@
         </svg>
       </a>
 
-      <a href="Images/CV_benjamin_bridanne.pdf" target="_blank" rel="noopener" class="icon-card icon-card--link"
+      <a data-umami-event="telechargement-cv" href="Images/CV_benjamin_bridanne.pdf" target="_blank" rel="noopener" class="icon-card icon-card--link"
         aria-label="Voir le CV en PDF">
         <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"
           stroke-linejoin="round" aria-hidden="true">
@@ -1871,76 +2357,6 @@
         </span>
       </button>
     </div>
-
-    <!-- ============ PARCOURS ============ -->
-    <article class="card card--journey" aria-labelledby="journey-eyebrow">
-      <div class="journey-header">
-        <span class="card-eyebrow" id="journey-eyebrow">Parcours</span>
-        <a href="Images/CV_benjamin_bridanne.pdf" target="_blank" rel="noopener" class="cta-link"
-          aria-label="Voir le CV">
-          Voir le CV
-          <span class="cta-arrow" aria-hidden="true">→</span>
-        </a>
-      </div>
-      <ul class="journey-list">
-        <li class="journey-item">
-          <div class="journey-meta">
-            <span class="journey-type">Stage</span>
-            <span class="journey-date">Terminé le 30 septembre 2026</span>
-          </div>
-          <div class="journey-details">
-            <span class="journey-title">Coopérative ÉcoHabitat</span>
-            <span class="journey-place">Chargé de communication</span>
-          </div>
-        </li>
-        <li class="journey-item">
-          <div class="journey-meta">
-            <span class="journey-type">Formation</span>
-            <span class="journey-date">2024-2026</span>
-          </div>
-          <div class="journey-details">
-            <span class="journey-title">Master Information et Communication - Culture Numérique</span>
-          </div>
-        </li>
-        <li class="journey-item">
-          <div class="journey-meta">
-            <span class="journey-type">Stage</span>
-            <span class="journey-date">2024-2025</span>
-          </div>
-          <div class="journey-details">
-            <span class="journey-title">Beauté2Reine</span>
-            <span class="journey-place">Chargé de communication</span>
-          </div>
-        </li>
-      </ul>
-    </article>
-
-    <!-- ============ COMPÉTENCES ============ -->
-    <section class="card card--skills" aria-labelledby="skills-eyebrow">
-      <h2 class="card-eyebrow" id="skills-eyebrow">Compétences</h2>
-
-      <div class="skill-tabs" role="tablist" aria-label="Domaines de compétences">
-        <button class="skill-tab" type="button" role="tab" id="skill-tab-1" tabindex="0" aria-selected="true"
-          aria-controls="skill-description"
-          data-description="J’aime voir comment une image, un montage ou une mise en page peuvent donner du relief à une idée et guider le regard vers l’essentiel.">Création</button>
-        <button class="skill-tab" type="button" role="tab" id="skill-tab-2" tabindex="-1" aria-selected="false"
-          aria-controls="skill-description"
-          data-description="Pas besoin d'être un magicien du code pour faire un site qui tourne. J’aime en penser la structure et le design pour que l’information soit claire, agréable à parcourir et adaptée à tous les écrans.">Web
-          &amp; CMS</button>
-        <button class="skill-tab" type="button" role="tab" id="skill-tab-3" tabindex="-1" aria-selected="false"
-          aria-controls="skill-description"
-          data-description="Le cerveau d'un créatif peut vite devenir un bazar. Organiser les étapes et suivre l’avancement m’aide à passer de l’idée au résultat sans perdre le fil.">Organisation</button>
-        <button class="skill-tab" type="button" role="tab" id="skill-tab-4" tabindex="-1" aria-selected="false"
-          aria-controls="skill-description"
-          data-description="Créer ne suffit pas. J’aime comprendre à qui l’on s’adresse, observer les retours et ajuster les contenus pour qu’ils trouvent vraiment leur public.">Communication</button>
-      </div>
-
-      <div class="skill-copy" role="tabpanel" id="skill-description" aria-labelledby="skill-tab-1" tabindex="0"
-        aria-live="polite">
-        <p class="skill-description">J’aime voir comment une image, un montage ou une mise en page peuvent donner du
-          relief à une idée et guider le regard vers l’essentiel.</p>
-      </div>
-    </section>
 
     <!-- ============ OUTILS ============ -->
     <section class="card card--tools" aria-labelledby="tools-title">
@@ -1997,9 +2413,10 @@
   <footer class="site-footer">
     <p class="footer-identity">Benjamin Bridanne · Chargé de communication digitale</p>
     <div class="footer-links">
-      <a href="/projets">Mes projets</a>
-      <a href="mailto:benjaminbridanne@gmail.com">Mail</a>
-      <a href="https://www.linkedin.com/in/benjamin-bridanne-ba9a64285/" target="_blank" rel="noopener">LinkedIn</a>
+      <a href="/realisations">Réalisations</a>
+      <a href="/politique-confidentialite">Confidentialité</a>
+      <a data-umami-event="clic-contact" href="mailto:benjaminbridanne@gmail.com">Mail</a>
+      <a data-umami-event="clic-linkedin" href="https://www.linkedin.com/in/benjamin-bridanne-ba9a64285/" target="_blank" rel="noopener">LinkedIn</a>
       <a href="/mentions-legales">Mentions légales</a>
     </div>
   </footer>
@@ -2010,10 +2427,7 @@
       <button type="button" class="video-modal-close" id="video-modal-close" aria-label="Fermer la vidéo" autofocus>
         ×
       </button>
-
-      <iframe class="video-modal-frame" id="video-modal-frame" title="CV vidéo de Benjamin Bridanne"
-        allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
-        allowfullscreen referrerpolicy="strict-origin-when-cross-origin"></iframe>
+      <!-- Le lecteur YouTube n'est créé qu'au clic sur la carte, puis supprimé à la fermeture -->
     </div>
   </dialog>
   <script>
@@ -2143,18 +2557,39 @@
 
     /* =========================================================
        CV VIDÉO - lecture dans une fenêtre intégrée
+       Aucune requête vers YouTube avant le clic : l'iframe
+       (domaine youtube-nocookie) est créée à l'ouverture et
+       supprimée à la fermeture, ce qui coupe aussi le son.
        ========================================================= */
     (function () {
       const trigger = document.getElementById('cv-video-play');
       const modal = document.getElementById('video-modal');
       const closeButton = document.getElementById('video-modal-close');
-      const frame = document.getElementById('video-modal-frame');
+      const dialog = modal && modal.querySelector('.video-modal-dialog');
 
-      if (!trigger || !modal || !closeButton || !frame) return;
+      if (!trigger || !modal || !closeButton || !dialog) return;
 
       let closeTimer = null;
       let openFrame = null;
       let previousOverflow = '';
+      let frame = null;
+
+      function createFrame() {
+        const iframe = document.createElement('iframe');
+        iframe.className = 'video-modal-frame';
+        iframe.title = 'CV vidéo de Benjamin Bridanne';
+        iframe.allow = 'accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share';
+        iframe.allowFullscreen = true;
+        /* Sans l'origine de la page, YouTube refuse la lecture (erreur 153) */
+        iframe.referrerPolicy = 'strict-origin-when-cross-origin';
+        iframe.src = 'https://www.youtube-nocookie.com/embed/H2elFNKKM3A?autoplay=1&rel=0';
+        return iframe;
+      }
+
+      function removeFrame() {
+        if (frame) frame.remove();
+        frame = null;
+      }
 
       function openModal() {
         clearTimeout(closeTimer);
@@ -2163,7 +2598,9 @@
           previousOverflow = document.body.style.overflow;
           modal.showModal();
         }
-        frame.src = 'https://www.youtube.com/embed/H2elFNKKM3A?autoplay=1&rel=0';
+        removeFrame();
+        frame = createFrame();
+        dialog.appendChild(frame);
         openFrame = requestAnimationFrame(() => modal.classList.add('is-open'));
         document.body.style.overflow = 'hidden';
         closeButton.focus();
@@ -2174,7 +2611,7 @@
         clearTimeout(closeTimer);
         cancelAnimationFrame(openFrame);
         modal.classList.remove('is-open');
-        frame.removeAttribute('src');
+        removeFrame();
         closeTimer = setTimeout(() => {
           modal.close();
           document.body.style.overflow = previousOverflow;
@@ -2196,24 +2633,23 @@
     })();
 
     /* =========================================================
-       COMPÉTENCES - capsules et description synchronisées
+       MES SERVICES - capsules et panneaux synchronisés
        ========================================================= */
     (function () {
       const tabs = [...document.querySelectorAll('.skill-tab')];
-      const description = document.querySelector('.skill-description');
-      const panel = document.getElementById('skill-description');
-      if (!tabs.length || !description) return;
+      if (!tabs.length) return;
 
       function selectTab(tab) {
         tabs.forEach((item) => {
-          item.setAttribute('aria-selected', String(item === tab));
-          item.tabIndex = item === tab ? 0 : -1;
+          const selected = item === tab;
+          item.setAttribute('aria-selected', String(selected));
+          item.tabIndex = selected ? 0 : -1;
+          document.getElementById(item.getAttribute('aria-controls')).hidden = !selected;
         });
-        panel.setAttribute('aria-labelledby', tab.id);
-        description.getAnimations().forEach(animation => animation.cancel());
-        description.textContent = tab.dataset.description;
+        const panel = document.getElementById(tab.getAttribute('aria-controls'));
+        panel.getAnimations().forEach(animation => animation.cancel());
         if (prefersReducedMotion) return;
-        description.animate(
+        panel.animate(
           [{ opacity: 0, transform: 'translateY(5px)' }, { opacity: 1, transform: 'translateY(0)' }],
           { duration: 280, easing: 'ease-out' }
         );

@@ -1,0 +1,1508 @@
+<!DOCTYPE html>
+<html lang="fr" data-theme="light">
+
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <!-- Thème : clair par défaut, sombre seulement si le visiteur l'a choisi. Appliqué avant l'affichage. -->
+  <script>
+    try {
+      if (localStorage.getItem('bb-theme') === 'dark') document.documentElement.setAttribute('data-theme', 'dark');
+    } catch { /* Stockage indisponible : thème clair par défaut. */ }
+  </script>
+  <title>Services | Benjamin Bridanne</title>
+  <meta name="description"
+    content="Graphisme, sites web, identité visuelle, réseaux sociaux, financement participatif et montage vidéo : les services de Benjamin Bridanne, chargé de communication freelance." />
+  <link rel="canonical" href="https://benjaminbridanne.fr/services" />
+  <link rel="icon" href="Images/favicon-b.b.svg" type="image/svg" />
+
+  <meta property="og:type" content="website" />
+  <meta property="og:url" content="https://benjaminbridanne.fr/services" />
+  <meta property="og:title" content="Services | Benjamin Bridanne" />
+  <meta property="og:description"
+    content="Graphisme, sites web, identité visuelle, réseaux sociaux, financement participatif et montage vidéo : les services de Benjamin Bridanne, chargé de communication freelance." />
+  <meta property="og:image" content="https://benjaminbridanne.fr/Images/image_fond.png" />
+  <meta property="og:locale" content="fr_FR" />
+
+  <meta name="twitter:card" content="summary_large_image" />
+  <link rel="stylesheet" href="css/site-nav.css" />
+
+  <style>
+    /* =========================================================
+       TOKENS (repris de la page d'accueil)
+       ========================================================= */
+    :root {
+      --font-system: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
+      --radius: 22px;
+      --radius-sm: 14px;
+      /* Bento des services : cartes un peu plus aérées que l'accueil */
+      --gap: 18px;
+
+      --ease: cubic-bezier(.2, .8, .2, 1);
+      --transition-fast: 250ms var(--ease);
+      --transition-med: 400ms var(--ease);
+
+      --apple-blue-dark: #0A84FF;
+      --apple-blue-light: #007AFF;
+      --sun-moon: #F7E27B;
+
+      /* Carte bleue de l'accueil : blanc 5,97:1, bleu très clair 4,71:1 dans les deux thèmes */
+      --profile-bg: #0A5ECF;
+      --profile-border: rgba(255, 255, 255, 0.16);
+      --profile-text: #ffffff;
+      --profile-text-soft: #D6E6FB;
+
+      /* Couleurs des illustrations, identiques dans les deux thèmes */
+      --ill-black: #0A0A0D;
+      --ill-rust: #C4532A;
+      --ill-yellow: #F2C94C;
+      --ill-grey: #C7C7CC;
+    }
+
+    /* -------- Light mode -------- */
+    [data-theme="light"] {
+      --bg: #f2f2f4;
+      --bg-halo-1: rgba(205, 214, 232, 0.30);
+      --bg-halo-2: rgba(214, 220, 234, 0.24);
+
+      --card-bg-solid: #ffffff;
+      --card-border: rgba(60, 60, 67, 0.16);
+      --card-border-hover: rgba(60, 60, 67, 0.28);
+      --card-edge: rgba(255, 255, 255, 0.95);
+      --card-shadow: 0 4px 20px rgba(0, 0, 0, 0.05);
+      --card-shadow-hover: 0 14px 38px rgba(0, 0, 0, 0.09);
+      --card-highlight-top: rgba(255, 255, 255, 0.9);
+
+      --text: #0a0a0d;
+      --text-secondary: rgba(60, 60, 67, 0.62);
+      --line: rgba(60, 60, 67, 0.12);
+
+      --toggle-track-bg: #e8e8ea;
+      --toggle-track-border: rgba(60, 60, 67, 0.22);
+      --toggle-thumb-bg: #0a0a0d;
+
+      --blue-ink: #0A5ECF;
+
+      /* Services : intitulés et réalisations 5,9:1, prestations 11:1 */
+      --svc-label: #636366;
+      --svc-text: #3A3A3C;
+      --svc-blue-soft: #E1ECFB;
+      --svc-paper: #ffffff;
+      --svc-dark-card: #0A0A0D;
+      --svc-dark-border: transparent;
+    }
+
+    /* -------- Dark mode -------- */
+    [data-theme="dark"] {
+      --bg: #000000;
+      --bg-halo-1: rgba(44, 44, 52, 0.22);
+      --bg-halo-2: rgba(24, 34, 52, 0.18);
+
+      --card-bg-solid: #0e0e10;
+      --card-border: rgba(255, 255, 255, 0.10);
+      --card-border-hover: rgba(255, 255, 255, 0.20);
+      --card-edge: rgba(255, 255, 255, 0.28);
+      --card-shadow: 0 6px 26px rgba(0, 0, 0, 0.50);
+      --card-shadow-hover: 0 18px 46px rgba(0, 0, 0, 0.62);
+      --card-highlight-top: rgba(255, 255, 255, 0.14);
+
+      --text: #F5F5F7;
+      --text-secondary: rgba(235, 235, 245, 0.62);
+      --line: rgba(255, 255, 255, 0.10);
+
+      --toggle-track-bg: #1c1c1e;
+      --toggle-track-border: rgba(255, 255, 255, 0.16);
+      --toggle-thumb-bg: #0a0a0a;
+
+      --blue-ink: #4DA3FF;
+
+      /* Intitulés 6,5:1 et prestations 13:1 sur la carte sombre */
+      --svc-label: #98989D;
+      --svc-text: #D1D1D6;
+      --svc-blue-soft: #0F1B2D;
+      --svc-paper: #F2F2F4;
+      /* Financement : noir un peu relevé et bordure pour se détacher du fond noir */
+      --svc-dark-card: #161618;
+      --svc-dark-border: rgba(255, 255, 255, 0.18);
+    }
+
+    /* =========================================================
+       BASE
+       ========================================================= */
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
+
+    html {
+      scroll-behavior: smooth;
+    }
+
+    body {
+      font-family: var(--font-system);
+      -webkit-font-smoothing: antialiased;
+      -moz-osx-font-smoothing: grayscale;
+      background: var(--bg);
+      color: var(--text);
+      min-height: 100vh;
+      position: relative;
+      overflow-x: hidden;
+      transition: background var(--transition-med), color var(--transition-med);
+    }
+
+    /* Halos de fond discrets */
+    body::before {
+      content: "";
+      position: fixed;
+      inset: 0;
+      background:
+        radial-gradient(ellipse 60% 45% at 12% 8%, var(--bg-halo-1) 0%, transparent 60%),
+        radial-gradient(ellipse 55% 45% at 92% 96%, var(--bg-halo-2) 0%, transparent 62%);
+      pointer-events: none;
+      z-index: 0;
+    }
+
+    :focus-visible {
+      outline: 2px solid var(--text);
+      outline-offset: 3px;
+      border-radius: 6px;
+    }
+
+    a {
+      color: inherit;
+      text-decoration: none;
+    }
+
+    button {
+      font-family: inherit;
+      background: none;
+      border: none;
+      cursor: pointer;
+      color: inherit;
+    }
+
+    img {
+      max-width: 100%;
+      display: block;
+    }
+
+    ul,
+    ol {
+      list-style: none;
+    }
+
+    .sr-only {
+      position: absolute;
+      width: 1px;
+      height: 1px;
+      padding: 0;
+      margin: -1px;
+      overflow: hidden;
+      clip: rect(0, 0, 0, 0);
+      white-space: nowrap;
+      border: 0;
+    }
+
+    /* =========================================================
+       CARD BASE (identique à l'accueil)
+       ========================================================= */
+    .card {
+      position: relative;
+      border-radius: var(--radius);
+      background: var(--card-bg-solid);
+      border: 1px solid var(--card-border);
+      box-shadow: var(--card-shadow);
+      overflow: hidden;
+      transition:
+        transform var(--transition-med),
+        box-shadow var(--transition-med),
+        border-color var(--transition-med),
+        background var(--transition-med);
+    }
+
+    .card::before {
+      content: "";
+      position: absolute;
+      inset: 0;
+      padding: 1px;
+      border-radius: inherit;
+      background: linear-gradient(145deg, var(--card-edge), transparent 42%);
+      -webkit-mask: linear-gradient(#000 0 0) content-box, linear-gradient(#000 0 0);
+      -webkit-mask-composite: xor;
+      mask: linear-gradient(#000 0 0) content-box, linear-gradient(#000 0 0);
+      mask-composite: exclude;
+      opacity: 0.75;
+      pointer-events: none;
+      z-index: 4;
+    }
+
+    .card::after {
+      content: "";
+      position: absolute;
+      top: 0;
+      left: 0;
+      right: 0;
+      height: 1px;
+      background: linear-gradient(90deg,
+          transparent 0%,
+          var(--card-highlight-top) 22%,
+          var(--card-highlight-top) 78%,
+          transparent 100%);
+      pointer-events: none;
+      z-index: 4;
+    }
+
+    .card:hover {
+      transform: scale(1.015);
+      z-index: 6;
+      border-color: var(--card-border-hover);
+      box-shadow: var(--card-shadow-hover);
+    }
+
+    .card>* {
+      position: relative;
+      z-index: 2;
+    }
+
+    /* =========================================================
+       BASCULE CLAIR / SOMBRE (même interrupteur que l'accueil)
+       ========================================================= */
+    .theme-toggle-btn {
+      flex: none;
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      min-width: 64px;
+      min-height: 44px;
+      padding: 0;
+      border-radius: 999px;
+    }
+
+    .theme-toggle-btn:focus-visible {
+      outline-color: #ffffff;
+    }
+
+    .toggle-switch {
+      position: relative;
+      width: 56px;
+      height: 30px;
+      border-radius: 999px;
+      background: var(--toggle-track-bg);
+      border: 1px solid var(--toggle-track-border);
+      transition: background var(--transition-med), border-color var(--transition-med);
+    }
+
+    .toggle-thumb {
+      position: absolute;
+      top: 50%;
+      left: 3px;
+      width: 24px;
+      height: 24px;
+      border-radius: 50%;
+      background: var(--toggle-thumb-bg);
+      transform: translateY(-50%);
+      transition: left var(--transition-med), background var(--transition-med);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+
+    .toggle-thumb svg {
+      width: 14px;
+      height: 14px;
+      color: var(--sun-moon);
+      position: absolute;
+      transition: opacity var(--transition-fast);
+    }
+
+    [data-theme="dark"] .toggle-thumb .icon-moon {
+      opacity: 1;
+    }
+
+    [data-theme="dark"] .toggle-thumb .icon-sun {
+      opacity: 0;
+    }
+
+    [data-theme="light"] .toggle-thumb {
+      left: calc(100% - 27px);
+    }
+
+    [data-theme="light"] .toggle-thumb .icon-moon {
+      opacity: 0;
+    }
+
+    [data-theme="light"] .toggle-thumb .icon-sun {
+      opacity: 1;
+    }
+
+    /* =========================================================
+       BENTO : rangées en flex-wrap
+       Bases 2:1 : la carte large fait les deux tiers, l'étroite un tiers,
+       et chaque rangée passe à la ligne quand la place manque.
+       ========================================================= */
+    .svc-grid {
+      max-width: var(--max-width);
+      margin: 0 auto;
+      padding: 18px 24px 0;
+      display: flex;
+      flex-direction: column;
+      gap: var(--gap);
+      position: relative;
+      z-index: 1;
+    }
+
+    .svc-row {
+      display: flex;
+      flex-wrap: wrap;
+      gap: var(--gap);
+    }
+
+    .svc-row>* {
+      min-width: 0;
+    }
+
+    .svc-wide {
+      flex: 2 1 600px;
+    }
+
+    .svc-narrow {
+      flex: 1 1 300px;
+    }
+
+    .svc-third {
+      flex: 1 1 280px;
+    }
+
+    /* Le sommaire mène à la carte avec un peu d'air au-dessus */
+    .svc-card {
+      scroll-margin-top: 18px;
+    }
+
+    /* =========================================================
+       EN-TÊTE : carte bleue et sommaire
+       ========================================================= */
+    .svc-hero {
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      gap: 22px;
+      padding: 34px 40px 40px;
+      background: var(--profile-bg);
+      border-color: var(--profile-border);
+      color: var(--profile-text);
+    }
+
+    .svc-hero-top {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 16px;
+      margin-top: -8px;
+    }
+
+    .svc-hero .svc-eyebrow {
+      color: var(--profile-text-soft);
+    }
+
+    .svc-title {
+      font-size: clamp(2.25rem, 5.4vw, 4.25rem);
+      font-weight: 700;
+      letter-spacing: -0.045em;
+      line-height: 1.02;
+      overflow-wrap: break-word;
+    }
+
+    .svc-intro {
+      max-width: 54ch;
+      font-size: 1rem;
+      font-weight: 600;
+      line-height: 1.55;
+      color: var(--profile-text);
+    }
+
+    .svc-toc {
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      padding: 8px 24px;
+    }
+
+    .svc-toc li+li {
+      border-top: 1px solid var(--line);
+    }
+
+    .svc-toc a {
+      display: grid;
+      grid-template-columns: 34px minmax(0, 1fr) auto;
+      align-items: center;
+      gap: 8px;
+      min-height: 52px;
+      padding: 6px 0;
+      border-radius: 8px;
+      color: var(--text);
+      font-size: 1.125rem;
+      font-weight: 700;
+      letter-spacing: -0.02em;
+      line-height: 1.2;
+      transition: color var(--transition-fast);
+    }
+
+    .svc-toc-num {
+      color: var(--blue-ink);
+      font-size: 0.8125rem;
+      font-weight: 600;
+      letter-spacing: 0;
+      font-variant-numeric: tabular-nums;
+    }
+
+    .svc-toc-arrow {
+      width: 18px;
+      height: 18px;
+      color: var(--svc-label);
+      transition: transform var(--transition-fast), color var(--transition-fast);
+    }
+
+    .svc-toc a:hover {
+      color: var(--blue-ink);
+    }
+
+    .svc-toc a:hover .svc-toc-arrow {
+      color: var(--blue-ink);
+      transform: translate(2px, -2px);
+    }
+
+    /* =========================================================
+       CONTENU D'UNE CARTE : intitulé, accroche, prestations, réalisations
+       ========================================================= */
+    .svc-card {
+      display: flex;
+      flex-direction: column;
+    }
+
+    .svc-body {
+      flex: 1;
+      display: flex;
+      flex-direction: column;
+      gap: 14px;
+      padding: 26px;
+    }
+
+    .svc-head {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 12px;
+    }
+
+    .svc-eyebrow {
+      font-size: 0.75rem;
+      font-weight: 600;
+      letter-spacing: 1.6px;
+      text-transform: uppercase;
+      line-height: 1.3;
+      color: var(--svc-label);
+    }
+
+    .svc-eyebrow-num {
+      margin-right: 10px;
+      color: var(--blue-ink);
+    }
+
+    .svc-lead {
+      font-size: 1.375rem;
+      font-weight: 700;
+      letter-spacing: -0.02em;
+      line-height: 1.2;
+      color: var(--text);
+    }
+
+    .svc-wide .svc-lead {
+      font-size: 1.625rem;
+      letter-spacing: -0.025em;
+      line-height: 1.15;
+    }
+
+    .svc-list {
+      display: flex;
+      flex-direction: column;
+      gap: 7px;
+      font-size: 0.9375rem;
+      line-height: 1.45;
+      color: var(--svc-text);
+    }
+
+    .svc-list strong {
+      font-weight: 600;
+      color: var(--blue-ink);
+    }
+
+    /* Réalisations : toujours en bas de la carte */
+    .svc-refs {
+      margin-top: auto;
+      padding-top: 12px;
+      font-size: 0.8125rem;
+      line-height: 1.5;
+      color: var(--svc-label);
+    }
+
+    .svc-refs a {
+      color: var(--blue-ink);
+      text-decoration: underline;
+      text-underline-offset: 2px;
+      text-decoration-thickness: 1px;
+    }
+
+    .svc-refs a:hover {
+      text-decoration-thickness: 2px;
+    }
+
+    .svc-badge {
+      flex: none;
+      display: inline-flex;
+      align-items: center;
+      padding: 3px 9px;
+      border-radius: 999px;
+      font-size: 0.6875rem;
+      font-weight: 600;
+      letter-spacing: 0;
+      line-height: 1.35;
+      white-space: nowrap;
+    }
+
+    /* Noir en clair, blanc en sombre : toujours contrasté avec la carte */
+    .svc-badge--ink {
+      background: var(--text);
+      color: var(--card-bg-solid);
+    }
+
+    .svc-badge--white {
+      background: #ffffff;
+      color: var(--ill-black);
+    }
+
+    /* =========================================================
+       ZONES VISUELLES
+       ========================================================= */
+    .svc-visual {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      overflow: hidden;
+      background: var(--svc-blue-soft);
+      transition: background var(--transition-med);
+    }
+
+    /* Carte large : texte et visuel côte à côte */
+    .svc-wide.svc-card {
+      flex-direction: row;
+    }
+
+    .svc-wide .svc-body {
+      flex: 1 1 52%;
+      min-width: 0;
+      padding: 30px;
+    }
+
+    .svc-wide .svc-visual {
+      flex: 1 1 48%;
+      min-width: 0;
+      min-height: 340px;
+      padding: 28px;
+    }
+
+    /* Carte étroite : visuel en haut, même hauteur partout */
+    .svc-visual--top {
+      flex: none;
+      height: 220px;
+      padding: 20px;
+    }
+
+    /* ---------- 01 Graphisme : éventail de trois affiches ---------- */
+    .fan {
+      position: relative;
+      width: min(100%, 360px);
+      aspect-ratio: 1 / 1.05;
+    }
+
+    /* Trois documents au format A : flyer à gauche, CV à droite, affiche devant */
+    .fan-sheet,
+    .fan-poster {
+      position: absolute;
+      aspect-ratio: 1 / 1.414;
+      overflow: hidden;
+      border-radius: 4px;
+      background: var(--ill-grey);
+    }
+
+    .fan-sheet {
+      box-shadow: 0 10px 24px rgba(10, 10, 13, 0.16);
+    }
+
+    .fan-sheet--left {
+      left: 2%;
+      top: 15%;
+      width: 44%;
+      transform: rotate(-10deg);
+    }
+
+    .fan-sheet--right {
+      right: 0;
+      top: 30%;
+      width: 40%;
+      transform: rotate(9deg);
+    }
+
+    /* L'affiche passe au premier plan, entièrement visible */
+    .fan-poster {
+      left: 26%;
+      top: 4%;
+      z-index: 3;
+      width: 50%;
+      transform: rotate(4deg);
+      box-shadow: 0 18px 38px rgba(10, 10, 13, 0.28), 0 4px 10px rgba(10, 10, 13, 0.12);
+    }
+
+    .fan-sheet img,
+    .fan-poster img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+    }
+
+    /* Mode sombre : un liseré garde le téléphone noir détaché du fond */
+    [data-theme="dark"] .phone {
+      box-shadow: 0 0 0 1px rgba(255, 255, 255, 0.16), 0 14px 32px rgba(0, 0, 0, 0.4);
+    }
+
+    /* ---------- 02 Sites web et 03 Identité visuelle : visuel entier,
+       en petite carte à contour fin sur le fond bleu clair ---------- */
+    .svc-shot {
+      width: auto;
+      height: auto;
+      max-width: 88%;
+      max-height: 88%;
+      border: 1px solid var(--card-border);
+      border-radius: 12px;
+      background: var(--svc-paper);
+      box-shadow: 0 12px 28px rgba(10, 10, 13, 0.14);
+    }
+
+    /* ---------- 04 Réseaux sociaux : téléphone et calendrier ---------- */
+    .social-scene {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+
+    .phone {
+      flex: none;
+      width: 176px;
+      padding: 7px;
+      border-radius: 28px;
+      background: var(--ill-black);
+      box-shadow: 0 18px 40px rgba(10, 10, 13, 0.26);
+    }
+
+    .phone-screen {
+      aspect-ratio: 9 / 16;
+      border-radius: 21px;
+      overflow: hidden;
+    }
+
+    .phone-screen img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+    }
+
+    .calendar {
+      flex: none;
+      position: relative;
+      z-index: 1;
+      width: 128px;
+      margin-left: -22px;
+      transform: translateY(-46px);
+      padding: 10px;
+      border-radius: 12px;
+      background: var(--svc-paper);
+      box-shadow: 0 12px 28px rgba(10, 10, 13, 0.16);
+    }
+
+    .calendar-title {
+      display: block;
+      margin-bottom: 8px;
+      font-size: 0.6875rem;
+      font-weight: 700;
+      color: var(--ill-black);
+    }
+
+    .calendar-grid {
+      display: grid;
+      grid-template-columns: repeat(5, 1fr);
+      gap: 4px;
+    }
+
+    .calendar-grid span {
+      aspect-ratio: 1;
+      border-radius: 3px;
+      background: #E5E5EA;
+    }
+
+    .calendar-grid .is-blue {
+      background: var(--profile-bg);
+    }
+
+    .calendar-grid .is-rust {
+      background: var(--ill-rust);
+    }
+
+    .calendar-grid .is-yellow {
+      background: var(--ill-yellow);
+    }
+
+    /* ---------- 05 Financement participatif : carte noire ---------- */
+    .svc-card--dark {
+      background: var(--svc-dark-card);
+      border-color: var(--svc-dark-border);
+      color: #ffffff;
+      --card-edge: rgba(255, 255, 255, 0.22);
+      --card-highlight-top: rgba(255, 255, 255, 0.14);
+    }
+
+    .svc-card--dark .svc-eyebrow,
+    .svc-card--dark .svc-refs {
+      color: #A1A1A6;
+    }
+
+    .svc-card--dark .svc-eyebrow-num,
+    .svc-card--dark .svc-list strong,
+    .svc-card--dark .svc-refs a {
+      color: #5AA2FF;
+    }
+
+    .svc-card--dark .svc-lead {
+      color: #ffffff;
+    }
+
+    .svc-card--dark .svc-list {
+      color: #D1D1D6;
+    }
+
+    .svc-card--dark .svc-visual {
+      background: transparent;
+      padding: 20px 20px 0;
+    }
+
+    .goal {
+      width: 100%;
+      padding: 16px;
+      border-radius: 14px;
+      background: #1C1C1E;
+      border: 1px solid rgba(255, 255, 255, 0.10);
+      color: #ffffff;
+    }
+
+    .goal-head {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      font-size: 0.8125rem;
+      font-weight: 700;
+    }
+
+    .goal-head i {
+      width: 14px;
+      height: 14px;
+      border-radius: 50%;
+      background: var(--ill-yellow);
+    }
+
+    .goal-bar {
+      height: 8px;
+      margin: 16px 0 8px;
+      border-radius: 999px;
+      background: rgba(255, 255, 255, 0.14);
+      overflow: hidden;
+    }
+
+    .goal-bar span {
+      display: block;
+      width: 68%;
+      height: 100%;
+      border-radius: inherit;
+      background: var(--apple-blue-dark);
+    }
+
+    .goal-steps {
+      display: flex;
+      justify-content: space-between;
+      font-size: 0.6875rem;
+      color: #A1A1A6;
+    }
+
+    .goal-tags {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 6px;
+      margin-top: 14px;
+    }
+
+    .goal-tags span {
+      padding: 4px 10px;
+      border-radius: 999px;
+      background: rgba(255, 255, 255, 0.10);
+      font-size: 0.6875rem;
+      font-weight: 600;
+    }
+
+    /* ---------- 06 Montage vidéo : cadre vertical et pistes ---------- */
+    .edit-scene {
+      display: flex;
+      align-items: center;
+      gap: 16px;
+      width: 100%;
+      height: 100%;
+    }
+
+    .edit-frame {
+      flex: none;
+      position: relative;
+      height: 100%;
+      aspect-ratio: 9 / 16;
+      border-radius: 12px;
+      overflow: hidden;
+      background: var(--ill-black);
+      box-shadow: 0 14px 30px rgba(10, 10, 13, 0.24);
+    }
+
+    /* Miniature 16:9 recadrée en 9:16 : le visage reste au centre */
+    .edit-frame img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      object-position: 50.5% center;
+    }
+
+    .edit-play {
+      position: absolute;
+      top: 50%;
+      left: 50%;
+      width: 34px;
+      height: 34px;
+      display: grid;
+      place-items: center;
+      border-radius: 50%;
+      background: rgba(255, 255, 255, 0.92);
+      color: var(--ill-black);
+      transform: translate(-50%, -50%);
+      box-shadow: 0 4px 12px rgba(0, 0, 0, 0.25);
+    }
+
+    .edit-play svg {
+      width: 14px;
+      height: 14px;
+      margin-left: 2px;
+    }
+
+    .edit-subs {
+      position: absolute;
+      left: 50%;
+      bottom: 10px;
+      padding: 3px 7px;
+      border-radius: 5px;
+      background: rgba(10, 10, 13, 0.82);
+      color: #ffffff;
+      font-size: 0.625rem;
+      font-weight: 700;
+      white-space: nowrap;
+      transform: translateX(-50%);
+    }
+
+    .edit-tracks {
+      flex: 1;
+      min-width: 0;
+      display: flex;
+      flex-direction: column;
+      gap: 10px;
+    }
+
+    .edit-track {
+      display: flex;
+      align-items: center;
+      height: 22px;
+      min-width: max-content;
+      padding: 0 8px;
+      border-radius: 6px;
+      font-size: 0.6875rem;
+      font-weight: 700;
+      line-height: 1;
+      white-space: nowrap;
+    }
+
+    .edit-track--motion {
+      width: 88%;
+      background: var(--profile-bg);
+      color: #ffffff;
+    }
+
+    .edit-track--zoom {
+      width: 46%;
+      margin-left: 24%;
+      background: var(--ill-rust);
+      color: #ffffff;
+    }
+
+    .edit-track--transition {
+      width: 62%;
+      margin-left: 8%;
+      background: var(--ill-yellow);
+      color: var(--ill-black);
+    }
+
+    .edit-track--subs {
+      width: 80%;
+      margin-left: 16%;
+      background: var(--ill-grey);
+      color: var(--ill-black);
+    }
+
+    /* ---------- Contact : carte bleue ---------- */
+    .svc-cta {
+      background: var(--profile-bg);
+      border-color: var(--profile-border);
+      color: var(--profile-text);
+    }
+
+    .svc-cta .svc-body {
+      justify-content: center;
+      gap: 16px;
+      padding: 30px;
+    }
+
+    .svc-cta .svc-eyebrow {
+      color: var(--profile-text-soft);
+    }
+
+    .svc-cta-title {
+      font-size: clamp(2rem, 3.2vw, 2.625rem);
+      font-weight: 700;
+      letter-spacing: -0.035em;
+      line-height: 1.05;
+    }
+
+    .svc-cta-text {
+      font-size: 0.9375rem;
+      font-weight: 500;
+      line-height: 1.55;
+      color: var(--profile-text);
+    }
+
+    .svc-cta-link {
+      align-self: flex-start;
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      min-height: 44px;
+      margin-top: 8px;
+      padding: 0 22px;
+      border-radius: 999px;
+      background: #ffffff;
+      color: var(--profile-bg);
+      font-size: 0.875rem;
+      font-weight: 600;
+      transition: transform var(--transition-fast), box-shadow var(--transition-fast);
+    }
+
+    .svc-cta-link svg {
+      width: 14px;
+      height: 14px;
+      transition: transform var(--transition-fast);
+    }
+
+    .svc-cta-link:hover {
+      transform: translateY(-1px);
+      box-shadow: 0 10px 24px rgba(0, 0, 0, 0.18);
+    }
+
+    .svc-cta-link:hover svg {
+      transform: translateX(2px);
+    }
+
+    .svc-cta-link:focus-visible {
+      outline-color: #ffffff;
+    }
+
+    /* =========================================================
+       FOOTER (identique à l'accueil)
+       ========================================================= */
+
+    /* =========================================================
+       RESPONSIVE : mobile, une colonne, visuel au-dessus du texte
+       ========================================================= */
+    @media (max-width: 720px) {
+      .svc-grid {
+        padding: 14px 16px 0;
+        gap: 14px;
+      }
+
+      .svc-row {
+        gap: 14px;
+      }
+
+      .svc-hero {
+        padding: 22px 22px 26px;
+        gap: 16px;
+      }
+
+      .svc-hero-top {
+        margin-top: -6px;
+      }
+
+      .svc-intro {
+        font-size: 0.9375rem;
+      }
+
+      .svc-toc {
+        padding: 6px 20px;
+      }
+
+      .svc-toc a {
+        font-size: 1.0625rem;
+      }
+
+      .svc-wide.svc-card {
+        flex-direction: column;
+      }
+
+      .svc-wide .svc-visual {
+        order: -1;
+        flex: none;
+        min-height: 0;
+        padding: 26px 20px;
+      }
+
+      .svc-body,
+      .svc-wide .svc-body,
+      .svc-cta .svc-body {
+        padding: 22px 20px;
+      }
+
+      .svc-lead,
+      .svc-wide .svc-lead {
+        font-size: 1.375rem;
+      }
+
+      .fan {
+        width: min(100%, 300px);
+      }
+
+      .phone {
+        width: 160px;
+      }
+
+      .calendar {
+        width: 116px;
+        transform: translateY(-36px);
+      }
+
+      .svc-cta-link {
+        align-self: stretch;
+        justify-content: center;
+      }
+    }
+
+    /* Très petits téléphones (320px) : « communication. » tient sur une ligne */
+    @media (max-width: 374px) {
+      .svc-title {
+        font-size: 2rem;
+      }
+    }
+
+    /* =========================================================
+       MOUVEMENT RÉDUIT
+       ========================================================= */
+    @media (prefers-reduced-motion: reduce) {
+      html {
+        scroll-behavior: auto;
+      }
+
+      *,
+      *::before,
+      *::after {
+        animation: none !important;
+        transition: none !important;
+      }
+
+      .card:hover,
+      .svc-toc a:hover .svc-toc-arrow,
+      .svc-cta-link:hover,
+      .svc-cta-link:hover svg {
+        transform: none;
+      }
+    }
+  </style>
+  <link rel="stylesheet" href="css/site-pages.css" />
+  <script defer src="https://cloud.umami.is/script.js" data-website-id="c992974a-48c8-47e4-9625-85ab5eca2ac3"></script>
+</head>
+
+<body>
+
+  <nav class="site-nav" aria-label="Navigation principale">
+    <ul class="site-nav-list">
+      <li><a href="/" class="site-nav-link">Accueil</a></li>
+      <li><a href="/services" class="site-nav-link" aria-current="page">Services</a></li>
+      <li><a href="/realisations" class="site-nav-link">Réalisations</a></li>
+      <li><a data-umami-event="clic-contact" href="/contact" class="site-nav-link">Contact</a></li>
+    </ul>
+  </nav>
+
+  <main class="svc-grid">
+
+    <!-- ============ EN-TÊTE : titre et sommaire ============ -->
+    <div class="svc-row">
+      <header class="card svc-hero svc-wide">
+        <div class="svc-hero-top">
+          <p class="svc-eyebrow">Mes services</p>
+          <button type="button" class="theme-toggle-btn" id="theme-toggle" aria-labelledby="theme-toggle-label">
+            <span class="sr-only" id="theme-toggle-label">Passer en mode sombre</span>
+            <span class="toggle-switch" aria-hidden="true">
+              <span class="toggle-thumb">
+                <svg class="icon-moon" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true">
+                  <path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z" />
+                </svg>
+                <svg class="icon-sun" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4"
+                  stroke-linecap="round" aria-hidden="true">
+                  <circle cx="12" cy="12" r="4.5" />
+                  <line x1="12" y1="2" x2="12" y2="4.5" />
+                  <line x1="12" y1="19.5" x2="12" y2="22" />
+                  <line x1="4.22" y1="4.22" x2="6" y2="6" />
+                  <line x1="18" y1="18" x2="19.78" y2="19.78" />
+                  <line x1="2" y1="12" x2="4.5" y2="12" />
+                  <line x1="19.5" y1="12" x2="22" y2="12" />
+                  <line x1="4.22" y1="19.78" x2="6" y2="18" />
+                  <line x1="18" y1="6" x2="19.78" y2="4.22" />
+                </svg>
+              </span>
+            </span>
+          </button>
+        </div>
+        <h1 class="svc-title">Ce que je peux faire pour votre communication.</h1>
+        <p class="svc-intro">Six services, une seule personne pour les suivre&nbsp;: de la stratégie à la création, pour
+          les entreprises, associations et institutions.</p>
+      </header>
+
+      <nav class="card svc-toc svc-narrow" aria-label="Sommaire des services">
+        <ol>
+          <li>
+            <a href="#graphisme">
+              <span class="svc-toc-num">01</span>
+              <span>Graphisme</span>
+              <svg class="svc-toc-arrow" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
+                stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+                <line x1="7" y1="17" x2="17" y2="7" />
+                <polyline points="7 7 17 7 17 17" />
+              </svg>
+            </a>
+          </li>
+          <li>
+            <a href="#sites-web">
+              <span class="svc-toc-num">02</span>
+              <span>Sites web</span>
+              <svg class="svc-toc-arrow" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
+                stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+                <line x1="7" y1="17" x2="17" y2="7" />
+                <polyline points="7 7 17 7 17 17" />
+              </svg>
+            </a>
+          </li>
+          <li>
+            <a href="#identite-visuelle">
+              <span class="svc-toc-num">03</span>
+              <span>Identité visuelle</span>
+              <svg class="svc-toc-arrow" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
+                stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+                <line x1="7" y1="17" x2="17" y2="7" />
+                <polyline points="7 7 17 7 17 17" />
+              </svg>
+            </a>
+          </li>
+          <li>
+            <a href="#reseaux-sociaux">
+              <span class="svc-toc-num">04</span>
+              <span>Réseaux sociaux</span>
+              <svg class="svc-toc-arrow" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
+                stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+                <line x1="7" y1="17" x2="17" y2="7" />
+                <polyline points="7 7 17 7 17 17" />
+              </svg>
+            </a>
+          </li>
+          <li>
+            <a href="#financement-participatif">
+              <span class="svc-toc-num">05</span>
+              <span>Financement participatif</span>
+              <span class="svc-badge svc-badge--ink">Spécialité</span>
+            </a>
+          </li>
+          <li>
+            <a href="#montage-video">
+              <span class="svc-toc-num">06</span>
+              <span>Montage vidéo</span>
+              <svg class="svc-toc-arrow" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
+                stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+                <line x1="7" y1="17" x2="17" y2="7" />
+                <polyline points="7 7 17 7 17 17" />
+              </svg>
+            </a>
+          </li>
+        </ol>
+      </nav>
+    </div>
+
+    <!-- ============ RANGÉE 1 : Graphisme + Sites web ============ -->
+    <div class="svc-row">
+      <section class="card svc-card svc-wide" id="graphisme" aria-labelledby="graphisme-title">
+        <div class="svc-body">
+          <h2 class="svc-eyebrow" id="graphisme-title"><span class="svc-eyebrow-num">01</span>Graphisme</h2>
+          <p class="svc-lead">Des supports qui donnent envie de lire, prêts à imprimer ou à diffuser.</p>
+          <ul class="svc-list">
+            <li><strong>Print&nbsp;:</strong> affiches, flyers, dépliants, brochures, kakémonos</li>
+            <li><strong>Édition&nbsp;:</strong> catalogues, rapports, cartes de visite, CV</li>
+            <li><strong>Mise en page&nbsp;:</strong> documents, ebooks, mémoires</li>
+            <li><strong>Fichiers&nbsp;:</strong> prêts pour l'impression et le digital</li>
+          </ul>
+          <p class="svc-refs">Réalisations&nbsp;: <a href="/projet-trait-union">Le Trait d'Union</a>, <a
+              href="/projet-communication-culturelle">Médiathèque de Saint-Nazaire</a>, <a
+              href="/projet-zeste-miette">Zeste &amp; Miette</a>, <a href="/projet-festival-sound">Festival SOUND</a>
+            </p>
+        </div>
+        <div class="svc-visual">
+          <div class="fan">
+            <div class="fan-sheet fan-sheet--left">
+              <img src="Images/culturelle_flyer.webp"
+                alt="Flyer de présentation de la médiathèque Henri Tanyères : horaires, services et contact" width="1200"
+                height="1704" />
+            </div>
+            <div class="fan-sheet fan-sheet--right">
+              <img src="Images/CV_benjamin_bridanne.webp"
+                alt="CV de Benjamin Bridanne mis en page sur une feuille A4, en blocs blancs aux titres soulignés" width="1654"
+                height="2340" />
+            </div>
+            <div class="fan-poster">
+              <img src="Images/culturelle_jeu.webp"
+                alt="Affiche de la médiathèque pour une séance de jeu en réalité virtuelle, le 12 juin à 14 h"
+                width="1200" height="1704" />
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <section class="card svc-card svc-narrow" id="sites-web" aria-labelledby="sites-web-title">
+        <div class="svc-visual svc-visual--top">
+          <img class="svc-shot" src="Images/site-papi-restaurant.webp"
+            alt="Page d'accueil du site de PAPI, cantine de quartier : accroche « À table, on est bien. », bouton de réservation et photos de plats"
+            width="1672" height="941" />
+        </div>
+        <div class="svc-body">
+          <h2 class="svc-eyebrow" id="sites-web-title"><span class="svc-eyebrow-num">02</span>Sites web</h2>
+          <p class="svc-lead">Un site clair, à jour et que vous savez faire vivre.</p>
+          <ul class="svc-list">
+            <li><strong>Conception&nbsp;:</strong> arborescence, maquettes</li>
+            <li><strong>Réalisation&nbsp;:</strong> site vitrine, portfolio, WordPress, pages de campagne, formulaires
+            </li>
+            <li><strong>Optimisation&nbsp;:</strong> responsive sur Divi ou Elementor</li>
+            <li><strong>Audit&nbsp;:</strong> audit web, audit SEO</li>
+            <li><strong>Suivi&nbsp;:</strong> actualités, mise à jour des contenus</li>
+          </ul>
+          <p class="svc-refs">Réalisations&nbsp;: <a href="/projet-ecohabitat">La Coopérative ÉcoHabitat</a>, <a
+              href="/projet-groenland">Groenland</a>, <a href="/projet-papi-restaurant">Papi Restaurant</a></p>
+        </div>
+      </section>
+    </div>
+
+    <!-- ============ RANGÉE 2 : Identité visuelle + Réseaux sociaux ============ -->
+    <div class="svc-row">
+      <section class="card svc-card svc-narrow" id="identite-visuelle" aria-labelledby="identite-visuelle-title">
+        <div class="svc-visual svc-visual--top">
+          <img class="svc-shot" src="Images/identite-visuelle-cooperative-ecohabitat.webp"
+            alt="Système d'identité visuelle de la Coopérative ÉcoHabitat : logotypes, palette de couleurs, typographies et univers graphique"
+            width="1920" height="1200" loading="lazy" />
+        </div>
+        <div class="svc-body">
+          <h2 class="svc-eyebrow" id="identite-visuelle-title"><span class="svc-eyebrow-num">03</span>Identité
+            visuelle</h2>
+          <p class="svc-lead">Une image reconnaissable, utilisée de la même façon partout.</p>
+          <ul class="svc-list">
+            <li><strong>Création&nbsp;:</strong> logo, couleurs, typographies, direction artistique</li>
+            <li><strong>Reprise&nbsp;:</strong> vectorisation de logo existant</li>
+            <li><strong>Cadre&nbsp;:</strong> charte graphique, règles d'utilisation</li>
+            <li><strong>Déclinaisons&nbsp;:</strong> sur tous vos supports</li>
+          </ul>
+          <p class="svc-refs">Réalisations&nbsp;: <a href="/projet-zeste-miette">Zeste &amp; Miette</a>, <a
+              href="/projet-festival-sound">Festival SOUND</a> </p>
+        </div>
+      </section>
+
+      <section class="card svc-card svc-wide" id="reseaux-sociaux" aria-labelledby="reseaux-sociaux-title">
+        <div class="svc-visual">
+          <div class="social-scene">
+            <div class="phone">
+              <div class="phone-screen">
+                <img src="Images/zeste-miette-story.webp"
+                  alt="Story Instagram Zeste &amp; Miette sur fond jaune : journée dégustation du 17 avril, avec une main tenant trois biscuits"
+                  width="720" height="1280" loading="lazy" />
+              </div>
+            </div>
+            <div class="calendar" aria-hidden="true">
+              <span class="calendar-title">Calendrier</span>
+              <div class="calendar-grid">
+                <span class="is-blue"></span><span></span><span class="is-rust"></span><span></span><span></span>
+                <span></span><span class="is-yellow"></span><span></span><span class="is-blue"></span><span></span>
+                <span class="is-rust"></span><span></span><span></span><span class="is-yellow"></span><span
+                  class="is-blue"></span>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="svc-body">
+          <h2 class="svc-eyebrow" id="reseaux-sociaux-title"><span class="svc-eyebrow-num">04</span>Réseaux sociaux
+          </h2>
+          <p class="svc-lead">Des réseaux actifs et cohérents, sans y passer vos soirées.</p>
+          <ul class="svc-list">
+            <li><strong>Stratégie&nbsp;:</strong> audit digital, choix des réseaux, ligne éditoriale, calendrier</li>
+            <li><strong>Création&nbsp;:</strong> posts, carrousels, stories, vidéos courtes, templates</li>
+            <li><strong>Animation&nbsp;:</strong> programmation, modération</li>
+            <li><strong>Publicité&nbsp;:</strong> campagnes Ads</li>
+            <li><strong>Analyse&nbsp;:</strong> performances des publications, bilan</li>
+          </ul>
+          <p class="svc-refs">Réalisations&nbsp;: <a href="/projet-handi-tolosa">Handi Tolosa</a>, <a
+              href="/projet-zeste-miette">Zeste &amp; Miette</a>, <a href="/projet-campagne-financement">La Place des
+              Matériaux</a></p>
+        </div>
+      </section>
+    </div>
+
+    <!-- ============ RANGÉE 3 : Financement + Montage vidéo + Contact ============ -->
+    <div class="svc-row">
+      <section class="card svc-card svc-card--dark svc-third" id="financement-participatif"
+        aria-labelledby="financement-participatif-title">
+        <div class="svc-visual svc-visual--top" aria-hidden="true">
+          <div class="goal">
+            <div class="goal-head">Objectif de collecte <i></i></div>
+            <div class="goal-bar"><span></span></div>
+            <div class="goal-steps"><span>Lancement</span><span>Dernier jour</span></div>
+            <div class="goal-tags"><span>Benchmark</span><span>Page</span><span>Réseaux</span></div>
+          </div>
+        </div>
+        <div class="svc-body">
+          <div class="svc-head">
+            <h2 class="svc-eyebrow" id="financement-participatif-title"><span
+                class="svc-eyebrow-num">05</span>Financement participatif</h2>
+            <span class="svc-badge svc-badge--white">Spécialité</span>
+          </div>
+          <p class="svc-lead">Une campagne préparée, visible et animée jusqu'au dernier jour.</p>
+          <ul class="svc-list">
+            <li><strong>Préparation&nbsp;:</strong> benchmark, page dédiée à la campagne</li>
+            <li><strong>Création&nbsp;:</strong> graphisme, visuels pour tous vos supports</li>
+            <li><strong>Diffusion&nbsp;:</strong> communication 360, alimentation des réseaux sociaux</li>
+            <li><strong>Animation&nbsp;:</strong> banque d'idées tout au long de la campagne</li>
+          </ul>
+          <p class="svc-refs">Réalisation&nbsp;: <a href="/projet-campagne-financement">La Place des Matériaux</a></p>
+        </div>
+      </section>
+
+      <section class="card svc-card svc-third" id="montage-video" aria-labelledby="montage-video-title">
+        <div class="svc-visual svc-visual--top">
+          <div class="edit-scene">
+            <div class="edit-frame">
+              <img src="Images/miniature-montage-TiboInShape.webp"
+                alt="Miniature d'un montage vidéo recadrée au format vertical : un homme face caméra dans un intérieur"
+                width="1920" height="1080" loading="lazy" />
+              <span class="edit-play" aria-hidden="true">
+                <svg viewBox="0 0 24 24" fill="currentColor">
+                  <path d="M8 5.5v13a1 1 0 0 0 1.53.85l10.2-6.5a1 1 0 0 0 0-1.7L9.53 4.65A1 1 0 0 0 8 5.5z" />
+                </svg>
+              </span>
+              <span class="edit-subs" aria-hidden="true">Sous-titres</span>
+            </div>
+            <div class="edit-tracks" aria-hidden="true">
+              <span class="edit-track edit-track--motion">Motion design</span>
+              <span class="edit-track edit-track--zoom">Zoom</span>
+              <span class="edit-track edit-track--transition">Transition</span>
+              <span class="edit-track edit-track--subs">Sous-titrage</span>
+            </div>
+          </div>
+        </div>
+        <div class="svc-body">
+          <h2 class="svc-eyebrow" id="montage-video-title"><span class="svc-eyebrow-num">06</span>Montage vidéo</h2>
+          <p class="svc-lead">Des vidéos rythmées, pensées pour être regardées jusqu'au bout.</p>
+          <ul class="svc-list">
+            <li><strong>Formats&nbsp;:</strong> vidéos verticales pour TikTok, YouTube Shorts, Reels</li>
+            <li><strong>Montage&nbsp;:</strong> cut rythmé, fond vert, sous-titres, musique et effets sonores</li>
+            <li><strong>Animation&nbsp;:</strong> motion design, animation de vidéo</li>
+          </ul>
+          <p class="svc-refs">Exemples&nbsp;: <a href="/">mon CV vidéo en motion design</a>, <a href="/montage-video-tibo-inshape">Défi de
+              montage YouTube</a></p>
+        </div>
+      </section>
+
+      <section class="card svc-card svc-cta svc-third" aria-labelledby="contact-title">
+        <div class="svc-body">
+          <p class="svc-eyebrow">Et maintenant&nbsp;?</p>
+          <h2 class="svc-cta-title" id="contact-title">Un projet en tête&nbsp;?</h2>
+          <p class="svc-cta-text">Le premier échange est gratuit et sans engagement. On parle de votre projet, puis je
+            vous envoie un devis clair&nbsp;: contenu, délais, prix.</p>
+          <a data-umami-event="clic-contact" href="/contact" class="svc-cta-link">
+            Discutons de votre projet
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round"
+              stroke-linejoin="round" aria-hidden="true">
+              <path d="M5 12h14M13 6l6 6-6 6" />
+            </svg>
+          </a>
+        </div>
+      </section>
+    </div>
+
+  </main>
+
+  <footer class="site-footer">
+    <p class="footer-identity">Benjamin Bridanne · Chargé de communication digitale</p>
+    <div class="footer-links">
+      <a href="/realisations">Réalisations</a>
+      <a href="/politique-confidentialite">Confidentialité</a>
+      <a data-umami-event="clic-contact" href="mailto:benjaminbridanne@gmail.com">Mail</a>
+      <a data-umami-event="clic-linkedin" href="https://www.linkedin.com/in/benjamin-bridanne-ba9a64285/" target="_blank" rel="noopener">LinkedIn</a>
+      <a href="/mentions-legales">Mentions légales</a>
+    </div>
+  </footer>
+
+  <script>
+    /* =========================================================
+       THÈME CLAIR/SOMBRE : choix mémorisé dans localStorage (clé bb-theme partagée)
+       ========================================================= */
+    (function () {
+      const root = document.documentElement;
+      const btn = document.getElementById('theme-toggle');
+      const label = document.getElementById('theme-toggle-label');
+      /* Thème déjà appliqué dans le <head> : clair sauf choix explicite du sombre */
+      const initial = root.getAttribute('data-theme') === 'dark' ? 'dark' : 'light';
+      updateLabel(initial);
+
+      btn.addEventListener('click', () => {
+        const current = root.getAttribute('data-theme');
+        const next = current === 'dark' ? 'light' : 'dark';
+        root.setAttribute('data-theme', next);
+        updateLabel(next);
+        try { localStorage.setItem('bb-theme', next); } catch { /* Le thème fonctionne sans mémorisation. */ }
+      });
+
+      function updateLabel(mode) {
+        label.textContent = mode === 'dark' ? 'Passer en mode clair' : 'Passer en mode sombre';
+      }
+    })();
+  </script>
+
+</body>
+
+</html>

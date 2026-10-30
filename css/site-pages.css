@@ -1,0 +1,231 @@
+/* =========================================================
+   PAGES INTÉRIEURES - partagé par toutes les pages sauf l'accueil
+   (index.html ne charge pas ce fichier : sa mise en page reste intacte).
+   Chargé après le <style> de chaque page pour avoir le dernier mot.
+   Dépend des tokens de chaque page : --max-width, --line,
+   --text, --text-secondary, --transition-fast.
+   ========================================================= */
+
+/* =========================================================
+   LARGEUR DU CONTENU - une seule source pour toutes les pages :
+   conteneur max-width: var(--max-width), centré, marges de 24 px
+   (16 px sous 720 px). 1280 px partout, puis selon le type de page :
+   - études de cas (.project-main), comme l'ancienne fiche Papi Restaurant :
+     dès 1800 px, contenu jusqu'à 1920 px, texte à 18 px, marges de 36 px ;
+   - Réalisations, Services, Contact, comme l'ancienne page Projets :
+     1280 px à toutes les tailles, agrandissement d'ensemble (zoom)
+     sur les très grands écrans seulement ;
+   - pages légales : 1440 px et texte à 18 px dès 1800 px.
+   ========================================================= */
+:root {
+  --max-width: 1280px;
+}
+
+@media (min-width: 1800px) {
+  :root:has(.project-main) {
+    --max-width: 1920px;
+    font-size: 18px;
+  }
+
+  .project-main {
+    padding: 42px 36px 76px;
+  }
+
+  :root:has(.legal-main) {
+    --max-width: 1440px;
+    font-size: 18px;
+  }
+}
+
+@media (min-width: 2400px) and (min-height: 1200px) {
+  :root:has(.projects-grid, .svc-grid, .contact-layout) {
+    zoom: 1.3333;
+  }
+}
+
+@media (min-width: 3400px) and (min-height: 1800px) {
+  :root:has(.projects-grid, .svc-grid, .contact-layout) {
+    zoom: 2;
+  }
+}
+
+/* Barre des études de cas : le fond couvre l'écran, mais le lien retour
+   et l'interrupteur s'alignent sur les bords du contenu */
+.project-nav {
+  padding-left: max(24px, calc((100% - var(--max-width)) / 2 + 24px));
+  padding-right: max(24px, calc((100% - var(--max-width)) / 2 + 24px));
+}
+
+/* Dès 1800 px, elle suit les marges de 36 px des études de cas */
+@media (min-width: 1800px) {
+  .project-nav:has(~ .project-main) {
+    padding-left: max(36px, calc((100% - var(--max-width)) / 2 + 36px));
+    padding-right: max(36px, calc((100% - var(--max-width)) / 2 + 36px));
+  }
+}
+
+@media (max-width: 720px) {
+  .project-nav {
+    padding-left: 16px;
+    padding-right: 16px;
+  }
+
+  /* Pages sans pastille « Disponible » : l'interrupteur reste au bord droit */
+  .project-nav:not(:has(.nav-status)) .theme-toggle-btn {
+    margin-left: auto;
+  }
+}
+
+/* Tablette : la pastille se réduit à « Disponible » pour que
+   le fil d'Ariane tienne en entier sur la ligne de la barre */
+@media (max-width: 1024px) {
+  .nav-status-more {
+    display: none;
+  }
+}
+
+/* Pages légales : même conteneur que les autres pages, texte en colonne
+   de lecture alignée à gauche (bords alignés sur la barre et le footer) */
+.legal-main {
+  max-width: var(--max-width);
+}
+
+.legal-main > * {
+  max-width: 46rem;
+}
+
+@media (max-width: 720px) {
+  .legal-main {
+    padding-left: 16px;
+    padding-right: 16px;
+  }
+}
+
+/* =========================================================
+   FOOTER - copie exacte de celui de l'accueil
+   (width: 100% pour les pages dont le body est en flex, comme contact)
+   ========================================================= */
+.site-footer {
+  width: 100%;
+  max-width: var(--max-width);
+  margin: 32px auto 0;
+  padding: 40px 24px 56px;
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-between;
+  align-items: center;
+  gap: 16px;
+  border-top: 1px solid var(--line);
+  position: relative;
+  z-index: 1;
+}
+
+.footer-identity {
+  font-size: 0.8125rem;
+  color: var(--text-secondary);
+}
+
+.footer-links {
+  display: flex;
+  gap: 22px;
+  flex-wrap: wrap;
+}
+
+.footer-links a {
+  font-size: 0.8125rem;
+  color: var(--text-secondary);
+  transition: color var(--transition-fast);
+}
+
+.footer-links a:hover {
+  color: var(--text);
+}
+
+/* =========================================================
+   ZONES TACTILES - au moins 44 px sans changer le visuel :
+   la zone cliquable déborde du lien (même principe que les filtres)
+   ========================================================= */
+.site-nav-link,
+.nav-back,
+.theme-toggle-btn,
+.footer-links a {
+  position: relative;
+}
+
+/* Pastille de 30 px dans la nav de 40 px : 7 px de plus en haut et en bas */
+.site-nav-link::after {
+  content: "";
+  position: absolute;
+  inset: -7px 0;
+}
+
+/* Lien « Retour » de 31 px de haut */
+.nav-back::after {
+  content: "";
+  position: absolute;
+  inset: -7px -4px;
+}
+
+/* Interrupteur de thème de 52 × 28 px */
+.theme-toggle-btn::after {
+  content: "";
+  position: absolute;
+  inset: -8px -2px;
+}
+
+/* Boutons en capsule de 37 à 41 px des études de cas */
+.cta-link,
+.btn-primary,
+.result-link {
+  position: relative;
+}
+
+.cta-link::after,
+.btn-primary::after,
+.proto-btn::after {
+  content: "";
+  position: absolute;
+  inset: -5px 0;
+}
+
+/* Lien texte « Voir la campagne » en bas de carte */
+.result-link::after {
+  content: "";
+  position: absolute;
+  inset: -14px -8px;
+}
+
+/* Liens du footer (17 px de haut) : la zone remplit l'espace entre deux liens */
+.footer-links a::after {
+  content: "";
+  position: absolute;
+  inset: -14px -11px;
+}
+
+/* Écran tactile : quand les liens passent sur deux lignes,
+   l'écart vertical laisse 44 px à chaque zone sans chevauchement */
+@media (pointer: coarse) {
+  .footer-links {
+    row-gap: 28px;
+  }
+}
+
+/* =========================================================
+   TRÈS PETITS TÉLÉPHONES (320 px) - barre des études de cas :
+   « Réalisations », la pastille et l'interrupteur restent sur une ligne
+   ========================================================= */
+@media (max-width: 374px) {
+  .project-nav {
+    column-gap: 8px;
+  }
+
+  .nav-status {
+    padding: 6px 10px;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .footer-links a {
+    transition: none;
+  }
+}

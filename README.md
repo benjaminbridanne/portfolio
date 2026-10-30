@@ -6,7 +6,7 @@ Portfolio personnel de **Benjamin Bridanne**, chargé de communication digitale 
 
 ## À propos
 
-Site vitrine qui rassemble mes projets de communication, d'édition et de design web, mon parcours et mes compétences. Deuxième édition, entièrement redessinée : interface sombre par défaut avec bascule light, mise en page en cartes, accent bleu réservé aux interactions clés.
+Site vitrine qui rassemble mes réalisations en communication, d'édition et de design web, mon parcours et mes compétences. Deuxième édition, entièrement redessinée : interface sombre par défaut avec bascule light, mise en page en cartes, accent bleu réservé aux interactions clés.
 
 ## Stack
 
@@ -23,7 +23,8 @@ Aucune dépendance à installer, aucun `node_modules`, tout tourne à l'ouvertur
 ```
 .
 ├── index.html                      # Page d'accueil
-├── projets.html                    # Liste des projets
+├── realisations.html               # Liste des réalisations
+├── projets.html                    # Redirection vers realisations.html (anciens liens)
 ├── projet-*.html                   # 9 études de cas
 ├── mentions-legales.html
 └── Images/                         # Visuels, icônes, CV, livrables

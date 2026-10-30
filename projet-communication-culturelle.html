@@ -10,31 +10,31 @@
       if (localStorage.getItem('bb-theme') === 'dark') document.documentElement.setAttribute('data-theme', 'dark');
     } catch { /* Stockage indisponible : thème clair par défaut. */ }
   </script>
-  <title>Communication Culturelle - Médiathèque de Saint-Nazaire - Benjamin Bridanne</title>
+  <title>Médiathèque de Saint-Nazaire · Projet de Benjamin Bridanne</title>
   <meta name="description"
-    content="Communication print et digitale pour la médiathèque de Saint-Nazaire : agenda culturel, affiches, flyer et réseaux sociaux. Projet de stage de Benjamin Bridanne." />
+    content="La médiathèque de Saint-Nazaire avait une vraie programmation, mais ses événements peinaient à trouver leur public. Trois mois de communication print et digitale, avec la refonte de l'agenda culturel de rentrée." />
   <link rel="canonical" href="https://benjaminbridanne.fr/projet-communication-culturelle" />
-  <link rel="icon" href="Images/image-logo-inverse.png" type="image/png" />
+  <link rel="icon" href="Images/favicon-b.b.svg" type="image/svg" />
 
   <meta property="og:type" content="website" />
   <meta property="og:url" content="https://benjaminbridanne.fr/projet-communication-culturelle" />
-  <meta property="og:title" content="Communication culturelle - Médiathèque de Saint-Nazaire" />
+  <meta property="og:title" content="Médiathèque de Saint-Nazaire : agenda culturel et supports de communication" />
   <meta property="og:description"
-    content="Communication print et digitale pour la médiathèque de Saint-Nazaire : agenda culturel, affiches, flyer et réseaux sociaux." />
+    content="La médiathèque de Saint-Nazaire avait une vraie programmation, mais ses événements peinaient à trouver leur public. Trois mois de communication print et digitale, avec la refonte de l'agenda culturel de rentrée." />
   <meta property="og:image" content="https://benjaminbridanne.fr/Images/image_fond.png" />
   <meta property="og:locale" content="fr_FR" />
 
   <meta name="twitter:card" content="summary_large_image" />
+  <link rel="stylesheet" href="css/fiche-projet.css" />
   <style>
     /* =========================================================
-       TOKENS (identiques à l'accueil - cohérence stricte)
+       TOKENS (identiques à l'accueil : cohérence stricte)
        ========================================================= */
     :root {
       --font-system: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
       --radius: 22px;
       --radius-sm: 14px;
       --gap: 14px;
-      --max-width: 1280px;
 
       --ease: cubic-bezier(.2, .8, .2, 1);
       --transition-fast: 250ms var(--ease);
@@ -368,7 +368,7 @@
     }
 
     /* =========================================================
-       PROJECT BENTO GRID
+       CONTENEUR (la grille de l'étude de cas est dans css/fiche-projet.css)
        ========================================================= */
     .project-main {
       max-width: var(--max-width);
@@ -378,78 +378,12 @@
       z-index: 1;
     }
 
-    .project-grid {
-      display: grid;
-      grid-template-columns: repeat(4, 1fr);
-      grid-auto-rows: minmax(150px, auto);
-      gap: var(--gap);
-    }
-
-    /* --- Positionnement des cartes --- */
-    .card--hero-meta {
-      grid-column: span 2;
-      grid-row: span 1;
-    }
-
-    .card--hero-visual {
-      grid-column: span 2;
-      grid-row: span 1;
-      padding: 0;
-      min-height: 320px;
-    }
-
-    .card--info {
-      grid-column: span 1;
-      grid-row: span 1;
-    }
-
-    /* Galerie : quatre supports verticaux identiques, cote a cote */
-    .card--gallery-poster {
-      grid-row: 3 / 5;
-      padding: 0;
-      min-height: 0;
-    }
-
-    .card--gallery-poster-1 {
-      grid-column: 1;
-    }
-
-    .card--gallery-poster-2 {
-      grid-column: 2;
-    }
-
-    .card--gallery-poster-3 {
-      grid-column: 3;
-    }
-
-    .card--gallery-poster-4 {
-      grid-column: 4;
-    }
-
-    /* =========================================================
-       HERO - MÉTA
-       ========================================================= */
-    .card--hero-meta {
-      display: flex;
-      flex-direction: column;
-      justify-content: center;
-      gap: 18px;
-      padding: 32px 30px;
-    }
-
     .hero-eyebrow {
       font-size: 0.75rem;
       font-weight: 500;
       color: var(--eyebrow);
       text-transform: uppercase;
       letter-spacing: 0.14em;
-    }
-
-    .hero-title {
-      font-size: clamp(1.75rem, 3.2vw, 2.75rem);
-      font-weight: 700;
-      letter-spacing: -0.03em;
-      line-height: 1.02;
     }
 
     .hero-tags {
@@ -469,29 +403,6 @@
       font-weight: 500;
       color: var(--text-secondary);
       letter-spacing: 0.01em;
-    }
-
-    .hero-pitch {
-      font-size: 0.9375rem;
-      color: var(--text-secondary);
-      line-height: 1.55;
-      max-width: 90ch;
-    }
-
-    /* =========================================================
-       HERO - VISUEL
-       ========================================================= */
-    .card--hero-visual {
-      overflow: hidden;
-    }
-
-    .hero-image {
-      position: absolute;
-      inset: 0;
-      width: 100%;
-      height: 100%;
-      object-fit: cover;
-      z-index: 1;
     }
 
     /* Bouton pose sur le visuel : lisible dans les deux themes */
@@ -535,228 +446,6 @@
     .hero-action:focus-visible {
       outline: 2px solid #fff;
       outline-offset: 3px;
-    }
-
-    /* =========================================================
-       CARTES INFO (défi / réponse / impact / outils)
-       ========================================================= */
-    .card--info {
-      display: flex;
-      flex-direction: column;
-      gap: 12px;
-      padding: 22px 22px 20px;
-    }
-
-    .info-title {
-      font-size: 0.95rem;
-      font-weight: 600;
-      color: var(--text);
-      letter-spacing: -0.01em;
-    }
-
-    .info-body {
-      font-size: 0.87rem;
-      color: var(--text-secondary);
-      line-height: 1.55;
-    }
-
-    /* --- Indicateurs : quatre blocs sobres en 2 x 2 --- */
-    .impact-grid {
-      display: grid;
-      grid-template-columns: repeat(2, minmax(0, 1fr));
-      gap: 10px;
-      margin-top: 4px;
-    }
-
-    .impact-item {
-      display: flex;
-      flex-direction: column;
-      gap: 3px;
-      min-width: 0;
-      padding: 10px;
-      border: 1px solid rgba(255, 255, 255, 0.12);
-      border-radius: 14px;
-      background:
-        linear-gradient(145deg,
-          rgba(255, 255, 255, 0.11),
-          rgba(255, 255, 255, 0.035));
-      box-shadow:
-        inset 0 1px 0 rgba(255, 255, 255, 0.12),
-        0 8px 24px rgba(0, 0, 0, 0.18);
-      -webkit-backdrop-filter: blur(14px) saturate(130%);
-      backdrop-filter: blur(14px) saturate(130%);
-    }
-
-    .impact-value {
-      color: var(--text);
-      font-size: 0.95rem;
-      font-weight: 700;
-      letter-spacing: -0.01em;
-      line-height: 1.2;
-    }
-
-    .impact-label {
-      color: var(--text-muted);
-      font-size: 0.75rem;
-      line-height: 1.3;
-    }
-
-    [data-theme="light"] .impact-item {
-      background:
-        linear-gradient(145deg,
-          rgba(255, 255, 255, 0.90),
-          rgba(255, 255, 255, 0.52));
-      border-color: rgba(60, 60, 67, 0.13);
-      box-shadow:
-        inset 0 1px 0 rgba(255, 255, 255, 0.95),
-        0 8px 20px rgba(0, 0, 0, 0.06);
-    }
-
-    /* --- Retour de la tutrice : citation sobre --- */
-    .info-quote {
-      margin: 6px 0 0;
-      padding: 2px 0 2px 14px;
-      border-left: 2px solid var(--apple-blue);
-      color: var(--text);
-      font-size: 0.87rem;
-      font-style: italic;
-      line-height: 1.55;
-    }
-
-    .info-quote p {
-      margin: 0;
-    }
-
-    .info-quote footer {
-      margin-top: 9px;
-      color: var(--text-muted);
-      font-size: 0.75rem;
-      font-style: normal;
-      font-weight: 500;
-      letter-spacing: 0.11em;
-      text-transform: uppercase;
-    }
-
-    /* --- Outils : badges sobres, nom complet visible --- */
-    /* =========================================================
-   CARTE OUTILS - STYLE GLASS
-   ========================================================= */
-
-    .tools-grid {
-      display: grid;
-      grid-template-columns: repeat(2, minmax(0, 1fr));
-      gap: 10px;
-      margin-top: 4px;
-    }
-
-    .tool-item {
-      display: flex;
-      align-items: center;
-      gap: 9px;
-      min-width: 0;
-      padding: 10px;
-      border: 1px solid rgba(255, 255, 255, 0.12);
-      border-radius: 14px;
-
-      background:
-        linear-gradient(145deg,
-          rgba(255, 255, 255, 0.11),
-          rgba(255, 255, 255, 0.035));
-
-      box-shadow:
-        inset 0 1px 0 rgba(255, 255, 255, 0.12),
-        0 8px 24px rgba(0, 0, 0, 0.18);
-
-      -webkit-backdrop-filter: blur(14px) saturate(130%);
-      backdrop-filter: blur(14px) saturate(130%);
-
-      transition:
-        transform var(--transition-med),
-        border-color var(--transition-med),
-        background var(--transition-med);
-    }
-
-    .tool-item:hover {
-      transform: translateY(-2px);
-      border-color: rgba(255, 255, 255, 0.24);
-      background:
-        linear-gradient(145deg,
-          rgba(255, 255, 255, 0.16),
-          rgba(255, 255, 255, 0.06));
-    }
-
-    .tool-icon {
-      width: 36px;
-      height: 36px;
-      flex: 0 0 36px;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      padding: 0;
-      border: none;
-      border-radius: 10px;
-      background: #ffffff;
-      overflow: hidden;
-    }
-
-    .tool-icon img {
-      display: block;
-      width: 80%;
-      height: 80%;
-      object-fit: contain;
-    }
-
-    .tool-name {
-      min-width: 0;
-      color: var(--text-secondary);
-      font-size: 0.75rem;
-      font-weight: 600;
-      line-height: 1.2;
-    }
-
-    /* Adaptation au mode clair */
-    [data-theme="light"] .tool-item {
-      background:
-        linear-gradient(145deg,
-          rgba(255, 255, 255, 0.90),
-          rgba(255, 255, 255, 0.52));
-
-      border-color: rgba(60, 60, 67, 0.13);
-
-      box-shadow:
-        inset 0 1px 0 rgba(255, 255, 255, 0.95),
-        0 8px 20px rgba(0, 0, 0, 0.06);
-    }
-
-    [data-theme="light"] .tool-icon {
-      background: rgba(255, 255, 255, 0.75);
-      border-color: rgba(60, 60, 67, 0.10);
-    }
-
-    /* =========================================================
-       GALERIE
-       ========================================================= */
-    /* Supports du projet : cadre sobre, fond neutre */
-    .card--gallery-poster {
-      overflow: hidden;
-      background: var(--card-bg-solid);
-      backdrop-filter: none;
-      -webkit-backdrop-filter: none;
-    }
-
-    .gallery-img {
-      position: absolute;
-      inset: 0;
-      width: 100%;
-      height: 100%;
-      object-fit: cover;
-      object-position: center;
-      z-index: 1;
-      transition: transform var(--transition-med);
-    }
-
-    .card--gallery-poster:hover .gallery-img {
-      transform: scale(1.03);
     }
 
     /* =========================================================
@@ -849,67 +538,12 @@
     }
 
     /* =========================================================
-       FOOTER MINIMAL
-       ========================================================= */
-    .site-footer {
-      max-width: var(--max-width);
-      margin: 0 auto;
-      padding: 40px 24px 56px;
-      display: flex;
-      flex-wrap: wrap;
-      justify-content: space-between;
-      align-items: center;
-      gap: 16px;
-      border-top: 1px solid var(--line);
-      margin-top: 32px;
-      position: relative;
-      z-index: 1;
-    }
-
-    .footer-identity {
-      font-size: 0.8125rem;
-      color: var(--text-secondary);
-    }
-
-    .footer-links {
-      display: flex;
-      gap: 22px;
-    }
-
-    .footer-links a {
-      font-size: 0.8125rem;
-      color: var(--text-secondary);
-      transition: color var(--transition-fast);
-    }
-
-    .footer-links a:hover {
-      color: var(--text);
-    }
-
-    .footer-top {
-      display: inline-flex;
-      align-items: center;
-      gap: 7px;
-    }
-
-    .footer-top svg {
-      width: 14px;
-      height: 14px;
-      transition: transform var(--transition-fast);
-    }
-
-    .footer-top:hover svg {
-      transform: translateY(-2px);
-    }
-
-    /* =========================================================
        RESPONSIVE
        ========================================================= */
 
-    /* Ecrans tres larges / 4K : meme traitement que l'accueil */
+    /* Écrans très larges / 4K : même traitement que l'accueil */
     @media (min-width: 1800px) {
       :root {
-        --max-width: 1920px;
         --gap: 20px;
         --radius: 26px;
       }
@@ -919,60 +553,13 @@
       }
 
       .project-main {
-        padding: 42px 36px 76px;
-      }
-
-      .project-grid {
-        grid-auto-rows: minmax(190px, auto);
-      }
-
-      .card--hero-visual {
-        min-height: 420px;
-      }
-
-      .card--gallery-poster {
-        min-height: 0;
+        padding: 42px 24px 76px;
       }
     }
 
-    /* Tablette : deux colonnes, les quatre supports en 2 x 2 */
-    @media (max-width: 1100px) {
-      .project-grid {
-        grid-template-columns: repeat(2, 1fr);
-      }
-
-      .card--hero-meta {
-        grid-column: span 2;
-        grid-row: auto;
-      }
-
-      .card--hero-visual {
-        grid-column: span 2;
-        grid-row: auto;
-        /* Le visuel principal garde son ratio 16:9 */
-        aspect-ratio: 16 / 9;
-        min-height: 0;
-      }
-
-      .card--info {
-        grid-column: span 1;
-        grid-row: auto;
-      }
-
-      .card--gallery-poster,
-      .card--gallery-poster-1,
-      .card--gallery-poster-2,
-      .card--gallery-poster-3,
-      .card--gallery-poster-4 {
-        grid-column: span 1;
-        grid-row: auto;
-        min-height: 0;
-      }
-    }
-
-    /* Mobile : une colonne */
+    /* Mobile */
     @media (max-width: 720px) {
-      /* Le fil d'ariane passe sur sa propre ligne plutot que d'etre tronque */
+      /* Le fil d'ariane passe sur sa propre ligne plutôt que d'être tronqué */
       .project-nav {
         flex-wrap: wrap;
         padding: 10px 16px;
@@ -995,59 +582,15 @@
       .project-main {
         padding: 20px 16px 40px;
       }
-
-      .project-grid {
-        grid-template-columns: 1fr;
-      }
-
-      .card--hero-meta,
-      .card--hero-visual,
-      .card--info,
-      .card--gallery-poster,
-      .card--gallery-poster-1,
-      .card--gallery-poster-2,
-      .card--gallery-poster-3,
-      .card--gallery-poster-4 {
-        grid-column: span 1;
-        grid-row: auto;
-      }
-
-      .card--hero-visual {
-        min-height: 0;
-      }
-
-      .card--gallery-poster {
-        min-height: 0;
-      }
-
-      .card--hero-meta {
-        padding: 26px 22px;
-      }
-
-      .hero-title {
-        font-size: clamp(1.5rem, 6vw, 2rem);
-      }
-
-      .site-footer {
-        flex-direction: column;
-        align-items: flex-start;
-      }
-
-      .footer-links {
-        flex-wrap: wrap;
-        gap: 16px;
-      }
     }
 
     /* =========================================================
    NAVIGATION ENTRE PROJETS (pager en bas de page)
    ========================================================= */
     .project-pager {
-      grid-column: 1 / -1;
       display: grid;
       grid-template-columns: 1fr 1fr;
       gap: var(--gap);
-      margin-top: 8px;
     }
 
     .pager-link {
@@ -1146,53 +689,37 @@
 
       /* Aucune transformation non essentielle */
       .card:hover,
-      .card--gallery-poster:hover .gallery-img,
       .hero-action:hover,
-      .tool-item:hover,
-      .footer-top:hover svg {
+      .pager-link:hover,
+      .pager-link:hover .pager-arrow {
         transform: none;
       }
     }
-
-    /* Formats fixes des trois cartes d’images */
-    .card--hero-visual {
-      aspect-ratio: 19 / 10;
-      min-height: 0;
-    }
-
-    /* Les quatre supports partagent le ratio exact des fichiers (2536 x 3602) :
-   la hauteur obtenue equivaut a deux anciennes vignettes plus leur ecart,
-   et aucune affiche n'est recadree. Une seule regle, quatre cartes egales. */
-    .card--gallery-poster {
-      aspect-ratio: 2536 / 3602;
-      min-height: 0;
-    }
-
-    .hero-image,
-    .gallery-img {
-      width: 100%;
-      height: 100%;
-      object-fit: cover;
-      object-position: center;
-    }
   </style>
+  <link rel="stylesheet" href="css/site-pages.css" />
+  <script defer src="https://cloud.umami.is/script.js" data-website-id="c992974a-48c8-47e4-9625-85ab5eca2ac3"></script>
 </head>
 
 <body>
 
   <!-- =============================================================
-       BARRE DE NAV STICKY : retour vers Mes projets, fil d’ariane, theme
+       BARRE DE NAV STICKY : retour vers Réalisations, fil d’ariane, theme
        ============================================================= -->
   <nav class="project-nav" aria-label="Navigation principale">
-    <a href="/projets" class="nav-back">
+    <a href="/realisations" class="nav-back">
       <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"
         stroke-linejoin="round" aria-hidden="true">
         <path d="M19 12H5M12 19l-7-7 7-7" />
       </svg>
-      Mes projets
+      Réalisations
     </a>
 
-    <span class="nav-crumb">Projet 04 · <strong>Communication Culturelle</strong></span>
+    <span class="nav-crumb">Projet 04 · <strong>Médiathèque de Saint-Nazaire</strong></span>
+
+    <span class="nav-status">
+      <span class="nav-status-dot" aria-hidden="true"></span>
+      <span>Disponible<span class="nav-status-more"> pour de nouvelles missions</span></span>
+    </span>
 
     <button id="theme-toggle" class="theme-toggle-btn" aria-label="Basculer entre le mode sombre et le mode clair"
       type="button">
@@ -1214,150 +741,165 @@
   </nav>
 
   <main class="project-main" id="top">
-    <div class="project-grid">
+    <div class="cs-grid">
 
-      <!-- ========== CARTE 01 · PRESENTATION ========== -->
-      <article class="card card--hero-meta" aria-labelledby="hero-title">
-        <span class="hero-eyebrow">04 · Projet</span>
-        <h1 class="hero-title" id="hero-title">Communication Culturelle - Médiathèque de Saint-Nazaire</h1>
+      <!-- ========== RANGÉE 1 · PRÉSENTATION ========== -->
+      <article class="card cs-intro" aria-labelledby="hero-title">
+        <span class="hero-eyebrow">04 · Étude de cas</span>
+        <h1 class="cs-title" id="hero-title">
+          Une vraie programmation. <span class="cs-title-accent">Il manquait le public.</span>
+        </h1>
+
+        <p class="cs-pitch">
+          Trois mois pour donner une identité cohérente à la communication de la médiathèque de Saint-Nazaire&nbsp;:
+          15 affiches, un agenda culturel de rentrée repensé de zéro et un Instagram relancé.
+        </p>
 
         <div class="hero-tags">
-          <span class="hero-tag">Stage</span>
-          <span class="hero-tag">Communication print &amp; digital</span>
+          <span class="hero-tag">Communication print &amp; digitale</span>
           <span class="hero-tag">Direction artistique</span>
-          <span class="hero-tag">Animation réseaux sociaux</span>
+          <span class="hero-tag">Réseaux sociaux</span>
         </div>
 
-        <p class="hero-pitch">
-          Stage de fin d'études BUT 3 à la médiathèque de Saint-Nazaire, six mois comme chargé de communication. Prise
-          en charge complète du print et du digital, avec pour projet phare la refonte de l'agenda culturel de rentrée.
-        </p>
+        <dl class="cs-facts cs-facts--3">
+          <div>
+            <dt>Structure</dt>
+            <dd>Médiathèque de Saint-Nazaire</dd>
+          </div>
+          <div>
+            <dt>Rôle</dt>
+            <dd>Chargé de communication</dd>
+          </div>
+          <div>
+            <dt>Durée</dt>
+            <dd>3 mois</dd>
+          </div>
+        </dl>
       </article>
 
-      <!-- ========== CARTE 02 · VISUEL PRINCIPAL ET AGENDA ========== -->
-      <div class="card card--hero-visual">
-        <img class="hero-image" src="Images/culturelle_couverture.webp"
+      <!-- ========== RANGÉE 1 · VISUEL PRINCIPAL ET AGENDA ========== -->
+      <div class="card cs-visual">
+        <img class="cs-img" src="Images/culturelle_couverture.webp"
           alt="Agenda culturel de la médiathèque de Saint-Nazaire, couverture et pages intérieures ouvertes sur l’édito"
           width="1827" height="960" loading="eager" />
         <button type="button" class="zoom-btn" data-zoom-src="Images/culturelle_couverture.webp"
           aria-label="Agrandir l’image : agenda culturel de la médiathèque de Saint-Nazaire"></button>
         <a class="hero-action" href="https://www.calameo.com/read/007158353e99353f0a2ee" target="_blank"
           rel="noopener noreferrer"
-          aria-label="Voir l’agenda culturel de la médiathèque de Saint-Nazaire sur Calaméo - nouvel onglet">
-          Voir l’agenda
+          aria-label="Feuilleter l’agenda culturel de la médiathèque de Saint-Nazaire sur Calaméo (nouvel onglet)">
+          Feuilleter l’agenda
           <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"
             stroke-linejoin="round" aria-hidden="true">
-            <path d="M14 4h6v6" />
-            <path d="M20 4l-8.5 8.5" />
-            <path d="M18 14v4a2 2 0 0 1-2 2H6a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h4" />
+            <path d="M7 17L17 7" />
+            <path d="M8 7h9v9" />
           </svg>
         </a>
       </div>
 
-      <!-- ========== CARTE 03 · LE DEFI ========== -->
-      <article class="card card--info card--soft">
-        <h2 class="info-title">Le défi</h2>
-        <p class="info-body">
-          Une médiathèque avec une vraie programmation (ateliers, rencontres, expos jeunesse), mais chaque événement
-          peinait à trouver son public. L'agenda précédent avait vieilli, les affiches manquaient d'unité, Instagram
-          tournait au ralenti. Le vrai enjeu du stage : refaire l'agenda de rentrée à partir de zéro tout en continuant
-          à produire tous les supports courants, sans jamais casser le rythme de publication.
+      <!-- ========== RANGÉE 2 · LE DÉFI ========== -->
+      <article class="card cs-step" aria-labelledby="defi-title">
+        <h2 class="cs-label" id="defi-title"><span class="cs-num">01</span> Le défi</h2>
+        <p class="cs-lead">
+          Ateliers, rencontres, expositions jeunesse&nbsp;: chaque événement peinait à trouver son public.
+        </p>
+        <p class="cs-body">
+          L'agenda avait vieilli, les affiches manquaient d'unité, Instagram tournait au ralenti. Il fallait refaire
+          l'agenda de rentrée sans casser le rythme de publication.
         </p>
       </article>
 
-      <!-- ========== CARTE 04 · MA REPONSE ========== -->
-      <article class="card card--info card--soft">
-        <h2 class="info-title">Ma réponse</h2>
-        <p class="info-body">
-          J'ai attaqué par les affiches d'événements, une par une, en construisant au fur et à mesure une cohérence
-          visuelle qui allait servir de base à l'agenda de rentrée. Une fois les 15 affiches produites, l'agenda s'est
-          monté naturellement autour d'elles. En parallèle, j'ai tenu la production régulière des flyers d'événements
-          ponctuels, animé le compte Instagram avec une ligne éditoriale plus rythmée, et alimenté la plateforme
-          mutualisée du réseau des médiathèques.
+      <!-- ========== RANGÉE 2 · MA RÉPONSE ========== -->
+      <article class="card cs-step" aria-labelledby="reponse-title">
+        <h2 class="cs-label" id="reponse-title"><span class="cs-num">02</span> Ma réponse</h2>
+        <ol class="cs-steps">
+          <li><span><strong>Les affiches d'abord</strong>&nbsp;: une cohérence visuelle construite événement après
+              événement.</span></li>
+          <li><span><strong>L'agenda autour</strong>&nbsp;: monté à partir de ce langage visuel.</span></li>
+          <li><span><strong>La diffusion en continu</strong>&nbsp;: flyers, Instagram plus rythmé, plateforme du
+              réseau des médiathèques.</span></li>
+        </ol>
       </article>
 
-      <!-- ========== CARTE 05 · IMPACT ========== -->
-      <article class="card card--info card--soft">
-        <h2 class="info-title">Impact</h2>
-        <div class="impact-grid" role="list">
-          <div class="impact-item" role="listitem">
-            <span class="impact-value">1</span>
-            <span class="impact-label">agenda produit</span>
+      <!-- ========== RANGÉE 2 · RÉSULTATS ========== -->
+      <article class="card cs-step cs-results" aria-labelledby="resultats-title">
+        <h2 class="cs-label" id="resultats-title"><span class="cs-num">03</span> Résultats</h2>
+        <p class="cs-figure">+107&nbsp;%</p>
+        <p class="cs-figure-label">d’engagement sur Instagram</p>
+        <div class="cs-tiles" role="list">
+          <div class="cs-tile" role="listitem">
+            <span class="cs-tile-value">15</span>
+            <span class="cs-tile-label">affiches produites</span>
           </div>
-          <div class="impact-item" role="listitem">
-            <span class="impact-value">15</span>
-            <span class="impact-label">affiches produites</span>
-          </div>
-          <div class="impact-item" role="listitem">
-            <span class="impact-value">1</span>
-            <span class="impact-label">flyer produit</span>
-          </div>
-          <div class="impact-item" role="listitem">
-            <span class="impact-value">+107 %</span>
-            <span class="impact-label">d’engagement sur Instagram</span>
+          <div class="cs-tile" role="listitem">
+            <span class="cs-tile-value">1</span>
+            <span class="cs-tile-label">agenda repensé</span>
           </div>
         </div>
-        <blockquote class="info-quote">
+      </article>
+
+      <!-- ========== RANGÉE 3 · RETOUR DE LA STRUCTURE ========== -->
+      <figure class="card cs-quote">
+        <svg class="cs-quote-mark" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true">
+          <path d="M6 17h3l2-4V7H5v6h3zm8 0h3l2-4V7h-6v6h3z" />
+        </svg>
+        <blockquote>
           <p>
-            « Mr Bridanne a su répondre aux attentes grâce à ses compétences et à sa créativité.
+            Mr Bridanne a su répondre aux attentes grâce à ses compétences et à sa créativité.
             Il a fait preuve d’initiative. Il a permis à l’équipe de la médiathèque de monter en
-            compétence dans le domaine de la communication. »
+            compétence dans le domaine de la communication.
           </p>
-          <footer>Retour de ma tutrice</footer>
+          <footer>Responsable de la médiathèque</footer>
         </blockquote>
-      </article>
+      </figure>
 
-      <!-- ========== CARTE 06 · OUTILS MOBILISÉS ========== -->
-      <article class="card card--info card--soft">
-        <h2 class="info-title">Outils mobilisés</h2>
-
-        <div class="tools-grid" role="list">
-
-          <div class="tool-item" role="listitem">
-            <span class="tool-icon">
-              <img src="Images/icone_canva.svg" alt="" width="32" height="32" loading="lazy" />
-            </span>
-            <span class="tool-name">Canva</span>
-          </div>
-
-        </div>
-      </article>
-
-      <!-- ========== CARTE 07 · SUPPORT JEU ========== -->
-      <div class="card card--gallery-poster card--gallery-poster-1">
-        <img class="gallery-img" src="Images/culturelle_jeu.webp"
+      <!-- ========== RANGÉE 3 · SUPPORTS ========== -->
+      <div class="card cs-poster">
+        <img class="cs-img" src="Images/culturelle_jeu.webp"
           alt="Affiche de la médiathèque pour une séance de jeu en réalité virtuelle" width="2536" height="3602"
           loading="lazy" />
         <button type="button" class="zoom-btn" data-zoom-src="Images/culturelle_jeu.webp"
           aria-label="Agrandir l’image : affiche de la médiathèque pour une séance de jeu en réalité virtuelle"></button>
       </div>
 
-      <!-- ========== CARTE 08 · SUPPORT ESPAGNE ========== -->
-      <div class="card card--gallery-poster card--gallery-poster-2">
-        <img class="gallery-img" src="Images/culturelle_espagne.webp"
+      <div class="card cs-poster">
+        <img class="cs-img" src="Images/culturelle_espagne.webp"
           alt="Affiche de la médiathèque pour un atelier de conversation en espagnol" width="2536" height="3602"
           loading="lazy" />
         <button type="button" class="zoom-btn" data-zoom-src="Images/culturelle_espagne.webp"
           aria-label="Agrandir l’image : affiche de la médiathèque pour un atelier de conversation en espagnol"></button>
       </div>
 
-      <!-- ========== CARTE 09 · SUPPORT LECTURE ========== -->
-      <div class="card card--gallery-poster card--gallery-poster-3">
-        <img class="gallery-img" src="Images/culturelle_lecture.webp"
+      <div class="card cs-poster">
+        <img class="cs-img" src="Images/culturelle_lecture.webp"
           alt="Affiche de la médiathèque pour un atelier de lecture" width="2536" height="3602" loading="lazy" />
         <button type="button" class="zoom-btn" data-zoom-src="Images/culturelle_lecture.webp"
           aria-label="Agrandir l’image : affiche de la médiathèque pour un atelier de lecture"></button>
       </div>
 
-      <!-- ========== CARTE 10 · FLYER ========== -->
-      <div class="card card--gallery-poster card--gallery-poster-4">
-        <img class="gallery-img" src="Images/culturelle_flyer.webp"
+      <div class="card cs-poster">
+        <img class="cs-img" src="Images/culturelle_flyer.webp"
           alt="Flyer de présentation de la médiathèque Henri Tanyères : horaires, services et contact" width="2536"
           height="3602" loading="lazy" />
         <button type="button" class="zoom-btn" data-zoom-src="Images/culturelle_flyer.webp"
-          aria-label="Agrandir l’image : flyer de présentation de la médiathèque Henri Tanyères : horaires, services et contact"></button>
+          aria-label="Agrandir l’image : flyer de présentation de la médiathèque Henri Tanyères, horaires, services et contact"></button>
       </div>
-      <!-- ========== NAVIGATION ENTRE PROJETS ========== -->
+
+      <!-- ========== RANGÉE 4 · APPEL À L'ACTION ========== -->
+      <aside class="card cs-cta" aria-label="Me contacter">
+        <div class="cs-cta-text">
+          <p class="cs-cta-title">Vos événements méritent plus de public&nbsp;?</p>
+          <p class="cs-cta-sub">Affiches, agenda, réseaux sociaux&nbsp;: parlons de votre projet.</p>
+        </div>
+        <a data-umami-event="clic-contact" class="cs-cta-link" href="/contact">
+          Me contacter
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"
+            stroke-linejoin="round" aria-hidden="true">
+            <path d="M5 12h14M12 5l7 7-7 7" />
+          </svg>
+        </a>
+      </aside>
+
+      <!-- ========== RANGÉE 4 · NAVIGATION ENTRE PROJETS ========== -->
       <nav class="project-pager" aria-label="Navigation entre les projets">
         <a href="/projet-papi-restaurant" class="pager-link pager-prev">
           <span class="pager-arrow" aria-hidden="true">←</span>
@@ -1367,7 +909,7 @@
           </span>
         </a>
 
-        <a href="/projet-handi-tolosa" class="pager-link pager-next">
+        <a href="/projet-campagne-financement" class="pager-link pager-next">
           <span class="pager-text">
             <span class="pager-label">Projet suivant</span>
             <span class="pager-title">Projet 05</span>
@@ -1400,25 +942,17 @@
   <footer class="site-footer">
     <p class="footer-identity">Benjamin Bridanne · Chargé de communication digitale</p>
     <div class="footer-links">
-      <a href="/">Accueil</a>
-      <a href="/projets">Mes projets</a>
-      <a href="mailto:benjaminbridanne@gmail.com">Mail</a>
-      <a href="https://www.linkedin.com/in/benjamin-bridanne-ba9a64285/" target="_blank" rel="noopener">LinkedIn</a>
+      <a href="/realisations">Réalisations</a>
+      <a href="/politique-confidentialite">Confidentialité</a>
+      <a data-umami-event="clic-contact" href="mailto:benjaminbridanne@gmail.com">Mail</a>
+      <a data-umami-event="clic-linkedin" href="https://www.linkedin.com/in/benjamin-bridanne-ba9a64285/" target="_blank" rel="noopener">LinkedIn</a>
       <a href="/mentions-legales">Mentions légales</a>
-      <a href="#top" class="footer-top">
-        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"
-          stroke-linejoin="round" aria-hidden="true">
-          <line x1="12" y1="19" x2="12" y2="5" />
-          <polyline points="5 12 12 5 19 12" />
-        </svg>
-        Retour en haut
-      </a>
     </div>
   </footer>
 
   <script>
     /* =========================================================
-       THEME SOMBRE / CLAIR - clé localStorage bb-theme partagée
+       THEME SOMBRE / CLAIR : clé localStorage bb-theme partagée
        ========================================================= */
     (function () {
       const root = document.documentElement;

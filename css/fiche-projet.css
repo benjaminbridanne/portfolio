@@ -1,0 +1,1985 @@
+/* =========================================================
+   FICHES PROJET : composants partagés
+   Bloc d'infos (sous le chapeau), résultat chiffré et appel
+   à l'action (avant la navigation entre projets).
+   Dépend des tokens de chaque fiche : --pill-bg, --pill-border,
+   --eyebrow, --text, --text-secondary, --radius-sm, --gap.
+   ========================================================= */
+[data-theme="light"] {
+  --fiche-accent: #007AFF;
+  --fiche-accent-shadow: rgba(0, 122, 255, 0.22);
+}
+
+[data-theme="dark"] {
+  --fiche-accent: #0A84FF;
+  --fiche-accent-shadow: rgba(10, 132, 255, 0.22);
+}
+
+/* ---------- Bloc d'infos ---------- */
+.project-facts {
+  display: grid;
+  grid-template-columns: max-content 1fr;
+  gap: 8px 18px;
+  margin: 0;
+  padding: 14px 16px;
+  border-radius: var(--radius-sm);
+  background: var(--pill-bg);
+  border: 1px solid var(--pill-border);
+}
+
+.project-facts dt {
+  padding-top: 2px;
+  font-size: 0.6875rem;
+  font-weight: 500;
+  color: var(--eyebrow);
+  text-transform: uppercase;
+  letter-spacing: 0.1em;
+}
+
+.project-facts dd {
+  margin: 0;
+  font-size: 0.8125rem;
+  color: var(--text);
+  line-height: 1.45;
+}
+
+/* Le bloc d'infos allonge la présentation : sur ordinateur, le visuel
+   voisin suit sa hauteur au lieu de garder son format fixe */
+@media (min-width: 1101px) {
+  .project-grid > .card--hero-visual {
+    align-self: stretch;
+    aspect-ratio: auto;
+  }
+}
+
+/* ---------- Résultat chiffré ---------- */
+.result-figure {
+  font-size: clamp(1.75rem, 2.6vw, 2.25rem);
+  font-weight: 700;
+  color: var(--text);
+  letter-spacing: -0.03em;
+  line-height: 1.05;
+}
+
+.result-figure span {
+  display: block;
+  margin-top: 4px;
+  font-size: 0.8125rem;
+  font-weight: 500;
+  color: var(--text-secondary);
+  letter-spacing: 0;
+}
+
+.result-caption {
+  font-size: 0.75rem;
+  color: var(--text-secondary);
+  line-height: 1.5;
+}
+
+.result-link {
+  align-self: flex-start;
+  margin-top: auto;
+  font-size: 0.8125rem;
+  font-weight: 600;
+  color: var(--fiche-accent);
+}
+
+.result-link:hover {
+  text-decoration: underline;
+  text-underline-offset: 3px;
+}
+
+/* ---------- Appel à l'action ---------- */
+.card--cta {
+  grid-column: 1 / -1;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  flex-wrap: wrap;
+  gap: 14px 24px;
+  padding: 26px 30px;
+}
+
+.cta-text {
+  font-size: clamp(1.0625rem, 1.6vw, 1.3125rem);
+  font-weight: 600;
+  color: var(--text);
+  letter-spacing: -0.02em;
+  line-height: 1.3;
+}
+
+.cta-link {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  padding: 11px 20px;
+  border-radius: 999px;
+  background: var(--fiche-accent);
+  color: #fff;
+  font-size: 0.875rem;
+  font-weight: 600;
+  white-space: nowrap;
+  transition: transform 250ms ease, box-shadow 250ms ease;
+}
+
+.cta-link:hover {
+  transform: translateY(-1px);
+  box-shadow: 0 10px 24px var(--fiche-accent-shadow);
+}
+
+@media (max-width: 720px) {
+  .card--cta {
+    padding: 22px 20px;
+  }
+
+  .cta-link {
+    width: 100%;
+    justify-content: center;
+  }
+}
+
+/* Écrans très étroits : libellé au-dessus de sa valeur */
+@media (max-width: 400px) {
+  .project-facts {
+    grid-template-columns: 1fr;
+    gap: 2px;
+  }
+
+  .project-facts dd + dt {
+    margin-top: 8px;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .cta-link {
+    transition: none;
+  }
+}
+
+/* =========================================================
+   GABARIT ÉTUDE DE CAS (classes cs-)
+   Quatre rangées sur une grille de 12 colonnes :
+   1. présentation + visuel (6 / 6)
+   2. défi, réponse, résultats (4 / 4 / 4)
+   3. citation + quatre supports (4 / 2 / 2 / 2 / 2)
+   4. appel à l'action + navigation entre projets (6 / 6)
+   Les sélecteurs portent deux classes quand il le faut : la règle
+   .card > * de chaque fiche est déclarée après ce fichier.
+   ========================================================= */
+:root {
+  /* Même bleu plein que la carte profil de l'accueil (blanc 5,97:1) */
+  --cs-cta-bg: #0A5ECF;
+  --cs-cta-text-soft: #D6E6FB;
+  --cs-available: #34C759;
+}
+
+/* ---------- Pastille de disponibilité (barre de navigation) ---------- */
+.nav-status {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  flex: none;
+  padding: 6px 12px;
+  border-radius: 999px;
+  background: var(--card-bg);
+  border: 1px solid var(--card-border);
+  color: var(--text-secondary);
+  font-size: 0.75rem;
+  font-weight: 500;
+  white-space: nowrap;
+}
+
+.nav-status-dot {
+  width: 7px;
+  height: 7px;
+  border-radius: 50%;
+  background: var(--cs-available);
+  box-shadow: 0 0 0 3px rgba(52, 199, 89, 0.18);
+}
+
+/* ---------- Grille ---------- */
+.cs-grid {
+  display: grid;
+  grid-template-columns: repeat(12, minmax(0, 1fr));
+  gap: var(--gap);
+}
+
+.cs-intro,
+.cs-visual,
+.cs-cta {
+  grid-column: span 6;
+}
+
+.cs-step,
+.cs-quote {
+  grid-column: span 4;
+}
+
+.cs-poster {
+  grid-column: span 2;
+}
+
+.cs-grid > .project-pager {
+  grid-column: span 6;
+  margin-top: 0;
+}
+
+/* ---------- Rangée 1 : présentation ---------- */
+.card.cs-intro {
+  display: flex;
+  flex-direction: column;
+  gap: 18px;
+  padding: 32px 34px 28px;
+}
+
+.cs-title {
+  font-size: clamp(2.25rem, 4vw, 3.25rem);
+  font-weight: 700;
+  letter-spacing: -0.035em;
+  line-height: 1.02;
+}
+
+.cs-title-accent {
+  color: var(--fiche-accent);
+}
+
+.cs-pitch {
+  font-size: 0.9375rem;
+  color: var(--text-secondary);
+  line-height: 1.6;
+  max-width: 56ch;
+}
+
+.cs-facts {
+  display: grid;
+  grid-template-columns: repeat(4, minmax(0, 1fr));
+  gap: 16px;
+  margin: auto 0 0;
+  padding-top: 18px;
+  border-top: 1px solid var(--line);
+}
+
+.cs-facts dt {
+  margin-bottom: 5px;
+  font-size: 0.6875rem;
+  font-weight: 500;
+  color: var(--eyebrow);
+  text-transform: uppercase;
+  letter-spacing: 0.1em;
+}
+
+.cs-facts dd {
+  margin: 0;
+  font-size: 0.8125rem;
+  font-weight: 500;
+  color: var(--text);
+  line-height: 1.4;
+}
+
+/* ---------- Rangée 1 : visuel ---------- */
+.card.cs-visual {
+  min-height: 340px;
+  padding: 0;
+}
+
+.cs-visual > .cs-img,
+.cs-poster > .cs-img {
+  position: absolute;
+  inset: 0;
+  z-index: 1;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  object-position: center;
+  transition: transform var(--transition-med);
+}
+
+/* ---------- Rangée 2 : défi, réponse, résultats ---------- */
+.card.cs-step {
+  display: flex;
+  flex-direction: column;
+  gap: 14px;
+  padding: 24px 26px;
+}
+
+.cs-label {
+  display: flex;
+  align-items: baseline;
+  gap: 10px;
+  font-size: 0.95rem;
+  font-weight: 600;
+  letter-spacing: -0.01em;
+  color: var(--text);
+}
+
+.cs-num {
+  font-size: 0.75rem;
+  font-weight: 700;
+  color: var(--fiche-accent);
+  letter-spacing: 0.02em;
+}
+
+.cs-lead {
+  font-size: 1.1875rem;
+  font-weight: 700;
+  letter-spacing: -0.02em;
+  line-height: 1.3;
+  color: var(--text);
+}
+
+.cs-body {
+  font-size: 0.87rem;
+  color: var(--text-secondary);
+  line-height: 1.55;
+}
+
+/* Cartes pleine largeur (tablette, 900 à 1100 px) : lignes de 75 signes au plus */
+.cs-grid p {
+  max-width: 75ch;
+}
+
+.cs-steps {
+  list-style: none;
+  display: flex;
+  flex-direction: column;
+  gap: 14px;
+  counter-reset: cs-step;
+}
+
+.cs-steps li {
+  display: grid;
+  grid-template-columns: 26px 1fr;
+  gap: 12px;
+  align-items: start;
+  font-size: 0.87rem;
+  color: var(--text-secondary);
+  line-height: 1.5;
+  counter-increment: cs-step;
+}
+
+.cs-steps li::before {
+  content: counter(cs-step);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 26px;
+  height: 26px;
+  border-radius: 50%;
+  background: var(--pill-bg);
+  border: 1px solid var(--pill-border);
+  color: var(--text);
+  font-size: 0.75rem;
+  font-weight: 600;
+}
+
+.cs-steps strong {
+  color: var(--text);
+  font-weight: 600;
+}
+
+/* Résultats : carte sombre dans les deux thèmes */
+.card.cs-results {
+  background: #0a0a0d;
+  border-color: rgba(255, 255, 255, 0.08);
+  color: #F5F5F7;
+}
+
+[data-theme="dark"] .card.cs-results {
+  background: #1c1c1e;
+  border-color: rgba(255, 255, 255, 0.12);
+}
+
+.cs-results .cs-label {
+  color: #F5F5F7;
+}
+
+.cs-results .cs-num {
+  color: #0A84FF;
+}
+
+.cs-figure {
+  font-size: clamp(2.75rem, 5vw, 4rem);
+  font-weight: 700;
+  letter-spacing: -0.04em;
+  line-height: 1;
+}
+
+.cs-figure-label {
+  margin-top: -6px;
+  font-size: 0.8125rem;
+  color: rgba(235, 235, 245, 0.62);
+}
+
+.cs-tiles {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 10px;
+  margin-top: auto;
+}
+
+.cs-tile {
+  display: flex;
+  flex-direction: column;
+  gap: 3px;
+  padding: 12px 14px;
+  border-radius: var(--radius-sm);
+  background: rgba(255, 255, 255, 0.07);
+  border: 1px solid rgba(255, 255, 255, 0.10);
+}
+
+.cs-tile-value {
+  font-size: 1.25rem;
+  font-weight: 700;
+  letter-spacing: -0.02em;
+}
+
+.cs-tile-label {
+  font-size: 0.75rem;
+  color: rgba(235, 235, 245, 0.62);
+}
+
+/* ---------- Rangée 3 : citation et supports ---------- */
+.card.cs-quote {
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+  padding: 26px 28px;
+}
+
+.cs-quote-mark {
+  width: 30px;
+  height: 30px;
+  color: var(--fiche-accent);
+  transform: rotate(180deg);
+}
+
+.cs-quote blockquote {
+  display: flex;
+  flex: 1;
+  flex-direction: column;
+  gap: 16px;
+}
+
+.cs-quote blockquote p {
+  font-size: 1rem;
+  font-weight: 500;
+  line-height: 1.55;
+  letter-spacing: -0.01em;
+  color: var(--text);
+}
+
+.cs-quote footer {
+  margin-top: auto;
+  font-size: 0.6875rem;
+  font-weight: 500;
+  color: var(--eyebrow);
+  text-transform: uppercase;
+  letter-spacing: 0.1em;
+}
+
+/* Ratio exact des fichiers (2536 x 3602) : aucune affiche n'est recadrée.
+   align-self: start, car une rangée plus haute que l'affiche (citation voisine
+   entre 1100 et 1220 px) l'élargissait au point de chevaucher la suivante. */
+.card.cs-poster {
+  aspect-ratio: 2536 / 3602;
+  align-self: start;
+  padding: 0;
+  background: var(--card-bg-solid);
+  backdrop-filter: none;
+  -webkit-backdrop-filter: none;
+}
+
+.cs-poster:hover > .cs-img {
+  transform: scale(1.03);
+}
+
+/* ---------- Rangée 4 : appel à l'action ---------- */
+.card.cs-cta {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 14px 24px;
+  padding: 24px 30px;
+  background: var(--cs-cta-bg);
+  border-color: rgba(255, 255, 255, 0.16);
+  color: #fff;
+  backdrop-filter: none;
+  -webkit-backdrop-filter: none;
+}
+
+.cs-cta-text {
+  min-width: 0;
+}
+
+.cs-cta-title {
+  font-size: clamp(1.0625rem, 1.5vw, 1.25rem);
+  font-weight: 700;
+  letter-spacing: -0.02em;
+  line-height: 1.25;
+}
+
+.cs-cta-sub {
+  margin-top: 4px;
+  font-size: 0.8125rem;
+  color: var(--cs-cta-text-soft);
+}
+
+.cs-cta-link {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  padding: 11px 20px;
+  border-radius: 999px;
+  background: #fff;
+  color: #0a0a0d;
+  font-size: 0.875rem;
+  font-weight: 600;
+  white-space: nowrap;
+  transition: transform var(--transition-fast), box-shadow var(--transition-fast);
+}
+
+.cs-cta-link svg {
+  width: 14px;
+  height: 14px;
+  transition: transform var(--transition-fast);
+}
+
+.cs-cta-link:hover {
+  transform: translateY(-1px);
+  box-shadow: 0 10px 24px rgba(0, 0, 0, 0.18);
+}
+
+.cs-cta-link:hover svg {
+  transform: translateX(2px);
+}
+
+.cs-cta-link:focus-visible {
+  outline-color: #fff;
+}
+
+/* Cibles tactiles d'au moins 44px pour les boutons posés sur les visuels */
+.cs-grid .hero-action,
+.cs-cta-link {
+  min-height: 44px;
+}
+
+/* ---------- Ligne d'infos à trois colonnes ---------- */
+.cs-facts--3 {
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+}
+
+/* ---------- Carte sombre : phrase forte et étiquettes ---------- */
+.cs-statement {
+  font-size: clamp(1.625rem, 2.6vw, 2.125rem);
+  font-weight: 700;
+  letter-spacing: -0.03em;
+  line-height: 1.1;
+}
+
+.cs-results .cs-body {
+  color: rgba(235, 235, 245, 0.72);
+}
+
+.cs-tile--tag {
+  justify-content: center;
+  min-height: 44px;
+  padding: 10px 14px;
+  font-size: 0.8125rem;
+  font-weight: 600;
+  line-height: 1.3;
+}
+
+/* ---------- Liste à coches ---------- */
+.cs-checks {
+  list-style: none;
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+}
+
+.cs-checks li {
+  display: grid;
+  grid-template-columns: 18px 1fr;
+  gap: 10px;
+  font-size: 0.87rem;
+  color: var(--text-secondary);
+  line-height: 1.5;
+}
+
+.cs-checks li::before {
+  content: "";
+  width: 16px;
+  height: 16px;
+  margin-top: 2px;
+  background: var(--fiche-accent);
+  -webkit-mask: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='%23000' stroke-width='2.6' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpath d='M4 12.5l5 5L20 6.5'/%3E%3C/svg%3E") center / contain no-repeat;
+  mask: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='%23000' stroke-width='2.6' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpath d='M4 12.5l5 5L20 6.5'/%3E%3C/svg%3E") center / contain no-repeat;
+}
+
+.cs-checks strong {
+  color: var(--text);
+  font-weight: 600;
+}
+
+/* ---------- Méthode : carte pleine largeur et étapes ---------- */
+.card.cs-method {
+  grid-column: 1 / -1;
+  display: flex;
+  flex-direction: column;
+  gap: 18px;
+  padding: 24px 26px 26px;
+}
+
+.cs-method-head {
+  display: flex;
+  align-items: baseline;
+  justify-content: space-between;
+  flex-wrap: wrap;
+  gap: 6px 20px;
+}
+
+.cs-method-sub {
+  font-size: 0.8125rem;
+  color: var(--text-secondary);
+}
+
+.cs-method-steps {
+  list-style: none;
+  display: grid;
+  grid-template-columns: repeat(6, minmax(0, 1fr));
+  gap: 10px;
+}
+
+.cs-method-step {
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+  padding: 14px 14px 16px;
+  border-radius: var(--radius-sm);
+  background: var(--card-bg-solid);
+  border: 1px solid var(--card-border);
+}
+
+.cs-method-step .cs-num {
+  margin-bottom: 2px;
+}
+
+.cs-method-title {
+  font-size: 0.875rem;
+  font-weight: 600;
+  letter-spacing: -0.01em;
+  line-height: 1.3;
+  color: var(--text);
+}
+
+.cs-method-detail {
+  font-size: 0.75rem;
+  line-height: 1.45;
+  color: var(--text-secondary);
+}
+
+/* ---------- Galerie en rangée (hauteur fixe) ---------- */
+.cs-mosaic--row .card.cs-media {
+  height: 380px;
+  aspect-ratio: auto;
+}
+
+.cs-mosaic--row .cs-media--wide {
+  grid-column: span 2;
+}
+
+/* ---------- Deux boutons posés sur le visuel ---------- */
+.cs-visual > .cs-actions {
+  position: absolute;
+  right: 16px;
+  bottom: 16px;
+  z-index: 5;
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: flex-end;
+  gap: 8px;
+  max-width: calc(100% - 32px);
+}
+
+.cs-actions .hero-action {
+  position: relative;
+  inset: auto;
+  max-width: none;
+}
+
+.cs-actions .hero-action--light {
+  background: rgba(255, 255, 255, 0.94);
+  border-color: rgba(0, 0, 0, 0.08);
+  color: #0a0a0d;
+}
+
+.cs-actions .hero-action--light:hover {
+  background: #fff;
+  border-color: rgba(0, 0, 0, 0.16);
+}
+
+/* Anneau sombre sous le contour blanc : le focus reste visible sur la pastille claire */
+.cs-actions .hero-action--light:focus-visible {
+  box-shadow: 0 0 0 3px #0a0a0d;
+}
+
+/* ---------- Galerie latérale (2/3 de la largeur, 3 colonnes) ---------- */
+.cs-grid > .cs-mosaic--side {
+  grid-column: span 8;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  grid-auto-rows: 230px;
+}
+
+.cs-mosaic--side .card.cs-media {
+  aspect-ratio: auto;
+}
+
+.cs-mosaic--side .card.cs-media--tall {
+  grid-row: span 2;
+  aspect-ratio: auto;
+}
+
+/* ---------- Avant / Après : paires de pages A4 ---------- */
+.card.cs-compare {
+  grid-column: 1 / -1;
+  display: flex;
+  flex-direction: column;
+  gap: 18px;
+  padding: 24px 26px 26px;
+}
+
+.cs-compare-groups {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 22px 28px;
+}
+
+.cs-compare-group {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+}
+
+.cs-compare-group-title {
+  font-size: 0.6875rem;
+  font-weight: 500;
+  color: var(--eyebrow);
+  text-transform: uppercase;
+  letter-spacing: 0.1em;
+}
+
+.cs-compare-pair {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 14px;
+}
+
+.cs-compare-item {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  margin: 0;
+}
+
+/* Format A4 sans recadrage : la page entière reste visible */
+.cs-compare-media {
+  position: relative;
+  aspect-ratio: 210 / 297;
+  overflow: hidden;
+  border-radius: var(--radius-sm);
+  background: var(--card-bg-solid);
+  border: 1px solid var(--card-border);
+}
+
+.cs-compare-media > img {
+  position: absolute;
+  inset: 0;
+  z-index: 1;
+  width: 100%;
+  height: 100%;
+  object-fit: contain;
+}
+
+.cs-compare-item--before .cs-compare-media > img {
+  filter: saturate(0.6);
+}
+
+.cs-compare-item--after .cs-compare-media {
+  border: 2px solid var(--fiche-accent);
+  box-shadow: 0 10px 28px var(--fiche-accent-shadow);
+}
+
+.cs-compare-caption {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  font-size: 0.8125rem;
+  font-weight: 500;
+  color: var(--text-secondary);
+}
+
+.cs-compare-caption::before {
+  content: "";
+  width: 7px;
+  height: 7px;
+  border-radius: 50%;
+  /* Gris système Apple : lisible en clair comme en sombre, sans dépendre des tokens de la page */
+  background: #8E8E93;
+}
+
+.cs-compare-item--after .cs-compare-caption {
+  color: var(--fiche-accent);
+  font-weight: 600;
+}
+
+.cs-compare-item--after .cs-compare-caption::before {
+  background: var(--fiche-accent);
+}
+
+/* Document paysage dans une case haute : on garde le titre et la première colonne */
+.cs-media > .cs-img.cs-img--start {
+  object-position: left top;
+}
+
+/* ---------- Résultats : note complémentaire ---------- */
+.cs-results-note {
+  font-size: 0.75rem;
+  line-height: 1.45;
+  color: rgba(235, 235, 245, 0.62);
+}
+
+.cs-results-note strong {
+  color: #F5F5F7;
+  font-weight: 600;
+}
+
+/* ---------- Galerie en mosaïque (4 colonnes, 2 lignes) ---------- */
+.cs-mosaic {
+  grid-column: 1 / -1;
+  display: grid;
+  grid-template-columns: repeat(4, minmax(0, 1fr));
+  gap: var(--gap);
+}
+
+.card.cs-media {
+  aspect-ratio: 4 / 3;
+  padding: 0;
+  background: var(--card-bg-solid);
+  backdrop-filter: none;
+  -webkit-backdrop-filter: none;
+}
+
+.card.cs-media--tall {
+  grid-row: span 2;
+  aspect-ratio: auto;
+}
+
+.cs-media > .cs-img {
+  position: absolute;
+  inset: 0;
+  z-index: 1;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  object-position: center;
+}
+
+/* Visuels verticaux : on montre le haut du document */
+.cs-media > .cs-img--top {
+  object-position: top;
+}
+
+/* Étiquette décorative : le clic traverse vers l'agrandissement */
+.cs-media > .cs-media-label {
+  position: absolute;
+  left: 12px;
+  bottom: 12px;
+  z-index: 5;
+  max-width: calc(100% - 24px);
+  padding: 5px 10px;
+  border-radius: 999px;
+  background: rgba(255, 255, 255, 0.94);
+  color: #0a0a0d;
+  font-size: 0.75rem;
+  font-weight: 600;
+  line-height: 1.3;
+  box-shadow: 0 4px 14px rgba(0, 0, 0, 0.16);
+  pointer-events: none;
+}
+
+/* Bouton « Ouvrir » en haut à droite : jamais sur l'étiquette */
+.cs-media > .hero-action {
+  top: 12px;
+  right: 12px;
+  bottom: auto;
+}
+
+/* ---------- Responsive ---------- */
+@media (max-width: 1100px) {
+  .cs-intro,
+  .cs-visual,
+  .cs-quote,
+  .cs-results,
+  .cs-cta,
+  .cs-grid > .project-pager {
+    grid-column: 1 / -1;
+  }
+
+  .cs-step:not(.cs-results) {
+    grid-column: span 6;
+  }
+
+  .cs-poster {
+    grid-column: span 3;
+  }
+
+  .cs-mosaic {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+
+  /* Les deux visuels verticaux partagent seuls leur ligne :
+     ils prennent un format portrait au lieu de s'étirer sur deux lignes vides */
+  .card.cs-media--tall {
+    grid-row: auto;
+    aspect-ratio: 3 / 4;
+  }
+
+  .cs-method-steps {
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+  }
+
+  .cs-grid > .cs-mosaic--side {
+    grid-column: 1 / -1;
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+
+  /* Les deux groupes s'empilent, chaque paire reste côte à côte */
+  .cs-compare-groups {
+    grid-template-columns: 1fr;
+  }
+
+  /* La charte occupe toute la largeur : elle garde son format paysage */
+  .cs-mosaic--row .card.cs-media--wide {
+    height: auto;
+    aspect-ratio: 61 / 40;
+  }
+
+  /* Le visuel n'a plus de voisin à suivre : il reprend son format */
+  .card.cs-visual {
+    min-height: 0;
+    aspect-ratio: 1827 / 960;
+  }
+}
+
+@media (max-width: 720px) {
+  .project-nav .nav-status {
+    margin-left: auto;
+  }
+
+  .project-nav .theme-toggle-btn {
+    margin-left: 0;
+  }
+
+  .cs-step:not(.cs-results) {
+    grid-column: 1 / -1;
+  }
+
+  .cs-poster {
+    grid-column: span 6;
+  }
+
+  .card.cs-intro {
+    padding: 26px 22px 22px;
+  }
+
+  .cs-title {
+    font-size: clamp(1.875rem, 8.5vw, 2.5rem);
+  }
+
+  .cs-facts {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+
+  .cs-mosaic {
+    grid-template-columns: 1fr;
+  }
+
+  .cs-mosaic--row .cs-media--wide {
+    grid-column: auto;
+  }
+
+  .cs-mosaic--row .card.cs-media--portrait {
+    height: auto;
+    aspect-ratio: 3 / 4;
+  }
+
+  .cs-method-steps {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+
+  .cs-grid > .cs-mosaic--side {
+    grid-template-columns: 1fr;
+    grid-auto-rows: auto;
+  }
+
+  .cs-mosaic--side .card.cs-media {
+    aspect-ratio: 4 / 3;
+  }
+
+  .cs-mosaic--side .card.cs-media--tall {
+    grid-row: auto;
+    aspect-ratio: 3 / 4;
+  }
+
+  .card.cs-method,
+  .card.cs-compare {
+    padding: 22px 20px;
+  }
+
+  .cs-compare-pair {
+    gap: 10px;
+  }
+
+  .card.cs-cta {
+    flex-wrap: wrap;
+    padding: 22px 20px;
+  }
+
+  .cs-cta-link {
+    width: 100%;
+    justify-content: center;
+  }
+}
+
+/* Petits téléphones : la pastille garde seulement l'essentiel */
+@media (max-width: 440px) {
+  .nav-status-more {
+    display: none;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .cs-poster:hover > .cs-img,
+  .cs-cta-link:hover,
+  .cs-cta-link:hover svg {
+    transform: none;
+  }
+}
+
+/* ---------- Problématique en encadré ---------- */
+.cs-question {
+  padding: 12px 14px;
+  border-radius: var(--radius-sm);
+  background: var(--pill-bg);
+  border: 1px solid var(--pill-border);
+  font-size: 0.8125rem;
+  font-style: italic;
+  line-height: 1.5;
+  color: var(--text);
+}
+
+/* ---------- Pastille accent à côté d'un titre ---------- */
+.cs-badge {
+  display: inline-flex;
+  align-items: center;
+  padding: 3px 10px;
+  border-radius: 999px;
+  /* Bleu plein de l'appel à l'action : blanc lisible (5,97:1) */
+  background: var(--cs-cta-bg);
+  color: #fff;
+  font-size: 0.6875rem;
+  font-weight: 600;
+  letter-spacing: 0.01em;
+}
+
+/* ---------- Cartographie interactive (iframe) ---------- */
+.cs-map-title {
+  display: flex;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: 8px 12px;
+}
+
+/* Une carte interactive ne grossit pas au survol : le pointeur y travaille */
+.card.cs-map:hover {
+  transform: none;
+}
+
+/* Fond de la cartographie elle-même : aucun flash clair au chargement */
+.cs-map-frame {
+  position: relative;
+  height: 520px;
+  overflow: hidden;
+  border-radius: var(--radius-sm);
+  border: 1px solid var(--card-border);
+  background: #080c18;
+}
+
+.cs-map-frame > iframe {
+  display: block;
+  width: 100%;
+  height: 100%;
+  border: 0;
+}
+
+.cs-map-fallback {
+  display: none;
+}
+
+.cs-map-frame > .hero-action {
+  top: 12px;
+  right: 12px;
+  bottom: auto;
+}
+
+/* ---------- Galerie sur trois colonnes (hauteur fixe) ---------- */
+.cs-grid > .cs-mosaic--three {
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+}
+
+.cs-mosaic--three .card.cs-media {
+  height: 300px;
+  aspect-ratio: auto;
+}
+
+@media (max-width: 1100px) {
+  .cs-map-frame {
+    height: 420px;
+  }
+
+  .cs-mosaic--three .card.cs-media {
+    height: 240px;
+  }
+}
+
+/* Mobile : la cartographie n'est pas lisible dans 360px, l'image statique la remplace */
+@media (max-width: 720px) {
+  .cs-map-frame {
+    height: auto;
+    background: var(--card-bg-solid);
+  }
+
+  .cs-map-frame > iframe {
+    display: none;
+  }
+
+  .cs-map-fallback {
+    display: block;
+    position: relative;
+    aspect-ratio: 36 / 25;
+  }
+
+  .cs-map-fallback > .cs-img {
+    position: absolute;
+    inset: 0;
+    width: 100%;
+    height: 100%;
+    object-fit: contain;
+  }
+
+  .cs-grid > .cs-mosaic--three {
+    grid-template-columns: 1fr;
+  }
+
+  .cs-mosaic--three .card.cs-media {
+    height: auto;
+    aspect-ratio: 4 / 3;
+  }
+}
+
+/* ---------- Trois étiquettes sur une ligne ---------- */
+.cs-tiles--3 {
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+}
+
+/* ---------- Système visuel : nuanciers et logos ---------- */
+.cs-system {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) minmax(0, 1.1fr);
+  gap: 14px;
+}
+
+.cs-swatches {
+  list-style: none;
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: 10px;
+}
+
+.cs-swatch {
+  display: flex;
+  flex-direction: column;
+  overflow: hidden;
+  border-radius: var(--radius-sm);
+  background: var(--card-bg-solid);
+  border: 1px solid var(--card-border);
+}
+
+/* Le filet sous l'aplat garde le blanc visible sur fond blanc */
+.cs-swatch-color {
+  height: 120px;
+  border-bottom: 1px solid var(--card-border);
+}
+
+.cs-swatch-name {
+  padding: 12px 12px 0;
+  font-size: 0.875rem;
+  font-weight: 600;
+  color: var(--text);
+}
+
+.cs-swatch-text {
+  padding: 4px 12px 14px;
+  font-size: 0.75rem;
+  line-height: 1.45;
+  color: var(--text-secondary);
+}
+
+.cs-logos {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 10px;
+}
+
+/* Format exact des fichiers : le logo n'est jamais recadré */
+.cs-logo {
+  position: relative;
+  align-self: start;
+  aspect-ratio: 1788 / 1230;
+  overflow: hidden;
+  border-radius: var(--radius-sm);
+  border: 1px solid var(--card-border);
+}
+
+.cs-logo--light {
+  background: #FDFDFD;
+}
+
+.cs-logo--dark {
+  background: #000;
+}
+
+.cs-logo > img {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: contain;
+}
+
+/* ---------- Galerie affiche + document large ---------- */
+.cs-grid > .cs-mosaic--poster {
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+}
+
+.cs-mosaic--poster .card.cs-media {
+  aspect-ratio: auto;
+}
+
+/* Ratio exact de l'affiche : elle donne la hauteur de la rangée */
+.cs-mosaic--poster .card.cs-media--portrait {
+  aspect-ratio: 1200 / 1704;
+}
+
+.cs-mosaic--poster .card.cs-media--wide {
+  grid-column: span 2;
+}
+
+/* Visuels sur fond noir : les marges du « contain » se fondent dans l'image */
+.card.cs-media--dark {
+  background: #000;
+}
+
+.cs-media > .cs-img.cs-img--contain {
+  object-fit: contain;
+}
+
+@media (max-width: 1100px) {
+  .cs-system {
+    grid-template-columns: 1fr;
+  }
+}
+
+@media (max-width: 720px) {
+  .cs-swatch-color {
+    height: 80px;
+  }
+}
+
+/* Petits téléphones : trois colonnes coupaient les mots ; chaque couleur
+   devient une ligne, aplat à gauche et texte à droite */
+@media (max-width: 480px) {
+  .cs-swatches {
+    grid-template-columns: 1fr;
+  }
+
+  .cs-swatch {
+    display: grid;
+    grid-template-columns: 72px minmax(0, 1fr);
+    grid-template-rows: auto 1fr;
+  }
+
+  .cs-swatch-color {
+    grid-row: 1 / 3;
+    height: auto;
+    min-height: 64px;
+    border-bottom: 0;
+    border-right: 1px solid var(--card-border);
+  }
+
+  .cs-swatch-name {
+    padding: 12px 14px 0;
+  }
+
+  .cs-swatch-text {
+    padding: 2px 14px 12px;
+  }
+}
+
+@media (max-width: 720px) {
+  .cs-logos {
+    grid-template-columns: 1fr;
+  }
+
+  .cs-grid > .cs-mosaic--poster {
+    grid-template-columns: 1fr;
+  }
+
+  .cs-mosaic--poster .card.cs-media--wide {
+    grid-column: auto;
+    aspect-ratio: 1600 / 1049;
+  }
+}
+
+/* ---------- Pastille + surtitre sur une ligne ---------- */
+.cs-kicker {
+  display: flex;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: 8px 12px;
+}
+
+.cs-pitch.cs-pitch--lead {
+  font-size: 1.125rem;
+  line-height: 1.5;
+}
+
+.cs-facts--2 {
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+}
+
+/* Bloc mis en avant dans la carte sombre */
+.cs-tile.cs-tile--accent {
+  border-color: #0A84FF;
+}
+
+/* ---------- Lecteurs vidéo ---------- */
+/* La barre de navigation collante ne masque pas le titre de la section */
+.card.cs-media-section {
+  scroll-margin-top: 80px;
+}
+
+/* Une carte qui contient un lecteur ne grossit pas au survol */
+.card.cs-media-section:hover {
+  transform: none;
+}
+
+/* Les deux lecteurs ont la même hauteur et remplissent la carte : chaque
+   colonne grandit au prorata de la largeur de son format (16/9 et 9/16) */
+.cs-players {
+  display: flex;
+  align-items: flex-start;
+  gap: 14px;
+}
+
+.cs-player--wide {
+  flex: 1.7778 1 0;
+  min-width: 0;
+}
+
+.cs-player--vertical {
+  flex: 0.5625 1 0;
+  min-width: 0;
+}
+
+.cs-player {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  margin: 0;
+}
+
+.cs-player-frame {
+  position: relative;
+  aspect-ratio: 16 / 9;
+  overflow: hidden;
+  border-radius: var(--radius-sm);
+  border: 1px solid var(--card-border);
+  background: #0a0a0d;
+}
+
+.cs-player--vertical .cs-player-frame {
+  aspect-ratio: 9 / 16;
+  border-radius: 22px;
+}
+
+.cs-player-frame > iframe,
+.cs-player-frame > video,
+.cs-player-frame > .cs-player-poster {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  border: 0;
+  object-fit: cover;
+}
+
+.cs-player-frame > video {
+  object-fit: contain;
+  background: #000;
+}
+
+/* Toute la miniature lance la lecture ; le rond blanc n'est qu'un repère */
+.cs-play {
+  position: absolute;
+  inset: 0;
+  z-index: 2;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 100%;
+  border-radius: inherit;
+}
+
+.cs-play-icon {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 64px;
+  height: 64px;
+  border-radius: 50%;
+  background: rgba(255, 255, 255, 0.94);
+  color: #0a0a0d;
+  box-shadow: 0 8px 24px rgba(0, 0, 0, 0.35);
+  transition: transform var(--transition-fast);
+}
+
+.cs-play-icon svg {
+  width: 24px;
+  height: 24px;
+  margin-left: 3px;
+}
+
+.cs-play:hover .cs-play-icon {
+  transform: scale(1.06);
+}
+
+.cs-play:focus-visible {
+  outline: 2px solid #fff;
+  outline-offset: -6px;
+}
+
+.cs-duration {
+  position: absolute;
+  right: 12px;
+  bottom: 12px;
+  z-index: 3;
+  padding: 3px 8px;
+  border-radius: 6px;
+  background: rgba(0, 0, 0, 0.78);
+  color: #fff;
+  font-size: 0.75rem;
+  font-weight: 600;
+  pointer-events: none;
+}
+
+/* Emplacement en attente de la vidéo */
+.cs-player-frame--empty {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background:
+    repeating-linear-gradient(135deg, rgba(255, 255, 255, 0.035) 0 14px, transparent 14px 28px),
+    #141416;
+}
+
+.cs-player-empty {
+  color: rgba(255, 255, 255, 0.72);
+  font-size: 0.8125rem;
+  font-weight: 600;
+}
+
+.cs-player-caption {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  font-size: 0.8125rem;
+  color: var(--text-secondary);
+}
+
+.cs-ratio {
+  padding: 2px 7px;
+  border-radius: 6px;
+  background: var(--pill-bg);
+  border: 1px solid var(--pill-border);
+  color: var(--text);
+  font-size: 0.6875rem;
+  font-weight: 600;
+}
+
+/* ---------- Liste à icônes ---------- */
+.cs-uses {
+  list-style: none;
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+
+.cs-uses li {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  padding: 12px 14px;
+  border-radius: var(--radius-sm);
+  background: var(--card-bg-solid);
+  border: 1px solid var(--card-border);
+  color: var(--text);
+  font-size: 0.8125rem;
+  font-weight: 500;
+  line-height: 1.35;
+}
+
+.cs-uses svg {
+  width: 18px;
+  height: 18px;
+  flex: none;
+  color: var(--fiche-accent);
+}
+
+.cs-uses.cs-uses--row {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+}
+
+/* ---------- Sélecteur de version dans l'en-tête de la carte ---------- */
+.cs-title-group {
+  display: flex;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: 4px 18px;
+}
+
+.cs-switch {
+  display: inline-flex;
+  align-items: center;
+  gap: 4px;
+}
+
+/* Texte seul : la version affichée passe en bleu, soulignée */
+.cs-switch-btn {
+  min-height: 44px;
+  padding: 0 8px;
+  border-radius: 8px;
+  color: var(--text-secondary);
+  font-size: 0.875rem;
+  font-weight: 600;
+  text-underline-offset: 6px;
+  transition: color var(--transition-fast);
+}
+
+.cs-switch-btn:hover {
+  color: var(--text);
+}
+
+/* Bleu foncé en clair (5,97:1 sur blanc), bleu système en sombre */
+.cs-switch-btn[aria-pressed="true"] {
+  color: var(--cs-cta-bg);
+  text-decoration: underline 2px;
+}
+
+[data-theme="dark"] .cs-switch-btn[aria-pressed="true"] {
+  color: var(--fiche-accent);
+}
+
+.cs-footnote {
+  grid-column: 1 / -1;
+  padding: 0 4px;
+  font-size: 0.75rem;
+  font-style: italic;
+  line-height: 1.5;
+  color: var(--text-secondary);
+}
+
+@media (max-width: 1100px) {
+  .cs-uses.cs-uses--row {
+    grid-template-columns: 1fr;
+  }
+}
+
+@media (max-width: 720px) {
+  .cs-players {
+    flex-direction: column;
+    align-items: stretch;
+  }
+
+  .cs-player--wide,
+  .cs-player--vertical {
+    flex: none;
+    width: 100%;
+  }
+
+  .cs-player--vertical {
+    align-self: center;
+    max-width: 300px;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .cs-play:hover .cs-play-icon {
+    transform: none;
+  }
+}
+
+
+/* ---------- Aperçu de page dans un cadre de navigateur ----------
+   Les cadres gardent leurs vraies couleurs dans les deux thèmes. */
+.cs-shots {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 18px 22px;
+}
+
+.cs-browser {
+  display: flex;
+  flex-direction: column;
+  overflow: hidden;
+  border-radius: var(--radius-sm);
+  border: 1px solid var(--card-border);
+  background: #fff;
+}
+
+.cs-compare-item--after .cs-browser {
+  border: 2px solid var(--fiche-accent);
+  box-shadow: 0 10px 28px var(--fiche-accent-shadow);
+}
+
+.cs-browser-bar {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  padding: 9px 12px;
+  background: #ECECEF;
+  border-bottom: 1px solid #DCDCE0;
+}
+
+.cs-browser-dots {
+  display: flex;
+  flex: none;
+  gap: 6px;
+}
+
+.cs-browser-dots span {
+  width: 9px;
+  height: 9px;
+  border-radius: 50%;
+  background: #C4C4CA;
+}
+
+.cs-browser-url {
+  flex: 1;
+  min-width: 0;
+  padding: 4px 12px;
+  border-radius: 999px;
+  background: #fff;
+  color: #55555C;
+  font-size: 0.75rem;
+  line-height: 1.3;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+/* Tout l'aperçu est un bouton : il ouvre la page entière */
+.cs-peek {
+  position: relative;
+  display: block;
+  width: 100%;
+  height: 520px;
+  padding: 0;
+  overflow: hidden;
+  background: #fff;
+  cursor: zoom-in;
+}
+
+.cs-peek > img {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  object-position: top;
+  transition: transform var(--transition-med);
+}
+
+.cs-compare-item--before .cs-peek > img {
+  filter: saturate(0.7);
+}
+
+/* Fondu vers le blanc sous le bouton */
+.cs-peek::after {
+  content: "";
+  position: absolute;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  height: 38%;
+  background: linear-gradient(to bottom, rgba(255, 255, 255, 0), #fff 92%);
+  pointer-events: none;
+}
+
+.cs-peek-label {
+  position: absolute;
+  left: 50%;
+  bottom: 18px;
+  z-index: 1;
+  display: inline-flex;
+  align-items: center;
+  min-height: 44px;
+  padding: 0 18px;
+  border-radius: 999px;
+  background: rgba(12, 12, 14, 0.88);
+  color: #fff;
+  font-size: 0.8125rem;
+  font-weight: 600;
+  white-space: nowrap;
+  transform: translateX(-50%);
+  transition: background var(--transition-fast);
+}
+
+.cs-peek:hover > img {
+  transform: scale(1.02);
+}
+
+.cs-peek:hover .cs-peek-label {
+  background: #0c0c0e;
+}
+
+/* Bleu sur l'image : visible sur le blanc du fondu comme sur la capture */
+.cs-peek:focus-visible {
+  outline: 3px solid var(--fiche-accent);
+  outline-offset: -3px;
+  border-radius: 0;
+}
+
+/* Emplacement en attente de la capture : non cliquable */
+.cs-peek.cs-peek--empty {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 10px;
+  background:
+    repeating-linear-gradient(135deg, rgba(0, 0, 0, 0.045) 0 12px, transparent 12px 24px),
+    #F6F6F8;
+  color: #5C5C63;
+  font-size: 0.8125rem;
+  font-weight: 500;
+  text-align: center;
+  cursor: default;
+}
+
+.cs-peek--empty::after {
+  display: none;
+}
+
+.cs-peek--empty svg {
+  width: 26px;
+  height: 26px;
+}
+
+/* ---------- Carte document : titre, texte puis visuel ---------- */
+.card.cs-doc {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+  padding: 24px 26px 26px;
+}
+
+.cs-doc--wide {
+  grid-column: span 8;
+}
+
+.cs-doc--narrow {
+  grid-column: span 4;
+}
+
+.cs-doc-media {
+  position: relative;
+  margin-top: 4px;
+  overflow: hidden;
+  border-radius: var(--radius-sm);
+  border: 1px solid var(--card-border);
+  background: #fff;
+}
+
+.cs-doc-media > img {
+  position: absolute;
+  inset: 0;
+  z-index: 1;
+  width: 100%;
+  height: 100%;
+  object-fit: contain;
+}
+
+.cs-doc-media--tree {
+  aspect-ratio: 2000 / 1414;
+  background: #FFF8EC;
+}
+
+.cs-doc-media--charte {
+  aspect-ratio: 1920 / 1200;
+  background: #FFF8EC;
+}
+
+/* Le wireframe remplit la hauteur laissée par l'arborescence voisine */
+.cs-doc--narrow .cs-browser {
+  flex: 1;
+  margin-top: 4px;
+}
+
+.cs-doc--narrow .cs-peek {
+  flex: 1;
+  height: auto;
+  min-height: 380px;
+}
+
+/* ---------- Identité visuelle : texte (1/3) et charte (2/3) ---------- */
+.card.cs-identity {
+  grid-column: 1 / -1;
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) minmax(0, 2fr);
+  align-items: center;
+  gap: 18px 28px;
+  padding: 24px 26px 26px;
+}
+
+.cs-identity-text {
+  display: flex;
+  flex-direction: column;
+  gap: 14px;
+}
+
+.cs-dots {
+  list-style: none;
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+  margin-top: 4px;
+}
+
+.cs-dot {
+  width: 30px;
+  height: 30px;
+  border-radius: 8px;
+}
+
+/* La craie est presque blanche : un filet la détache du fond clair */
+.cs-dot--outline {
+  box-shadow: inset 0 0 0 1px rgba(0, 0, 0, 0.18);
+}
+
+.cs-identity .cs-doc-media {
+  margin-top: 0;
+}
+
+/* ---------- Agrandissement en mode « page entière » ----------
+   Image à sa largeur naturelle (1000 px au plus), la modale défile
+   et s'ouvre en haut ; titre et croix restent visibles au-dessus. */
+.lightbox-head {
+  display: contents;
+}
+
+.lightbox.lightbox--page {
+  display: block;
+  overflow-y: auto;
+  overscroll-behavior: contain;
+  padding: 0 clamp(12px, 3vw, 32px) clamp(16px, 4vw, 40px);
+}
+
+.lightbox--page .lightbox-head {
+  position: sticky;
+  top: 0;
+  z-index: 2;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 16px;
+  max-width: 1000px;
+  margin: 0 auto;
+  padding: 12px 0;
+  background: linear-gradient(to bottom, rgba(10, 10, 12, 0.96) 70%, rgba(10, 10, 12, 0));
+}
+
+.lightbox--page .lightbox-title {
+  position: static;
+  width: auto;
+  height: auto;
+  margin: 0;
+  overflow: visible;
+  clip: auto;
+  white-space: normal;
+  color: #fff;
+  font-size: 0.875rem;
+  font-weight: 600;
+  line-height: 1.4;
+}
+
+.lightbox--page .lightbox-close {
+  position: static;
+  flex: none;
+}
+
+.lightbox--page .lightbox-img {
+  width: auto;
+  max-width: min(1000px, 100%);
+  max-height: none;
+  margin: 0 auto;
+  object-fit: initial;
+}
+
+@media (max-width: 1100px) {
+  .cs-doc--wide,
+  .cs-doc--narrow {
+    grid-column: 1 / -1;
+  }
+
+  .cs-doc--narrow .cs-peek {
+    flex: none;
+    height: 520px;
+  }
+}
+
+@media (max-width: 900px) {
+  .cs-shots,
+  .card.cs-identity {
+    grid-template-columns: 1fr;
+  }
+}
+
+@media (max-width: 720px) {
+  .cs-peek,
+  .cs-doc--narrow .cs-peek {
+    height: 420px;
+  }
+
+  .card.cs-doc,
+  .card.cs-identity {
+    padding: 22px 20px;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .cs-peek:hover > img {
+    transform: none;
+  }
+}

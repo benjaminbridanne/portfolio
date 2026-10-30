@@ -10,31 +10,31 @@
       if (localStorage.getItem('bb-theme') === 'dark') document.documentElement.setAttribute('data-theme', 'dark');
     } catch { /* Stockage indisponible : thème clair par défaut. */ }
   </script>
-  <title>Groenland, l’eldorado numérique - Projet de Benjamin Bridanne</title>
+  <title>Groenland, l’eldorado numérique : site éditorial · Benjamin Bridanne</title>
   <meta name="description"
-    content="Projet collectif de Master 2 : conception d’un site éditorial WordPress / Divi sur les métaux rares et le développement durable du Groenland." />
+    content="Site éditorial sur les métaux rares et le développement durable du Groenland par Benjamin Bridanne : analyse de controverse, cartographie des acteurs, identité visuelle et intégration WordPress / Divi." />
   <link rel="canonical" href="https://benjaminbridanne.fr/projet-groenland" />
-  <link rel="icon" href="Images/image-logo-inverse.png" type="image/png" />
+  <link rel="icon" href="Images/favicon-b.b.svg" type="image/svg" />
 
   <meta property="og:type" content="website" />
   <meta property="og:url" content="https://benjaminbridanne.fr/projet-groenland" />
-  <meta property="og:title" content="Groenland, l'eldorado numérique" />
+  <meta property="og:title" content="Groenland, l'eldorado numérique : site éditorial de vulgarisation" />
   <meta property="og:description"
-    content="Projet collectif de Master 2 : conception d'un site éditorial WordPress / Divi sur les métaux rares et le développement durable du Groenland." />
+    content="Site éditorial sur les métaux rares et le développement durable du Groenland par Benjamin Bridanne : analyse de controverse, cartographie des acteurs, identité visuelle et intégration WordPress / Divi." />
   <meta property="og:image" content="https://benjaminbridanne.fr/Images/image_fond.png" />
   <meta property="og:locale" content="fr_FR" />
 
   <meta name="twitter:card" content="summary_large_image" />
+  <link rel="stylesheet" href="css/fiche-projet.css" />
   <style>
     /* =========================================================
-       TOKENS (identiques à l'accueil - cohérence stricte)
+       TOKENS (identiques à l'accueil : cohérence stricte)
        ========================================================= */
     :root {
       --font-system: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
       --radius: 22px;
       --radius-sm: 14px;
       --gap: 14px;
-      --max-width: 1280px;
 
       --ease: cubic-bezier(.2, .8, .2, 1);
       --transition-fast: 250ms var(--ease);
@@ -74,9 +74,6 @@
 
       --pill-bg: rgba(0, 0, 0, 0.04);
       --pill-border: rgba(60, 60, 67, 0.14);
-
-      --tool-bg: rgba(0, 0, 0, 0.05);
-      --tool-border: rgba(60, 60, 67, 0.12);
     }
 
     /* -------- Dark mode -------- */
@@ -110,9 +107,6 @@
 
       --pill-bg: rgba(255, 255, 255, 0.05);
       --pill-border: rgba(255, 255, 255, 0.10);
-
-      --tool-bg: rgba(255, 255, 255, 0.04);
-      --tool-border: rgba(255, 255, 255, 0.08);
     }
 
     /* =========================================================
@@ -366,7 +360,7 @@
     }
 
     /* =========================================================
-       PROJECT BENTO GRID
+       CONTENEUR (la grille de l'étude de cas est dans css/fiche-projet.css)
        ========================================================= */
     .project-main {
       max-width: var(--max-width);
@@ -376,85 +370,12 @@
       z-index: 1;
     }
 
-    .project-grid {
-      display: grid;
-      grid-template-columns: repeat(4, 1fr);
-      grid-auto-rows: minmax(150px, auto);
-      gap: var(--gap);
-    }
-
-    /* --- Positionnement des cartes --- */
-    .card--hero-meta {
-      grid-column: span 2;
-      grid-row: span 1;
-    }
-
-    .card--hero-visual {
-      grid-column: span 2;
-      grid-row: span 1;
-      padding: 0;
-      min-height: 320px;
-    }
-
-    .card--info {
-      grid-column: span 1;
-      grid-row: span 1;
-    }
-
-    /* Galerie : cartographie a gauche sur deux rangees, maquette verticale au
-       centre, arborescence et charte empilees a droite. La maquette occupe les
-       memes pistes que les deux petites cartes : sa hauteur vaut donc deux
-       petites cartes plus le gap qui les separe. */
-    .card--gallery-large {
-      grid-column: 1 / 3;
-      grid-row: 3 / 5;
-      padding: 0;
-      min-height: 0;
-    }
-
-    .card--gallery-tall {
-      grid-column: 3;
-      grid-row: 3 / 5;
-      padding: 0;
-      min-height: 0;
-    }
-
-    .card--gallery-1 {
-      grid-column: 4;
-      grid-row: 3;
-      padding: 0;
-    }
-
-    .card--gallery-2 {
-      grid-column: 4;
-      grid-row: 4;
-      padding: 0;
-    }
-
-    /* =========================================================
-       HERO - MÉTA
-       ========================================================= */
-    .card--hero-meta {
-      display: flex;
-      flex-direction: column;
-      justify-content: center;
-      gap: 18px;
-      padding: 32px 30px;
-    }
-
     .hero-eyebrow {
       font-size: 0.75rem;
       font-weight: 500;
       color: var(--eyebrow);
       text-transform: uppercase;
       letter-spacing: 0.14em;
-    }
-
-    .hero-title {
-      font-size: clamp(1.75rem, 3.2vw, 2.75rem);
-      font-weight: 700;
-      letter-spacing: -0.03em;
-      line-height: 1.02;
     }
 
     .hero-tags {
@@ -476,31 +397,8 @@
       letter-spacing: 0.01em;
     }
 
-    .hero-pitch {
-      font-size: 0.9375rem;
-      color: var(--text-secondary);
-      line-height: 1.55;
-      max-width: 90ch;
-    }
-
-    /* =========================================================
-       HERO - VISUEL
-       ========================================================= */
-    .card--hero-visual {
-      overflow: hidden;
-    }
-
-    .hero-image {
-      position: absolute;
-      inset: 0;
-      width: 100%;
-      height: 100%;
-      object-fit: cover;
-      z-index: 1;
-    }
-
     /* Bouton pose sur la photographie : lisible dans les deux themes */
-    .proto-btn {
+    .hero-action {
       position: absolute;
       bottom: 16px;
       right: 16px;
@@ -525,193 +423,21 @@
         transform var(--transition-med);
     }
 
-    .proto-btn svg {
+    .hero-action svg {
       width: 14px;
       height: 14px;
       flex: none;
     }
 
-    .proto-btn:hover {
+    .hero-action:hover {
       background: rgba(12, 12, 14, 0.9);
       border-color: rgba(255, 255, 255, 0.45);
       transform: translateY(-1px);
     }
 
-    .proto-btn:focus-visible {
+    .hero-action:focus-visible {
       outline: 2px solid #fff;
       outline-offset: 3px;
-    }
-
-    /* =========================================================
-       CARTES INFO (défi / réponse / impact / outils)
-       ========================================================= */
-    .card--info {
-      display: flex;
-      flex-direction: column;
-      gap: 12px;
-      padding: 22px 22px 20px;
-    }
-
-    .info-title {
-      font-size: 0.95rem;
-      font-weight: 600;
-      color: var(--text);
-      letter-spacing: -0.01em;
-    }
-
-    .info-body {
-      font-size: 0.87rem;
-      color: var(--text-secondary);
-      line-height: 1.55;
-    }
-
-    /* --- Note du jury : une ligne sobre, aux corps de texte de la reference --- */
-    .info-note {
-      margin-top: 4px;
-      padding: 10px 12px;
-      border: 1px solid var(--tool-border);
-      border-radius: var(--radius-sm);
-      background: var(--tool-bg);
-      color: var(--text);
-      font-size: 0.87rem;
-      font-weight: 600;
-      line-height: 1.4;
-    }
-
-    /* --- Outils : badges sobres, nom complet visible --- */
-    /* =========================================================
-   CARTE OUTILS — STYLE GLASS
-   ========================================================= */
-
-    .tools-grid {
-      display: grid;
-      grid-template-columns: repeat(2, minmax(0, 1fr));
-      gap: 10px;
-      margin-top: 4px;
-    }
-
-    .tool-item {
-      display: flex;
-      align-items: center;
-      gap: 9px;
-      min-width: 0;
-      padding: 10px;
-      border: 1px solid rgba(255, 255, 255, 0.12);
-      border-radius: 14px;
-
-      background:
-        linear-gradient(145deg,
-          rgba(255, 255, 255, 0.11),
-          rgba(255, 255, 255, 0.035));
-
-      box-shadow:
-        inset 0 1px 0 rgba(255, 255, 255, 0.12),
-        0 8px 24px rgba(0, 0, 0, 0.18);
-
-      -webkit-backdrop-filter: blur(14px) saturate(130%);
-      backdrop-filter: blur(14px) saturate(130%);
-
-      transition:
-        transform var(--transition-med),
-        border-color var(--transition-med),
-        background var(--transition-med);
-    }
-
-    .tool-item:hover {
-      transform: translateY(-2px);
-      border-color: rgba(255, 255, 255, 0.24);
-      background:
-        linear-gradient(145deg,
-          rgba(255, 255, 255, 0.16),
-          rgba(255, 255, 255, 0.06));
-    }
-
-    .tool-icon {
-      width: 32px;
-      height: 32px;
-      flex: 0 0 32px;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      padding: 0;
-      border: none;
-      border-radius: 10px;
-      background: #ffffff;
-      overflow: hidden;
-    }
-
-    .tool-icon img {
-      display: block;
-      width: 80%;
-      height: 80%;
-      object-fit: contain;
-    }
-
-    .tool-name {
-      min-width: 0;
-      color: var(--text-secondary);
-      font-size: 0.75rem;
-      font-weight: 600;
-      line-height: 1.2;
-    }
-
-    /* Adaptation au mode clair */
-    [data-theme="light"] .tool-item {
-      background:
-        linear-gradient(145deg,
-          rgba(255, 255, 255, 0.90),
-          rgba(255, 255, 255, 0.52));
-
-      border-color: rgba(60, 60, 67, 0.13);
-
-      box-shadow:
-        inset 0 1px 0 rgba(255, 255, 255, 0.95),
-        0 8px 20px rgba(0, 0, 0, 0.06);
-    }
-
-    [data-theme="light"] .tool-icon {
-      background: rgba(255, 255, 255, 0.75);
-      border-color: rgba(60, 60, 67, 0.10);
-    }
-
-    /* =========================================================
-       GALERIE
-       ========================================================= */
-    /* Les visuels sont des documents : fond opaque, jamais de flou derriere */
-    .card--gallery-large,
-    .card--gallery-tall,
-    .card--gallery {
-      overflow: hidden;
-      background: var(--card-bg-solid);
-      backdrop-filter: none;
-      -webkit-backdrop-filter: none;
-    }
-
-    .gallery-img {
-      position: absolute;
-      inset: 0;
-      width: 100%;
-      height: 100%;
-      object-fit: cover;
-      object-position: center;
-      z-index: 1;
-      transition: transform var(--transition-med);
-    }
-
-    .card--gallery:hover .gallery-img,
-    .card--gallery-tall:hover .gallery-img {
-      transform: scale(1.03);
-    }
-
-    /* La cartographie est un schema d'acteurs couvert de libelles : elle est
-       montree entiere, sur le fond de la carte, et son survol ne l'agrandit
-       pas, ce qui rognerait les etiquettes. La carte garde sa taille. */
-    .card--gallery-large .gallery-img {
-      object-fit: contain;
-    }
-
-    .card--gallery-large:hover .gallery-img {
-      transform: none;
     }
 
     /* =========================================================
@@ -804,67 +530,12 @@
     }
 
     /* =========================================================
-       FOOTER MINIMAL
-       ========================================================= */
-    .site-footer {
-      max-width: var(--max-width);
-      margin: 0 auto;
-      padding: 40px 24px 56px;
-      display: flex;
-      flex-wrap: wrap;
-      justify-content: space-between;
-      align-items: center;
-      gap: 16px;
-      border-top: 1px solid var(--line);
-      margin-top: 32px;
-      position: relative;
-      z-index: 1;
-    }
-
-    .footer-identity {
-      font-size: 0.8125rem;
-      color: var(--text-secondary);
-    }
-
-    .footer-links {
-      display: flex;
-      gap: 22px;
-    }
-
-    .footer-links a {
-      font-size: 0.8125rem;
-      color: var(--text-secondary);
-      transition: color var(--transition-fast);
-    }
-
-    .footer-links a:hover {
-      color: var(--text);
-    }
-
-    .footer-top {
-      display: inline-flex;
-      align-items: center;
-      gap: 7px;
-    }
-
-    .footer-top svg {
-      width: 14px;
-      height: 14px;
-      transition: transform var(--transition-fast);
-    }
-
-    .footer-top:hover svg {
-      transform: translateY(-2px);
-    }
-
-    /* =========================================================
        RESPONSIVE
        ========================================================= */
 
-    /* Ecrans tres larges / 4K : meme traitement que l'accueil */
+    /* Écrans très larges / 4K : même traitement que l'accueil */
     @media (min-width: 1800px) {
       :root {
-        --max-width: 1920px;
         --gap: 20px;
         --radius: 26px;
       }
@@ -874,61 +545,13 @@
       }
 
       .project-main {
-        padding: 42px 36px 76px;
-      }
-
-      .project-grid {
-        grid-auto-rows: minmax(190px, auto);
+        padding: 42px 24px 76px;
       }
     }
 
-    /* Tablette : deux colonnes. Cartographie pleine largeur, puis la maquette
-       a gauche sur deux rangees et les deux petites cartes empilees a droite. */
-    @media (max-width: 1100px) {
-      .project-grid {
-        grid-template-columns: repeat(2, 1fr);
-      }
-
-      .card--hero-meta {
-        grid-column: span 2;
-        grid-row: auto;
-      }
-
-      .card--hero-visual {
-        grid-column: span 2;
-        grid-row: auto;
-      }
-
-      .card--info {
-        grid-column: span 1;
-        grid-row: auto;
-      }
-
-      .card--gallery-large {
-        grid-column: 1 / 3;
-        grid-row: auto;
-      }
-
-      /* La maquette reprend les deux memes rangees que les deux petites cartes */
-      .card--gallery-tall {
-        grid-column: 1;
-        grid-row: span 2;
-      }
-
-      .card--gallery-1 {
-        grid-column: 2;
-        grid-row: auto;
-      }
-
-      .card--gallery-2 {
-        grid-column: 2;
-        grid-row: auto;
-      }
-    }
-
-    /* Mobile : une colonne */
+    /* Mobile */
     @media (max-width: 720px) {
-      /* Le fil d'ariane passe sur sa propre ligne plutot que d'etre tronque */
+      /* Le fil d'ariane passe sur sa propre ligne plutôt que d'être tronqué */
       .project-nav {
         flex-wrap: wrap;
         padding: 10px 16px;
@@ -951,40 +574,6 @@
       .project-main {
         padding: 20px 16px 40px;
       }
-
-      .project-grid {
-        grid-template-columns: 1fr;
-      }
-
-      /* Une colonne : cartographie, maquette, arborescence, charte graphique */
-      .card--hero-meta,
-      .card--hero-visual,
-      .card--info,
-      .card--gallery-large,
-      .card--gallery-tall,
-      .card--gallery-1,
-      .card--gallery-2 {
-        grid-column: span 1;
-        grid-row: auto;
-      }
-
-      .card--hero-meta {
-        padding: 26px 22px;
-      }
-
-      .hero-title {
-        font-size: clamp(1.5rem, 6vw, 2rem);
-      }
-
-      .site-footer {
-        flex-direction: column;
-        align-items: flex-start;
-      }
-
-      .footer-links {
-        flex-wrap: wrap;
-        gap: 16px;
-      }
     }
 
     /* =========================================================
@@ -1002,53 +591,11 @@
         scroll-behavior: auto;
       }
 
-      /* Aucune transformation non essentielle */
       .card:hover,
-      .card--gallery:hover .gallery-img,
-      .card--gallery-tall:hover .gallery-img,
-      .tool-item:hover,
-      .proto-btn:hover,
-      .footer-top:hover svg {
+      .hero-action:hover,
+      .pager-link:hover,
+      .pager-link:hover .pager-arrow {
         transform: none;
-      }
-    }
-
-    /* Formats fixes des cartes d’images */
-    .card--hero-visual {
-      aspect-ratio: 19 / 10;
-      min-height: 0;
-    }
-
-    .card--gallery-large {
-      aspect-ratio: 36 / 25;
-      min-height: 0;
-    }
-
-    .card--gallery {
-      aspect-ratio: 29 / 20;
-      min-height: 0;
-    }
-
-    /* La maquette n'a pas de ratio propre : la grille l'etire sur les deux
-   rangees des petites cartes, soit 2 petites cartes plus leur gap. */
-    .card--gallery-tall {
-      aspect-ratio: auto;
-      min-height: 0;
-    }
-
-    .hero-image,
-    .gallery-img {
-      width: 100%;
-      height: 100%;
-      object-fit: cover;
-      object-position: center;
-    }
-
-    /* Sur une colonne, aucune rangee voisine ne l'etire plus : la maquette
-   reprend le format exact du fichier (2536 x 3602) et reste verticale. */
-    @media (max-width: 720px) {
-      .card--gallery-tall {
-        aspect-ratio: 2536 / 3602;
       }
     }
 
@@ -1056,11 +603,9 @@
    NAVIGATION ENTRE PROJETS (pager en bas de page)
    ========================================================= */
     .project-pager {
-      grid-column: 1 / -1;
       display: grid;
       grid-template-columns: 1fr 1fr;
       gap: var(--gap);
-      margin-top: 8px;
     }
 
     .pager-link {
@@ -1142,23 +687,30 @@
       }
     }
   </style>
+  <link rel="stylesheet" href="css/site-pages.css" />
+  <script defer src="https://cloud.umami.is/script.js" data-website-id="c992974a-48c8-47e4-9625-85ab5eca2ac3"></script>
 </head>
 
 <body>
 
   <!-- =============================================================
-       BARRE DE NAV STICKY : retour vers Mes projets, fil d’ariane, theme
+       BARRE DE NAV STICKY : retour vers Réalisations, fil d’ariane, theme
        ============================================================= -->
   <nav class="project-nav" aria-label="Navigation principale">
-    <a href="/projets" class="nav-back">
+    <a href="/realisations" class="nav-back">
       <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"
         stroke-linejoin="round" aria-hidden="true">
         <path d="M19 12H5M12 19l-7-7 7-7" />
       </svg>
-      Mes projets
+      Réalisations
     </a>
 
-    <span class="nav-crumb">Projet 07 · <strong>Groenland, l’eldorado numérique</strong></span>
+    <span class="nav-crumb">Projet 10 · <strong>Groenland, l’eldorado numérique</strong></span>
+
+    <span class="nav-status">
+      <span class="nav-status-dot" aria-hidden="true"></span>
+      <span>Disponible<span class="nav-status-more"> pour de nouvelles missions</span></span>
+    </span>
 
     <button id="theme-toggle" class="theme-toggle-btn" aria-label="Basculer entre le mode sombre et le mode clair"
       type="button">
@@ -1179,192 +731,215 @@
     </button>
   </nav>
 
-  <main class="project-main" id="top">
-    <div class="project-grid">
 
-      <!-- ========== CARTE 01 · PRESENTATION ========== -->
-      <article class="card card--hero-meta" aria-labelledby="hero-title">
-        <span class="hero-eyebrow">07 · Projet</span>
-        <h1 class="hero-title" id="hero-title">Groenland, l’eldorado numérique</h1>
+  <main class="project-main" id="top">
+    <div class="cs-grid">
+
+      <!-- ========== RANGÉE 1 · PRÉSENTATION ========== -->
+      <article class="card cs-intro" aria-labelledby="hero-title">
+        <span class="hero-eyebrow">10 · Étude de cas</span>
+        <h1 class="cs-title" id="hero-title">
+          Une controverse mondiale. <span class="cs-title-accent">Rendue lisible pour tous.</span>
+        </h1>
+
+        <p class="cs-pitch">
+          Projet de l'année du Master 2, présenté devant un jury&nbsp;: analyser une controverse contemporaine, le
+          Groenland et ses métaux rares, puis la transformer en site éditorial accessible sans connaissances
+          préalables.
+        </p>
 
         <div class="hero-tags">
-          <span class="hero-tag">Projet collectif</span>
-          <span class="hero-tag">Master 2</span>
           <span class="hero-tag">Analyse de controverse</span>
-          <span class="hero-tag">Site éditorial</span>
-          <span class="hero-tag">WordPress / Divi</span>
+          <span class="hero-tag">Veille &amp; rédaction</span>
+          <span class="hero-tag">Site éditorial WordPress / Divi</span>
+          <span class="hero-tag">Identité visuelle</span>
         </div>
 
-        <p class="hero-pitch">
-          Projet collectif de Master 2, cinq étudiants, huit mois. Analyser une controverse contemporaine et la rendre
-          accessible sous forme de site éditorial. Sujet imposé : le Groenland et ses métaux rares. Problématique, angle
-          et site entièrement à notre charge.
-        </p>
+        <dl class="cs-facts">
+          <div>
+            <dt>Cadre</dt>
+            <dd>Projet de l'année, Master 2</dd>
+          </div>
+          <div>
+            <dt>Équipe</dt>
+            <dd>5 personnes</dd>
+          </div>
+          <div>
+            <dt>Durée</dt>
+            <dd>8 mois</dd>
+          </div>
+          <div>
+            <dt>Livrable</dt>
+            <dd>Site éditorial en ligne</dd>
+          </div>
+        </dl>
       </article>
 
-      <!-- ========== CARTE 02 · VISUEL PRINCIPAL ET LIEN VERS LE SITE ========== -->
-      <div class="card card--hero-visual">
-        <img class="hero-image" src="Images/groenland_site.webp"
+      <!-- ========== RANGÉE 1 · VISUEL PRINCIPAL ET LIEN VERS LE SITE ========== -->
+      <div class="card cs-visual">
+        <img class="cs-img" src="Images/groenland_site.webp"
           alt="Aperçu du site éditorial Groenland, l’eldorado numérique : page d’accueil et premiers chiffres clés"
           width="1218" height="640" loading="eager" />
         <button type="button" class="zoom-btn" data-zoom-src="Images/groenland_site.webp"
           aria-label="Agrandir l’image : aperçu du site éditorial Groenland, l’eldorado numérique"></button>
-        <a class="proto-btn" href="https://groenland-numerique.mastercommunicationnumerique.fr/" target="_blank"
-          rel="noopener noreferrer" aria-label="Voir le site Groenland, l’eldorado numérique - nouvel onglet">
+        <a class="hero-action" href="https://groenland-numerique.mastercommunicationnumerique.fr/" target="_blank"
+          rel="noopener noreferrer" aria-label="Voir le site Groenland, l’eldorado numérique, nouvel onglet">
           Voir le site
           <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"
             stroke-linejoin="round" aria-hidden="true">
-            <path d="M14 4h6v6" />
-            <path d="M20 4l-8.5 8.5" />
-            <path d="M18 14v4a2 2 0 0 1-2 2H6a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h4" />
+            <path d="M7 17L17 7" />
+            <path d="M8 7h9v9" />
           </svg>
         </a>
       </div>
 
-      <!-- ========== CARTE 03 · LE DEFI ========== -->
-      <article class="card card--info card--soft">
-        <h2 class="info-title">Le défi</h2>
-        <p class="info-body">
-          Le Groenland touche à la géopolitique, à la transition énergétique, aux droits des populations inuites, à la
-          souveraineté du Danemark, aux intérêts de la Chine et des États-Unis. Plus on creusait, plus le sujet
-          s'élargissait. La vraie difficulté n'a pas été de trouver des sources, on en avait trop. C'était de poser un
-          angle assez précis pour raconter quelque chose de clair, sans écraser la complexité du sujet en le
-          simplifiant.
+      <!-- ========== RANGÉE 2 · LE DÉFI ========== -->
+      <article class="card cs-step" aria-labelledby="defi-title">
+        <h2 class="cs-label" id="defi-title"><span class="cs-num">01</span> Le défi</h2>
+        <p class="cs-lead">
+          Trouver des sources n'était pas le problème. Choisir un angle précis, si.
         </p>
-        <p class="info-body">
-          Problématique retenue : <em>comment la dépendance mondiale aux métaux rares
-            façonne-t-elle les orientations de développement durable du Groenland ?</em>
+        <p class="cs-body">
+          Géopolitique, transition énergétique, droits des Inuits, souveraineté danoise, intérêts chinois et
+          américains&nbsp;: un sujet imposé, aux mille entrées.
         </p>
-      </article>
-
-      <!-- ========== CARTE 04 · MA REPONSE ========== -->
-      <article class="card card--info card--soft">
-        <h2 class="info-title">Ma réponse</h2>
-        <p class="info-body">
-          On a structuré le travail par axes thématiques, chacun contribuant à toutes les étapes : veille documentaire,
-          rédaction, conception et intégration du site. Après des semaines de lecture et de tri, on a resserré la
-          problématique autour de la dépendance mondiale aux métaux rares et de ce que ça implique concrètement pour le
-          développement du Groenland. Le site est construit pour faire progresser le lecteur du contexte vers les
-          enjeux, sans lui demander de connaître le sujet à l'avance. Identité visuelle, charte graphique et intégration
-          sur WordPress avec Divi, le tout livré en ligne.
+        <p class="cs-question">
+          Comment la dépendance mondiale aux métaux rares façonne-t-elle les orientations de développement durable du
+          Groenland&nbsp;?
         </p>
       </article>
 
-      <!-- ========== CARTE 05 · IMPACT ========== -->
-      <article class="card card--info card--soft">
-        <h2 class="info-title">Impact</h2>
-        <p class="info-body">
-          Livraison d’un site éditorial en ligne, accessible et documenté, qui donne à voir la
-          controverse dans toute sa tension plutôt que d’en trancher un camp. Une preuve
-          concrète de capacité à traiter un sujet complexe (géopolitique, environnemental,
-          technique) et à le transformer en expérience de lecture structurée pour un public
-          large.
-        </p>
-        <p class="info-note">Note du jury : 16</p>
+      <!-- ========== RANGÉE 2 · MA RÉPONSE ========== -->
+      <article class="card cs-step" aria-labelledby="reponse-title">
+        <h2 class="cs-label" id="reponse-title"><span class="cs-num">02</span> Ma réponse</h2>
+        <ol class="cs-steps">
+          <li><span><strong>Une organisation par axes</strong>&nbsp;: chacun présent à chaque étape, de la veille à la
+              rédaction et à l'intégration.</span></li>
+          <li><span><strong>Une problématique resserrée</strong>&nbsp;: après des semaines de lecture et de tri, les
+              métaux rares et leurs effets concrets sur le Groenland.</span></li>
+          <li><span><strong>Un site qui guide</strong>&nbsp;: du contexte aux enjeux, avec identité visuelle, charte
+              graphique et intégration WordPress / Divi.</span></li>
+        </ol>
       </article>
 
-      <!-- ========== CARTE 06 · OUTILS MOBILISÉS ========== -->
-      <article class="card card--info card--soft">
-        <h2 class="info-title">Outils mobilisés</h2>
-
-        <div class="tools-grid" role="list">
-
-          <div class="tool-item" role="listitem">
-            <span class="tool-icon">
-              <img src="Images/icone_wordpress.svg" alt="" width="32" height="32" loading="lazy" />
-            </span>
-            <span class="tool-name">WordPress</span>
+      <!-- ========== RANGÉE 2 · LE RÉSULTAT ========== -->
+      <article class="card cs-step cs-results" aria-labelledby="resultat-title">
+        <h2 class="cs-label" id="resultat-title"><span class="cs-num">03</span> Le résultat</h2>
+        <p class="cs-statement">Une controverse montrée dans ses tensions, sans prendre parti.</p>
+        <p class="cs-body">
+          Un site documenté et en ligne, qui transforme un sujet géopolitique, environnemental et technique en parcours
+          de lecture pour le grand public.
+        </p>
+        <div class="cs-tiles" role="list">
+          <div class="cs-tile" role="listitem">
+            <span class="cs-tile-value">8 mois</span>
+            <span class="cs-tile-label">du sujet imposé au site en ligne</span>
           </div>
-
-          <div class="tool-item" role="listitem">
-            <span class="tool-icon">
-              <img src="Images/icone_figma.svg" alt="" width="32" height="32" loading="lazy" />
-            </span>
-            <span class="tool-name">Figma</span>
+          <div class="cs-tile" role="listitem">
+            <span class="cs-tile-value">5</span>
+            <span class="cs-tile-label">personnes dans l'équipe</span>
           </div>
-
-          <div class="tool-item" role="listitem">
-            <span class="tool-icon">
-              <img src="Images/icone_photoshop.svg" alt="" width="32" height="32" loading="lazy" />
-            </span>
-            <span class="tool-name">Photoshop</span>
-          </div>
-
-          <div class="tool-item" role="listitem">
-            <span class="tool-icon">
-              <img src="Images/icone_feedly.svg" alt="" width="32" height="32" loading="lazy" />
-            </span>
-            <span class="tool-name">Feedly</span>
-          </div>
-
-          <div class="tool-item" role="listitem">
-            <span class="tool-icon">
-              <img src="Images/icone_google.svg" alt="" width="32" height="32" loading="lazy" />
-            </span>
-            <span class="tool-name">Google Workspace</span>
-          </div>
-
-          <div class="tool-item" role="listitem">
-            <span class="tool-icon">
-              <img src="Images/icone_mindmeister.png" alt="" width="32" height="32" loading="lazy" />
-            </span>
-            <span class="tool-name">MindMeister</span>
-          </div>
-
         </div>
       </article>
 
-      <!-- ========== CARTE 07 · CARTOGRAPHIE DES ACTEURS, GRAND FORMAT ========== -->
-      <div class="card card--gallery-large">
-        <img class="gallery-img" src="Images/groenland_cartographie.webp"
-          alt="Cartographie des acteurs et des rapports de force autour des métaux rares du Groenland" loading="lazy" />
-        <button type="button" class="zoom-btn" data-zoom-src="Images/groenland_cartographie.webp"
-          aria-label="Agrandir la cartographie des acteurs du projet Groenland"></button>
+      <!-- ========== RANGÉE 3 · CARTOGRAPHIE INTERACTIVE ==========
+           La cartographie vit dans son propre fichier : l'iframe isole ses styles
+           et ses scripts. Sous 720px, l'image statique prend le relais. -->
+      <section class="card cs-method cs-map" aria-labelledby="carto-title">
+        <div class="cs-method-head">
+          <div class="cs-map-title">
+            <h2 class="cs-label" id="carto-title"><span class="cs-num">04</span> Cartographie des acteurs</h2>
+            <span class="cs-badge">Interactive</span>
+          </div>
+          <p class="cs-method-sub">Les acteurs et les rapports de force autour des métaux rares du Groenland</p>
+        </div>
+
+        <div class="cs-map-frame">
+          <iframe src="cartographie-groenland.html"
+            title="Cartographie interactive des acteurs autour des métaux rares du Groenland" loading="lazy"></iframe>
+          <div class="cs-map-fallback">
+            <img class="cs-img" src="Images/groenland_cartographie.webp"
+              alt="Cartographie des acteurs et des rapports de force autour des métaux rares du Groenland"
+              loading="lazy" />
+            <button type="button" class="zoom-btn" data-zoom-src="Images/groenland_cartographie.webp"
+              aria-label="Agrandir la cartographie des acteurs du projet Groenland"></button>
+          </div>
+          <a class="hero-action" href="cartographie-groenland.html" target="_blank" rel="noopener"
+            aria-label="Ouvrir la cartographie des acteurs en plein écran, nouvel onglet">
+            Plein écran
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"
+              stroke-linejoin="round" aria-hidden="true">
+              <path d="M4 9V4h5M20 9V4h-5M4 15v5h5M20 15v5h-5" />
+            </svg>
+          </a>
+        </div>
+      </section>
+
+      <!-- ========== RANGÉE 4 · GALERIE ========== -->
+      <div class="cs-mosaic cs-mosaic--three">
+
+        <div class="card cs-media">
+          <img class="cs-img cs-img--top" src="Images/groenland_maquette.webp"
+            alt="Maquette du site éditorial Groenland, l’eldorado numérique" width="2536" height="3602" loading="lazy" />
+          <button type="button" class="zoom-btn" data-zoom-src="Images/groenland_maquette.webp"
+            aria-label="Agrandir la maquette du site Groenland, l’eldorado numérique"></button>
+          <span class="cs-media-label" aria-hidden="true">Maquette</span>
+        </div>
+
+        <div class="card cs-media">
+          <img class="cs-img" src="Images/groenland_arborescence.webp"
+            alt="Arborescence du site éditorial Groenland, l’eldorado numérique" width="1788" height="1230"
+            loading="lazy" />
+          <button type="button" class="zoom-btn" data-zoom-src="Images/groenland_arborescence.webp"
+            aria-label="Agrandir l’arborescence du site Groenland, l’eldorado numérique"></button>
+          <span class="cs-media-label" aria-hidden="true">Arborescence</span>
+        </div>
+
+        <div class="card cs-media">
+          <img class="cs-img" src="Images/groenland_chartegraphique.webp"
+            alt="Charte graphique du site éditorial Groenland, l’eldorado numérique : logotype, palette chromatique et typographies"
+            width="1788" height="1230" loading="lazy" />
+          <button type="button" class="zoom-btn" data-zoom-src="Images/groenland_chartegraphique.webp"
+            aria-label="Agrandir la charte graphique du site Groenland, l’eldorado numérique"></button>
+          <span class="cs-media-label" aria-hidden="true">Charte graphique</span>
+        </div>
+
       </div>
 
-      <!-- ========== CARTE 08 · MAQUETTE, CARTE VERTICALE ========== -->
-      <div class="card card--gallery-tall">
-        <img class="gallery-img" src="Images/groenland_maquette.webp"
-          alt="Maquette du site éditorial Groenland, l’eldorado numérique" width="2536" height="3602" loading="lazy" />
-        <button type="button" class="zoom-btn" data-zoom-src="Images/groenland_maquette.webp"
-          aria-label="Agrandir la maquette du site Groenland, l’eldorado numérique"></button>
-      </div>
+      <!-- ========== RANGÉE 5 · APPEL À L'ACTION ========== -->
+      <aside class="card cs-cta" aria-label="Me contacter">
+        <div class="cs-cta-text">
+          <p class="cs-cta-title">Un sujet complexe à rendre lisible&nbsp;?</p>
+          <p class="cs-cta-sub">Veille, rédaction, site éditorial&nbsp;: parlons de votre projet.</p>
+        </div>
+        <a data-umami-event="clic-contact" class="cs-cta-link" href="/contact">
+          Me contacter
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"
+            stroke-linejoin="round" aria-hidden="true">
+            <path d="M5 12h14M12 5l7 7-7 7" />
+          </svg>
+        </a>
+      </aside>
 
-      <!-- ========== CARTE 09 · ARBORESCENCE ========== -->
-      <div class="card card--gallery card--gallery-1">
-        <img class="gallery-img" src="Images/groenland_arborescence.webp"
-          alt="Arborescence du site éditorial Groenland, l’eldorado numérique" width="1788" height="1230"
-          loading="lazy" />
-        <button type="button" class="zoom-btn" data-zoom-src="Images/groenland_arborescence.webp"
-          aria-label="Agrandir l’arborescence du site Groenland, l’eldorado numérique"></button>
-      </div>
-
-      <!-- ========== CARTE 10 · CHARTE GRAPHIQUE ========== -->
-      <div class="card card--gallery card--gallery-2">
-        <img class="gallery-img" src="Images/groenland_chartegraphique.webp"
-          alt="Charte graphique du site éditorial Groenland, l’eldorado numérique : logotype, palette chromatique et typographies"
-          width="1788" height="1230" loading="lazy" />
-        <button type="button" class="zoom-btn" data-zoom-src="Images/groenland_chartegraphique.webp"
-          aria-label="Agrandir la charte graphique du site Groenland, l’eldorado numérique"></button>
-      </div>
-      <!-- ========== NAVIGATION ENTRE PROJETS ========== -->
+      <!-- ========== RANGÉE 5 · NAVIGATION ENTRE PROJETS ========== -->
       <nav class="project-pager" aria-label="Navigation entre les projets">
-        <a href="/projet-trait-union" class="pager-link pager-prev">
+        <a href="/projet-festival-sound" class="pager-link pager-prev">
           <span class="pager-arrow" aria-hidden="true">←</span>
           <span class="pager-text">
             <span class="pager-label">Projet précédent</span>
-            <span class="pager-title">Projet 06</span>
+            <span class="pager-title">Projet 09</span>
           </span>
         </a>
 
-        <a href="/projet-festival-sound" class="pager-link pager-next">
+        <a href="/realisations" class="pager-link pager-next">
           <span class="pager-text">
             <span class="pager-label">Projet suivant</span>
-            <span class="pager-title">Projet 08</span>
+            <span class="pager-title">Toutes les réalisations</span>
           </span>
           <span class="pager-arrow" aria-hidden="true">→</span>
         </a>
       </nav>
+
     </div>
   </main>
 
@@ -1389,25 +964,17 @@
   <footer class="site-footer">
     <p class="footer-identity">Benjamin Bridanne · Chargé de communication digitale</p>
     <div class="footer-links">
-      <a href="/">Accueil</a>
-      <a href="/projets">Mes projets</a>
-      <a href="mailto:benjaminbridanne@gmail.com">Mail</a>
-      <a href="https://www.linkedin.com/in/benjamin-bridanne-ba9a64285/" target="_blank" rel="noopener">LinkedIn</a>
+      <a href="/realisations">Réalisations</a>
+      <a href="/politique-confidentialite">Confidentialité</a>
+      <a data-umami-event="clic-contact" href="mailto:benjaminbridanne@gmail.com">Mail</a>
+      <a data-umami-event="clic-linkedin" href="https://www.linkedin.com/in/benjamin-bridanne-ba9a64285/" target="_blank" rel="noopener">LinkedIn</a>
       <a href="/mentions-legales">Mentions légales</a>
-      <a href="#top" class="footer-top">
-        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"
-          stroke-linejoin="round" aria-hidden="true">
-          <line x1="12" y1="19" x2="12" y2="5" />
-          <polyline points="5 12 12 5 19 12" />
-        </svg>
-        Retour en haut
-      </a>
     </div>
   </footer>
 
   <script>
     /* =========================================================
-       THEME SOMBRE / CLAIR - clé localStorage bb-theme partagée
+       THEME SOMBRE / CLAIR : clé localStorage bb-theme partagée
        ========================================================= */
     (function () {
       const root = document.documentElement;

@@ -10,31 +10,31 @@
       if (localStorage.getItem('bb-theme') === 'dark') document.documentElement.setAttribute('data-theme', 'dark');
     } catch { /* Stockage indisponible : thème clair par défaut. */ }
   </script>
-  <title>Papi Restaurant - Projet de Benjamin Bridanne</title>
+  <title>Papi Restaurant · Projet de Benjamin Bridanne</title>
   <meta name="description"
-    content="Étude de cas du projet Papi Restaurant par Benjamin Bridanne : audit digital, stratégie UX et SEO, arborescence et conception de maquettes pour la future présence web du restaurant." />
+    content="Papi, restaurant de quartier à Toulouse, communiquait uniquement sur Instagram et restait quasi invisible sur Google. Audit de sa présence digitale, cahier des charges et maquettes de son futur site." />
   <link rel="canonical" href="https://benjaminbridanne.fr/projet-papi-restaurant" />
-  <link rel="icon" href="Images/image-logo-inverse.png" type="image/png" />
+  <link rel="icon" href="Images/favicon-b.b.svg" type="image/svg" />
 
   <meta property="og:type" content="website" />
   <meta property="og:url" content="https://benjaminbridanne.fr/projet-papi-restaurant" />
-  <meta property="og:title" content="Papi Restaurant - Audit digital et refonte web" />
+  <meta property="og:title" content="Papi Restaurant : audit digital et maquettes web" />
   <meta property="og:description"
-    content="Audit digital, stratégie UX et SEO, arborescence et conception de maquettes pour la future présence web du restaurant." />
+    content="Papi, restaurant de quartier à Toulouse, communiquait uniquement sur Instagram et restait quasi invisible sur Google. Audit de sa présence digitale, cahier des charges et maquettes de son futur site." />
   <meta property="og:image" content="https://benjaminbridanne.fr/Images/image_fond.png" />
   <meta property="og:locale" content="fr_FR" />
 
   <meta name="twitter:card" content="summary_large_image" />
+  <link rel="stylesheet" href="css/fiche-projet.css" />
   <style>
     /* =========================================================
-       TOKENS (identiques à l'accueil - cohérence stricte)
+       TOKENS (identiques à l'accueil : cohérence stricte)
        ========================================================= */
     :root {
       --font-system: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
       --radius: 22px;
       --radius-sm: 14px;
       --gap: 14px;
-      --max-width: 1280px;
 
       --ease: cubic-bezier(.2, .8, .2, 1);
       --transition-fast: 250ms var(--ease);
@@ -366,7 +366,7 @@
     }
 
     /* =========================================================
-       PROJECT BENTO GRID
+       CONTENEUR (la grille de l'étude de cas est dans css/fiche-projet.css)
        ========================================================= */
     .project-main {
       max-width: var(--max-width);
@@ -376,75 +376,12 @@
       z-index: 1;
     }
 
-    .project-grid {
-      display: grid;
-      grid-template-columns: repeat(4, 1fr);
-      grid-auto-rows: minmax(150px, auto);
-      gap: var(--gap);
-    }
-
-    /* --- Positionnement des cartes --- */
-    .card--hero-meta {
-      grid-column: span 2;
-      grid-row: span 1;
-    }
-
-    .card--hero-visual {
-      grid-column: span 2;
-      grid-row: span 1;
-      padding: 0;
-      min-height: 320px;
-    }
-
-    .card--info {
-      grid-column: span 1;
-      grid-row: span 1;
-    }
-
-    /* Galerie : la charte a gauche, les deux wireframes verticaux a droite */
-    .card--gallery-large {
-      grid-column: 1 / 3;
-      grid-row: 3 / 5;
-      padding: 0;
-      min-height: 424px;
-    }
-
-    .card--gallery-tall-1 {
-      grid-column: 3;
-      grid-row: 3 / 5;
-      padding: 0;
-    }
-
-    .card--gallery-tall-2 {
-      grid-column: 4;
-      grid-row: 3 / 5;
-      padding: 0;
-    }
-
-    /* =========================================================
-       HERO - MÉTA
-       ========================================================= */
-    .card--hero-meta {
-      display: flex;
-      flex-direction: column;
-      justify-content: center;
-      gap: 18px;
-      padding: 32px 30px;
-    }
-
     .hero-eyebrow {
       font-size: 0.75rem;
       font-weight: 500;
       color: var(--eyebrow);
       text-transform: uppercase;
       letter-spacing: 0.14em;
-    }
-
-    .hero-title {
-      font-size: clamp(1.75rem, 3.2vw, 2.75rem);
-      font-weight: 700;
-      letter-spacing: -0.03em;
-      line-height: 1.02;
     }
 
     .hero-tags {
@@ -466,211 +403,47 @@
       letter-spacing: 0.01em;
     }
 
-    .hero-pitch {
-      font-size: 0.9375rem;
-      color: var(--text-secondary);
-      line-height: 1.55;
-      max-width: 90ch;
-    }
-
-    /* Bouton principal : le bleu Apple reste reserve a cette action */
-    .btn-primary {
-      align-self: flex-start;
+    /* Bouton pose sur le visuel : lisible dans les deux themes */
+    .hero-action {
+      position: absolute;
+      bottom: 16px;
+      right: 16px;
+      z-index: 5;
       display: inline-flex;
       align-items: center;
-      gap: 9px;
-      padding: 11px 20px;
+      gap: 8px;
+      max-width: calc(100% - 32px);
+      padding: 9px 15px;
       border-radius: 999px;
-      background: var(--apple-blue);
+      background: rgba(12, 12, 14, 0.78);
+      border: 1px solid rgba(255, 255, 255, 0.24);
       color: #fff;
-      font-size: 0.875rem;
+      font-size: 0.8125rem;
       font-weight: 600;
       letter-spacing: -0.005em;
+      -webkit-backdrop-filter: blur(10px);
+      backdrop-filter: blur(10px);
       transition:
         background var(--transition-med),
-        transform var(--transition-med),
-        box-shadow var(--transition-med);
+        border-color var(--transition-med),
+        transform var(--transition-med);
     }
 
-    .btn-primary svg {
-      width: 15px;
-      height: 15px;
+    .hero-action svg {
+      width: 14px;
+      height: 14px;
       flex: none;
     }
 
-    .btn-primary:hover {
+    .hero-action:hover {
+      background: rgba(12, 12, 14, 0.9);
+      border-color: rgba(255, 255, 255, 0.45);
       transform: translateY(-1px);
-      box-shadow: 0 10px 24px rgba(10, 132, 255, 0.22);
     }
 
-    /* =========================================================
-       HERO - VISUEL
-       ========================================================= */
-    .card--hero-visual {
-      overflow: hidden;
-    }
-
-    .hero-image {
-      position: absolute;
-      inset: 0;
-      width: 100%;
-      height: 100%;
-      object-fit: cover;
-      z-index: 1;
-    }
-
-    /* =========================================================
-       CARTES INFO (défi / réponse / impact / outils)
-       ========================================================= */
-    .card--info {
-      display: flex;
-      flex-direction: column;
-      gap: 12px;
-      padding: 22px 22px 20px;
-    }
-
-    .info-title {
-      font-size: 0.95rem;
-      font-weight: 600;
-      color: var(--text);
-      letter-spacing: -0.01em;
-    }
-
-    .info-body {
-      font-size: 0.87rem;
-      color: var(--text-secondary);
-      line-height: 1.55;
-    }
-
-    /* =========================================================
-   CARTE OUTILS - STYLE GLASS
-   ========================================================= */
-
-    .tools-grid {
-      display: grid;
-      grid-template-columns: repeat(2, minmax(0, 1fr));
-      gap: 10px;
-      margin-top: 4px;
-    }
-
-    .tool-item {
-      display: flex;
-      align-items: center;
-      gap: 9px;
-      min-width: 0;
-      padding: 10px;
-      border: 1px solid rgba(255, 255, 255, 0.12);
-      border-radius: 14px;
-
-      background:
-        linear-gradient(145deg,
-          rgba(255, 255, 255, 0.11),
-          rgba(255, 255, 255, 0.035));
-
-      box-shadow:
-        inset 0 1px 0 rgba(255, 255, 255, 0.12),
-        0 8px 24px rgba(0, 0, 0, 0.18);
-
-      -webkit-backdrop-filter: blur(14px) saturate(130%);
-      backdrop-filter: blur(14px) saturate(130%);
-
-      transition:
-        transform var(--transition-med),
-        border-color var(--transition-med),
-        background var(--transition-med);
-    }
-
-    .tool-item:hover {
-      transform: translateY(-2px);
-      border-color: rgba(255, 255, 255, 0.24);
-      background:
-        linear-gradient(145deg,
-          rgba(255, 255, 255, 0.16),
-          rgba(255, 255, 255, 0.06));
-    }
-
-    .tool-icon {
-      width: 32px;
-      height: 32px;
-      flex: 0 0 32px;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      padding: 0;
-      border: none;
-      border-radius: 10px;
-      background: #ffffff;
-      overflow: hidden;
-    }
-
-    .tool-icon img {
-      display: block;
-      width: 80%;
-      height: 80%;
-      object-fit: contain;
-    }
-
-    .tool-name {
-      min-width: 0;
-      color: var(--text-secondary);
-      font-size: 0.75rem;
-      font-weight: 600;
-      line-height: 1.2;
-    }
-
-    /* Adaptation au mode clair */
-    [data-theme="light"] .tool-item {
-      background:
-        linear-gradient(145deg,
-          rgba(255, 255, 255, 0.90),
-          rgba(255, 255, 255, 0.52));
-
-      border-color: rgba(60, 60, 67, 0.13);
-
-      box-shadow:
-        inset 0 1px 0 rgba(255, 255, 255, 0.95),
-        0 8px 20px rgba(0, 0, 0, 0.06);
-    }
-
-    [data-theme="light"] .tool-icon {
-      background: rgba(255, 255, 255, 0.75);
-      border-color: rgba(60, 60, 67, 0.10);
-    }
-
-    /* =========================================================
-       GALERIE
-       ========================================================= */
-    /* Documents du projet : cadre sobre, fond neutre */
-    .card--gallery-large,
-    .card--gallery-tall-1,
-    .card--gallery-tall-2 {
-      overflow: hidden;
-      background: var(--card-bg-solid);
-      backdrop-filter: none;
-      -webkit-backdrop-filter: none;
-    }
-
-    .gallery-img {
-      position: absolute;
-      inset: 0;
-      width: 100%;
-      height: 100%;
-      object-fit: cover;
-      object-position: center;
-      z-index: 1;
-      transition: transform var(--transition-med);
-    }
-
-    /* Les wireframes sont de longs documents : on garde leur haut visible */
-    .card--gallery-tall-1 .gallery-img,
-    .card--gallery-tall-2 .gallery-img {
-      object-position: center top;
-    }
-
-    .card--gallery-large:hover .gallery-img,
-    .card--gallery-tall-1:hover .gallery-img,
-    .card--gallery-tall-2:hover .gallery-img {
-      transform: scale(1.03);
+    .hero-action:focus-visible {
+      outline: 2px solid #fff;
+      outline-offset: 3px;
     }
 
     /* =========================================================
@@ -763,67 +536,12 @@
     }
 
     /* =========================================================
-       FOOTER MINIMAL
-       ========================================================= */
-    .site-footer {
-      max-width: var(--max-width);
-      margin: 0 auto;
-      padding: 40px 24px 56px;
-      display: flex;
-      flex-wrap: wrap;
-      justify-content: space-between;
-      align-items: center;
-      gap: 16px;
-      border-top: 1px solid var(--line);
-      margin-top: 32px;
-      position: relative;
-      z-index: 1;
-    }
-
-    .footer-identity {
-      font-size: 0.8125rem;
-      color: var(--text-secondary);
-    }
-
-    .footer-links {
-      display: flex;
-      gap: 22px;
-    }
-
-    .footer-links a {
-      font-size: 0.8125rem;
-      color: var(--text-secondary);
-      transition: color var(--transition-fast);
-    }
-
-    .footer-links a:hover {
-      color: var(--text);
-    }
-
-    .footer-top {
-      display: inline-flex;
-      align-items: center;
-      gap: 7px;
-    }
-
-    .footer-top svg {
-      width: 14px;
-      height: 14px;
-      transition: transform var(--transition-fast);
-    }
-
-    .footer-top:hover svg {
-      transform: translateY(-2px);
-    }
-
-    /* =========================================================
        RESPONSIVE
        ========================================================= */
 
-    /* Ecrans tres larges / 4K : meme traitement que l'accueil */
+    /* Écrans très larges / 4K : même traitement que l'accueil */
     @media (min-width: 1800px) {
       :root {
-        --max-width: 1920px;
         --gap: 20px;
         --radius: 26px;
       }
@@ -833,63 +551,13 @@
       }
 
       .project-main {
-        padding: 42px 36px 76px;
-      }
-
-      .project-grid {
-        grid-auto-rows: minmax(190px, auto);
-      }
-
-      .card--hero-visual {
-        min-height: 420px;
-      }
-
-      .card--gallery-large {
-        min-height: 570px;
+        padding: 42px 24px 76px;
       }
     }
 
-    /* Tablette : deux colonnes, ordre charte puis les deux wireframes */
-    @media (max-width: 1100px) {
-      .project-grid {
-        grid-template-columns: repeat(2, 1fr);
-      }
-
-      .card--hero-meta {
-        grid-column: span 2;
-        grid-row: auto;
-      }
-
-      .card--hero-visual {
-        grid-column: span 2;
-        grid-row: auto;
-        /* Le visuel principal garde son ratio 16:9 */
-        aspect-ratio: 16 / 9;
-        min-height: 0;
-      }
-
-      .card--info {
-        grid-column: span 1;
-        grid-row: auto;
-      }
-
-      .card--gallery-large {
-        grid-column: 1 / 3;
-        grid-row: auto;
-        min-height: 0;
-      }
-
-      .card--gallery-tall-1,
-      .card--gallery-tall-2 {
-        grid-column: span 1;
-        grid-row: auto;
-        min-height: 0;
-      }
-    }
-
-    /* Mobile : une colonne */
+    /* Mobile */
     @media (max-width: 720px) {
-      /* Le fil d'ariane passe sur sa propre ligne plutot que d'etre tronque */
+      /* Le fil d'ariane passe sur sa propre ligne plutôt que d'être tronqué */
       .project-nav {
         flex-wrap: wrap;
         padding: 10px 16px;
@@ -912,51 +580,6 @@
       .project-main {
         padding: 20px 16px 40px;
       }
-
-      .project-grid {
-        grid-template-columns: 1fr;
-      }
-
-      .card--hero-meta,
-      .card--hero-visual,
-      .card--info,
-      .card--gallery-large,
-      .card--gallery-tall-1,
-      .card--gallery-tall-2 {
-        grid-column: span 1;
-        grid-row: auto;
-      }
-
-      .card--hero-visual {
-        min-height: 0;
-      }
-
-      .card--gallery-large {
-        min-height: 0;
-      }
-
-      .card--gallery-tall-1,
-      .card--gallery-tall-2 {
-        min-height: 0;
-      }
-
-      .card--hero-meta {
-        padding: 26px 22px;
-      }
-
-      .hero-title {
-        font-size: clamp(1.5rem, 6vw, 2rem);
-      }
-
-      .site-footer {
-        flex-direction: column;
-        align-items: flex-start;
-      }
-
-      .footer-links {
-        flex-wrap: wrap;
-        gap: 16px;
-      }
     }
 
     /* =========================================================
@@ -974,69 +597,21 @@
         scroll-behavior: auto;
       }
 
-      /* Aucune transformation non essentielle */
       .card:hover,
-      .card--gallery-large:hover .gallery-img,
-      .card--gallery-tall-1:hover .gallery-img,
-      .card--gallery-tall-2:hover .gallery-img,
-      .btn-primary:hover,
-      .tool-item:hover,
-      .footer-top:hover svg {
+      .hero-action:hover,
+      .pager-link:hover,
+      .pager-link:hover .pager-arrow {
         transform: none;
       }
-    }
-
-    /* Formats fixes des trois cartes d’images */
-    .card--hero-visual {
-      aspect-ratio: 19 / 10;
-      min-height: 0;
-    }
-
-    .card--gallery-large {
-      aspect-ratio: 36 / 25;
-      min-height: 0;
-    }
-
-    .hero-image,
-    .gallery-img {
-      width: 100%;
-      height: 100%;
-      object-fit: cover;
-      object-position: center;
-    }
-
-    /* Les deux cartes verticales s'etirent sur la hauteur de la grande carte
-   sur ordinateur, puis reprennent le format reel des fichiers en dessous. */
-    @media (max-width: 1100px) {
-      .card--gallery-tall-1,
-      .card--gallery-tall-2 {
-        aspect-ratio: 2 / 3;
-      }
-    }
-
-    /* Encadré de la note dans la carte Impact */
-    .impact-grade {
-      width: 100%;
-      margin-top: 4px;
-      padding: 12px;
-      border-radius: 14px;
-      background: var(--pill-bg);
-      border: 1px solid var(--pill-border);
-      color: var(--text);
-      font-size: 0.87rem;
-      font-weight: 600;
-      line-height: 1.4;
     }
 
     /* =========================================================
    NAVIGATION ENTRE PROJETS (pager en bas de page)
    ========================================================= */
     .project-pager {
-      grid-column: 1 / -1;
       display: grid;
       grid-template-columns: 1fr 1fr;
       gap: var(--gap);
-      margin-top: 8px;
     }
 
     .pager-link {
@@ -1118,23 +693,30 @@
       }
     }
   </style>
+  <link rel="stylesheet" href="css/site-pages.css" />
+  <script defer src="https://cloud.umami.is/script.js" data-website-id="c992974a-48c8-47e4-9625-85ab5eca2ac3"></script>
 </head>
 
 <body>
 
   <!-- =============================================================
-       BARRE DE NAV STICKY : retour vers Mes projets, fil d’ariane, theme
+       BARRE DE NAV STICKY : retour vers Réalisations, fil d’ariane, theme
        ============================================================= -->
   <nav class="project-nav" aria-label="Navigation principale">
-    <a href="/projets" class="nav-back">
+    <a href="/realisations" class="nav-back">
       <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"
         stroke-linejoin="round" aria-hidden="true">
         <path d="M19 12H5M12 19l-7-7 7-7" />
       </svg>
-      Mes projets
+      Réalisations
     </a>
 
     <span class="nav-crumb">Projet 03 · <strong>Papi Restaurant</strong></span>
+
+    <span class="nav-status">
+      <span class="nav-status-dot" aria-hidden="true"></span>
+      <span>Disponible<span class="nav-status-more"> pour de nouvelles missions</span></span>
+    </span>
 
     <button id="theme-toggle" class="theme-toggle-btn" aria-label="Basculer entre le mode sombre et le mode clair"
       type="button">
@@ -1156,153 +738,193 @@
   </nav>
 
   <main class="project-main" id="top">
-    <div class="project-grid">
+    <div class="cs-grid">
 
-      <!-- ========== CARTE 01 · PRESENTATION ========== -->
-      <article class="card card--hero-meta" aria-labelledby="hero-title">
-        <span class="hero-eyebrow">03 · Projet</span>
-        <h1 class="hero-title" id="hero-title">Papi Restaurant</h1>
+      <!-- ========== RANGÉE 1 · PRÉSENTATION ========== -->
+      <article class="card cs-intro" aria-labelledby="hero-title">
+        <span class="hero-eyebrow">03 · Étude de cas</span>
+        <h1 class="cs-title" id="hero-title">
+          Une vraie identité. <span class="cs-title-accent">Introuvable sur Google.</span>
+        </h1>
+
+        <p class="cs-pitch">
+          Chef de projet d'une équipe de cinq, j'ai piloté l'audit de la présence digitale de Papi, restaurant de
+          quartier à Toulouse, et la conception de son futur site. Les gérants ont reçu un dossier prêt à être confié à
+          un développeur.
+        </p>
 
         <div class="hero-tags">
-          <span class="hero-tag">Chef de projet</span>
+          <span class="hero-tag">Gestion de projet</span>
           <span class="hero-tag">Audit digital</span>
           <span class="hero-tag">UX &amp; SEO</span>
           <span class="hero-tag">Maquettes web</span>
         </div>
 
-        <p class="hero-pitch">
-          Projet de Master 1 en équipe de cinq, mené en tant que chef de projet. Auditer la présence digitale du
-          restaurant Papi, un resto de quartier à Toulouse, et concevoir les maquettes de son futur site web.
-        </p>
-
-        <a class="btn-primary" href="Images/audit_web_papi.pdf" target="_blank" rel="noopener"
-          aria-label="Voir le livrable Papi Restaurant au format PDF - nouvel onglet">
-          Voir le livrable
-          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"
-            stroke-linejoin="round" aria-hidden="true">
-            <path d="M14 3H7a2 2 0 0 0-2 2v14a2 2 0 0 0 2 2h10a2 2 0 0 0 2-2V8z" />
-            <polyline points="14 3 14 8 19 8" />
-            <line x1="9" y1="13" x2="15" y2="13" />
-            <line x1="9" y1="17" x2="13" y2="17" />
-          </svg>
-        </a>
+        <dl class="cs-facts cs-facts--3">
+          <div>
+            <dt>Commanditaire</dt>
+            <dd>Papi Restaurant, Toulouse</dd>
+          </div>
+          <div>
+            <dt>Rôle</dt>
+            <dd>Chef de projet</dd>
+          </div>
+          <div>
+            <dt>Équipe</dt>
+            <dd>5 personnes</dd>
+          </div>
+        </dl>
       </article>
 
-      <!-- ========== CARTE 02 · VISUEL PRINCIPAL ========== -->
-      <div class="card card--hero-visual">
-        <img class="hero-image" src="Images/papi_maquette.webp"
+      <!-- ========== RANGÉE 1 · VISUEL PRINCIPAL ET LIVRABLE ========== -->
+      <div class="card cs-visual">
+        <img class="cs-img" src="Images/papi_maquette.webp"
           alt="Maquette de la future page d’accueil du site de Papi Restaurant" width="1827" height="960"
           loading="eager" />
         <button type="button" class="zoom-btn" data-zoom-src="Images/papi_maquette.webp"
           aria-label="Agrandir l’image : maquette de la future page d’accueil du site de Papi Restaurant"></button>
+        <a class="hero-action" href="Images/audit_web_papi.pdf" target="_blank" rel="noopener"
+          aria-label="Voir le livrable (PDF) de Papi Restaurant, nouvel onglet">
+          Voir le livrable (PDF)
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"
+            stroke-linejoin="round" aria-hidden="true">
+            <path d="M7 17L17 7" />
+            <path d="M8 7h9v9" />
+          </svg>
+        </a>
       </div>
 
-      <!-- ========== CARTE 03 · LE DEFI ========== -->
-      <article class="card card--info card--soft">
-        <h2 class="info-title">Le défi</h2>
-        <p class="info-body">
-          Papi est un restaurant de quartier à Saint-Cyprien, cuisine maison, produits locaux, vins naturels. Toute sa
-          communication passait par Instagram : le menu en stories, les infos pratiques éparpillées, rien de stable sur
-          le web. Résultat : quasi invisible sur Google. Quand un Toulousain cherche un restaurant, il tape le nom du
-          quartier. Sans site, Papi n'existait pas dans cette recherche. Il fallait poser les bases d'une présence web
-          qui reflète l'identité du lieu et qui le rende trouvable par les gens du coin.
+      <!-- ========== RANGÉE 2 · LE DÉFI ========== -->
+      <article class="card cs-step" aria-labelledby="defi-title">
+        <h2 class="cs-label" id="defi-title"><span class="cs-num">01</span> Le défi</h2>
+        <p class="cs-lead">
+          Cuisine maison, produits locaux, vins nature&nbsp;: un lieu à forte identité, presque invisible sur Google.
+        </p>
+        <p class="cs-body">
+          Toute la communication passait par Instagram&nbsp;: menu en stories, infos pratiques dispersées, rien de stable
+          sur le web. Une personne qui cherchait un restaurant à Saint-Cyprien ne le trouvait pas.
         </p>
       </article>
 
-      <!-- ========== CARTE 04 · MA REPONSE ========== -->
-      <article class="card card--info card--soft">
-        <h2 class="info-title">Ma réponse</h2>
-        <p class="info-body">
-          En tant que chef de projet, j'ai réparti les tâches, tenu le planning et fait le lien avec les gérants du
-          restaurant. On est allés les rencontrer pour comprendre ce qu'ils voulaient montrer, à qui ils s'adressaient
-          et ce qui faisait l'identité de leur lieu. De là, on a déroulé : audit de leur présence en ligne (Instagram,
-          Google Maps, avis, référencement), benchmark des restaurants locaux, définition d'une stratégie SEO ciblée sur
-          le quartier et les produits signatures, cahier des charges fonctionnel, arborescence et maquettes sur Figma
-          avec une direction artistique calée sur l'univers convivial et bistronomique du resto.
+      <!-- ========== RANGÉE 2 · MON RÔLE DE CHEF DE PROJET ========== -->
+      <article class="card cs-step" aria-labelledby="role-title">
+        <h2 class="cs-label" id="role-title"><span class="cs-num">02</span> Mon rôle de chef de projet</h2>
+        <p class="cs-lead">
+          Interlocuteur unique des gérants, du premier rendez-vous à la remise du livrable.
         </p>
+        <ul class="cs-checks">
+          <li><span><strong>Cadrage avec les gérants</strong>&nbsp;: ce qu'ils voulaient montrer, leur public, l'identité
+              du lieu.</span></li>
+          <li><span><strong>Pilotage de l'équipe</strong>&nbsp;: répartition des tâches entre les cinq membres.</span></li>
+          <li><span><strong>Suivi du planning</strong>&nbsp;: jusqu'à la livraison du dossier final.</span></li>
+        </ul>
       </article>
 
-      <!-- ========== CARTE 05 · IMPACT ========== -->
-      <article class="card card--info card--soft">
-        <h2 class="info-title">Impact</h2>
-
-        <p class="info-body">
-          Un dossier complet remis au restaurant et aux professeurs : audit, préconisations SEO et maquettes prêtes à
-          être transmises à un développeur. Une base exploitable pour lancer le site sans repartir de zéro.
+      <!-- ========== RANGÉE 2 · LE LIVRABLE ========== -->
+      <article class="card cs-step cs-results" aria-labelledby="livrable-title">
+        <h2 class="cs-label" id="livrable-title"><span class="cs-num">03</span> Le livrable</h2>
+        <p class="cs-statement">Prêt à être confié à un développeur.</p>
+        <p class="cs-body">
+          Un dossier complet remis aux gérants&nbsp;: une base exploitable pour lancer le site sans repartir de zéro.
         </p>
+        <ul class="cs-tiles" role="list">
+          <li class="cs-tile cs-tile--tag">Audit &amp; benchmark</li>
+          <li class="cs-tile cs-tile--tag">Stratégie SEO</li>
+          <li class="cs-tile cs-tile--tag">Cahier des charges</li>
+          <li class="cs-tile cs-tile--tag">Maquettes Figma</li>
+        </ul>
+      </article>
 
-        <div class="impact-grade">
-          Note du jury : 17/20
+      <!-- ========== RANGÉE 3 · LA MÉTHODE ========== -->
+      <section class="card cs-method" aria-labelledby="methode-title">
+        <div class="cs-method-head">
+          <h2 class="cs-label" id="methode-title"><span class="cs-num">04</span> La méthode</h2>
+          <p class="cs-method-sub">Six étapes, de l'audit à la direction artistique</p>
         </div>
-      </article>
+        <ol class="cs-method-steps">
+          <li class="cs-method-step">
+            <span class="cs-num" aria-hidden="true">01</span>
+            <span class="cs-method-title">Audit de la présence en ligne</span>
+            <span class="cs-method-detail">Instagram, Google Maps, avis, référencement</span>
+          </li>
+          <li class="cs-method-step">
+            <span class="cs-num" aria-hidden="true">02</span>
+            <span class="cs-method-title">Benchmark local</span>
+            <span class="cs-method-detail">Les restaurants du quartier et de la ville</span>
+          </li>
+          <li class="cs-method-step">
+            <span class="cs-num" aria-hidden="true">03</span>
+            <span class="cs-method-title">Stratégie SEO</span>
+            <span class="cs-method-detail">Ciblée sur le quartier et les produits phares</span>
+          </li>
+          <li class="cs-method-step">
+            <span class="cs-num" aria-hidden="true">04</span>
+            <span class="cs-method-title">Cahier des charges</span>
+            <span class="cs-method-detail">Les besoins fonctionnels du futur site</span>
+          </li>
+          <li class="cs-method-step">
+            <span class="cs-num" aria-hidden="true">05</span>
+            <span class="cs-method-title">Arborescence et wireframes</span>
+            <span class="cs-method-detail">Structure et maquettes dans Figma</span>
+          </li>
+          <li class="cs-method-step">
+            <span class="cs-num" aria-hidden="true">06</span>
+            <span class="cs-method-title">Direction artistique</span>
+            <span class="cs-method-detail">Un univers convivial et bistronomique</span>
+          </li>
+        </ol>
+      </section>
 
-      <!-- ========== CARTE 06 · OUTILS MOBILISÉS ========== -->
-      <article class="card card--info card--soft">
-        <h2 class="info-title">Outils mobilisés</h2>
+      <!-- ========== RANGÉE 4 · GALERIE ========== -->
+      <div class="cs-mosaic cs-mosaic--row">
 
-        <div class="tools-grid" role="list">
-
-          <div class="tool-item" role="listitem">
-            <span class="tool-icon">
-              <img src="Images/icone_figma.svg" alt="" width="32" height="32" loading="lazy" />
-            </span>
-            <span class="tool-name">Figma</span>
-          </div>
-
-          <div class="tool-item" role="listitem">
-            <span class="tool-icon">
-              <img src="Images/icone_illustrator.svg" alt="" width="32" height="32" loading="lazy" />
-            </span>
-            <span class="tool-name">Illustrator</span>
-          </div>
-
-          <div class="tool-item" role="listitem">
-            <span class="tool-icon">
-              <img src="Images/icone_google.svg" alt="" width="32" height="32" loading="lazy" />
-            </span>
-            <span class="tool-name">Google Workspace</span>
-          </div>
-
-          <div class="tool-item" role="listitem">
-            <span class="tool-icon">
-              <img src="Images/icone_indesign.svg" alt="" width="32" height="32" loading="lazy" />
-            </span>
-            <span class="tool-name">InDesign</span>
-          </div>
-
+        <div class="card cs-media cs-media--wide">
+          <img class="cs-img" src="Images/papi_chartegraphique.webp"
+            alt="Charte graphique conçue pour le futur site de Papi Restaurant" width="2440" height="1600"
+            loading="lazy" />
+          <button type="button" class="zoom-btn" data-zoom-src="Images/papi_chartegraphique.webp"
+            aria-label="Agrandir l’image : charte graphique conçue pour le futur site de Papi Restaurant"></button>
+          <span class="cs-media-label" aria-hidden="true">Charte graphique</span>
         </div>
-      </article>
 
-      <!-- ========== CARTE 07 · CHARTE GRAPHIQUE, GRAND FORMAT ========== -->
-      <div class="card card--gallery-large">
-        <img class="gallery-img" src="Images/papi_chartegraphique.webp"
-          alt="Charte graphique conçue pour le futur site de Papi Restaurant" width="2440" height="1600"
-          loading="lazy" />
-        <button type="button" class="zoom-btn" data-zoom-src="Images/papi_chartegraphique.webp"
-          aria-label="Agrandir l’image : charte graphique conçue pour le futur site de Papi Restaurant"></button>
+        <div class="card cs-media cs-media--portrait">
+          <img class="cs-img cs-img--top" src="Images/papi_wareframe1.webp"
+            alt="Premier wireframe vertical conçu pour le futur site de Papi Restaurant" width="2400" height="3600"
+            loading="lazy" />
+          <button type="button" class="zoom-btn" data-zoom-src="Images/papi_wareframe1.webp"
+            aria-label="Agrandir l’image : premier wireframe vertical conçu pour le futur site de Papi Restaurant"></button>
+          <span class="cs-media-label" aria-hidden="true">Wireframe · accueil</span>
+        </div>
+
+        <div class="card cs-media cs-media--portrait">
+          <img class="cs-img cs-img--top" src="Images/papi_wareframe2.webp"
+            alt="Deuxième wireframe vertical conçu pour le futur site de Papi Restaurant" width="2400" height="3600"
+            loading="lazy" />
+          <button type="button" class="zoom-btn" data-zoom-src="Images/papi_wareframe2.webp"
+            aria-label="Agrandir l’image : deuxième wireframe vertical conçu pour le futur site de Papi Restaurant"></button>
+          <span class="cs-media-label" aria-hidden="true">Wireframe · page intérieure</span>
+        </div>
+
       </div>
 
-      <!-- ========== CARTE 08 · WIREFRAME 1, CARTE VERTICALE ========== -->
-      <div class="card card--gallery-tall-1">
-        <img class="gallery-img" src="Images/papi_wareframe1.webp"
-          alt="Premier wireframe vertical conçu pour le futur site de Papi Restaurant" width="2400" height="3600"
-          loading="lazy" />
-        <button type="button" class="zoom-btn" data-zoom-src="Images/papi_wareframe1.webp"
-          aria-label="Agrandir l’image : premier wireframe vertical conçu pour le futur site de Papi Restaurant"></button>
-      </div>
+      <!-- ========== RANGÉE 5 · APPEL À L'ACTION ========== -->
+      <aside class="card cs-cta" aria-label="Me contacter">
+        <div class="cs-cta-text">
+          <p class="cs-cta-title">Votre établissement est introuvable en ligne&nbsp;?</p>
+          <p class="cs-cta-sub">Audit, stratégie SEO, maquettes de site&nbsp;: parlons de votre projet.</p>
+        </div>
+        <a data-umami-event="clic-contact" class="cs-cta-link" href="/contact">
+          Me contacter
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"
+            stroke-linejoin="round" aria-hidden="true">
+            <path d="M5 12h14M12 5l7 7-7 7" />
+          </svg>
+        </a>
+      </aside>
 
-      <!-- ========== CARTE 09 · WIREFRAME 2, CARTE VERTICALE ========== -->
-      <div class="card card--gallery-tall-2">
-        <img class="gallery-img" src="Images/papi_wareframe2.webp"
-          alt="Deuxième wireframe vertical conçu pour le futur site de Papi Restaurant" width="2400" height="3600"
-          loading="lazy" />
-        <button type="button" class="zoom-btn" data-zoom-src="Images/papi_wareframe2.webp"
-          aria-label="Agrandir l’image : deuxième wireframe vertical conçu pour le futur site de Papi Restaurant"></button>
-      </div>
-
-      <!-- ========== NAVIGATION ENTRE PROJETS ========== -->
+      <!-- ========== RANGÉE 5 · NAVIGATION ENTRE PROJETS ========== -->
       <nav class="project-pager" aria-label="Navigation entre les projets">
-        <a href="/projet-campagne-financement" class="pager-link pager-prev">
+        <a href="/projet-zeste-miette" class="pager-link pager-prev">
           <span class="pager-arrow" aria-hidden="true">←</span>
           <span class="pager-text">
             <span class="pager-label">Projet précédent</span>
@@ -1318,6 +940,7 @@
           <span class="pager-arrow" aria-hidden="true">→</span>
         </a>
       </nav>
+
     </div>
   </main>
 
@@ -1342,25 +965,17 @@
   <footer class="site-footer">
     <p class="footer-identity">Benjamin Bridanne · Chargé de communication digitale</p>
     <div class="footer-links">
-      <a href="/">Accueil</a>
-      <a href="/projets">Mes projets</a>
-      <a href="mailto:benjaminbridanne@gmail.com">Mail</a>
-      <a href="https://www.linkedin.com/in/benjamin-bridanne-ba9a64285/" target="_blank" rel="noopener">LinkedIn</a>
+      <a href="/realisations">Réalisations</a>
+      <a href="/politique-confidentialite">Confidentialité</a>
+      <a data-umami-event="clic-contact" href="mailto:benjaminbridanne@gmail.com">Mail</a>
+      <a data-umami-event="clic-linkedin" href="https://www.linkedin.com/in/benjamin-bridanne-ba9a64285/" target="_blank" rel="noopener">LinkedIn</a>
       <a href="/mentions-legales">Mentions légales</a>
-      <a href="#top" class="footer-top">
-        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"
-          stroke-linejoin="round" aria-hidden="true">
-          <line x1="12" y1="19" x2="12" y2="5" />
-          <polyline points="5 12 12 5 19 12" />
-        </svg>
-        Retour en haut
-      </a>
     </div>
   </footer>
 
   <script>
     /* =========================================================
-       THEME SOMBRE / CLAIR - clé localStorage bb-theme partagée
+       THEME SOMBRE / CLAIR : clé localStorage bb-theme partagée
        ========================================================= */
     (function () {
       const root = document.documentElement;

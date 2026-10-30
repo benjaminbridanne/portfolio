@@ -10,17 +10,17 @@
       if (localStorage.getItem('bb-theme') === 'dark') document.documentElement.setAttribute('data-theme', 'dark');
     } catch { /* Stockage indisponible : thème clair par défaut. */ }
   </script>
-  <title>Contact - Benjamin Bridanne</title>
+  <title>Contact | Benjamin Bridanne, communication freelance</title>
   <meta name="description"
-    content="Contacter Benjamin Bridanne, chargé de communication digitale en freelance : visuels, contenus pour les réseaux sociaux, site web." />
+    content="Un projet de supports visuels, de site web ou de réseaux sociaux ? Décrivez votre besoin, réponse sous 48 h." />
   <link rel="canonical" href="https://benjaminbridanne.fr/contact" />
   <link rel="icon" href="Images/favicon-b.b.svg" type="image/svg" />
 
   <meta property="og:type" content="website" />
   <meta property="og:url" content="https://benjaminbridanne.fr/contact" />
-  <meta property="og:title" content="Contact - Benjamin Bridanne" />
+  <meta property="og:title" content="Contact | Benjamin Bridanne, communication freelance" />
   <meta property="og:description"
-    content="Un projet de visuels, de contenus pour les réseaux sociaux ou de site web ? Écrivez-moi." />
+    content="Un projet de supports visuels, de site web ou de réseaux sociaux ? Décrivez votre besoin, réponse sous 48 h." />
   <meta property="og:image" content="https://benjaminbridanne.fr/Images/image_fond.png" />
   <meta property="og:locale" content="fr_FR" />
 
@@ -35,15 +35,26 @@
     :root {
       --font-system: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
       --radius: 22px;
-      --gap: 14px;
-      --max-width: 1170px;
+      --gap: 20px;
 
       --ease: cubic-bezier(.2, .8, .2, 1);
       --transition-fast: 250ms var(--ease);
       --transition-med: 400ms var(--ease);
 
-      --apple-blue-dark: #0A84FF;
-      --apple-blue-light: #007AFF;
+      /* Carte de présentation : bleu plein, identique en clair et en sombre.
+         Contraste WCAG : blanc 5,97:1. */
+      --profile-bg: #0A5ECF;
+      --profile-border: rgba(255, 255, 255, 0.16);
+      --profile-text: #ffffff;
+      --profile-line: rgba(255, 255, 255, 0.28);
+
+      /* Bouton d'action : bleu plein, texte blanc lisible (5,97:1) en clair comme en sombre */
+      --cta-bg: #0A5ECF;
+      --cta-bg-hover: #094FAF;
+
+      /* Badge de disponibilité, posé sur la carte bleue : vert foncé sur blanc (5,4:1) */
+      --available-text: #157A36;
+      --available-dot: #34c759;
     }
 
     [data-theme="light"] {
@@ -52,31 +63,33 @@
       --bg-halo-2: rgba(214, 220, 234, 0.24);
 
       --card-bg: rgba(255, 255, 255, 0.74);
-      --card-bg-soft: rgba(255, 255, 255, 0.56);
+      --card-bg-solid: #ffffff;
       --card-border: rgba(60, 60, 67, 0.16);
       --card-border-hover: rgba(60, 60, 67, 0.28);
       --card-edge: rgba(255, 255, 255, 0.95);
       --card-shadow: 0 4px 20px rgba(0, 0, 0, 0.05);
       --card-shadow-hover: 0 14px 38px rgba(0, 0, 0, 0.09);
       --card-highlight-top: rgba(255, 255, 255, 0.9);
-      --card-blur: 18px;
 
       --text: #0a0a0d;
       --text-secondary: rgba(60, 60, 67, 0.62);
-      --text-muted: rgba(60, 60, 67, 0.34);
-      --eyebrow: rgba(60, 60, 67, 0.58);
+      /* Texte gris des cartes : même valeur que les prestations de Services (5,71:1 sur blanc) */
+      --text-soft: #5B6370;
+      --eyebrow: #5B6370;
+      --line: rgba(60, 60, 67, 0.12);
 
-      --field-bg: rgba(255, 255, 255, 0.85);
-      --field-border: rgba(60, 60, 67, 0.20);
+      --field-bg: #ffffff;
+      --field-border: rgba(60, 60, 67, 0.24);
+      --placeholder: #6B7280;
 
-      --apple-blue: var(--apple-blue-light);
-      --available: #1f8f43;
-      --available-dot: #34c759;
+      --pill-bg: rgba(60, 60, 67, 0.05);
+      --pill-bg-hover: rgba(60, 60, 67, 0.09);
 
-      --pill-border: rgba(60, 60, 67, 0.14);
-      --pill-text: rgba(60, 60, 67, 0.85);
-      --pill-active-bg: #0a0a0d;
-      --pill-active-text: #ffffff;
+      --blue-ink: #0A5ECF;
+      --focus-ring: rgba(10, 94, 207, 0.22);
+      --error: #C4281C;
+      --success-bg: #E3F5E8;
+      --success-ink: #157A36;
     }
 
     [data-theme="dark"] {
@@ -85,31 +98,32 @@
       --bg-halo-2: rgba(24, 34, 52, 0.18);
 
       --card-bg: rgba(18, 18, 20, 0.74);
-      --card-bg-soft: rgba(20, 20, 22, 0.56);
+      --card-bg-solid: #0e0e10;
       --card-border: rgba(255, 255, 255, 0.10);
       --card-border-hover: rgba(255, 255, 255, 0.20);
       --card-edge: rgba(255, 255, 255, 0.28);
       --card-shadow: 0 6px 26px rgba(0, 0, 0, 0.50);
       --card-shadow-hover: 0 18px 46px rgba(0, 0, 0, 0.62);
       --card-highlight-top: rgba(255, 255, 255, 0.14);
-      --card-blur: 16px;
 
       --text: #F5F5F7;
       --text-secondary: rgba(235, 235, 245, 0.62);
-      --text-muted: rgba(235, 235, 245, 0.34);
-      --eyebrow: rgba(235, 235, 245, 0.56);
+      --text-soft: rgba(235, 235, 245, 0.72);
+      --eyebrow: rgba(235, 235, 245, 0.72);
+      --line: rgba(255, 255, 255, 0.10);
 
-      --field-bg: rgba(255, 255, 255, 0.05);
-      --field-border: rgba(255, 255, 255, 0.16);
+      --field-bg: rgba(255, 255, 255, 0.04);
+      --field-border: rgba(255, 255, 255, 0.18);
+      --placeholder: rgba(235, 235, 245, 0.55);
 
-      --apple-blue: var(--apple-blue-dark);
-      --available: #6EE08F;
-      --available-dot: #30d158;
+      --pill-bg: #151517;
+      --pill-bg-hover: #1f1f22;
 
-      --pill-border: rgba(255, 255, 255, 0.14);
-      --pill-text: #d1d1d6;
-      --pill-active-bg: #e8e8ea;
-      --pill-active-text: #111113;
+      --blue-ink: #4DA3FF;
+      --focus-ring: rgba(77, 163, 255, 0.28);
+      --error: #FF7A70;
+      --success-bg: rgba(48, 209, 88, 0.16);
+      --success-ink: #6EE08F;
     }
 
     /* =========================================================
@@ -121,19 +135,13 @@
       padding: 0;
     }
 
-    /* Hauteur en pourcentage plutôt qu'en vh : elle n'est pas doublée par
-       l'agrandissement des grands écrans, la page reste centrée */
-    html {
-      height: 100%;
-    }
-
     body {
       font-family: var(--font-system);
       -webkit-font-smoothing: antialiased;
       -moz-osx-font-smoothing: grayscale;
       background: var(--bg);
       color: var(--text);
-      min-height: 100%;
+      min-height: 100vh;
       display: flex;
       flex-direction: column;
       position: relative;
@@ -176,8 +184,25 @@
       cursor: pointer;
     }
 
+    svg {
+      flex-shrink: 0;
+    }
+
+    /* Utilitaire pour libellés accessibles cachés visuellement */
+    .sr-only {
+      position: absolute;
+      width: 1px;
+      height: 1px;
+      padding: 0;
+      margin: -1px;
+      overflow: hidden;
+      clip: rect(0, 0, 0, 0);
+      white-space: nowrap;
+      border: 0;
+    }
+
     .card-eyebrow {
-      font-size: 0.68rem;
+      font-size: 0.72rem;
       font-weight: 600;
       color: var(--eyebrow);
       letter-spacing: 0.13em;
@@ -185,42 +210,39 @@
     }
 
     /* =========================================================
-       GRILLE - formulaire à gauche, infos à droite
+       GRILLE BENTO - colonne large à gauche, colonne étroite à droite
        ========================================================= */
     .contact-layout {
       flex: 1;
       width: 100%;
       max-width: var(--max-width);
       margin: 0 auto;
-      padding: 20px 24px;
+      padding: 40px 24px 36px;
       display: grid;
-      grid-template-columns: minmax(0, 1fr) 310px;
-      align-content: center;
-      align-items: start;
+      grid-template-columns: minmax(0, 1fr) 318px;
       gap: var(--gap);
+      align-items: stretch;
       position: relative;
       z-index: 1;
     }
 
-    .contact-aside {
+    .contact-side {
       display: flex;
       flex-direction: column;
       gap: var(--gap);
     }
 
     /* =========================================================
-       CARTE - base (verre, bordure lumineuse, reflet)
+       CARTE - base (bordure lumineuse, reflet)
        ========================================================= */
     .card {
       position: relative;
       border-radius: var(--radius);
-      background: var(--card-bg-soft);
+      background: var(--card-bg-solid);
       border: 1px solid var(--card-border);
       box-shadow: var(--card-shadow);
-      padding: 22px;
+      padding: 28px;
       overflow: hidden;
-      backdrop-filter: blur(var(--card-blur)) saturate(118%);
-      -webkit-backdrop-filter: blur(var(--card-blur)) saturate(118%);
     }
 
     .card::before {
@@ -250,192 +272,26 @@
     }
 
     /* =========================================================
-       CARTE FORMULAIRE
+       A. CARTE BLEUE
        ========================================================= */
-    .card--form {
-      padding: 44px 38px 38px;
-    }
-
-    .contact-title {
-      margin-top: 10px;
-      font-size: clamp(2.2rem, 4vw, 2.75rem);
-      font-weight: 700;
-      letter-spacing: -0.035em;
-      line-height: 1.05;
-    }
-
-    .contact-intro {
-      max-width: 480px;
-      margin-top: 14px;
-      color: var(--text-secondary);
-      font-size: 0.9375rem;
-      line-height: 1.6;
-    }
-
-    .contact-form {
+    .card--hero {
       display: flex;
       flex-direction: column;
-      gap: 18px;
-      margin-top: 30px;
+      padding: 44px;
+      background: var(--profile-bg);
+      border-color: var(--profile-border);
+      color: var(--profile-text);
     }
 
-    .form-legend,
-    .form-label {
-      display: block;
-      margin-bottom: 8px;
-      color: var(--text);
-      opacity: 0.8;
-      font-size: 0.8125rem;
-      font-weight: 500;
-    }
-
-    .form-optional {
-      color: var(--text-muted);
-      font-weight: 400;
-    }
-
-    /* Motif du message : boutons radio présentés en capsules */
-    .reason-group {
-      border: 0;
-    }
-
-    .reason-options {
-      display: flex;
-      flex-wrap: wrap;
-      gap: 8px;
-    }
-
-    .reason-option input {
-      position: absolute;
-      opacity: 0;
-      pointer-events: none;
-    }
-
-    .reason-option span {
-      display: inline-flex;
-      align-items: center;
-      height: 38px;
-      padding: 0 16px;
-      border: 1px solid var(--pill-border);
-      border-radius: 999px;
-      background: var(--field-bg);
-      color: var(--pill-text);
-      font-size: 0.875rem;
-      cursor: pointer;
-      transition: background-color 280ms ease, color 280ms ease, border-color 280ms ease;
-    }
-
-    .reason-option span:hover {
-      border-color: var(--apple-blue);
-    }
-
-    .reason-option input:checked+span {
-      background: var(--apple-blue);
-      border-color: var(--apple-blue);
-      color: #fff;
-      font-weight: 600;
-    }
-
-    .reason-option input:focus-visible+span {
-      outline: 2px solid var(--text);
-      outline-offset: 3px;
-    }
-
-    .form-row {
-      display: grid;
-      grid-template-columns: repeat(3, minmax(0, 1fr));
-      gap: 14px;
-    }
-
-    .form-input {
-      width: 100%;
-      height: 44px;
-      padding: 0 14px;
-      border: 1px solid var(--field-border);
-      border-radius: 12px;
-      background: var(--field-bg);
-      font-size: 0.9375rem;
-      transition: border-color var(--transition-fast), box-shadow var(--transition-fast);
-    }
-
-    textarea.form-input {
-      height: auto;
-      min-height: 136px;
-      padding: 12px 14px;
-      line-height: 1.5;
-      resize: vertical;
-    }
-
-    .form-input::placeholder {
-      color: var(--text-muted);
-    }
-
-    .form-input:focus {
-      outline: none;
-      border-color: var(--apple-blue);
-      box-shadow: 0 0 0 3px rgba(10, 132, 255, 0.18);
-    }
-
-    .form-footer {
-      display: flex;
-      flex-wrap: wrap;
-      align-items: center;
-      justify-content: space-between;
-      gap: 14px;
-      margin-top: 2px;
-    }
-
-    .form-note {
-      color: var(--text-secondary);
-      font-size: 0.75rem;
-    }
-
-    .submit-btn {
-      display: inline-flex;
-      align-items: center;
-      gap: 10px;
-      height: 46px;
-      padding: 0 22px;
-      border-radius: 999px;
-      background: var(--apple-blue);
-      color: #fff;
-      font-size: 0.9375rem;
-      font-weight: 600;
-      transition: transform var(--transition-med), box-shadow var(--transition-med);
-    }
-
-    .submit-btn svg {
-      width: 16px;
-      height: 16px;
-      transition: transform var(--transition-med);
-    }
-
-    .submit-btn:hover {
-      transform: translateY(-1px);
-      box-shadow: 0 10px 24px rgba(10, 132, 255, 0.24);
-    }
-
-    .submit-btn:hover svg {
-      transform: translateX(3px);
-    }
-
-    .form-status {
-      color: var(--text-secondary);
-      font-size: 0.8125rem;
-    }
-
-    .form-status:empty {
-      display: none;
-    }
-
-    /* =========================================================
-       COLONNE DE DROITE
-       ========================================================= */
     .availability {
+      align-self: flex-start;
       display: inline-flex;
       align-items: center;
       gap: 8px;
-      color: var(--available);
+      padding: 7px 14px 7px 12px;
+      border-radius: 999px;
+      background: #ffffff;
+      color: var(--available-text);
       font-size: 0.8125rem;
       font-weight: 600;
     }
@@ -445,58 +301,109 @@
       height: 9px;
       border-radius: 50%;
       background: var(--available-dot);
-      box-shadow: 0 0 0 3px rgba(52, 199, 89, 0.18);
+      box-shadow: 0 0 0 3px rgba(52, 199, 89, 0.22);
     }
 
-    .aside-title {
-      margin-top: 12px;
-      font-size: 1.1875rem;
-      font-weight: 600;
-      letter-spacing: -0.015em;
-      line-height: 1.3;
+    .hero-title {
+      margin-top: 24px;
+      font-size: clamp(2.5rem, 5vw, 3.6rem);
+      font-weight: 800;
+      letter-spacing: -0.045em;
+      line-height: 1.04;
     }
 
-    .aside-text {
-      margin-top: 12px;
-      color: var(--text-secondary);
-      font-size: 0.8125rem;
-      line-height: 1.5;
+    .hero-text {
+      max-width: 620px;
+      margin: 22px 0 30px;
+      font-size: 1.0625rem;
+      line-height: 1.6;
     }
 
-    .email-address {
-      display: block;
-      margin-top: 12px;
+    .hero-checks {
+      list-style: none;
+      display: flex;
+      flex-wrap: wrap;
+      gap: 10px 28px;
+      margin-top: auto;
+      padding-top: 26px;
+      border-top: 1px solid var(--profile-line);
       font-size: 0.9375rem;
+      font-weight: 500;
+    }
+
+    .hero-checks li {
+      display: inline-flex;
+      align-items: center;
+      gap: 10px;
+    }
+
+    .hero-checks svg {
+      width: 17px;
+      height: 17px;
+    }
+
+    /* =========================================================
+       B. E-MAIL ET LIENS RAPIDES
+       ========================================================= */
+    .card--email {
+      flex: 1;
+    }
+
+    /* Zone cliquable de 44 px de haut, sans changer l'espacement visible */
+    .email-address {
+      display: inline-block;
+      max-width: 100%;
+      margin-top: 3px;
+      padding: 11px 0;
+      font-size: 1.0625rem;
       font-weight: 600;
+      letter-spacing: -0.01em;
       overflow-wrap: anywhere;
+      transition: color var(--transition-fast);
     }
 
     .email-address:hover {
-      color: var(--apple-blue);
+      color: var(--blue-ink);
     }
 
-    .copy-btn {
+    .email-actions {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 10px;
+      margin-top: 18px;
+    }
+
+    .pill-btn {
       display: inline-flex;
       align-items: center;
-      gap: 6px;
-      height: 34px;
-      margin-top: 12px;
-      padding: 0 14px;
-      border: 1px solid var(--pill-border);
+      gap: 8px;
+      min-height: 44px;
+      padding: 0 18px;
+      border: 1px solid var(--field-border);
       border-radius: 999px;
-      background: var(--field-bg);
-      font-size: 0.8125rem;
-      font-weight: 600;
-      transition: border-color var(--transition-fast);
+      background: var(--card-bg-solid);
+      font-size: 0.875rem;
+      font-weight: 500;
+      transition: border-color var(--transition-fast), background-color var(--transition-fast);
     }
 
-    .copy-btn svg {
-      width: 13px;
-      height: 13px;
+    .pill-btn svg {
+      width: 15px;
+      height: 15px;
     }
 
-    .copy-btn:hover {
+    .pill-btn:hover {
       border-color: var(--card-border-hover);
+    }
+
+    .pill-btn--soft {
+      border-color: transparent;
+      background: var(--pill-bg);
+    }
+
+    .pill-btn--soft:hover {
+      border-color: transparent;
+      background: var(--pill-bg-hover);
     }
 
     .quick-links {
@@ -505,155 +412,424 @@
       gap: var(--gap);
     }
 
-    .quick-link {
+    .quick-card {
       display: flex;
       flex-direction: column;
       justify-content: space-between;
-      gap: 22px;
-      min-height: 108px;
-      padding: 18px;
-      font-size: 0.9375rem;
-      font-weight: 600;
-      line-height: 1.3;
+      gap: 26px;
+      min-height: 132px;
+      padding: 22px;
+    }
+
+    .quick-card svg {
+      width: 26px;
+      height: 26px;
+    }
+
+    a.quick-card {
       transition: transform var(--transition-med), border-color var(--transition-med), box-shadow var(--transition-med);
     }
 
-    .quick-link svg {
-      width: 22px;
-      height: 22px;
-    }
-
-    .quick-link:hover {
+    a.quick-card:hover {
       transform: translateY(-2px);
       border-color: var(--card-border-hover);
       box-shadow: var(--card-shadow-hover);
     }
 
+    .quick-label {
+      font-size: 0.9375rem;
+      font-weight: 600;
+      line-height: 1.3;
+    }
+
+    .quick-sub {
+      display: block;
+      color: var(--text-soft);
+      font-weight: 400;
+    }
+
     /* =========================================================
-       FOOTER
+       C. FORMULAIRE
        ========================================================= */
-    .site-footer {
-      width: 100%;
-      max-width: var(--max-width);
-      margin: 0 auto;
-      padding: 8px 24px 28px;
+    .card--form {
+      padding: 40px 44px;
+    }
+
+    .form-title,
+    .success-title {
+      margin-top: 10px;
+      font-size: clamp(1.6rem, 3vw, 2rem);
+      font-weight: 700;
+      letter-spacing: -0.03em;
+      line-height: 1.15;
+    }
+
+    .contact-form {
+      display: flex;
+      flex-direction: column;
+      gap: 22px;
+      margin-top: 30px;
+    }
+
+    .form-question,
+    .form-label {
+      display: block;
+      margin-bottom: 10px;
+      font-size: 0.9375rem;
+      font-weight: 500;
+    }
+
+    .form-label {
+      margin-bottom: 8px;
+      font-size: 0.875rem;
+    }
+
+    .form-optional {
+      color: var(--text-soft);
+      font-weight: 400;
+    }
+
+    /* Besoins : boutons à bascule (aria-pressed), plusieurs choix possibles */
+    .need-options {
       display: flex;
       flex-wrap: wrap;
-      justify-content: space-between;
-      gap: 12px;
-      position: relative;
-      z-index: 1;
+      gap: 10px;
     }
 
-    .footer-identity,
-    .site-footer a {
-      color: var(--text-secondary);
+    .need-btn {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      min-height: 44px;
+      padding: 0 18px;
+      border: 1px solid var(--field-border);
+      border-radius: 999px;
+      background: var(--card-bg-solid);
+      font-size: 0.875rem;
+      text-align: left;
+      transition: background-color 280ms ease, color 280ms ease, border-color 280ms ease;
+    }
+
+    .need-btn svg {
+      display: none;
+      width: 15px;
+      height: 15px;
+    }
+
+    .need-btn:hover {
+      border-color: var(--blue-ink);
+    }
+
+    .need-btn[aria-pressed="true"] {
+      background: var(--cta-bg);
+      border-color: var(--cta-bg);
+      color: #fff;
+      font-weight: 600;
+    }
+
+    .need-btn[aria-pressed="true"] svg {
+      display: block;
+    }
+
+    .form-row {
+      display: grid;
+      grid-template-columns: repeat(3, minmax(0, 1fr));
+      gap: 20px;
+    }
+
+    .form-input {
+      width: 100%;
+      height: 50px;
+      padding: 0 15px;
+      border: 1px solid var(--field-border);
+      border-radius: 12px;
+      background: var(--field-bg);
+      font-size: 0.9375rem;
+      text-overflow: ellipsis;
+      transition: border-color var(--transition-fast), box-shadow var(--transition-fast);
+    }
+
+    textarea.form-input {
+      display: block;
+      height: auto;
+      min-height: 168px;
+      padding: 14px 15px;
+      line-height: 1.5;
+      resize: vertical;
+    }
+
+    .form-input::placeholder {
+      color: var(--placeholder);
+      opacity: 1;
+    }
+
+    .form-input:focus {
+      outline: none;
+      border-color: var(--blue-ink);
+      box-shadow: 0 0 0 3px var(--focus-ring);
+    }
+
+    .form-input[aria-invalid="true"] {
+      border-color: var(--error);
+    }
+
+    .field-error {
+      margin-top: 7px;
+      color: var(--error);
       font-size: 0.8125rem;
+      font-weight: 500;
     }
 
-    .site-footer a {
-      transition: color var(--transition-fast);
+    .field-error:empty {
+      display: none;
     }
 
-    .site-footer a:hover {
+    /* Champ piège anti-spam de Web3Forms : invisible pour les visiteurs */
+    .botcheck {
+      display: none;
+    }
+
+    .form-footer {
+      display: flex;
+      flex-wrap: wrap;
+      align-items: center;
+      justify-content: space-between;
+      gap: 18px 24px;
+      margin-top: 6px;
+      padding-top: 24px;
+      border-top: 1px solid var(--line);
+    }
+
+    .form-note {
+      max-width: 430px;
+      color: var(--text-soft);
+      font-size: 0.8125rem;
+      line-height: 1.55;
+    }
+
+    .submit-btn,
+    .primary-btn {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      gap: 10px;
+      min-height: 52px;
+      padding: 0 28px;
+      border-radius: 999px;
+      background: var(--cta-bg);
+      color: #fff;
+      font-size: 1rem;
+      font-weight: 600;
+      transition: background-color var(--transition-fast), transform var(--transition-med), box-shadow var(--transition-med);
+    }
+
+    .submit-btn svg,
+    .primary-btn svg {
+      width: 17px;
+      height: 17px;
+      transition: transform var(--transition-med);
+    }
+
+    .submit-btn:hover,
+    .primary-btn:hover {
+      background: var(--cta-bg-hover);
+      transform: translateY(-1px);
+      box-shadow: 0 10px 24px rgba(10, 94, 207, 0.24);
+    }
+
+    .submit-btn:hover svg,
+    .primary-btn:hover svg {
+      transform: translateX(3px);
+    }
+
+    .submit-btn[aria-disabled="true"] {
+      cursor: progress;
+      opacity: 0.75;
+      transform: none;
+      box-shadow: none;
+    }
+
+    .form-alert {
+      padding: 14px 16px;
+      border: 1px solid var(--error);
+      border-radius: 12px;
       color: var(--text);
+      font-size: 0.875rem;
+      line-height: 1.5;
+    }
+
+    .form-alert:empty {
+      display: none;
+    }
+
+    .form-alert a,
+    .form-note a {
+      color: var(--blue-ink);
+      font-weight: 600;
+      text-decoration: underline;
+      text-underline-offset: 2px;
+    }
+
+    .form-note a {
+      white-space: nowrap;
+    }
+
+    /* Écran de confirmation après un envoi réussi */
+    .form-success {
+      padding: 12px 0 4px;
+    }
+
+    .success-icon {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      width: 64px;
+      height: 64px;
+      border-radius: 50%;
+      background: var(--success-bg);
+      color: var(--success-ink);
+    }
+
+    .success-icon svg {
+      width: 28px;
+      height: 28px;
+    }
+
+    .success-title {
+      margin-top: 24px;
+    }
+
+    .success-title:focus {
+      outline: none;
+    }
+
+    .success-text {
+      max-width: 520px;
+      margin-top: 14px;
+      color: var(--text-soft);
+      font-size: 1rem;
+      line-height: 1.6;
+    }
+
+    .success-actions {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 12px;
+      margin-top: 30px;
+    }
+
+    .success-actions .pill-btn {
+      min-height: 52px;
+      padding: 0 26px;
+      font-size: 1rem;
+      font-weight: 600;
+    }
+
+    /* =========================================================
+       D. ET ENSUITE ?
+       ========================================================= */
+    .card--steps {
+      align-self: start;
+    }
+
+    .steps {
+      list-style: none;
+      display: flex;
+      flex-direction: column;
+      gap: 26px;
+      margin-top: 20px;
+    }
+
+    .step {
+      display: grid;
+      grid-template-columns: 44px minmax(0, 1fr);
+      gap: 16px;
+      align-items: start;
+    }
+
+    .step-number {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      width: 44px;
+      height: 44px;
+      border: 2px solid var(--blue-ink);
+      border-radius: 50%;
+      color: var(--blue-ink);
+      font-size: 0.875rem;
+      font-weight: 700;
+    }
+
+    .step-title {
+      font-size: 1rem;
+      font-weight: 600;
+      letter-spacing: -0.01em;
+      line-height: 1.3;
+    }
+
+    .step-text {
+      margin-top: 5px;
+      color: var(--text-soft);
+      font-size: 0.875rem;
+      line-height: 1.5;
     }
 
     /* =========================================================
        RESPONSIVE
        ========================================================= */
-    /* Grands écrans : même agrandissement que l'accueil */
-    @media (min-width: 2400px) and (min-height: 1200px) {
-      html {
-        zoom: 1.3333;
-      }
-    }
-
-    @media (min-width: 3400px) and (min-height: 1800px) {
-      html {
-        zoom: 2;
-      }
-    }
-
-    /* Écrans d'ordinateur peu hauts : espacements resserrés pour éviter le défilement */
-    @media (min-width: 961px) and (max-height: 820px) {
-      .site-nav {
-        padding-top: 12px;
-      }
-
-      .contact-layout {
-        padding: 12px 24px;
-      }
-
-      .card--form {
-        padding: 30px 34px 28px;
-      }
-
-      .contact-intro {
-        margin-top: 10px;
-      }
-
-      .contact-form {
-        gap: 14px;
-        margin-top: 20px;
-      }
-
-      textarea.form-input {
-        min-height: 104px;
-      }
-
-      .contact-aside .card {
-        padding: 18px 22px;
-      }
-
-      .quick-link {
-        min-height: 96px;
-      }
-
-      .site-footer {
-        padding: 4px 24px 14px;
-      }
-    }
-
-    /* Tablette : les infos passent sous le formulaire */
+    /* Tablette : une seule colonne, l'e-mail et les liens rapides côte à côte */
     @media (max-width: 960px) {
       .contact-layout {
-        grid-template-columns: 1fr;
-        align-content: start;
+        grid-template-columns: minmax(0, 1fr);
+        padding-top: 28px;
       }
 
-      .contact-aside {
+      .contact-side {
         display: grid;
-        grid-template-columns: 1fr 1fr;
+        grid-template-columns: minmax(0, 1fr) minmax(0, 1fr);
+      }
+
+      .card--steps {
+        align-self: stretch;
       }
     }
 
-    /* Mobile : une seule colonne */
+    /* Mobile : tout s'empile */
     @media (max-width: 720px) {
       .contact-layout {
-        padding: 14px 16px 20px;
-        align-content: start;
+        --gap: 16px;
+        padding: 20px 16px 24px;
       }
 
-      .card--form {
-        padding: 28px 20px 22px;
-      }
-
-      .form-row {
-        grid-template-columns: 1fr;
-      }
-
-      .contact-aside {
+      .contact-side {
         display: flex;
       }
 
-      .submit-btn {
-        width: 100%;
-        justify-content: center;
+      .card {
+        padding: 24px 20px;
       }
 
-      .site-footer {
-        padding: 4px 16px 24px;
+      .card--hero {
+        padding: 28px 22px;
+      }
+
+      .hero-text {
+        font-size: 1rem;
+      }
+
+      .quick-card {
+        min-height: 116px;
+        padding: 20px;
+      }
+
+      .form-row {
+        grid-template-columns: minmax(0, 1fr);
+        gap: 22px;
+      }
+
+      .submit-btn,
+      .success-actions > * {
+        width: 100%;
       }
     }
 
@@ -665,6 +841,8 @@
       }
     }
   </style>
+  <link rel="stylesheet" href="css/site-pages.css" />
+  <script defer src="https://cloud.umami.is/script.js" data-website-id="c992974a-48c8-47e4-9625-85ab5eca2ac3"></script>
 </head>
 
 <body>
@@ -672,104 +850,67 @@
   <nav class="site-nav" aria-label="Navigation principale">
     <ul class="site-nav-list">
       <li><a href="/" class="site-nav-link">Accueil</a></li>
-      <li><a href="/projets" class="site-nav-link">Projets</a></li>
+      <li><a href="/services" class="site-nav-link">Services</a></li>
+      <li><a href="/realisations" class="site-nav-link">Réalisations</a></li>
       <li><a href="/contact" class="site-nav-link" aria-current="page">Contact</a></li>
     </ul>
   </nav>
 
   <main class="contact-layout">
 
-    <!-- ============ FORMULAIRE ============ -->
-    <section class="card card--form" aria-labelledby="contact-title">
-      <p class="card-eyebrow">Contact</p>
-      <h1 class="contact-title" id="contact-title">Parlons-en.</h1>
-      <p class="contact-intro">Un projet de visuels, de contenus pour les réseaux sociaux ou de site web&nbsp;? Parlez-moi
-        de votre besoin, je vous réponds rapidement.</p>
-
-      <form class="contact-form" id="contact-form" novalidate>
-        <fieldset class="reason-group">
-          <legend class="form-legend">Vous me contactez pour…</legend>
-          <div class="reason-options">
-            <label class="reason-option">
-              <input type="radio" name="reason" value="Une mission freelance" checked />
-              <span>Une mission freelance</span>
-            </label>
-            <label class="reason-option">
-              <input type="radio" name="reason" value="Une demande de devis" />
-              <span>Une demande de devis</span>
-            </label>
-            <label class="reason-option">
-              <input type="radio" name="reason" value="Autre chose" />
-              <span>Autre chose</span>
-            </label>
-          </div>
-        </fieldset>
-
-        <div class="form-row">
-          <div>
-            <label class="form-label" for="contact-name">Nom</label>
-            <input class="form-input" id="contact-name" name="name" type="text" autocomplete="name"
-              placeholder="Prénom Nom" required />
-          </div>
-          <div>
-            <label class="form-label" for="contact-email">E-mail</label>
-            <input class="form-input" id="contact-email" name="email" type="email" autocomplete="email"
-              placeholder="vous@entreprise.fr" required />
-          </div>
-          <div>
-            <label class="form-label" for="contact-company">Entreprise <span
-                class="form-optional">(facultatif)</span></label>
-            <input class="form-input" id="contact-company" name="company" type="text" autocomplete="organization"
-              placeholder="Agence, structure…" />
-          </div>
-        </div>
-
-        <div>
-          <label class="form-label" for="contact-message">Message</label>
-          <textarea class="form-input" id="contact-message" name="message" rows="5"
-            placeholder="Votre projet, vos besoins, vos délais…" required></textarea>
-        </div>
-
-        <div class="form-footer">
-          <p class="form-note">Vos données servent uniquement à vous répondre.</p>
-          <button type="submit" class="submit-btn">
-            Envoyer le message
-            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round"
-              stroke-linejoin="round" aria-hidden="true">
-              <line x1="5" y1="12" x2="19" y2="12" />
-              <polyline points="12 5 19 12 12 19" />
-            </svg>
-          </button>
-        </div>
-        <p class="form-status" id="form-status" role="status"></p>
-      </form>
+    <!-- ============ A. PRÉSENTATION ============ -->
+    <section class="card card--hero" aria-labelledby="contact-title">
+      <p class="availability"><span class="availability-dot" aria-hidden="true"></span>Disponible pour de nouvelles missions</p>
+      <h1 class="hero-title" id="contact-title">Parlons de<br /> votre projet.</h1>
+      <p class="hero-text">Supports visuels, site web, contenus pour vos réseaux sociaux ou stratégie de
+        communication&nbsp;: décrivez votre besoin en quelques lignes. Je vous réponds sous 48&nbsp;h pour organiser un
+        premier échange.</p>
+      <ul class="hero-checks">
+        <li>
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round"
+            stroke-linejoin="round" aria-hidden="true">
+            <polyline points="20 6 9 17 4 12" />
+          </svg>
+          Premier échange gratuit et sans engagement
+        </li>
+        <li>
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round"
+            stroke-linejoin="round" aria-hidden="true">
+            <polyline points="20 6 9 17 4 12" />
+          </svg>
+          Devis détaillé avant tout démarrage
+        </li>
+      </ul>
     </section>
 
-    <!-- ============ INFOS ============ -->
-    <div class="contact-aside">
-
-      <section class="card" aria-labelledby="availability-title">
-        <p class="availability"><span class="availability-dot" aria-hidden="true"></span>Disponible pour de nouvelles missions</p>
-        <h2 class="aside-title" id="availability-title">Communication digitale en freelance</h2>
-        <p class="aside-text">Visuels, réseaux sociaux, site web · Basé à Toulouse, missions à distance possibles</p>
-      </section>
-
-      <section class="card" aria-labelledby="email-title">
-        <h2 class="card-eyebrow" id="email-title">E-mail</h2>
-        <a class="email-address" href="mailto:benjaminbridanne@gmail.com"
+    <!-- ============ B. E-MAIL, LINKEDIN, LOCALISATION ============ -->
+    <div class="contact-side">
+      <section class="card card--email" aria-labelledby="email-title">
+        <h2 class="card-eyebrow" id="email-title">Écrire directement</h2>
+        <a data-umami-event="clic-contact" class="email-address" href="mailto:benjaminbridanne@gmail.com"
           id="email-address">benjaminbridanne@gmail.com</a>
-        <button type="button" class="copy-btn" id="copy-email">
-          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round"
-            stroke-linejoin="round" aria-hidden="true">
-            <rect x="9" y="9" width="12" height="12" rx="2" />
-            <path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1" />
-          </svg>
-          <span id="copy-email-label">Copier</span>
-        </button>
+        <div class="email-actions">
+          <button type="button" class="pill-btn" id="copy-email">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"
+              stroke-linejoin="round" aria-hidden="true">
+              <rect x="9" y="9" width="12" height="12" rx="2" />
+              <path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1" />
+            </svg>
+            <span id="copy-email-label" aria-live="polite">Copier l’adresse</span>
+          </button>
+          <a data-umami-event="clic-contact" class="pill-btn pill-btn--soft" href="mailto:benjaminbridanne@gmail.com">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"
+              stroke-linejoin="round" aria-hidden="true">
+              <rect x="2" y="4" width="20" height="16" rx="2" />
+              <path d="m22 7-10 6L2 7" />
+            </svg>
+            Ouvrir ma messagerie
+          </a>
+        </div>
       </section>
 
       <div class="quick-links">
-        <a class="card quick-link" href="https://www.linkedin.com/in/benjamin-bridanne-ba9a64285/" target="_blank"
+        <a data-umami-event="clic-linkedin" class="card quick-card" href="https://www.linkedin.com/in/benjamin-bridanne-ba9a64285/" target="_blank"
           rel="noopener">
           <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"
             stroke-linejoin="round" aria-hidden="true">
@@ -778,63 +919,305 @@
             <line x1="8" y1="8" x2="8" y2="8.01" />
             <path d="M12 16v-5M16 16v-3a2 2 0 0 0-4 0" />
           </svg>
-          <span>LinkedIn ↗</span>
+          <span class="quick-label">LinkedIn <span aria-hidden="true">↗</span><span class="sr-only"> (nouvel
+              onglet)</span></span>
         </a>
-        <a class="card quick-link" href="Images/CV_benjamin_bridanne.pdf" target="_blank" rel="noopener">
+        <div class="card quick-card">
           <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"
             stroke-linejoin="round" aria-hidden="true">
-            <path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z" />
-            <polyline points="14 2 14 8 20 8" />
-            <line x1="12" y1="18" x2="12" y2="12" />
-            <polyline points="9 15 12 18 15 15" />
+            <path d="M20 10c0 6-8 12-8 12s-8-6-8-12a8 8 0 0 1 16 0Z" />
+            <circle cx="12" cy="10" r="3" />
           </svg>
-          <span>Télécharger le CV</span>
-        </a>
+          <p class="quick-label">Toulouse <span class="quick-sub">et à distance</span></p>
+        </div>
       </div>
     </div>
+
+    <!-- ============ C. DEMANDE DE DEVIS ============ -->
+    <section class="card card--form" aria-labelledby="form-title">
+      <div id="form-view">
+        <p class="card-eyebrow">Demande de devis</p>
+        <h2 class="form-title" id="form-title">Votre projet en 2&nbsp;minutes</h2>
+
+        <!-- Envoi par Web3Forms (fetch, sans quitter la page) -->
+        <form class="contact-form" id="contact-form" action="https://api.web3forms.com/submit" method="POST"
+          novalidate>
+          <input type="hidden" name="access_key" value="8b7045da-d2c3-4956-9e94-9d940b3df5cd" />
+          <input type="hidden" name="subject" value="Nouvelle demande de devis depuis le portfolio" />
+          <input type="hidden" name="from_name" value="Portfolio Benjamin Bridanne" />
+          <input type="hidden" name="besoins" id="contact-needs" value="" />
+          <input type="checkbox" name="botcheck" class="botcheck" tabindex="-1" autocomplete="off"
+            aria-hidden="true" />
+
+          <div>
+            <p class="form-question" id="needs-question">De quoi avez-vous besoin&nbsp;? <span
+                class="form-optional">(plusieurs choix possibles)</span></p>
+            <div class="need-options" role="group" aria-labelledby="needs-question">
+              <button type="button" class="need-btn" aria-pressed="false">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.6" stroke-linecap="round"
+                  stroke-linejoin="round" aria-hidden="true"><polyline points="20 6 9 17 4 12" /></svg>Supports visuels
+              </button>
+              <button type="button" class="need-btn" aria-pressed="false">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.6" stroke-linecap="round"
+                  stroke-linejoin="round" aria-hidden="true"><polyline points="20 6 9 17 4 12" /></svg>Site web
+              </button>
+              <button type="button" class="need-btn" aria-pressed="false">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.6" stroke-linecap="round"
+                  stroke-linejoin="round" aria-hidden="true"><polyline points="20 6 9 17 4 12" /></svg>Identité visuelle
+              </button>
+              <button type="button" class="need-btn" aria-pressed="false">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.6" stroke-linecap="round"
+                  stroke-linejoin="round" aria-hidden="true"><polyline points="20 6 9 17 4 12" /></svg>Réseaux sociaux
+              </button>
+              <button type="button" class="need-btn" aria-pressed="false">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.6" stroke-linecap="round"
+                  stroke-linejoin="round" aria-hidden="true"><polyline points="20 6 9 17 4 12" /></svg>Stratégie de communication
+              </button>
+              <button type="button" class="need-btn" aria-pressed="false">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.6" stroke-linecap="round"
+                  stroke-linejoin="round" aria-hidden="true"><polyline points="20 6 9 17 4 12" /></svg>Autre chose
+              </button>
+            </div>
+          </div>
+
+          <div class="form-row">
+            <div>
+              <label class="form-label" for="contact-name">Nom et prénom</label>
+              <input class="form-input" id="contact-name" name="name" type="text" autocomplete="name"
+                placeholder="Camille Martin" required aria-describedby="contact-name-error" />
+              <p class="field-error" id="contact-name-error"></p>
+            </div>
+            <div>
+              <label class="form-label" for="contact-email">E-mail</label>
+              <input class="form-input" id="contact-email" name="email" type="email" autocomplete="email"
+                placeholder="vous@structure.fr" required aria-describedby="contact-email-error" />
+              <p class="field-error" id="contact-email-error"></p>
+            </div>
+            <div>
+              <label class="form-label" for="contact-structure">Structure <span
+                  class="form-optional">(facultatif)</span></label>
+              <input class="form-input" id="contact-structure" name="structure" type="text"
+                autocomplete="organization" placeholder="Entreprise, association, collectivité…" />
+            </div>
+          </div>
+
+          <div>
+            <label class="form-label" for="contact-message">Votre projet</label>
+            <textarea class="form-input" id="contact-message" name="message" rows="6" required
+              aria-describedby="contact-message-error"
+              placeholder="Votre activité, ce que vous souhaitez réaliser, vos contraintes éventuelles… Quelques lignes suffisent."></textarea>
+            <p class="field-error" id="contact-message-error"></p>
+          </div>
+
+          <p class="form-alert" id="form-alert" role="alert"></p>
+
+          <div class="form-footer">
+            <p class="form-note">Vos données servent à traiter votre demande. <a
+                href="/politique-confidentialite">En savoir plus</a></p>
+            <button type="submit" class="submit-btn" id="submit-btn">
+              <span id="submit-label">Envoyer ma demande</span>
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round"
+                stroke-linejoin="round" aria-hidden="true">
+                <line x1="5" y1="12" x2="19" y2="12" />
+                <polyline points="12 5 19 12 12 19" />
+              </svg>
+            </button>
+          </div>
+        </form>
+      </div>
+
+      <div class="form-success" id="form-success" hidden>
+        <div class="success-icon" aria-hidden="true">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.6" stroke-linecap="round"
+            stroke-linejoin="round">
+            <polyline points="20 6 9 17 4 12" />
+          </svg>
+        </div>
+        <h2 class="success-title" id="success-title" tabindex="-1">Merci, c’est bien reçu.</h2>
+        <p class="success-text">Je lis votre demande et je reviens vers vous sous 48&nbsp;h pour convenir d’un premier
+          échange. En attendant, vous pouvez parcourir mes réalisations.</p>
+        <div class="success-actions">
+          <a class="primary-btn" href="/realisations">
+            Voir mes réalisations
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round"
+              stroke-linejoin="round" aria-hidden="true">
+              <line x1="5" y1="12" x2="19" y2="12" />
+              <polyline points="12 5 19 12 12 19" />
+            </svg>
+          </a>
+          <button type="button" class="pill-btn" id="new-request">Nouvelle demande</button>
+        </div>
+      </div>
+    </section>
+
+    <!-- ============ D. ET ENSUITE ? ============ -->
+    <section class="card card--steps" aria-labelledby="steps-title">
+      <h2 class="card-eyebrow" id="steps-title">Et ensuite&nbsp;?</h2>
+      <ol class="steps">
+        <li class="step">
+          <span class="step-number" aria-hidden="true">01</span>
+          <div>
+            <h3 class="step-title">Je vous réponds sous 48&nbsp;h</h3>
+            <p class="step-text">Avec mes premières questions sur votre besoin.</p>
+          </div>
+        </li>
+        <li class="step">
+          <span class="step-number" aria-hidden="true">02</span>
+          <div>
+            <h3 class="step-title">On en parle de vive voix</h3>
+            <p class="step-text">Appel ou visio de 30&nbsp;minutes, gratuit et sans engagement.</p>
+          </div>
+        </li>
+        <li class="step">
+          <span class="step-number" aria-hidden="true">03</span>
+          <div>
+            <h3 class="step-title">Vous recevez un devis clair</h3>
+            <p class="step-text">Contenu, délais, prix&nbsp;: vous décidez en toute connaissance.</p>
+          </div>
+        </li>
+      </ol>
+    </section>
   </main>
 
   <footer class="site-footer">
     <p class="footer-identity">Benjamin Bridanne · Chargé de communication digitale</p>
-    <a href="/mentions-legales">Mentions légales</a>
+    <div class="footer-links">
+      <a href="/realisations">Réalisations</a>
+      <a href="/politique-confidentialite">Confidentialité</a>
+      <a data-umami-event="clic-contact" href="mailto:benjaminbridanne@gmail.com">Mail</a>
+      <a data-umami-event="clic-linkedin" href="https://www.linkedin.com/in/benjamin-bridanne-ba9a64285/" target="_blank" rel="noopener">LinkedIn</a>
+      <a href="/mentions-legales">Mentions légales</a>
+    </div>
   </footer>
 
   <script>
     /* =========================================================
-       FORMULAIRE - le site est statique : le message est préparé
-       dans la messagerie du visiteur (lien mailto)
+       FORMULAIRE - envoi par Web3Forms, sans quitter la page
        ========================================================= */
     (function () {
-      const form = document.getElementById('contact-form');
-      const status = document.getElementById('form-status');
       const EMAIL = 'benjaminbridanne@gmail.com';
+      const form = document.getElementById('contact-form');
+      const formView = document.getElementById('form-view');
+      const success = document.getElementById('form-success');
+      const successTitle = document.getElementById('success-title');
+      const alertBox = document.getElementById('form-alert');
+      const submitBtn = document.getElementById('submit-btn');
+      const submitLabel = document.getElementById('submit-label');
+      const needsInput = document.getElementById('contact-needs');
+      const needButtons = [...form.querySelectorAll('.need-btn')];
+      let sending = false;
 
-      form.addEventListener('submit', (event) => {
+      // Besoins : chaque bouton bascule, la liste part dans le champ « besoins »
+      needButtons.forEach(button => {
+        button.addEventListener('click', () => {
+          button.setAttribute('aria-pressed', button.getAttribute('aria-pressed') === 'true' ? 'false' : 'true');
+        });
+      });
+
+      const selectedNeeds = () => needButtons
+        .filter(button => button.getAttribute('aria-pressed') === 'true')
+        .map(button => button.textContent.trim());
+
+      // Validation des champs obligatoires
+      const fields = {
+        name: document.getElementById('contact-name'),
+        email: document.getElementById('contact-email'),
+        message: document.getElementById('contact-message')
+      };
+      const EMAIL_PATTERN = /^[^\s@]+@[^\s@]+\.[^\s@]{2,}$/;
+
+      function errorFor(key) {
+        const value = fields[key].value.trim();
+        if (key === 'name' && !value) return 'Indiquez votre nom et prénom.';
+        if (key === 'email' && !value) return 'Indiquez votre adresse e-mail.';
+        if (key === 'email' && !EMAIL_PATTERN.test(value)) return 'Cette adresse e-mail ne semble pas valide. Exemple : vous@structure.fr';
+        if (key === 'message' && !value) return 'Décrivez votre projet en quelques lignes.';
+        return '';
+      }
+
+      function showError(key) {
+        const message = errorFor(key);
+        const field = fields[key];
+        document.getElementById(`${field.id}-error`).textContent = message;
+        if (message) field.setAttribute('aria-invalid', 'true');
+        else field.removeAttribute('aria-invalid');
+        return !message;
+      }
+
+      // Une fois signalée, l'erreur disparaît dès que le champ est corrigé
+      Object.keys(fields).forEach(key => {
+        fields[key].addEventListener('input', () => {
+          if (fields[key].getAttribute('aria-invalid') === 'true') showError(key);
+        });
+      });
+
+      function setSending(state) {
+        sending = state;
+        submitBtn.setAttribute('aria-disabled', state ? 'true' : 'false');
+        submitLabel.textContent = state ? 'Envoi en cours…' : 'Envoyer ma demande';
+      }
+
+      function showFailure() {
+        alertBox.innerHTML = `L’envoi n’a pas abouti. Vous pouvez m’écrire directement à <a data-umami-event="clic-contact" href="mailto:${EMAIL}">${EMAIL}</a>.`;
+      }
+
+      form.addEventListener('submit', async (event) => {
         event.preventDefault();
+        if (sending) return;
+        alertBox.textContent = '';
 
-        const invalid = [...form.querySelectorAll('[required]')].find(field => !field.checkValidity());
-        if (invalid) {
-          status.textContent = invalid.type === 'email' && invalid.value
-            ? 'Cette adresse e-mail ne semble pas valide.'
-            : 'Merci de remplir votre nom, votre e-mail et votre message.';
-          invalid.focus();
+        const results = Object.keys(fields).map(showError);
+        if (results.includes(false)) {
+          fields[Object.keys(fields)[results.indexOf(false)]].focus();
           return;
         }
 
-        const data = new FormData(form);
-        const company = data.get('company').trim();
-        const subject = `${data.get('reason')} - ${data.get('name').trim()}`;
-        const body = [
-          data.get('message').trim(),
-          '',
-          '---',
-          `Nom : ${data.get('name').trim()}`,
-          `E-mail : ${data.get('email').trim()}`,
-          company ? `Entreprise : ${company}` : null
-        ].filter(line => line !== null).join('\n');
+        const needs = selectedNeeds();
+        needsInput.value = needs.length ? needs.join(', ') : 'Non précisé';
 
-        window.location.href = `mailto:${EMAIL}?subject=${encodeURIComponent(subject)}&body=${encodeURIComponent(body)}`;
-        status.textContent = 'Votre messagerie s’ouvre avec le message prêt à envoyer.';
+        const data = Object.fromEntries(new FormData(form));
+        data.name = data.name.trim();
+        data.email = data.email.trim();
+        data.structure = data.structure.trim();
+        data.message = data.message.trim();
+        // Répondre depuis la messagerie écrit directement au prospect
+        data.replyto = data.email;
+
+        setSending(true);
+        try {
+          const response = await fetch(form.action, {
+            method: 'POST',
+            headers: { 'Content-Type': 'application/json', Accept: 'application/json' },
+            body: JSON.stringify(data)
+          });
+          const result = await response.json().catch(() => ({}));
+
+          if (response.ok && result.success) {
+            // Mesure d'audience : compté seulement après un envoi réussi (Umami peut être bloqué)
+            if (window.umami) window.umami.track('envoi-devis');
+            formView.hidden = true;
+            success.hidden = false;
+            successTitle.focus();
+          } else {
+            showFailure();
+          }
+        } catch {
+          showFailure();
+        } finally {
+          setSending(false);
+        }
+      });
+
+      // Nouvelle demande : formulaire vide, besoins désélectionnés
+      document.getElementById('new-request').addEventListener('click', () => {
+        form.reset();
+        needButtons.forEach(button => button.setAttribute('aria-pressed', 'false'));
+        Object.values(fields).forEach(field => field.removeAttribute('aria-invalid'));
+        form.querySelectorAll('.field-error').forEach(error => { error.textContent = ''; });
+        alertBox.textContent = '';
+        success.hidden = true;
+        formView.hidden = false;
+        needButtons[0].focus();
       });
     })();
 
@@ -850,12 +1233,12 @@
       button.addEventListener('click', async () => {
         try {
           await navigator.clipboard.writeText(address);
-          label.textContent = 'Copié !';
+          label.textContent = 'Copié';
         } catch {
           label.textContent = 'Copie impossible';
         }
         clearTimeout(timer);
-        timer = setTimeout(() => { label.textContent = 'Copier'; }, 2000);
+        timer = setTimeout(() => { label.textContent = 'Copier l’adresse'; }, 2000);
       });
     })();
   </script>

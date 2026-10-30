@@ -1,0 +1,1163 @@
+<!DOCTYPE html>
+<html lang="fr" data-theme="light">
+
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <!-- Thème : clair par défaut, sombre seulement si le visiteur l'a choisi. Appliqué avant l'affichage. -->
+  <script>
+    try {
+      if (localStorage.getItem('bb-theme') === 'dark') document.documentElement.setAttribute('data-theme', 'dark');
+    } catch { /* Stockage indisponible : thème clair par défaut. */ }
+  </script>
+  <title>Montage vidéo : défi de montage YouTube | Benjamin Bridanne</title>
+  <meta name="description"
+    content="Montage vidéo réalisé sur Adobe Premiere Pro par Benjamin Bridanne : cut, incrustation sur fond vert, motion design, sous-titres et habillage sonore, en format YouTube et vertical." />
+  <link rel="canonical" href="https://benjaminbridanne.fr/montage-video-tibo-inshape" />
+  <link rel="icon" href="Images/favicon-b.b.svg" type="image/svg" />
+
+  <meta property="og:type" content="website" />
+  <meta property="og:url" content="https://benjaminbridanne.fr/montage-video-tibo-inshape" />
+  <meta property="og:title" content="Montage vidéo : défi de montage YouTube" />
+  <meta property="og:description"
+    content="Montage vidéo réalisé sur Adobe Premiere Pro par Benjamin Bridanne : cut, incrustation sur fond vert, motion design, sous-titres et habillage sonore, en format YouTube et vertical." />
+  <meta property="og:image" content="https://benjaminbridanne.fr/Images/couverture-montage-TiboInShape.webp" />
+  <meta property="og:locale" content="fr_FR" />
+
+  <meta name="twitter:card" content="summary_large_image" />
+  <link rel="stylesheet" href="css/fiche-projet.css" />
+  <style>
+    /* =========================================================
+       TOKENS (identiques à l'accueil : cohérence stricte)
+       ========================================================= */
+    :root {
+      --font-system: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
+      --radius: 22px;
+      --radius-sm: 14px;
+      --gap: 14px;
+
+      --ease: cubic-bezier(.2, .8, .2, 1);
+      --transition-fast: 250ms var(--ease);
+      --transition-med: 400ms var(--ease);
+
+      --sun-moon: #F7E27B;
+    }
+
+    /* -------- Light mode -------- */
+    [data-theme="light"] {
+      --bg: #f2f2f4;
+      --bg-halo-1: rgba(205, 214, 232, 0.30);
+      --bg-halo-2: rgba(214, 220, 234, 0.24);
+
+      --card-bg: rgba(255, 255, 255, 0.74);
+      --card-bg-soft: rgba(255, 255, 255, 0.56);
+      --card-bg-solid: #ffffff;
+      --card-border: rgba(60, 60, 67, 0.16);
+      --card-border-hover: rgba(60, 60, 67, 0.28);
+      --card-edge: rgba(255, 255, 255, 0.95);
+      --card-shadow: 0 4px 20px rgba(0, 0, 0, 0.05);
+      --card-shadow-hover: 0 14px 38px rgba(0, 0, 0, 0.09);
+      --card-highlight-top: rgba(255, 255, 255, 0.9);
+      --card-blur: 18px;
+
+      --text: #0a0a0d;
+      --text-secondary: rgba(60, 60, 67, 0.62);
+      --eyebrow: rgba(60, 60, 67, 0.58);
+      --line: rgba(60, 60, 67, 0.12);
+
+      --toggle-track-bg: #e8e8ea;
+      --toggle-track-border: rgba(60, 60, 67, 0.22);
+      --toggle-thumb-bg: #0a0a0d;
+
+      --nav-bg: rgba(242, 242, 244, 0.72);
+      --nav-border: rgba(60, 60, 67, 0.12);
+
+      --pill-bg: rgba(0, 0, 0, 0.04);
+      --pill-border: rgba(60, 60, 67, 0.14);
+    }
+
+    /* -------- Dark mode -------- */
+    [data-theme="dark"] {
+      --bg: #000000;
+      --bg-halo-1: rgba(44, 44, 52, 0.22);
+      --bg-halo-2: rgba(24, 34, 52, 0.18);
+
+      --card-bg: rgba(18, 18, 20, 0.74);
+      --card-bg-soft: rgba(20, 20, 22, 0.56);
+      --card-bg-solid: #0e0e10;
+      --card-border: rgba(255, 255, 255, 0.10);
+      --card-border-hover: rgba(255, 255, 255, 0.20);
+      --card-edge: rgba(255, 255, 255, 0.28);
+      --card-shadow: 0 6px 26px rgba(0, 0, 0, 0.50);
+      --card-shadow-hover: 0 18px 46px rgba(0, 0, 0, 0.62);
+      --card-highlight-top: rgba(255, 255, 255, 0.14);
+      --card-blur: 16px;
+
+      --text: #F5F5F7;
+      --text-secondary: rgba(235, 235, 245, 0.62);
+      --eyebrow: rgba(235, 235, 245, 0.56);
+      --line: rgba(255, 255, 255, 0.10);
+
+      --toggle-track-bg: #1c1c1e;
+      --toggle-track-border: rgba(255, 255, 255, 0.16);
+      --toggle-thumb-bg: #0a0a0a;
+
+      --nav-bg: rgba(0, 0, 0, 0.62);
+      --nav-border: rgba(255, 255, 255, 0.08);
+
+      --pill-bg: rgba(255, 255, 255, 0.05);
+      --pill-border: rgba(255, 255, 255, 0.10);
+    }
+
+    /* =========================================================
+       BASE
+       ========================================================= */
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
+
+    html {
+      scroll-behavior: smooth;
+    }
+
+    body {
+      font-family: var(--font-system);
+      -webkit-font-smoothing: antialiased;
+      -moz-osx-font-smoothing: grayscale;
+      background: var(--bg);
+      color: var(--text);
+      min-height: 100vh;
+      position: relative;
+      overflow-x: hidden;
+      transition: background var(--transition-med), color var(--transition-med);
+    }
+
+    body::before {
+      content: "";
+      position: fixed;
+      inset: 0;
+      background:
+        radial-gradient(ellipse 60% 45% at 12% 8%, var(--bg-halo-1) 0%, transparent 60%),
+        radial-gradient(ellipse 55% 45% at 92% 96%, var(--bg-halo-2) 0%, transparent 62%);
+      pointer-events: none;
+      z-index: 0;
+    }
+
+    :focus-visible {
+      outline: 2px solid var(--text);
+      outline-offset: 3px;
+      border-radius: 6px;
+    }
+
+    a {
+      color: inherit;
+      text-decoration: none;
+    }
+
+    button {
+      font-family: inherit;
+      background: none;
+      border: none;
+      cursor: pointer;
+      color: inherit;
+    }
+
+    img {
+      max-width: 100%;
+      display: block;
+    }
+
+    .sr-only {
+      position: absolute;
+      width: 1px;
+      height: 1px;
+      padding: 0;
+      margin: -1px;
+      overflow: hidden;
+      clip: rect(0, 0, 0, 0);
+      white-space: nowrap;
+      border: 0;
+    }
+
+    /* =========================================================
+       CARD BASE (identique à l'accueil)
+       ========================================================= */
+    .card {
+      position: relative;
+      border-radius: var(--radius);
+      background: var(--card-bg);
+      border: 1px solid var(--card-border);
+      box-shadow: var(--card-shadow);
+      padding: 22px;
+      overflow: hidden;
+      backdrop-filter: blur(var(--card-blur)) saturate(118%);
+      -webkit-backdrop-filter: blur(var(--card-blur)) saturate(118%);
+      transition:
+        transform var(--transition-med),
+        box-shadow var(--transition-med),
+        border-color var(--transition-med),
+        background var(--transition-med);
+    }
+
+    .card::before {
+      content: "";
+      position: absolute;
+      inset: 0;
+      padding: 1px;
+      border-radius: inherit;
+      background: linear-gradient(145deg, var(--card-edge), transparent 42%);
+      -webkit-mask: linear-gradient(#000 0 0) content-box, linear-gradient(#000 0 0);
+      -webkit-mask-composite: xor;
+      mask: linear-gradient(#000 0 0) content-box, linear-gradient(#000 0 0);
+      mask-composite: exclude;
+      opacity: 0.75;
+      pointer-events: none;
+      z-index: 4;
+    }
+
+    .card::after {
+      content: "";
+      position: absolute;
+      top: 0;
+      left: 0;
+      right: 0;
+      height: 1px;
+      background: linear-gradient(90deg,
+          transparent 0%,
+          var(--card-highlight-top) 22%,
+          var(--card-highlight-top) 78%,
+          transparent 100%);
+      pointer-events: none;
+      z-index: 4;
+    }
+
+    .card:hover {
+      transform: scale(1.015);
+      z-index: 6;
+      border-color: var(--card-border-hover);
+      box-shadow: var(--card-shadow-hover);
+    }
+
+    .card>* {
+      position: relative;
+      z-index: 2;
+    }
+
+    .card--soft {
+      background: var(--card-bg-soft);
+    }
+
+    /* =========================================================
+       HEADER STICKY
+       ========================================================= */
+    .project-nav {
+      position: sticky;
+      top: 0;
+      z-index: 30;
+      display: flex;
+      align-items: center;
+      gap: 20px;
+      padding: 12px 24px;
+      background: var(--nav-bg);
+      border-bottom: 1px solid var(--nav-border);
+      backdrop-filter: blur(18px) saturate(130%);
+      -webkit-backdrop-filter: blur(18px) saturate(130%);
+    }
+
+    .nav-back {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      font-size: 0.875rem;
+      font-weight: 500;
+      color: var(--text);
+      padding: 6px 10px;
+      border-radius: 10px;
+      transition: background var(--transition-fast);
+    }
+
+    .nav-back:hover {
+      background: var(--card-bg-soft);
+    }
+
+    .nav-back svg {
+      width: 16px;
+      height: 16px;
+    }
+
+    .nav-crumb {
+      font-size: 0.8125rem;
+      color: var(--text-secondary);
+      flex: 1;
+      min-width: 0;
+      overflow: hidden;
+      text-overflow: ellipsis;
+      white-space: nowrap;
+    }
+
+    .nav-crumb strong {
+      color: var(--text);
+      font-weight: 500;
+    }
+
+    /* Toggle iOS */
+    .theme-toggle-btn {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      padding: 0;
+    }
+
+    .toggle-switch {
+      position: relative;
+      width: 52px;
+      height: 28px;
+      border-radius: 999px;
+      background: var(--toggle-track-bg);
+      border: 1px solid var(--toggle-track-border);
+      transition: background var(--transition-med), border-color var(--transition-med);
+    }
+
+    .toggle-thumb {
+      position: absolute;
+      top: 50%;
+      left: 3px;
+      width: 22px;
+      height: 22px;
+      border-radius: 50%;
+      background: var(--toggle-thumb-bg);
+      transform: translateY(-50%);
+      transition: left var(--transition-med), background var(--transition-med);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+
+    .toggle-thumb svg {
+      width: 12px;
+      height: 12px;
+      color: var(--sun-moon);
+      position: absolute;
+      transition: opacity var(--transition-fast);
+    }
+
+    [data-theme="dark"] .toggle-thumb {
+      left: 3px;
+    }
+
+    [data-theme="light"] .toggle-thumb {
+      left: calc(100% - 25px);
+    }
+
+    [data-theme="dark"] .icon-sun {
+      opacity: 0;
+    }
+
+    [data-theme="light"] .icon-moon {
+      opacity: 0;
+    }
+
+    /* =========================================================
+       CONTENEUR (la grille de l'étude de cas est dans css/fiche-projet.css)
+       ========================================================= */
+    .project-main {
+      max-width: var(--max-width);
+      margin: 0 auto;
+      padding: 28px 24px 56px;
+      position: relative;
+      z-index: 1;
+    }
+
+    .hero-eyebrow {
+      font-size: 0.75rem;
+      font-weight: 500;
+      color: var(--eyebrow);
+      text-transform: uppercase;
+      letter-spacing: 0.14em;
+    }
+
+    .hero-tags {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 8px;
+    }
+
+    .hero-tag {
+      display: inline-flex;
+      align-items: center;
+      padding: 6px 12px;
+      border-radius: 999px;
+      background: var(--pill-bg);
+      border: 1px solid var(--pill-border);
+      font-size: 0.75rem;
+      font-weight: 500;
+      color: var(--text-secondary);
+      letter-spacing: 0.01em;
+    }
+
+    /* Bouton pose sur la photographie : lisible dans les deux themes */
+    .hero-action {
+      position: absolute;
+      bottom: 16px;
+      right: 16px;
+      z-index: 5;
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      max-width: calc(100% - 32px);
+      padding: 9px 15px;
+      border-radius: 999px;
+      background: rgba(12, 12, 14, 0.78);
+      border: 1px solid rgba(255, 255, 255, 0.24);
+      color: #fff;
+      font-size: 0.8125rem;
+      font-weight: 600;
+      letter-spacing: -0.005em;
+      -webkit-backdrop-filter: blur(10px);
+      backdrop-filter: blur(10px);
+      transition:
+        background var(--transition-med),
+        border-color var(--transition-med),
+        transform var(--transition-med);
+    }
+
+    .hero-action svg {
+      width: 14px;
+      height: 14px;
+      flex: none;
+    }
+
+    .hero-action:hover {
+      background: rgba(12, 12, 14, 0.9);
+      border-color: rgba(255, 255, 255, 0.45);
+      transform: translateY(-1px);
+    }
+
+    .hero-action:focus-visible {
+      outline: 2px solid #fff;
+      outline-offset: 3px;
+    }
+
+    /* =========================================================
+       AGRANDISSEMENT DES IMAGES
+       ========================================================= */
+    .zoom-btn {
+      position: absolute;
+      inset: 0;
+      z-index: 3;
+      width: 100%;
+      height: 100%;
+      padding: 0;
+      border: 0;
+      background: none;
+      cursor: zoom-in;
+      border-radius: inherit;
+    }
+
+    .zoom-btn:focus-visible {
+      outline: 2px solid var(--text);
+      outline-offset: -5px;
+      border-radius: inherit;
+    }
+
+    .lightbox {
+      position: fixed;
+      inset: 0;
+      z-index: 100;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      padding: clamp(16px, 4vw, 48px);
+      background: rgba(0, 0, 0, 0.86);
+      -webkit-backdrop-filter: blur(6px);
+      backdrop-filter: blur(6px);
+    }
+
+    [data-theme="light"] .lightbox {
+      background: rgba(20, 20, 24, 0.82);
+    }
+
+    .lightbox[hidden] {
+      display: none;
+    }
+
+    .lightbox-img {
+      max-width: 100%;
+      max-height: 100%;
+      width: auto;
+      height: auto;
+      object-fit: contain;
+      border-radius: var(--radius-sm);
+      box-shadow: 0 24px 70px rgba(0, 0, 0, 0.55);
+    }
+
+    .lightbox-close {
+      position: absolute;
+      top: clamp(12px, 2.5vw, 28px);
+      right: clamp(12px, 2.5vw, 28px);
+      width: 44px;
+      height: 44px;
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      border-radius: 50%;
+      background: rgba(255, 255, 255, 0.12);
+      border: 1px solid rgba(255, 255, 255, 0.28);
+      color: #fff;
+      transition: background var(--transition-fast), border-color var(--transition-fast);
+    }
+
+    .lightbox-close svg {
+      width: 20px;
+      height: 20px;
+    }
+
+    .lightbox-close:hover {
+      background: rgba(255, 255, 255, 0.22);
+      border-color: rgba(255, 255, 255, 0.5);
+    }
+
+    .lightbox-close:focus-visible {
+      outline: 2px solid #fff;
+      outline-offset: 3px;
+    }
+
+    /* Le fond de page ne defile plus quand la modale est ouverte */
+    body.is-locked {
+      overflow: hidden;
+    }
+
+    /* Mention YouTube sous les lecteurs, visible avant tout lancement */
+    .cs-video-notice {
+      margin-top: 14px;
+    }
+
+    .cs-video-notice a {
+      color: var(--text);
+      text-decoration: underline;
+      text-underline-offset: 2px;
+      white-space: nowrap;
+    }
+
+    /* =========================================================
+       RESPONSIVE
+       ========================================================= */
+
+    /* Écrans très larges / 4K : même traitement que l'accueil */
+    @media (min-width: 1800px) {
+      :root {
+        --gap: 20px;
+        --radius: 26px;
+      }
+
+      html {
+        font-size: 18px;
+      }
+
+      .project-main {
+        padding: 42px 24px 76px;
+      }
+    }
+
+    /* Mobile */
+    @media (max-width: 720px) {
+      /* Le fil d'ariane passe sur sa propre ligne plutôt que d'être tronqué */
+      .project-nav {
+        flex-wrap: wrap;
+        padding: 10px 16px;
+        gap: 6px 12px;
+      }
+
+      .theme-toggle-btn {
+        margin-left: auto;
+      }
+
+      .nav-crumb {
+        order: 3;
+        flex: 1 0 100%;
+        white-space: normal;
+        overflow: visible;
+        text-overflow: clip;
+        line-height: 1.4;
+      }
+
+      .project-main {
+        padding: 20px 16px 40px;
+      }
+    }
+
+    /* =========================================================
+       REDUCED MOTION
+       ========================================================= */
+    @media (prefers-reduced-motion: reduce) {
+      *,
+      *::before,
+      *::after {
+        animation-duration: 0.01ms !important;
+        transition-duration: 0.01ms !important;
+      }
+
+      html {
+        scroll-behavior: auto;
+      }
+
+      .card:hover,
+      .hero-action:hover,
+      .pager-link:hover,
+      .pager-link:hover .pager-arrow {
+        transform: none;
+      }
+    }
+
+    /* =========================================================
+   NAVIGATION ENTRE PROJETS (pager en bas de page)
+   ========================================================= */
+    .project-pager {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: var(--gap);
+    }
+
+    .pager-link {
+      display: flex;
+      align-items: center;
+      gap: 18px;
+      padding: 22px 26px;
+      border-radius: var(--radius);
+      background: var(--card-bg);
+      border: 1px solid var(--card-border);
+      box-shadow: var(--card-shadow);
+      backdrop-filter: blur(var(--card-blur)) saturate(118%);
+      -webkit-backdrop-filter: blur(var(--card-blur)) saturate(118%);
+      color: var(--text);
+      transition:
+        transform var(--transition-med),
+        box-shadow var(--transition-med),
+        border-color var(--transition-med);
+    }
+
+    .pager-link:hover {
+      transform: scale(1.015);
+      border-color: var(--card-border-hover);
+      box-shadow: var(--card-shadow-hover);
+    }
+
+    .pager-prev {
+      justify-content: flex-start;
+      text-align: left;
+    }
+
+    .pager-next {
+      justify-content: flex-end;
+      text-align: right;
+    }
+
+    .pager-text {
+      display: flex;
+      flex-direction: column;
+      gap: 2px;
+    }
+
+    .pager-label {
+      font-size: 12px;
+      letter-spacing: 0.04em;
+      text-transform: uppercase;
+      color: var(--eyebrow);
+    }
+
+    .pager-title {
+      font-size: 17px;
+      font-weight: 600;
+      color: var(--text);
+    }
+
+    .pager-arrow {
+      font-size: 22px;
+      line-height: 1;
+      color: var(--text-secondary);
+      transition: transform var(--transition-fast), color var(--transition-fast);
+    }
+
+    .pager-link:hover .pager-arrow {
+      color: var(--text);
+    }
+
+    .pager-prev:hover .pager-arrow {
+      transform: translateX(-4px);
+    }
+
+    .pager-next:hover .pager-arrow {
+      transform: translateX(4px);
+    }
+
+    /* Responsive : sur mobile, on empile */
+    @media (max-width: 720px) {
+      .project-pager {
+        grid-template-columns: 1fr;
+      }
+    }
+  </style>
+  <link rel="stylesheet" href="css/site-pages.css" />
+  <script defer src="https://cloud.umami.is/script.js" data-website-id="c992974a-48c8-47e4-9625-85ab5eca2ac3"></script>
+</head>
+
+<body>
+
+  <!-- =============================================================
+       BARRE DE NAV STICKY : retour vers Réalisations, fil d’ariane, theme
+       ============================================================= -->
+  <nav class="project-nav" aria-label="Navigation principale">
+    <a href="/realisations" class="nav-back">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"
+        stroke-linejoin="round" aria-hidden="true">
+        <path d="M19 12H5M12 19l-7-7 7-7" />
+      </svg>
+      Réalisations
+    </a>
+
+    <span class="nav-crumb">Montage vidéo · <strong>Défi de montage YouTube</strong></span>
+
+    <span class="nav-status">
+      <span class="nav-status-dot" aria-hidden="true"></span>
+      <span>Disponible<span class="nav-status-more"> pour de nouvelles missions</span></span>
+    </span>
+
+    <button id="theme-toggle" class="theme-toggle-btn" aria-label="Basculer entre le mode sombre et le mode clair"
+      type="button">
+      <span class="sr-only" id="theme-toggle-label">Passer en mode sombre</span>
+      <span class="toggle-switch" aria-hidden="true">
+        <span class="toggle-thumb">
+          <svg class="icon-sun" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"
+            stroke-linecap="round" stroke-linejoin="round">
+            <circle cx="12" cy="12" r="4" />
+            <path
+              d="M12 2v2M12 20v2M4.93 4.93l1.41 1.41M17.66 17.66l1.41 1.41M2 12h2M20 12h2M4.93 19.07l1.41-1.41M17.66 6.34l1.41-1.41" />
+          </svg>
+          <svg class="icon-moon" viewBox="0 0 24 24" fill="currentColor">
+            <path d="M20.354 15.354A9 9 0 018.646 3.646 9.003 9.003 0 0012 21a9.003 9.003 0 008.354-5.646z" />
+          </svg>
+        </span>
+      </span>
+    </button>
+  </nav>
+
+
+  <main class="project-main" id="top">
+    <div class="cs-grid">
+
+      <!-- ========== RANGÉE 1 · PRÉSENTATION ========== -->
+      <article class="card cs-intro" aria-labelledby="hero-title">
+        <div class="cs-kicker">
+          <span class="cs-badge">Montage vidéo</span>
+          <span class="hero-eyebrow">Projet personnel</span>
+        </div>
+        <h1 class="cs-title" id="hero-title">
+          Montage vidéo&nbsp;: <span class="cs-title-accent">défi de montage YouTube</span>
+        </h1>
+
+        <p class="cs-pitch cs-pitch--lead">
+          Transformer des rushes bruts en une vidéo rythmée et prête à publier.
+        </p>
+
+        <div class="hero-tags">
+          <span class="hero-tag">Cut</span>
+          <span class="hero-tag">Incrustation sur fond vert</span>
+          <span class="hero-tag">Motion design</span>
+          <span class="hero-tag">Sous-titrage</span>
+          <span class="hero-tag">Habillage sonore</span>
+        </div>
+
+        <dl class="cs-facts cs-facts--2">
+          <div>
+            <dt>Type</dt>
+            <dd>Projet personnel, réalisation individuelle</dd>
+          </div>
+          <div>
+            <dt>Format</dt>
+            <dd>1 min 39 de rushes, 1 min 16 de vidéo finale</dd>
+          </div>
+        </dl>
+      </article>
+
+      <!-- ========== RANGÉE 1 · VISUEL PRINCIPAL ========== -->
+      <div class="card cs-visual">
+        <img class="cs-img" src="Images/couverture-montage-TiboInShape.webp"
+          alt="Capture du logiciel de montage : la vidéo en cours d’édition, avec les plans, les titres, la musique et les effets sonores sur la timeline" loading="eager" />
+        <a class="hero-action" href="#video">
+          <svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true">
+            <path d="M8 5.5v13l11-6.5z" />
+          </svg>
+          Voir la vidéo
+        </a>
+      </div>
+
+      <!-- ========== RANGÉE 2 · LE CONTEXTE ========== -->
+      <article class="card cs-step" aria-labelledby="contexte-title">
+        <h2 class="cs-label" id="contexte-title"><span class="cs-num">01</span> Le contexte</h2>
+        <p class="cs-lead">
+          Un brief réel, avec le niveau d'exigence d'une chaîne à très forte audience.
+        </p>
+        <p class="cs-body">
+          Pour recruter un monteur, le youtubeur Tibo InShape a publié une vidéo non montée et invité les candidats à
+          la monter. J'ai saisi l'occasion, non pas pour postuler, mais pour me confronter à un brief réel, avec le
+          niveau d'exigence d'une chaîne à très forte audience.
+        </p>
+      </article>
+
+      <!-- ========== RANGÉE 2 · CE QUE J'AI RÉALISÉ ========== -->
+      <article class="card cs-step" aria-labelledby="realise-title">
+        <h2 class="cs-label" id="realise-title"><span class="cs-num">02</span> Ce que j'ai réalisé</h2>
+        <ol class="cs-steps">
+          <li><span><strong>Cut et rythme</strong>&nbsp;: suppression des temps morts et resserrement du propos, de
+              1 min 39 à 1 min 16.</span></li>
+          <li><span><strong>Incrustation sur fond vert</strong>&nbsp;: intégration de l'image dans de nouveaux
+              décors.</span></li>
+          <li><span><strong>Motion design</strong>&nbsp;: animations et éléments graphiques pour appuyer le
+              discours.</span></li>
+          <li><span><strong>Sous-titres</strong>&nbsp;: pour suivre la vidéo même sans le son.</span></li>
+          <li><span><strong>Musique et effets</strong>&nbsp;: habillage sonore et visuel pour soutenir le
+              rythme.</span></li>
+        </ol>
+      </article>
+
+      <!-- ========== RANGÉE 2 · L'OBJECTIF ========== -->
+      <article class="card cs-step cs-results" aria-labelledby="objectif-title">
+        <h2 class="cs-label" id="objectif-title"><span class="cs-num">03</span> L'objectif</h2>
+        <p class="cs-statement">
+          Partir d'images brutes et en faire une vidéo dynamique, lisible et agréable à regarder jusqu'au bout.
+        </p>
+        <div class="cs-tiles" role="list">
+          <div class="cs-tile" role="listitem">
+            <span class="cs-tile-value">1 min 39</span>
+            <span class="cs-tile-label">de rushes bruts</span>
+          </div>
+          <div class="cs-tile cs-tile--accent" role="listitem">
+            <span class="cs-tile-value">1 min 16</span>
+            <span class="cs-tile-label">de vidéo finale</span>
+          </div>
+        </div>
+      </article>
+
+      <!-- ========== RANGÉE 3 · LA VIDÉO ==========
+           Façade légère : l'iframe YouTube (nocookie) n'est créée qu'au clic. -->
+      <section class="card cs-method cs-media-section" id="video" aria-labelledby="video-title">
+        <div class="cs-method-head">
+          <div class="cs-title-group">
+            <h2 class="cs-label" id="video-title"><span class="cs-num">04</span> La vidéo</h2>
+            <!-- La miniature du rush vient de YouTube : elle n'est chargée qu'au choix de cette version -->
+            <span class="cs-switch" role="group" aria-label="Version de la vidéo" data-target="player-main">
+              <button type="button" class="cs-switch-btn" aria-pressed="true" data-youtube-id="LgvOkOeRiMI"
+                data-title="Montage vidéo : défi de montage YouTube" data-duration="1:16"
+                data-poster="Images/miniature-montage-TiboInShape.webp">Version montée</button>
+              <button type="button" class="cs-switch-btn" aria-pressed="false" data-youtube-id="LoUjGSyZAco"
+                data-title="Rush brut : défi de montage YouTube" data-duration="1:39"
+                data-poster="https://i.ytimg.com/vi/LoUjGSyZAco/hqdefault.jpg">Rush brut</button>
+            </span>
+          </div>
+          <p class="cs-method-sub">Un même montage, pensé pour YouTube et pour les formats verticaux</p>
+        </div>
+
+        <div class="cs-players">
+          <figure class="cs-player cs-player--wide">
+            <div class="cs-player-frame" id="player-main">
+              <img class="cs-player-poster" src="Images/miniature-montage-TiboInShape.webp" alt="" loading="lazy" />
+              <button type="button" class="cs-play" data-youtube-id="LgvOkOeRiMI"
+                data-title="Montage vidéo : défi de montage YouTube" aria-label="Lire la vidéo">
+                <span class="cs-play-icon" aria-hidden="true">
+                  <svg viewBox="0 0 24 24" fill="currentColor">
+                    <path d="M8 5.5v13l11-6.5z" />
+                  </svg>
+                </span>
+              </button>
+              <span class="cs-duration">1:16</span>
+            </div>
+            <figcaption class="cs-player-caption"><span class="cs-ratio">16:9</span> Format YouTube</figcaption>
+          </figure>
+
+          <figure class="cs-player cs-player--vertical">
+            <!-- YouTube Shorts : même façade que la version 16:9, miniature locale recadrée sur le visage -->
+            <div class="cs-player-frame">
+              <img class="cs-player-poster" src="Images/miniature-montage-TiboInShape.webp" alt="" loading="lazy" />
+              <button type="button" class="cs-play" data-youtube-id="wVi-2SquTrY"
+                data-title="Montage vidéo : version verticale du défi de montage YouTube"
+                aria-label="Lire la version verticale">
+                <span class="cs-play-icon" aria-hidden="true">
+                  <svg viewBox="0 0 24 24" fill="currentColor">
+                    <path d="M8 5.5v13l11-6.5z" />
+                  </svg>
+                </span>
+              </button>
+            </div>
+            <figcaption class="cs-player-caption"><span class="cs-ratio">9:16</span> Shorts, Reels, TikTok</figcaption>
+          </figure>
+        </div>
+        <p class="cs-method-sub cs-video-notice">La vidéo est hébergée sur YouTube. En la lançant, vous acceptez que
+          YouTube dépose des cookies. <a href="/politique-confidentialite#cookies">En savoir plus</a></p>
+      </section>
+
+      <!-- ========== RANGÉE 4 · CE QUE CE PROJET MONTRE ========== -->
+      <section class="card cs-method" aria-labelledby="montre-title">
+        <div class="cs-method-head">
+          <h2 class="cs-label" id="montre-title"><span class="cs-num">05</span> Ce que ce projet montre</h2>
+        </div>
+        <p class="cs-body">
+          Ces compétences s'appliquent directement aux besoins d'une structure qui veut communiquer en vidéo&nbsp;:
+        </p>
+        <ul class="cs-uses cs-uses--row">
+          <li>
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"
+              stroke-linejoin="round" aria-hidden="true">
+              <rect x="7" y="2.5" width="10" height="19" rx="2.5" />
+              <path d="M11 18h2" />
+            </svg>
+            Capsules pour les réseaux sociaux
+          </li>
+          <li>
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"
+              stroke-linejoin="round" aria-hidden="true">
+              <rect x="2.5" y="6" width="13" height="12" rx="2" />
+              <path d="M15.5 10.5l6-3.5v10l-6-3.5" />
+            </svg>
+            Vidéos de présentation
+          </li>
+          <li>
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"
+              stroke-linejoin="round" aria-hidden="true">
+              <path d="M12 3l2.7 5.6 6.1.8-4.4 4.3 1 6.1L12 17l-5.4 2.8 1-6.1-4.4-4.3 6.1-.8z" />
+            </svg>
+            Mise en valeur d'un événement ou d'un projet
+          </li>
+        </ul>
+      </section>
+
+      <p class="cs-footnote">
+        Rushes : Tibo InShape, diffusés publiquement dans le cadre de son appel à monteurs. Projet non commandé,
+        réalisé à titre d'exercice.
+      </p>
+
+      <!-- ========== RANGÉE 5 · APPEL À L'ACTION ========== -->
+      <aside class="card cs-cta" aria-label="Me contacter">
+        <div class="cs-cta-text">
+          <p class="cs-cta-title">Envie de communiquer en vidéo&nbsp;?</p>
+          <p class="cs-cta-sub">Capsules réseaux sociaux, vidéos de présentation, événements&nbsp;: parlons de votre
+            projet.</p>
+        </div>
+        <a data-umami-event="clic-contact" class="cs-cta-link" href="/contact">
+          Me contacter
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"
+            stroke-linejoin="round" aria-hidden="true">
+            <path d="M5 12h14M12 5l7 7-7 7" />
+          </svg>
+        </a>
+      </aside>
+
+      <!-- ========== RANGÉE 5 · NAVIGATION ENTRE PROJETS ========== -->
+      <nav class="project-pager" aria-label="Navigation entre les projets">
+        <a href="/projet-handi-tolosa" class="pager-link pager-prev">
+          <span class="pager-arrow" aria-hidden="true">←</span>
+          <span class="pager-text">
+            <span class="pager-label">Projet précédent</span>
+            <span class="pager-title">Projet 06</span>
+          </span>
+        </a>
+
+        <a href="/projet-trait-union" class="pager-link pager-next">
+          <span class="pager-text">
+            <span class="pager-label">Projet suivant</span>
+            <span class="pager-title">Projet 08</span>
+          </span>
+          <span class="pager-arrow" aria-hidden="true">→</span>
+        </a>
+      </nav>
+
+    </div>
+  </main>
+
+  <!-- =============================================================
+       MODALE D’AGRANDISSEMENT
+       ============================================================= -->
+  <div class="lightbox" id="lightbox" role="dialog" aria-modal="true" aria-labelledby="lightbox-title" hidden>
+    <p class="sr-only" id="lightbox-title">Image agrandie</p>
+    <button type="button" class="lightbox-close" id="lightbox-close" aria-label="Fermer l’image agrandie">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round"
+        aria-hidden="true">
+        <line x1="6" y1="6" x2="18" y2="18" />
+        <line x1="18" y1="6" x2="6" y2="18" />
+      </svg>
+    </button>
+    <img class="lightbox-img" id="lightbox-img" src="" alt="" />
+  </div>
+
+  <!-- =============================================================
+       FOOTER MINIMAL
+       ============================================================= -->
+  <footer class="site-footer">
+    <p class="footer-identity">Benjamin Bridanne · Chargé de communication digitale</p>
+    <div class="footer-links">
+      <a href="/realisations">Réalisations</a>
+      <a href="/politique-confidentialite">Confidentialité</a>
+      <a data-umami-event="clic-contact" href="mailto:benjaminbridanne@gmail.com">Mail</a>
+      <a data-umami-event="clic-linkedin" href="https://www.linkedin.com/in/benjamin-bridanne-ba9a64285/" target="_blank" rel="noopener">LinkedIn</a>
+      <a href="/mentions-legales">Mentions légales</a>
+    </div>
+  </footer>
+
+  <script>
+    /* =========================================================
+       THEME SOMBRE / CLAIR : clé localStorage bb-theme partagée
+       ========================================================= */
+    (function () {
+      const root = document.documentElement;
+      const btn = document.getElementById('theme-toggle');
+      const label = document.getElementById('theme-toggle-label');
+      /* Thème déjà appliqué dans le <head> : clair sauf choix explicite du sombre */
+      const initial = root.getAttribute('data-theme') === 'dark' ? 'dark' : 'light';
+      updateLabel(initial);
+
+      btn.addEventListener('click', () => {
+        const current = root.getAttribute('data-theme');
+        const next = current === 'dark' ? 'light' : 'dark';
+        root.setAttribute('data-theme', next);
+        try { localStorage.setItem('bb-theme', next); } catch { /* Le thème fonctionne sans mémorisation. */ }
+        updateLabel(next);
+      });
+
+      function updateLabel(mode) {
+        label.textContent = mode === 'dark' ? 'Passer en mode clair' : 'Passer en mode sombre';
+      }
+    })();
+
+    /* =========================================================
+       AGRANDISSEMENT DES IMAGES
+       Modale accessible : Echap, clic sur le fond, croix.
+       Le focus entre dans la modale puis revient au declencheur.
+       ========================================================= */
+    (function () {
+      const lightbox = document.getElementById('lightbox');
+      const image = document.getElementById('lightbox-img');
+      const title = document.getElementById('lightbox-title');
+      const closeBtn = document.getElementById('lightbox-close');
+      const triggers = [...document.querySelectorAll('.zoom-btn')];
+      if (!lightbox || !image || !closeBtn || !triggers.length) return;
+
+      let lastFocused = null;
+
+      function open(trigger) {
+        const source = trigger.dataset.zoomSrc;
+        const picture = trigger.parentElement.querySelector('img');
+        const description = picture ? picture.getAttribute('alt') : '';
+
+        lastFocused = trigger;
+        image.setAttribute('src', source);
+        image.setAttribute('alt', description);
+        title.textContent = description || 'Image agrandie';
+
+        lightbox.hidden = false;
+        document.body.classList.add('is-locked');
+        closeBtn.focus();
+      }
+
+      function close() {
+        lightbox.hidden = true;
+        document.body.classList.remove('is-locked');
+        image.setAttribute('src', '');
+        image.setAttribute('alt', '');
+        if (lastFocused) {
+          lastFocused.focus();
+          lastFocused = null;
+        }
+      }
+
+      triggers.forEach(trigger => {
+        trigger.addEventListener('click', () => open(trigger));
+      });
+
+      closeBtn.addEventListener('click', close);
+
+      /* Clic sur le fond assombri, jamais sur l’image elle-meme */
+      lightbox.addEventListener('click', event => {
+        if (event.target === lightbox) close();
+      });
+
+      document.addEventListener('keydown', event => {
+        if (lightbox.hidden) return;
+        if (event.key === 'Escape') {
+          event.preventDefault();
+          close();
+          return;
+        }
+        /* La croix est le seul element focusable : le focus y reste */
+        if (event.key === 'Tab') {
+          event.preventDefault();
+          closeBtn.focus();
+        }
+      });
+    })();
+
+    /* =========================================================
+       LECTEUR YOUTUBE : FAÇADE LÉGÈRE
+       Aucune requête vers YouTube avant le clic. L'iframe
+       (domaine youtube-nocookie) remplace la miniature au clic.
+       Le sélecteur Rush brut / Version montée remet une façade
+       dans le même cadre, ce qui arrête la vidéo en cours.
+       ========================================================= */
+    (function () {
+      function play(frame, video) {
+        const iframe = document.createElement('iframe');
+        iframe.src = 'https://www.youtube-nocookie.com/embed/' + video.youtubeId + '?autoplay=1&rel=0';
+        iframe.title = video.title;
+        iframe.allow = 'autoplay; encrypted-media; picture-in-picture';
+        iframe.allowFullscreen = true;
+        /* Sans l'origine de la page, YouTube refuse la lecture (erreur 153) */
+        iframe.referrerPolicy = 'strict-origin-when-cross-origin';
+        frame.replaceChildren(iframe);
+        iframe.focus();
+      }
+
+      function bindPlay(button) {
+        button.addEventListener('click', () => play(button.closest('.cs-player-frame'), button.dataset));
+      }
+
+      function facade(video) {
+        const poster = document.createElement('img');
+        poster.className = 'cs-player-poster';
+        poster.src = video.poster;
+        poster.alt = '';
+
+        const button = document.createElement('button');
+        button.type = 'button';
+        button.className = 'cs-play';
+        button.dataset.youtubeId = video.youtubeId;
+        button.dataset.title = video.title;
+        button.setAttribute('aria-label', 'Lire la vidéo');
+        button.innerHTML = '<span class="cs-play-icon" aria-hidden="true"><svg viewBox="0 0 24 24" fill="currentColor"><path d="M8 5.5v13l11-6.5z" /></svg></span>';
+        bindPlay(button);
+
+        const duration = document.createElement('span');
+        duration.className = 'cs-duration';
+        duration.textContent = video.duration;
+
+        return [poster, button, duration];
+      }
+
+      document.querySelectorAll('.cs-play[data-youtube-id]').forEach(bindPlay);
+
+      document.querySelectorAll('.cs-switch').forEach(group => {
+        const frame = document.getElementById(group.dataset.target);
+        const options = [...group.querySelectorAll('.cs-switch-btn')];
+        options.forEach(option => {
+          option.addEventListener('click', () => {
+            if (option.getAttribute('aria-pressed') === 'true') return;
+            options.forEach(other => other.setAttribute('aria-pressed', String(other === option)));
+            frame.replaceChildren(...facade(option.dataset));
+          });
+        });
+      });
+    })();
+  </script>
+
+</body>
+
+</html>
