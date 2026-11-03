@@ -1,0 +1,822 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Cartographie Géopolitique — Groenland</title>
+<link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@600;700&family=IBM+Plex+Sans:wght@300;400;500;600&family=IBM+Plex+Mono:wght@400;500&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --bg: #080c18;
+    --bg2: #0c1020;
+    --panel: #0e1528;
+    --border: rgba(255,255,255,0.1);
+    --text: #e8eaf6;
+    --text-dim: #7986a8;
+    --accent: #64b5f6;
+    --panel-w: 370px;
+    --collapse-w: 28px;
+
+    --c-state: #7986ff;
+    --c-industry: #ff6b6b;
+    --c-civil: #69db7c;
+    --c-science: #ffe066;
+    --c-territory: #cc5de8;
+    --c-dk: #e8a045;
+    --c-eu: #5b9bd5;
+    --c-cn: #e05555;
+    --c-us: #7986ff;
+    --c-ru: #e04040;
+
+    --l-finance: #69db7c;
+    --l-regulation: #7986ff;
+    --l-influence: #ff6b6b;
+    --l-support: #cc5de8;
+    --l-expertise: #ffe066;
+    --l-tension: #ff9a5c;
+  }
+
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+  html, body { background: var(--bg); color: var(--text); font-family: 'IBM Plex Sans', sans-serif; overflow-x: hidden; }
+
+  /* ── FILTERS ── */
+  #filters {
+    display: flex; flex-wrap: wrap; gap: 8px;
+    justify-content: center; padding: 12px 20px;
+    border-bottom: 1px solid var(--border); background: var(--bg2);
+  }
+  .filter-btn {
+    display: flex; align-items: center; gap: 7px;
+    padding: 6px 14px; border-radius: 20px; border: 1px solid transparent;
+    font-family: 'IBM Plex Mono', monospace; font-size: 12px;
+    cursor: pointer; transition: all 0.2s;
+    background: rgba(255,255,255,0.05); color: var(--text-dim); letter-spacing: 0.04em;
+  }
+  .filter-btn .dot { width: 9px; height: 9px; border-radius: 50%; flex-shrink: 0; }
+  .filter-btn.active { color: var(--text); background: rgba(255,255,255,0.1); }
+  .filter-btn:hover { background: rgba(255,255,255,0.09); color: var(--text); }
+  .filter-btn[data-cat="all"].active { border-color: var(--accent); color: var(--accent); }
+
+  /* ── LEGEND ── */
+  #legend-relations {
+    display: flex; flex-wrap: wrap; gap: 10px 22px;
+    justify-content: center; padding: 10px 20px;
+    border-bottom: 1px solid var(--border); background: var(--bg2);
+  }
+  .legend-item {
+    display: flex; align-items: center; gap: 7px;
+    font-size: 12px; color: var(--text-dim);
+    cursor: pointer; transition: color 0.2s; user-select: none;
+  }
+  .legend-item:hover, .legend-item.active { color: var(--text); }
+  .legend-line { width: 28px; height: 2px; border-radius: 2px; flex-shrink: 0; }
+  .legend-dashed { width: 28px; height: 0; border-top: 2px dashed; flex-shrink: 0; }
+
+  /* ── MAP WRAPPER ── */
+  #map-wrapper {
+    position: relative;
+    width: 100%;
+    max-width: 1820px;
+    margin: 0 auto;
+    /* height set by JS to match SVG rendered height */
+  }
+
+  #map-container {
+    width: 100%;
+    padding: 16px 0 32px;
+  }
+
+  #map-svg {
+    width: 100%;
+    height: auto;
+    display: block;
+  }
+
+  /* ── DETAIL PANEL (overlay, anchored to map-wrapper) ── */
+  #detail-panel {
+    position: absolute;
+    top: 0; right: 0;
+    /* height set by JS */
+    width: calc(var(--panel-w) + var(--collapse-w));
+    display: flex;
+    flex-direction: row;
+    z-index: 500;
+    pointer-events: none;
+    transform: translateX(calc(var(--panel-w)));
+    transition: transform 0.38s cubic-bezier(0.4,0,0.2,1);
+  }
+  #detail-panel.open {
+    transform: translateX(0);
+    pointer-events: all;
+  }
+
+  /* The collapse tab — full height, always visible when panel is open, clickable */
+  #collapse-tab {
+    width: var(--collapse-w);
+    flex-shrink: 0;
+    background: linear-gradient(180deg, rgba(100,181,246,0.18) 0%, rgba(100,181,246,0.08) 100%);
+    border-left: 2px solid rgba(100,181,246,0.4);
+    border-top: 1px solid rgba(100,181,246,0.2);
+    border-bottom: 1px solid rgba(100,181,246,0.2);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+    pointer-events: all;
+    transition: background 0.2s, border-color 0.2s;
+    position: relative;
+    border-radius: 8px 0 0 8px;
+    backdrop-filter: blur(8px);
+  }
+  #collapse-tab:hover {
+    background: linear-gradient(180deg, rgba(100,181,246,0.28) 0%, rgba(100,181,246,0.14) 100%);
+    border-color: rgba(100,181,246,0.65);
+  }
+  /* Single clean chevron icon */
+  #collapse-tab svg.tab-icon {
+    width: 12px;
+    height: 22px;
+    opacity: 0.8;
+    transition: opacity 0.2s, transform 0.35s;
+    flex-shrink: 0;
+  }
+  #collapse-tab:hover svg.tab-icon { opacity: 1; }
+  /* Flip to > when open */
+  #detail-panel.open #collapse-tab svg.tab-icon {
+    transform: scaleX(-1);
+  }
+  /* When panel is closed, only the tab is clickable */
+  #detail-panel:not(.open) { pointer-events: none; }
+  #detail-panel:not(.open) #collapse-tab {
+    pointer-events: all;
+    background: linear-gradient(180deg, rgba(100,181,246,0.22) 0%, rgba(100,181,246,0.1) 100%);
+  }
+
+  /* Panel body */
+  #panel-body {
+    width: var(--panel-w);
+    background: rgba(10,15,32,0.97);
+    border-left: 1px solid rgba(100,181,246,0.2);
+    border-top: 1px solid rgba(100,181,246,0.15);
+    border-bottom: 1px solid rgba(100,181,246,0.15);
+    display: flex;
+    flex-direction: column;
+    overflow: hidden;
+    backdrop-filter: blur(20px);
+    box-shadow: -16px 0 48px rgba(0,0,0,0.7);
+  }
+
+  #panel-header {
+    padding: 20px 20px 14px;
+    border-bottom: 1px solid var(--border);
+    flex-shrink: 0;
+    background: rgba(14,21,40,0.99);
+  }
+  .d-badge {
+    display: inline-block; padding: 3px 10px; border-radius: 20px;
+    font-size: 11px; letter-spacing: 0.1em; text-transform: uppercase;
+    font-family: 'IBM Plex Mono', monospace; margin-bottom: 10px;
+  }
+  #panel-header h2 {
+    font-family: 'Cinzel', serif; font-size: 17px; color: var(--text); line-height: 1.3;
+  }
+
+  #panel-scroll {
+    overflow-y: auto;
+    flex: 1;
+    padding: 18px 20px 24px;
+  }
+  #panel-scroll::-webkit-scrollbar { width: 4px; }
+  #panel-scroll::-webkit-scrollbar-track { background: transparent; }
+  #panel-scroll::-webkit-scrollbar-thumb { background: rgba(255,255,255,0.12); border-radius: 2px; }
+
+  .d-section { margin-bottom: 20px; }
+  .d-section h3 {
+    font-size: 11px; letter-spacing: 0.12em; text-transform: uppercase;
+    color: var(--text-dim); margin-bottom: 9px;
+    font-family: 'IBM Plex Mono', monospace;
+    padding-bottom: 5px; border-bottom: 1px solid var(--border);
+  }
+  .d-section p { font-size: 13px; line-height: 1.65; color: var(--text); }
+
+  .d-relations { list-style: none; }
+  .d-relations li {
+    font-size: 12px; padding: 7px 0;
+    border-bottom: 1px solid rgba(255,255,255,0.05);
+    display: flex; align-items: flex-start; gap: 8px;
+  }
+  .d-relations li .rel-dot { width: 7px; height: 7px; border-radius: 50%; flex-shrink: 0; margin-top: 4px; }
+  .d-relations li .rel-info { display: flex; flex-direction: column; gap: 2px; }
+  .d-relations li .rel-target { font-weight: 600; font-size: 12px; color: var(--text); }
+  .d-relations li .rel-type { font-size: 10px; color: var(--text-dim); font-family: 'IBM Plex Mono', monospace; letter-spacing: 0.06em; }
+  .d-relations li .rel-label { font-size: 11px; color: var(--text-dim); font-style: italic; }
+
+  .d-tag {
+    display: inline-block; padding: 4px 10px;
+    background: rgba(255,255,255,0.06); border: 1px solid rgba(255,255,255,0.1);
+    border-radius: 5px; font-size: 11px; margin: 3px 3px 0 0;
+    color: var(--text-dim); font-family: 'IBM Plex Mono', monospace;
+  }
+
+  /* ── TOOLTIP ── */
+  #tooltip {
+    position: fixed; pointer-events: none;
+    background: rgba(8,12,24,0.97); border: 1px solid rgba(100,181,246,0.4);
+    border-radius: 10px; padding: 14px 18px; max-width: 260px;
+    z-index: 2000; opacity: 0; transform: translateY(8px);
+    transition: opacity 0.18s, transform 0.18s;
+    backdrop-filter: blur(16px); box-shadow: 0 12px 40px rgba(0,0,0,0.7);
+  }
+  #tooltip.visible { opacity: 1; transform: translateY(0); }
+  #tooltip .tt-title { font-family: 'IBM Plex Mono', monospace; font-size: 13px; font-weight: 600; color: var(--accent); margin-bottom: 5px; letter-spacing: 0.05em; }
+  #tooltip .tt-cat { font-size: 11px; letter-spacing: 0.1em; text-transform: uppercase; color: var(--text-dim); margin-bottom: 8px; }
+  #tooltip .tt-desc { font-size: 12.5px; line-height: 1.55; color: var(--text); }
+  #tooltip .tt-hint { font-size: 11px; color: var(--text-dim); margin-top: 9px; font-style: italic; }
+
+  /* ── SVG STYLES ── */
+  .node-group { cursor: pointer; }
+  .node-group circle, .node-group rect { transition: filter 0.2s, opacity 0.3s; }
+  .node-group:hover circle, .node-group:hover rect {
+    filter: brightness(1.4) drop-shadow(0 0 10px currentColor);
+  }
+  .node-group text { pointer-events: none; }
+  .link { transition: opacity 0.3s; }
+  @keyframes dash { to { stroke-dashoffset: -24; } }
+  .link-animated { stroke-dasharray: 7 5; animation: dash 1.8s linear infinite; }
+  .section-label { font-family: 'IBM Plex Mono', monospace; font-size: 13px; fill: rgba(255,255,255,0.28); letter-spacing: 0.1em; text-transform: uppercase; pointer-events: none; }
+  @keyframes pulse { 0%,100% { r: 38; opacity: 0.12; } 50% { r: 58; opacity: 0.05; } }
+  .pulse-ring { animation: pulse 2.8s ease-in-out infinite; fill: var(--accent); pointer-events: none; }
+</style>
+</head>
+<body>
+
+<div id="filters">
+  <button class="filter-btn active" data-cat="all"><span class="dot" style="background:#fff"></span>Tous</button>
+  <button class="filter-btn active" data-cat="state"><span class="dot" style="background:var(--c-state)"></span>États</button>
+  <button class="filter-btn active" data-cat="industry"><span class="dot" style="background:var(--c-industry)"></span>Industrie</button>
+  <button class="filter-btn active" data-cat="civil"><span class="dot" style="background:var(--c-civil)"></span>Société civile</button>
+  <button class="filter-btn active" data-cat="science"><span class="dot" style="background:var(--c-science)"></span>Scientifiques</button>
+  <button class="filter-btn active" data-cat="territory"><span class="dot" style="background:var(--c-territory)"></span>Territoire / Enjeux</button>
+</div>
+
+<div id="legend-relations">
+  <div class="legend-item active" data-rel="finance"><div class="legend-line" style="background:var(--l-finance)"></div>Financement</div>
+  <div class="legend-item active" data-rel="regulation"><div class="legend-line" style="background:var(--l-regulation)"></div>Régulation</div>
+  <div class="legend-item active" data-rel="influence"><div class="legend-line" style="background:var(--l-influence)"></div>Influence / Pression</div>
+  <div class="legend-item active" data-rel="support"><div class="legend-dashed" style="color:var(--l-support)"></div>Soutien / Partenariat</div>
+  <div class="legend-item active" data-rel="expertise"><div class="legend-line" style="background:var(--l-expertise)"></div>Expertise / Données</div>
+  <div class="legend-item active" data-rel="tension"><div class="legend-dashed" style="color:var(--l-tension)"></div>Tension / Contestation</div>
+</div>
+
+<div id="map-wrapper">
+  <div id="map-container">
+    <svg id="map-svg" viewBox="0 0 1820 1000" xmlns="http://www.w3.org/2000/svg">
+      <defs>
+        <marker id="arr-finance" markerWidth="9" markerHeight="9" refX="7" refY="3.5" orient="auto"><path d="M0,0 L0,7 L9,3.5 z" fill="#69db7c"/></marker>
+        <marker id="arr-regulation" markerWidth="9" markerHeight="9" refX="7" refY="3.5" orient="auto"><path d="M0,0 L0,7 L9,3.5 z" fill="#7986ff"/></marker>
+        <marker id="arr-influence" markerWidth="9" markerHeight="9" refX="7" refY="3.5" orient="auto"><path d="M0,0 L0,7 L9,3.5 z" fill="#ff6b6b"/></marker>
+        <marker id="arr-support" markerWidth="9" markerHeight="9" refX="7" refY="3.5" orient="auto"><path d="M0,0 L0,7 L9,3.5 z" fill="#cc5de8"/></marker>
+        <marker id="arr-expertise" markerWidth="9" markerHeight="9" refX="7" refY="3.5" orient="auto"><path d="M0,0 L0,7 L9,3.5 z" fill="#ffe066"/></marker>
+        <marker id="arr-tension" markerWidth="9" markerHeight="9" refX="7" refY="3.5" orient="auto"><path d="M0,0 L0,7 L9,3.5 z" fill="#ff9a5c"/></marker>
+        <radialGradient id="gl-center" cx="50%" cy="50%" r="50%">
+          <stop offset="0%" stop-color="#1a3a6a" stop-opacity="0.4"/>
+          <stop offset="100%" stop-color="#080c18" stop-opacity="0"/>
+        </radialGradient>
+      </defs>
+
+      <!-- Background glow -->
+      <ellipse cx="910" cy="500" rx="700" ry="440" fill="url(#gl-center)"/>
+
+      <!-- Zone backgrounds -->
+      <!-- Acteurs Globaux -->
+      <rect x="20" y="20" width="880" height="290" rx="14" fill="rgba(121,134,255,0.04)" stroke="rgba(121,134,255,0.15)" stroke-width="1.2"/>
+      <text x="40" y="50" class="section-label" fill="rgba(121,134,255,0.55)">▸ Acteurs Globaux</text>
+
+      <!-- Enjeux Transversaux -->
+      <rect x="1220" y="20" width="580" height="290" rx="14" fill="rgba(100,181,246,0.04)" stroke="rgba(100,181,246,0.15)" stroke-width="1.2"/>
+      <text x="1240" y="50" class="section-label" fill="rgba(100,181,246,0.55)">▸ Enjeux Transversaux</text>
+
+      <!-- Industrie -->
+      <rect x="20" y="300" width="570" height="420" rx="14" fill="rgba(255,107,107,0.04)" stroke="rgba(255,107,107,0.15)" stroke-width="1.2"/>
+      <text x="40" y="330" class="section-label" fill="rgba(255,107,107,0.55)">▸ Industrie, Ressources & Impacts</text>
+
+      <!-- Infrastructure & Numérique -->
+      <rect x="1220" y="300" width="580" height="310" rx="14" fill="rgba(100,181,246,0.04)" stroke="rgba(100,181,246,0.15)" stroke-width="1.2"/>
+      <text x="1240" y="330" class="section-label" fill="rgba(100,181,246,0.55)">▸ Infrastructure & Numérique</text>
+
+      <!-- Territoire & Société -->
+      <rect x="20" y="706" width="1778" height="276" rx="14" fill="rgba(105,219,124,0.04)" stroke="rgba(105,219,124,0.15)" stroke-width="1.2"/>
+      <text x="40" y="736" class="section-label" fill="rgba(105,219,124,0.55)">▸ Territoire, Société & Savoirs</text>
+
+      <!-- ===== LINKS ===== -->
+      <!-- Danemark → Groenland (regulation) -->
+      <path class="link link-animated" data-rel="regulation" d="M200,168 Q530,270 860,500" stroke="#7986ff" stroke-width="1.8" fill="none" opacity="0.55" marker-end="url(#arr-regulation)"/>
+      <!-- EU → Groenland (support) -->
+      <path class="link" data-rel="support" d="M450,168 Q640,290 860,510" stroke="#cc5de8" stroke-width="1.6" fill="none" opacity="0.5" stroke-dasharray="7,5" marker-end="url(#arr-support)"/>
+      <!-- Chine → Industrie Minière (finance) -->
+      <path class="link link-animated" data-rel="finance" d="M700,168 Q580,360 430,510" stroke="#69db7c" stroke-width="1.8" fill="none" opacity="0.55" marker-end="url(#arr-finance)"/>
+      <!-- USA → Groenland (influence) -->
+      <path class="link link-animated" data-rel="influence" d="M910,165 Q910,330 910,470" stroke="#ff6b6b" stroke-width="2" fill="none" opacity="0.65" marker-end="url(#arr-influence)"/>
+      <!-- Russie → Groenland (influence) -->
+      <path class="link link-animated" data-rel="influence" d="M1100,160 Q1010,310 960,480" stroke="#ff6b6b" stroke-width="1.6" fill="none" opacity="0.5" marker-end="url(#arr-influence)"/>
+      <!-- Groenland → Communautés (regulation) -->
+      <path class="link" data-rel="regulation" d="M910,570 Q910,640 910,750" stroke="#7986ff" stroke-width="1.6" fill="none" opacity="0.55" marker-end="url(#arr-regulation)"/>
+      <!-- Industrie → Groenland (finance) -->
+      <path class="link" data-rel="finance" d="M460,520 Q660,515 840,510" stroke="#69db7c" stroke-width="1.6" fill="none" opacity="0.5" marker-end="url(#arr-finance)"/>
+      <!-- Industrie → Métaux Rares -->
+      <path class="link" data-rel="influence" d="M420,505 Q380,430 355,390" stroke="#ff6b6b" stroke-width="1.4" fill="none" opacity="0.45" marker-end="url(#arr-influence)"/>
+      <!-- Industrie → Communautés (tension) -->
+      <path class="link" data-rel="tension" d="M450,550 Q650,645 850,760" stroke="#ff9a5c" stroke-width="1.4" fill="none" opacity="0.5" stroke-dasharray="6,5" marker-end="url(#arr-tension)"/>
+      <!-- Groenland → Greenland Connect (support) -->
+      <path class="link" data-rel="support" d="M975,500 Q1090,440 1250,400" stroke="#cc5de8" stroke-width="1.4" fill="none" opacity="0.45" stroke-dasharray="6,5" marker-end="url(#arr-support)"/>
+      <!-- Communautés → ONG (support) -->
+      <path class="link" data-rel="support" d="M855,775 Q700,808 590,830" stroke="#cc5de8" stroke-width="1.3" fill="none" opacity="0.45" stroke-dasharray="6,5" marker-end="url(#arr-support)"/>
+      <!-- Scientifiques → EIA (expertise) -->
+      <path class="link" data-rel="expertise" d="M1130,862 Q1240,858 1340,862" stroke="#ffe066" stroke-width="1.4" fill="none" opacity="0.5" marker-end="url(#arr-expertise)"/>
+      <!-- Climat → Groenland (expertise) -->
+      <path class="link" data-rel="expertise" d="M1320,145 Q1160,270 990,470" stroke="#ffe066" stroke-width="1.4" fill="none" opacity="0.45" marker-end="url(#arr-expertise)"/>
+      <!-- EU → Mines (regulation) -->
+      <path class="link" data-rel="regulation" d="M405,205 Q360,370 360,420" stroke="#7986ff" stroke-width="1.3" fill="none" opacity="0.4" marker-end="url(#arr-regulation)"/>
+      <!-- Médias → Communautés (influence) -->
+      <path class="link" data-rel="influence" d="M195,858 Q510,808 840,775" stroke="#ff6b6b" stroke-width="1.2" fill="none" opacity="0.35" stroke-dasharray="5,5" marker-end="url(#arr-tension)"/>
+      <!-- Greenland Connect → Tusass -->
+      <path class="link" data-rel="support" d="M1415,400 Q1510,400 1580,400" stroke="#cc5de8" stroke-width="1.2" fill="none" opacity="0.4" stroke-dasharray="5,5" marker-end="url(#arr-support)"/>
+      <!-- DataCenters → Cloud -->
+      <path class="link" data-rel="support" d="M1415,468 Q1510,488 1528,510" stroke="#cc5de8" stroke-width="1.2" fill="none" opacity="0.4" stroke-dasharray="5,5" marker-end="url(#arr-support)"/>
+
+      <!-- LIENS TERRITOIRE, SOCIÉTÉ & SAVOIRS (basés sur l'image originale) -->
+      <!-- Communautés → Environnement (tension) -->
+      <path class="link" data-rel="tension" d="M955,772 Q1020,762 1055,762" stroke="#ff9a5c" stroke-width="1.3" fill="none" opacity="0.45" stroke-dasharray="5,4" marker-end="url(#arr-tension)"/>
+      <!-- Groenland → Environnement (expertise) -->
+      <path class="link" data-rel="expertise" d="M940,560 Q1020,640 1075,730" stroke="#ffe066" stroke-width="1.2" fill="none" opacity="0.4" marker-end="url(#arr-expertise)"/>
+      <!-- Environnement → Climatologues (expertise) -->
+      <path class="link" data-rel="expertise" d="M1118,770 Q1190,790 1246,808" stroke="#ffe066" stroke-width="1.3" fill="none" opacity="0.5" marker-end="url(#arr-expertise)"/>
+      <!-- Climatologues → Scientifiques (expertise) -->
+      <path class="link" data-rel="expertise" d="M1250,840 Q1200,858 1148,862" stroke="#ffe066" stroke-width="1.3" fill="none" opacity="0.5" marker-end="url(#arr-expertise)"/>
+      <!-- Scientifiques → EIA (expertise) — already present, keep -->
+      <!-- ONG → Communautés (support, back-link) -->
+      <!-- Populations → Communautés (support) -->
+      <path class="link" data-rel="support" d="M430,782 Q580,778 864,772" stroke="#cc5de8" stroke-width="1.2" fill="none" opacity="0.4" stroke-dasharray="5,4" marker-end="url(#arr-support)"/>
+      <!-- Narsaq → Communautés (support) -->
+      <path class="link" data-rel="support" d="M630,840 Q740,820 862,790" stroke="#cc5de8" stroke-width="1.2" fill="none" opacity="0.38" stroke-dasharray="5,4" marker-end="url(#arr-support)"/>
+      <!-- Médias → Populations (influence) -->
+      <path class="link" data-rel="influence" d="M222,858 Q300,840 360,800" stroke="#ff6b6b" stroke-width="1.1" fill="none" opacity="0.35" stroke-dasharray="4,4" marker-end="url(#arr-influence)"/>
+
+      <!-- ===== NODES ===== -->
+
+      <!-- CENTRAL: Groenland -->
+      <g class="node-group" data-id="groenland" data-cat="territory">
+        <circle class="pulse-ring" cx="910" cy="515" r="38"/>
+        <circle cx="910" cy="515" r="50" fill="rgba(100,181,246,0.1)" stroke="var(--accent)" stroke-width="2.5"/>
+        <circle cx="910" cy="515" r="32" fill="rgba(100,181,246,0.18)" stroke="var(--accent)" stroke-width="2"/>
+        <path d="M895,500 Q906,490 920,494 Q934,497 933,512 Q932,529 920,534 Q906,538 895,529 Q886,518 895,500 Z" fill="var(--accent)" opacity="0.85"/>
+        <text x="910" y="580" text-anchor="middle" font-family="'IBM Plex Mono',monospace" font-size="13" fill="var(--accent)" letter-spacing="0.1em" font-weight="600">GROENLAND</text>
+      </g>
+
+      <!-- Gouvernement -->
+      <g class="node-group" data-id="gouvernement" data-cat="state">
+        <circle cx="848" cy="490" r="18" fill="rgba(121,134,255,0.15)" stroke="var(--c-state)" stroke-width="1.8"/>
+        <text x="848" y="472" text-anchor="middle" font-size="10.5" fill="var(--c-state)" font-weight="500">Gouv.</text>
+        <text x="848" y="484" text-anchor="middle" font-size="10" fill="rgba(121,134,255,0.75)">Groenland</text>
+      </g>
+
+      <!-- Parlement -->
+      <g class="node-group" data-id="inatsisartut" data-cat="state">
+        <circle cx="975" cy="478" r="16" fill="rgba(121,134,255,0.1)" stroke="var(--c-state)" stroke-width="1.3" stroke-dasharray="4,3"/>
+        <text x="975" y="461" text-anchor="middle" font-size="10" fill="rgba(121,134,255,0.75)">Parlement</text>
+        <text x="975" y="473" text-anchor="middle" font-size="9.5" fill="rgba(121,134,255,0.6)">Inatsisartut</text>
+      </g>
+
+      <!-- DANEMARK -->
+      <g class="node-group" data-id="danemark" data-cat="state">
+        <circle cx="200" cy="152" r="62" fill="rgba(232,160,69,0.1)" stroke="var(--c-dk)" stroke-width="2.2"/>
+        <text x="200" y="130" text-anchor="middle" font-family="'IBM Plex Mono',monospace" font-size="13" fill="var(--c-dk)" font-weight="600" letter-spacing="0.05em">DANEMARK</text>
+        <text x="200" y="149" text-anchor="middle" font-size="12" fill="rgba(232,160,69,0.78)">Royaume du</text>
+        <text x="200" y="166" text-anchor="middle" font-size="12" fill="rgba(232,160,69,0.78)">Danemark</text>
+        <text x="200" y="183" text-anchor="middle" font-size="11" fill="rgba(232,160,69,0.6)">↓ Supervise</text>
+      </g>
+
+      <!-- UNION EUROPÉENNE -->
+      <g class="node-group" data-id="eu" data-cat="state">
+        <circle cx="450" cy="152" r="66" fill="rgba(91,155,213,0.1)" stroke="var(--c-eu)" stroke-width="2.2"/>
+        <text x="450" y="126" text-anchor="middle" font-family="'IBM Plex Mono',monospace" font-size="13" fill="var(--c-eu)" font-weight="600" letter-spacing="0.04em">UNION</text>
+        <text x="450" y="145" text-anchor="middle" font-family="'IBM Plex Mono',monospace" font-size="13" fill="var(--c-eu)" font-weight="600" letter-spacing="0.04em">EUROPÉENNE</text>
+        <text x="450" y="164" text-anchor="middle" font-size="12" fill="rgba(91,155,213,0.72)">UE / CRMA · ERMA</text>
+        <text x="450" y="181" text-anchor="middle" font-size="11" fill="rgba(91,155,213,0.55)">Partenariats ↔</text>
+      </g>
+
+      <!-- CHINE -->
+      <g class="node-group" data-id="chine" data-cat="state">
+        <circle cx="700" cy="152" r="66" fill="rgba(224,85,85,0.1)" stroke="var(--c-cn)" stroke-width="2.2"/>
+        <text x="700" y="126" text-anchor="middle" font-family="'IBM Plex Mono',monospace" font-size="15" fill="var(--c-cn)" font-weight="600" letter-spacing="0.06em">CHINE</text>
+        <text x="700" y="147" text-anchor="middle" font-size="12" fill="rgba(224,85,85,0.8)">Shenghe Resources</text>
+        <text x="700" y="165" text-anchor="middle" font-size="12" fill="rgba(224,85,85,0.8)">Chaîne de Raffinage</text>
+        <text x="700" y="182" text-anchor="middle" font-size="11" fill="rgba(224,85,85,0.58)">$ Investissements</text>
+      </g>
+
+      <!-- ÉTATS-UNIS / OTAN -->
+      <g class="node-group" data-id="usa" data-cat="state">
+        <circle cx="910" cy="152" r="68" fill="rgba(121,134,255,0.1)" stroke="var(--c-us)" stroke-width="2.2"/>
+        <text x="910" y="126" text-anchor="middle" font-family="'IBM Plex Mono',monospace" font-size="13.5" fill="var(--c-us)" font-weight="600" letter-spacing="0.04em">ÉTATS-UNIS</text>
+        <text x="910" y="146" text-anchor="middle" font-family="'IBM Plex Mono',monospace" font-size="13.5" fill="var(--c-us)" font-weight="600" letter-spacing="0.04em">/ OTAN</text>
+        <text x="910" y="165" text-anchor="middle" font-size="12" fill="rgba(121,134,255,0.74)">Base de Pituffik</text>
+        <text x="910" y="182" text-anchor="middle" font-size="11" fill="rgba(121,134,255,0.55)">⚑ Sécurise</text>
+      </g>
+
+      <!-- RUSSIE -->
+      <g class="node-group" data-id="russie" data-cat="state">
+        <circle cx="1100" cy="152" r="62" fill="rgba(224,64,64,0.1)" stroke="var(--c-ru)" stroke-width="2.2"/>
+        <text x="1100" y="132" text-anchor="middle" font-family="'IBM Plex Mono',monospace" font-size="15" fill="var(--c-ru)" font-weight="600" letter-spacing="0.06em">RUSSIE</text>
+        <text x="1100" y="153" text-anchor="middle" font-size="12" fill="rgba(224,64,64,0.74)">⚑ Influence Arctique</text>
+        <text x="1100" y="171" text-anchor="middle" font-size="11" fill="rgba(224,64,64,0.55)">Militarisation</text>
+      </g>
+
+      <!-- Changement Climatique -->
+      <g class="node-group" data-id="climat" data-cat="territory">
+        <rect x="1235" y="58" width="190" height="58" rx="9" fill="rgba(100,181,246,0.08)" stroke="rgba(100,181,246,0.42)" stroke-width="1.8"/>
+        <text x="1330" y="82" text-anchor="middle" font-size="13" fill="var(--accent)" font-weight="600" letter-spacing="0.04em">CHANGEMENT</text>
+        <text x="1330" y="100" text-anchor="middle" font-size="13" fill="var(--accent)" font-weight="600" letter-spacing="0.04em">CLIMATIQUE</text>
+      </g>
+
+      <!-- Routes Arctiques -->
+      <g class="node-group" data-id="routes" data-cat="territory">
+        <rect x="1455" y="58" width="178" height="72" rx="9" fill="rgba(100,181,246,0.06)" stroke="rgba(100,181,246,0.3)" stroke-width="1.5"/>
+        <text x="1544" y="82" text-anchor="middle" font-size="13" fill="rgba(100,181,246,0.88)" font-weight="600">ROUTES</text>
+        <text x="1544" y="100" text-anchor="middle" font-size="13" fill="rgba(100,181,246,0.88)" font-weight="600">ARCTIQUES</text>
+        <text x="1544" y="118" text-anchor="middle" font-size="10.5" fill="rgba(100,181,246,0.55)">Nvlles routes maritimes</text>
+      </g>
+
+      <!-- ISDS -->
+      <g class="node-group" data-id="isds" data-cat="territory">
+        <rect x="1235" y="170" width="88" height="52" rx="8" fill="rgba(204,93,232,0.08)" stroke="rgba(204,93,232,0.38)" stroke-width="1.5"/>
+        <text x="1279" y="201" text-anchor="middle" font-size="14" fill="rgba(204,93,232,0.92)" font-weight="600">ISDS</text>
+      </g>
+
+      <!-- Burford Capital -->
+      <g class="node-group" data-id="burford" data-cat="industry">
+        <rect x="1348" y="170" width="125" height="52" rx="8" fill="rgba(232,160,69,0.08)" stroke="rgba(232,160,69,0.38)" stroke-width="1.5"/>
+        <text x="1410" y="192" text-anchor="middle" font-size="12" fill="rgba(232,160,69,0.88)">Burford</text>
+        <text x="1410" y="209" text-anchor="middle" font-size="12" fill="rgba(232,160,69,0.88)">Capital</text>
+      </g>
+
+      <!-- Loi Uranium -->
+      <g class="node-group" data-id="uranium-loi" data-cat="territory">
+        <rect x="1502" y="170" width="160" height="52" rx="8" fill="rgba(255,107,107,0.08)" stroke="rgba(255,107,107,0.38)" stroke-width="1.5"/>
+        <text x="1582" y="192" text-anchor="middle" font-size="12" fill="rgba(255,107,107,0.88)">Loi 2021</text>
+        <text x="1582" y="209" text-anchor="middle" font-size="12" fill="rgba(255,107,107,0.88)">Interdit Uranium</text>
+      </g>
+
+      <!-- INDUSTRIE MINIÈRE -->
+      <g class="node-group" data-id="mines" data-cat="industry">
+        <circle cx="395" cy="522" r="56" fill="rgba(255,107,107,0.1)" stroke="var(--c-industry)" stroke-width="2.3"/>
+        <text x="395" y="506" text-anchor="middle" font-size="13" fill="var(--c-industry)" font-weight="600">INDUSTRIE</text>
+        <text x="395" y="524" text-anchor="middle" font-size="13" fill="var(--c-industry)" font-weight="600">MINIÈRE</text>
+        <text x="395" y="542" text-anchor="middle" font-size="11" fill="rgba(255,107,107,0.6)">Extraction / Export</text>
+      </g>
+
+      <!-- Minerais Critiques — moved right to avoid overlap -->
+      <g class="node-group" data-id="minerais" data-cat="industry">
+        <circle cx="290" cy="620" r="42" fill="rgba(255,107,107,0.08)" stroke="rgba(255,130,100,0.5)" stroke-width="1.8"/>
+        <text x="290" y="615" text-anchor="middle" font-size="12.5" fill="rgba(255,150,110,0.92)" font-weight="500">Minerais</text>
+        <text x="290" y="633" text-anchor="middle" font-size="12.5" fill="rgba(255,150,110,0.92)" font-weight="500">Critiques</text>
+      </g>
+
+      <!-- Métaux Rares -->
+      <g class="node-group" data-id="metaux" data-cat="industry">
+        <circle cx="340" cy="370" r="36" fill="rgba(255,107,107,0.08)" stroke="rgba(255,120,100,0.45)" stroke-width="1.6"/>
+        <text x="340" y="365" text-anchor="middle" font-size="12" fill="rgba(255,145,110,0.88)" font-weight="500">Métaux</text>
+        <text x="340" y="382" text-anchor="middle" font-size="12" fill="rgba(255,145,110,0.88)" font-weight="500">Rares</text>
+      </g>
+
+      <!-- Uranium -->
+      <g class="node-group" data-id="uranium" data-cat="industry">
+        <circle cx="192" cy="535" r="34" fill="rgba(255,107,107,0.08)" stroke="rgba(255,80,80,0.48)" stroke-width="1.6"/>
+        <text x="192" y="530" text-anchor="middle" font-size="14" fill="rgba(255,110,110,0.92)">⚛</text>
+        <text x="192" y="548" text-anchor="middle" font-size="12" fill="rgba(255,115,115,0.88)" font-weight="500">Uranium</text>
+      </g>
+
+      <!-- Tangret -->
+      <g class="node-group" data-id="tangret" data-cat="industry">
+        <rect x="36" y="340" width="168" height="54" rx="9" fill="rgba(255,107,107,0.07)" stroke="rgba(255,107,107,0.28)" stroke-width="1.4"/>
+        <text x="120" y="362" text-anchor="middle" font-size="12" fill="rgba(255,135,110,0.88)">Tangret /</text>
+        <text x="120" y="380" text-anchor="middle" font-size="12" fill="rgba(255,135,110,0.88)">Critical Metals Corp</text>
+      </g>
+
+      <!-- Amitsoq -->
+      <g class="node-group" data-id="amitsoq" data-cat="industry">
+        <rect x="36" y="416" width="160" height="54" rx="9" fill="rgba(105,219,124,0.07)" stroke="rgba(105,219,124,0.28)" stroke-width="1.4"/>
+        <text x="116" y="438" text-anchor="middle" font-size="12" fill="rgba(120,219,130,0.88)">Amitsoq Graphite</text>
+        <text x="116" y="456" text-anchor="middle" font-size="12" fill="rgba(120,219,130,0.75)">GreenRoc</text>
+      </g>
+
+      <!-- Greenland Connect -->
+      <g class="node-group" data-id="greenland-connect" data-cat="territory">
+        <rect x="1240" y="372" width="175" height="56" rx="9" fill="rgba(100,181,246,0.08)" stroke="rgba(100,181,246,0.38)" stroke-width="1.8"/>
+        <text x="1327" y="396" text-anchor="middle" font-size="12.5" fill="var(--accent)" font-weight="600">Greenland</text>
+        <text x="1327" y="415" text-anchor="middle" font-size="12.5" fill="var(--accent)" font-weight="600">Connect</text>
+      </g>
+
+      <!-- Tusass -->
+      <g class="node-group" data-id="tusass" data-cat="territory">
+        <rect x="1445" y="372" width="180" height="56" rx="9" fill="rgba(100,181,246,0.06)" stroke="rgba(100,181,246,0.28)" stroke-width="1.5"/>
+        <text x="1535" y="396" text-anchor="middle" font-size="12.5" fill="rgba(100,181,246,0.88)">Tusass</text>
+        <text x="1535" y="415" text-anchor="middle" font-size="12.5" fill="rgba(100,181,246,0.88)">Connect Vision</text>
+      </g>
+
+      <!-- Data Centers -->
+      <g class="node-group" data-id="datacenters" data-cat="industry">
+        <rect x="1240" y="448" width="168" height="54" rx="9" fill="rgba(100,181,246,0.06)" stroke="rgba(100,181,246,0.22)" stroke-width="1.4"/>
+        <text x="1324" y="471" text-anchor="middle" font-size="12.5" fill="rgba(100,181,246,0.8)">Data Centers</text>
+        <text x="1324" y="489" text-anchor="middle" font-size="12.5" fill="rgba(100,181,246,0.8)">/ Cloud</text>
+      </g>
+
+      <!-- Géants du Cloud — moved lower to avoid overlap -->
+      <g class="node-group" data-id="cloud" data-cat="industry">
+        <circle cx="1570" cy="510" r="42" fill="rgba(255,107,107,0.08)" stroke="rgba(255,107,107,0.38)" stroke-width="1.7"/>
+        <text x="1570" y="503" text-anchor="middle" font-size="12.5" fill="rgba(255,145,120,0.92)" font-weight="500">Géants</text>
+        <text x="1570" y="522" text-anchor="middle" font-size="12.5" fill="rgba(255,145,120,0.92)" font-weight="500">du Cloud</text>
+      </g>
+
+      <!-- Communautés Locales -->
+      <g class="node-group" data-id="communautes" data-cat="civil">
+        <circle cx="910" cy="772" r="44" fill="rgba(204,93,232,0.1)" stroke="var(--c-territory)" stroke-width="2.1"/>
+        <text x="910" y="762" text-anchor="middle" font-size="12.5" fill="var(--c-territory)" font-weight="600">Communautés</text>
+        <text x="910" y="779" text-anchor="middle" font-size="12.5" fill="var(--c-territory)" font-weight="600">Locales</text>
+        <text x="910" y="796" text-anchor="middle" font-size="11" fill="rgba(204,93,232,0.65)">Peuples inuits</text>
+      </g>
+
+      <!-- Populations Locales -->
+      <g class="node-group" data-id="populations" data-cat="civil">
+        <circle cx="395" cy="782" r="36" fill="rgba(105,219,124,0.08)" stroke="rgba(105,219,124,0.38)" stroke-width="1.7"/>
+        <text x="395" y="778" text-anchor="middle" font-size="12" fill="rgba(120,219,130,0.92)" font-weight="500">Populations</text>
+        <text x="395" y="796" text-anchor="middle" font-size="12" fill="rgba(120,219,130,0.92)" font-weight="500">Locales</text>
+      </g>
+
+      <!-- Narsaq -->
+      <g class="node-group" data-id="narsaq" data-cat="territory">
+        <circle cx="610" cy="852" r="30" fill="rgba(204,93,232,0.08)" stroke="rgba(204,93,232,0.4)" stroke-width="1.5"/>
+        <text x="610" y="856" text-anchor="middle" font-size="13" fill="rgba(204,93,232,0.88)" font-weight="500">Narsaq</text>
+      </g>
+
+      <!-- Médias -->
+      <g class="node-group" data-id="medias" data-cat="civil">
+        <circle cx="190" cy="858" r="32" fill="rgba(105,219,124,0.08)" stroke="rgba(105,219,124,0.38)" stroke-width="1.5"/>
+        <text x="190" y="862" text-anchor="middle" font-size="13" fill="rgba(120,219,130,0.88)" font-weight="500">MÉDIAS</text>
+      </g>
+
+      <!-- ONG -->
+      <g class="node-group" data-id="ong" data-cat="civil">
+        <circle cx="590" cy="778" r="34" fill="rgba(105,219,124,0.08)" stroke="rgba(105,219,124,0.4)" stroke-width="1.6"/>
+        <text x="590" y="774" text-anchor="middle" font-size="12.5" fill="rgba(120,219,130,0.92)" font-weight="500">ONG</text>
+        <text x="590" y="792" text-anchor="middle" font-size="12.5" fill="rgba(120,219,130,0.92)" font-weight="500">Écologistes</text>
+      </g>
+
+      <!-- Environnement -->
+      <g class="node-group" data-id="environnement" data-cat="territory">
+        <circle cx="1090" cy="762" r="34" fill="rgba(204,93,232,0.08)" stroke="rgba(204,93,232,0.38)" stroke-width="1.5"/>
+        <text x="1090" y="758" text-anchor="middle" font-size="12" fill="rgba(204,93,232,0.88)" font-weight="500">Environ-</text>
+        <text x="1090" y="776" text-anchor="middle" font-size="12" fill="rgba(204,93,232,0.88)" font-weight="500">nement</text>
+      </g>
+
+      <!-- Climatologues -->
+      <g class="node-group" data-id="climatologues" data-cat="science">
+        <circle cx="1280" cy="808" r="34" fill="rgba(255,224,102,0.08)" stroke="rgba(255,224,102,0.38)" stroke-width="1.5"/>
+        <text x="1280" y="804" text-anchor="middle" font-size="12" fill="rgba(255,224,102,0.92)" font-weight="500">Climato-</text>
+        <text x="1280" y="822" text-anchor="middle" font-size="12" fill="rgba(255,224,102,0.92)" font-weight="500">logues</text>
+      </g>
+
+      <!-- Scientifiques -->
+      <g class="node-group" data-id="scientifiques" data-cat="science">
+        <circle cx="1110" cy="862" r="34" fill="rgba(255,224,102,0.08)" stroke="rgba(255,224,102,0.4)" stroke-width="1.5"/>
+        <text x="1110" y="858" text-anchor="middle" font-size="12.5" fill="rgba(255,224,102,0.92)" font-weight="500">Scienti-</text>
+        <text x="1110" y="876" text-anchor="middle" font-size="12.5" fill="rgba(255,224,102,0.92)" font-weight="500">fiques</text>
+      </g>
+
+      <!-- EIA -->
+      <g class="node-group" data-id="eia" data-cat="science">
+        <circle cx="1375" cy="862" r="36" fill="rgba(255,224,102,0.08)" stroke="rgba(255,224,102,0.38)" stroke-width="1.5"/>
+        <text x="1375" y="858" text-anchor="middle" font-size="12.5" fill="rgba(255,224,102,0.88)" font-weight="500">EIA /</text>
+        <text x="1375" y="876" text-anchor="middle" font-size="12.5" fill="rgba(255,224,102,0.88)" font-weight="500">Rapports</text>
+      </g>
+
+      <!-- Submarine cable -->
+      <line x1="975" y1="500" x2="1238" y2="395" stroke="rgba(100,181,246,0.22)" stroke-width="1.2" stroke-dasharray="3,4"/>
+      <text x="1080" y="430" font-size="10.5" fill="rgba(100,181,246,0.42)" transform="rotate(-24,1080,430)">Submarine cable</text>
+    </svg>
+  </div>
+
+  <!-- DETAIL PANEL — overlay, anchored inside map-wrapper -->
+  <div id="detail-panel">
+    <!-- Collapse tab: full height, left edge of panel -->
+    <div id="collapse-tab" title="Ouvrir / Fermer le panneau">
+      <svg class="tab-icon" viewBox="0 0 12 22" xmlns="http://www.w3.org/2000/svg">
+        <polyline points="9,2 3,11 9,20" fill="none" stroke="#64b5f6" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"/>
+      </svg>
+    </div>
+    <!-- Panel content -->
+    <div id="panel-body">
+      <div id="panel-header">
+        <div id="d-badge" class="d-badge"></div>
+        <h2 id="d-title"></h2>
+      </div>
+      <div id="panel-scroll">
+        <div id="panel-content"></div>
+      </div>
+    </div>
+  </div>
+</div><!-- end map-wrapper -->
+
+<!-- TOOLTIP -->
+<div id="tooltip">
+  <div class="tt-title" id="tt-title"></div>
+  <div class="tt-cat" id="tt-cat"></div>
+  <div class="tt-desc" id="tt-desc"></div>
+  <div class="tt-hint">Cliquer pour la fiche détaillée →</div>
+</div>
+
+<script>
+// ── DATA ──────────────────────────────────────────────────────
+const nodes = {
+  groenland:{label:"Groenland",cat:"territory",catLabel:"Territoire / Enjeu Central",color:"#64b5f6",desc:"Île autonome danoise, au carrefour des intérêts géopolitiques mondiaux.",details:{contexte:"Le Groenland est la plus grande île du monde (2,1 M km²), avec ~55 000 habitants majoritairement inuits. Son sous-sol renferme des gisements colossaux de terres rares, d'uranium et de minéraux critiques. Le changement climatique accélère l'ouverture de nouvelles routes maritimes arctiques.",enjeux:"Indépendance potentielle, exploitation des ressources, souveraineté arctique, droits des peuples autochtones, base militaire américaine de Pituffik.",relations:[{target:"Danemark",type:"regulation",label:"Supervision constitutionnelle"},{target:"USA/OTAN",type:"influence",label:"Présence militaire, sécurisation"},{target:"UE",type:"support",label:"Partenariats ressources critiques (CRMA)"},{target:"Chine",type:"finance",label:"Tentatives d'investissements miniers"},{target:"Russie",type:"tension",label:"Compétition arctique"}],tags:["Arctique","Ressources","Autonomie","OTAN","Terres rares"]}},
+  danemark:{label:"Danemark",cat:"state",catLabel:"État souverain",color:"#e8a045",desc:"Puissance souveraine du Groenland, supervise les affaires étrangères et la défense.",details:{contexte:"Le Royaume du Danemark maintient la souveraineté formelle sur le Groenland tout en lui accordant une large autonomie interne depuis 1979. La relation est source de tensions croissantes face aux velléités d'indépendance.",enjeux:"Maintien de la souveraineté arctique, gestion des pressions américaines et chinoises, financement du Groenland (~600M€/an), processus d'autodétermination.",relations:[{target:"Groenland",type:"regulation",label:"Supervision constitutionnelle"},{target:"UE",type:"support",label:"Membre fondateur"},{target:"USA/OTAN",type:"support",label:"Alliance OTAN, Base Pituffik"}],tags:["OTAN","Souveraineté","Arctique","UE"]}},
+  eu:{label:"Union Européenne",cat:"state",catLabel:"Organisation Supranationale",color:"#5b9bd5",desc:"Cherche à sécuriser l'accès aux minéraux critiques via le CRMA et l'ERMA.",details:{contexte:"L'UE considère le Groenland comme stratégique pour son approvisionnement en terres rares et minéraux critiques, essentiels à la transition énergétique. Le CRMA de 2024 fixe des objectifs d'approvisionnement domestique stricts.",enjeux:"Réduction de la dépendance à la Chine pour les minéraux critiques, financement d'infrastructures, partenariat stratégique avec le gouvernement du Groenland.",relations:[{target:"Groenland",type:"support",label:"Partenariats stratégiques CRMA/ERMA"},{target:"Danemark",type:"regulation",label:"Cadre légal européen"},{target:"Industrie minière",type:"regulation",label:"Normes ESG, permis"}],tags:["CRMA","ERMA","Terres rares","Transition énergétique"]}},
+  chine:{label:"Chine",cat:"state",catLabel:"État",color:"#e05555",desc:"Acteur majeur via Shenghe Resources et le contrôle de la chaîne de raffinage mondiale.",details:{contexte:"La Chine domine ~85% du raffinage mondial des terres rares. Shenghe Resources détient des participations dans des projets miniers groenlandais. La chaîne de raffinage reste un levier stratégique majeur même sans extraction directe.",enjeux:"Maintien de la domination sur la chaîne des terres rares, investissements bloqués par le gouvernement groenlandais/danois, tension avec USA et UE.",relations:[{target:"Industrie minière",type:"finance",label:"Participations Shenghe Resources"},{target:"Métaux Rares",type:"influence",label:"Contrôle du raffinage mondial"},{target:"USA/OTAN",type:"tension",label:"Compétition géopolitique arctique"}],tags:["Terres rares","Shenghe","Raffinage","Belt & Road"]}},
+  usa:{label:"États-Unis / OTAN",cat:"state",catLabel:"État / Alliance militaire",color:"#7986ff",desc:"Présence militaire via la base de Pituffik. Intérêt stratégique croissant pour l'île.",details:{contexte:"Les USA maintiennent la base de Pituffik (Space Base), seule infrastructure militaire permanente au Groenland. Trump a exprimé à plusieurs reprises l'intention d'acquérir le Groenland. L'OTAN considère l'Arctique comme front stratégique prioritaire.",enjeux:"Sécurisation de l'Arctique face à la Russie et la Chine, accès aux ressources, route maritime du Nord, défense antimissile.",relations:[{target:"Groenland",type:"influence",label:"Pression politique, base militaire"},{target:"Danemark",type:"support",label:"Alliance OTAN"},{target:"Russie",type:"tension",label:"Compétition arctique"}],tags:["Pituffik","OTAN","Arctique","Défense","Ressources"]}},
+  russie:{label:"Russie",cat:"state",catLabel:"État",color:"#e04040",desc:"Puissance arctique majeure, influence croissante via la militarisation et les routes du Nord.",details:{contexte:"La Russie contrôle ~50% des côtes arctiques et a massivement renforcé sa présence militaire depuis 2014. La route maritime du Nord est une priorité économique nationale.",enjeux:"Défense des intérêts arctiques, route maritime du Nord, ressources énergétiques sous-marines, compétition avec l'OTAN.",relations:[{target:"Groenland",type:"influence",label:"Pression géopolitique arctique"},{target:"USA/OTAN",type:"tension",label:"Compétition militaire arctique"},{target:"Routes Arctiques",type:"influence",label:"Contrôle route maritime du Nord"}],tags:["Arctique","Militaire","Route Nord","Énergie"]}},
+  climat:{label:"Changement Climatique",cat:"territory",catLabel:"Enjeu Transversal",color:"#64b5f6",desc:"Le réchauffement accélère la fonte des glaces, ouvrant routes maritimes et accès aux ressources.",details:{contexte:"Le Groenland perd environ 280 milliards de tonnes de glace par an. Ce phénomène ouvre de nouvelles zones d'extraction minière et de nouvelles routes maritimes tout en modifiant profondément l'équilibre écologique arctique.",enjeux:"Montée des eaux, nouvelles routes commerciales, accessibilité accrue aux ressources, vulnérabilité des communautés côtières.",relations:[{target:"Routes Arctiques",type:"expertise",label:"Ouverture de nouvelles voies"},{target:"Communautés Locales",type:"tension",label:"Impacts sur modes de vie"},{target:"Climatologues",type:"expertise",label:"Recherche et monitoring"}],tags:["Réchauffement","Fonte glaciaire","Routes maritimes","Écosystème"]}},
+  routes:{label:"Routes Arctiques",cat:"territory",catLabel:"Enjeu Stratégique",color:"#64b5f6",desc:"Nouvelles voies maritimes rendues accessibles par la fonte des glaces arctiques.",details:{contexte:"La fonte de la banquise ouvre de nouvelles routes commerciales trans-arctiques. La route du Nord-Est (côte russe) est déjà opérationnelle et réduit de 30-40% les distances entre Europe et Asie.",enjeux:"Contrôle et militarisation des routes, droits de passage, impact sur les équilibres commerciaux mondiaux.",relations:[{target:"Russie",type:"influence",label:"Contrôle route du Nord-Est"},{target:"USA/OTAN",type:"influence",label:"Surveillance et liberté de navigation"},{target:"Changement Climatique",type:"expertise",label:"Ouverture par la fonte"}],tags:["Route du Nord","Commerce","Militarisation","Arctique"]}},
+  isds:{label:"ISDS",cat:"territory",catLabel:"Mécanisme Juridique",color:"#cc5de8",desc:"Investor-State Dispute Settlement : mécanisme d'arbitrage entre entreprises et États.",details:{contexte:"L'ISDS permet à des sociétés minières de poursuivre l'État groenlandais/danois pour pertes liées à des changements de loi. Burford Capital finance ce type de litiges.",enjeux:"Souveraineté législative des États, risques financiers pour le Groenland, précédents juridiques pour les ressources arctiques.",relations:[{target:"Burford Capital",type:"finance",label:"Financement de litiges"},{target:"Loi uranium",type:"tension",label:"Contestation de la loi 2021"},{target:"Industrie Minière",type:"regulation",label:"Recours des entreprises"}],tags:["Arbitrage","Investissement","Souveraineté","Droit international"]}},
+  burford:{label:"Burford Capital",cat:"industry",catLabel:"Finance / Arbitrage",color:"#e8a045",desc:"Fonds spécialisé dans le financement de litiges d'arbitrage d'investissement international.",details:{contexte:"Burford Capital est le leader mondial du financement de contentieux. Il finance les procédures ISDS en échange d'une part des gains, illustrant la financiarisation des ressources naturelles.",enjeux:"Risque financier pour le Groenland, pression sur les gouvernements à ne pas modifier les cadres réglementaires.",relations:[{target:"ISDS",type:"finance",label:"Financement de procédures"},{target:"Industrie Minière",type:"finance",label:"Soutien financier aux entreprises"}],tags:["Arbitrage","Financement","Litige","Investissement"]}},
+  "uranium-loi":{label:"Loi 2021 — Interdit Uranium",cat:"territory",catLabel:"Cadre Légal",color:"#ff6b6b",desc:"Loi interdisant l'extraction d'uranium, adoptée par le parlement Inatsisartut en 2021.",details:{contexte:"Suite aux élections d'avril 2021, le nouveau gouvernement Inuit Ataqatigiit a fait adopter une loi interdisant l'extraction d'uranium et de minéraux radioactifs, déclenchant des procédures ISDS.",enjeux:"Souveraineté législative, compensation aux investisseurs, précédent pour les futures politiques minières.",relations:[{target:"Uranium",type:"regulation",label:"Interdiction d'extraction"},{target:"ISDS",type:"tension",label:"Contentieux d'investissement déclenché"},{target:"Communautés",type:"support",label:"Victoire des communautés locales"}],tags:["Uranium","Kvanefjeld","Inuit Ataqatigiit","Souveraineté"]}},
+  mines:{label:"Industrie Minière",cat:"industry",catLabel:"Secteur Industriel",color:"#ff6b6b",desc:"Nœud central de l'exploitation des ressources, entre intérêts internationaux et impacts locaux.",details:{contexte:"Le Groenland possède parmi les plus grands gisements mondiaux de terres rares, graphite, uranium et minéraux critiques. L'exploitation est freinée par la loi sur l'uranium, les normes environnementales et l'opposition des communautés locales.",enjeux:"Revenus pour l'autonomie financière du Groenland, impacts environnementaux, emploi local vs expertise étrangère.",relations:[{target:"Groenland",type:"finance",label:"Revenus miniers stratégiques"},{target:"Chine",type:"finance",label:"Participations et raffinage"},{target:"UE",type:"regulation",label:"Normes CRMA / ESG"},{target:"Communautés",type:"tension",label:"Opposition au projet Kvanefjeld"}],tags:["Terres rares","Uranium","Graphite","Kvanefjeld","ESG"]}},
+  minerais:{label:"Minerais Critiques",cat:"industry",catLabel:"Ressource",color:"#ff9a5c",desc:"Graphite, lithium, cobalt, nickel : minerais essentiels aux batteries et à l'économie verte.",details:{contexte:"Au-delà des terres rares, le Groenland possède des gisements significatifs de graphite (Amitsoq), de cuivre, de zinc et potentiellement de lithium.",enjeux:"Chaînes d'approvisionnement pour batteries, diversification géographique, développement économique groenlandais.",relations:[{target:"Amitsoq Graphite",type:"finance",label:"Projet d'extraction GreenRoc"},{target:"UE",type:"support",label:"Liste CRMA des matériaux critiques"}],tags:["Graphite","Lithium","Cobalt","Batteries"]}},
+  metaux:{label:"Métaux Rares",cat:"industry",catLabel:"Ressource Stratégique",color:"#ff9a5c",desc:"Terres rares et métaux critiques indispensables aux technologies vertes et à la défense.",details:{contexte:"Le Groenland possède environ 25% des réserves mondiales de terres rares accessibles hors Chine. Ces métaux sont essentiels pour les aimants permanents, batteries et technologies de défense.",enjeux:"Transition énergétique mondiale, indépendance stratégique de l'UE et des USA vis-à-vis de la Chine.",relations:[{target:"Chine",type:"influence",label:"Monopole du raffinage mondial"},{target:"UE",type:"expertise",label:"Objectif d'approvisionnement CRMA"},{target:"Industrie Minière",type:"influence",label:"Principal objectif d'extraction"}],tags:["Néodyme","Dysprosium","Terres rares","Transition énergétique"]}},
+  uranium:{label:"Uranium",cat:"industry",catLabel:"Ressource Controversée",color:"#ff6b6b",desc:"Ressource controversée, interdite depuis 2021 par le parlement groenlandais.",details:{contexte:"Le Groenland possède des gisements importants d'uranium (notamment à Kvanefjeld). La loi de 2021 a interdit son extraction, déclenchant des litiges ISDS.",enjeux:"Souveraineté sur les ressources naturelles, risques sanitaires et environnementaux, contentieux internationaux.",relations:[{target:"Loi uranium",type:"regulation",label:"Interdiction d'extraction"},{target:"ISDS",type:"tension",label:"Litiges d'investissement"},{target:"Industrie Minière",type:"influence",label:"Composante des projets"}],tags:["Uranium","Kvanefjeld","Radioactivité","Loi 2021"]}},
+  tangret:{label:"Tangret / Critical Metals Corp",cat:"industry",catLabel:"Entreprise Minière",color:"#ff6b6b",desc:"Entreprise explorant les gisements de terres rares au Groenland (projet Tanbreez).",details:{contexte:"Critical Metals Corp développe le projet Tanbreez à Kvanefjeld, contenant des terres rares, zirconium et hafnium, distinct du projet d'uranium.",enjeux:"Obtention de permis d'exploitation, financement, acceptabilité sociale, respect des normes ESG.",relations:[{target:"Industrie Minière",type:"influence",label:"Acteur de l'écosystème minier"},{target:"Métaux Rares",type:"finance",label:"Exploitation ciblée terres rares"}],tags:["Tanbreez","Terres rares","Zirconium","Exploration"]}},
+  amitsoq:{label:"Amitsoq Graphite / GreenRoc",cat:"industry",catLabel:"Entreprise Minière",color:"#69db7c",desc:"Projet de graphite haute pureté, stratégique pour les batteries de véhicules électriques.",details:{contexte:"GreenRoc Mining développe le projet Amitsoq, un des gisements de graphite les plus purs au monde, pouvant alimenter les chaînes de production de batteries européennes.",enjeux:"Alternatives au graphite chinois, standards environnementaux, emploi local, certification ESG.",relations:[{target:"Minerais Critiques",type:"finance",label:"Extraction de graphite"},{target:"UE",type:"support",label:"Intérêt stratégique CRMA"}],tags:["Graphite","Batteries","VE","GreenRoc"]}},
+  "greenland-connect":{label:"Greenland Connect",cat:"territory",catLabel:"Infrastructure Numérique",color:"#64b5f6",desc:"Câble sous-marin reliant le Groenland à l'Europe et l'Amérique du Nord.",details:{contexte:"Greenland Connect est le câble à fibre optique sous-marine opéré par Tusass, reliant Nuuk à l'Islande, au Canada et au Danemark.",enjeux:"Vulnérabilité stratégique (câble unique), développement numérique, attractivité pour les data centers.",relations:[{target:"Tusass Connect Vision",type:"support",label:"Opéré par Tusass"},{target:"Groenland",type:"support",label:"Infrastructure critique"},{target:"Data Centers",type:"support",label:"Connectivité pour serveurs"}],tags:["Câble sous-marin","Internet","Infrastructure","Numérique"]}},
+  tusass:{label:"Tusass Connect Vision",cat:"territory",catLabel:"Opérateur Télécoms",color:"#64b5f6",desc:"Opérateur national de télécommunications du Groenland.",details:{contexte:"Tusass (anciennement TELE Greenland) est la société nationale de télécommunications. Son projet 'Connect Vision' vise à étendre la connectivité via de nouveaux câbles sous-marins.",enjeux:"Souveraineté numérique, attractivité pour data centers internationaux, couverture des communautés isolées.",relations:[{target:"Greenland Connect",type:"support",label:"Opère le câble"},{target:"Géants du Cloud",type:"support",label:"Partenariats potentiels"}],tags:["Télécoms","Internet","Souveraineté numérique"]}},
+  datacenters:{label:"Data Centers / Cloud",cat:"industry",catLabel:"Infrastructure Numérique",color:"#64b5f6",desc:"Projets de centres de données exploitant le froid naturel arctique.",details:{contexte:"Le Groenland attire les géants du cloud grâce à ses températures basses (réduction de 30-40% des coûts de refroidissement), son énergie hydroélectrique renouvelable et sa faible densité sismique.",enjeux:"Développement économique, consommation énergétique, emploi qualifié, dépendance aux entreprises étrangères.",relations:[{target:"Géants du Cloud",type:"support",label:"Partenariats d'installation"},{target:"Greenland Connect",type:"support",label:"Connectivité indispensable"}],tags:["Cloud","Serveurs","Énergie renouvelable","Arctique"]}},
+  cloud:{label:"Géants du Cloud",cat:"industry",catLabel:"Entreprises Tech",color:"#ff6b6b",desc:"Google, Amazon, Microsoft : intérêt pour implanter des data centers dans la région arctique.",details:{contexte:"Les GAFAM explorent le Groenland comme site potentiel pour des data centers verts : froid naturel, énergie hydroélectrique, stabilité géologique.",enjeux:"Développement économique pour le Groenland, questions de souveraineté des données, consommation énergétique.",relations:[{target:"Data Centers",type:"finance",label:"Investissements en infrastructure"},{target:"Tusass",type:"support",label:"Partenariats connectivité"}],tags:["Google","Amazon","Microsoft","Cloud","Tech"]}},
+  communautes:{label:"Communautés Locales",cat:"civil",catLabel:"Société Civile",color:"#cc5de8",desc:"Peuples inuits, premiers concernés par les enjeux d'exploitation et d'autonomie.",details:{contexte:"Les ~55 000 Groenlandais (dont ~85% d'Inuits) vivent une transformation rapide de leur territoire. L'opposition au projet Kvanefjeld en 2021 a provoqué des élections anticipées et arrêté le projet minier.",enjeux:"Autodétermination, droits fonciers, impacts sanitaires et environnementaux des mines, dépendance économique au Danemark.",relations:[{target:"Groenland",type:"regulation",label:"Représentées au parlement Inatsisartut"},{target:"Industrie Minière",type:"tension",label:"Opposition aux projets miniers"},{target:"ONG Écologistes",type:"support",label:"Soutien et plaidoyer"},{target:"Médias",type:"influence",label:"Visibilité des revendications"}],tags:["Inuits","Kvanefjeld","Indépendance","Droits autochtones"]}},
+  populations:{label:"Populations Locales",cat:"civil",catLabel:"Société",color:"#69db7c",desc:"Habitants du Groenland vivant dans des communautés souvent isolées.",details:{contexte:"~55 000 habitants répartis dans ~17 villes et ~60 petits villages. La transition postcoloniale génère des défis sociaux importants.",enjeux:"Emploi, services de base, identité culturelle, langue groenlandaise, accès à l'éducation.",relations:[{target:"Communautés",type:"support",label:"Constituent les communautés locales"},{target:"Médias",type:"influence",label:"Accès à l'information"}],tags:["Inuits","Social","Emploi","Culture"]}},
+  narsaq:{label:"Narsaq",cat:"territory",catLabel:"Localité Stratégique",color:"#cc5de8",desc:"Ville du sud du Groenland, épicentre des controverses autour du projet Kvanefjeld.",details:{contexte:"Narsaq (~1 500 habitants) est la ville la plus proche du gisement de Kvanefjeld/Kuannersuit. Son opposition au projet a été décisive dans les élections de 2021.",enjeux:"Qualité de l'eau, santé publique, emploi local, identité culturelle, droits fonciers inuits.",relations:[{target:"Communautés",type:"support",label:"Mobilisation citoyenne"},{target:"Industrie Minière",type:"tension",label:"Opposition au projet Kvanefjeld"}],tags:["Kvanefjeld","Terres rares","Communauté","Résistance"]}},
+  medias:{label:"Médias",cat:"civil",catLabel:"Société Civile",color:"#69db7c",desc:"Médias locaux (KNR, Sermitsiaq) et internationaux couvrant les enjeux groenlandais.",details:{contexte:"Les médias jouent un rôle crucial dans la visibilité des enjeux locaux. La couverture internationale s'est intensifiée depuis les déclarations américaines sur l'achat du Groenland.",enjeux:"Indépendance éditoriale, couverture des communautés isolées, contre-narratifs géopolitiques.",relations:[{target:"Communautés",type:"influence",label:"Amplification des voix inuites"},{target:"ONG Écologistes",type:"support",label:"Relais d'information"}],tags:["KNR","Sermitsiaq","Presse","Communication"]}},
+  ong:{label:"ONG Écologistes",cat:"civil",catLabel:"Société Civile",color:"#69db7c",desc:"Organisations environnementales actives contre l'exploitation minière et pour la protection arctique.",details:{contexte:"Des ONG comme Greenpeace, WWF et des organisations inuites locales s'opposent aux projets miniers et documentent les impacts climatiques.",enjeux:"Protection écosystème arctique, droits des peuples autochtones, transparence des contrats miniers.",relations:[{target:"Communautés",type:"support",label:"Soutien aux communautés locales"},{target:"Industrie Minière",type:"tension",label:"Opposition aux projets"},{target:"Médias",type:"influence",label:"Visibilité internationale"}],tags:["Greenpeace","WWF","Arctique","Droits inuits"]}},
+  environnement:{label:"Environnement",cat:"territory",catLabel:"Enjeu",color:"#cc5de8",desc:"Fragilité unique de l'écosystème arctique, soumis à des pressions croissantes.",details:{contexte:"L'Arctique se réchauffe 4x plus vite que la moyenne mondiale. La biodiversité (ours polaires, narvals, phoques) et les écosystèmes marins sont sous pression multiple.",enjeux:"Préservation de la biodiversité, pollution par les métaux lourds, acidification des océans.",relations:[{target:"Climatologues",type:"expertise",label:"Monitoring scientifique"},{target:"ONG Écologistes",type:"support",label:"Plaidoyer et protection"},{target:"Communautés",type:"tension",label:"Impacts sur modes de subsistance"}],tags:["Biodiversité","Arctique","Écosystème","Protection"]}},
+  climatologues:{label:"Climatologues",cat:"science",catLabel:"Communauté Scientifique",color:"#ffe066",desc:"Chercheurs spécialisés dans l'étude du climat arctique et de la fonte des glaces.",details:{contexte:"Les climatologues (NASA, DMI, GIEC) produisent des données critiques sur la vitesse de fonte des glaces groenlandaises et ses conséquences globales.",enjeux:"Financement de la recherche, accès aux données, communication avec le grand public, influence sur les politiques.",relations:[{target:"Environnement",type:"expertise",label:"Données climatiques"},{target:"Scientifiques",type:"expertise",label:"Collaboration interdisciplinaire"},{target:"Changement Climatique",type:"expertise",label:"Modélisation et prévisions"}],tags:["NASA","GIEC","Glaciologie","Modélisation"]}},
+  scientifiques:{label:"Scientifiques",cat:"science",catLabel:"Communauté Scientifique",color:"#ffe066",desc:"Chercheurs produisant données et études sur les impacts climatiques, miniers et sociaux.",details:{contexte:"Les scientifiques (glaciologues, géologues, sociologues) produisent les données fondamentales qui alimentent les décisions politiques et judiciaires. Les études EIA sont requises avant toute exploitation.",enjeux:"Indépendance de la recherche, accès au terrain, intégration des savoirs autochtones.",relations:[{target:"EIA / Rapports",type:"expertise",label:"Production des évaluations d'impact"},{target:"Climatologues",type:"expertise",label:"Collaboration interdisciplinaire"},{target:"Groenland",type:"expertise",label:"Données pour politiques publiques"}],tags:["Glaciologie","Géologie","EIA","Impact environnemental"]}},
+  eia:{label:"EIA / Rapports",cat:"science",catLabel:"Outil Réglementaire",color:"#ffe066",desc:"Évaluations d'Impact Environnemental, documents clés du processus d'autorisation minier.",details:{contexte:"Les EIA sont des études obligatoires avant toute exploitation minière. Elles évaluent les impacts sur l'eau, la faune, les communautés et peuvent être contestées via le mécanisme ISDS.",enjeux:"Qualité et indépendance des études, participation des communautés, litiges ISDS, rôle de Burford Capital.",relations:[{target:"Scientifiques",type:"expertise",label:"Données scientifiques"},{target:"ISDS",type:"regulation",label:"Contentieux d'investissement"},{target:"Industrie Minière",type:"regulation",label:"Condition d'autorisation"}],tags:["EIA","ISDS","Arbitrage","Environnement"]}},
+  gouvernement:{label:"Gouvernement Groenland",cat:"state",catLabel:"Institution",color:"#7986ff",desc:"Naalakkersuisut : gouvernement autonome responsable des politiques intérieures.",details:{contexte:"Le Naalakkersuisut gère les politiques intérieures, les ressources naturelles et négocie les partenariats avec l'UE, les USA et les entreprises minières depuis 1979.",enjeux:"Balance entre développement économique et protection environnementale, chemin vers l'indépendance.",relations:[{target:"Danemark",type:"regulation",label:"Supervision constitutionnelle"},{target:"Parlement Inatsisartut",type:"regulation",label:"Rend compte au parlement"},{target:"UE",type:"support",label:"Négociation des accords CRMA"}],tags:["Naalakkersuisut","Autonomie","Gouvernance","Indépendance"]}},
+  inatsisartut:{label:"Parlement Inatsisartut",cat:"state",catLabel:"Institution",color:"#7986ff",desc:"Parlement démocratique du Groenland, 31 membres élus.",details:{contexte:"L'Inatsisartut est le parlement unicaméral du Groenland. Les élections de 2021, marquées par le débat sur Kvanefjeld, ont été un tournant politique majeur.",enjeux:"Légitimité démocratique, vote sur les concessions minières, processus d'autodétermination.",relations:[{target:"Gouvernement",type:"regulation",label:"Contrôle démocratique"},{target:"Communautés",type:"support",label:"Représentation politique"},{target:"Loi uranium",type:"regulation",label:"A adopté la loi d'interdiction"}],tags:["Démocratie","Législatif","Inuit Ataqatigiit","Autonomie"]}}
+};
+
+const catColors={state:"#7986ff",industry:"#ff6b6b",civil:"#69db7c",science:"#ffe066",territory:"#cc5de8"};
+const relColors={finance:"#69db7c",regulation:"#7986ff",influence:"#ff6b6b",support:"#cc5de8",expertise:"#ffe066",tension:"#ff9a5c"};
+const relLabels={finance:"Financement",regulation:"Régulation",influence:"Influence",support:"Soutien",expertise:"Expertise",tension:"Tension"};
+
+// ── PANEL SIZING: match map-wrapper height ─────────────────────
+function syncPanelHeight() {
+  const wrapper = document.getElementById('map-wrapper');
+  const panel = document.getElementById('detail-panel');
+  const h = wrapper.getBoundingClientRect().height;
+  panel.style.height = h + 'px';
+}
+window.addEventListener('resize', syncPanelHeight);
+window.addEventListener('load', syncPanelHeight);
+// Also re-sync after SVG renders (rAF)
+requestAnimationFrame(() => { requestAnimationFrame(syncPanelHeight); });
+
+// ── TOOLTIP ────────────────────────────────────────────────────
+const tooltip = document.getElementById('tooltip');
+const ttTitle = document.getElementById('tt-title');
+const ttCat   = document.getElementById('tt-cat');
+const ttDesc  = document.getElementById('tt-desc');
+
+function showTooltip(e, id) {
+  const d = nodes[id]; if (!d) return;
+  ttTitle.textContent = d.label;
+  ttCat.textContent = d.catLabel;
+  ttCat.style.color = catColors[d.cat] || '#8892a4';
+  ttDesc.textContent = d.desc;
+  tooltip.classList.add('visible');
+  moveTooltip(e);
+}
+function moveTooltip(e) {
+  let x = e.clientX + 18, y = e.clientY + 18;
+  if (x + 275 > window.innerWidth)  x = e.clientX - 275;
+  if (y + 145 > window.innerHeight) y = e.clientY - 145;
+  tooltip.style.left = x + 'px';
+  tooltip.style.top  = y + 'px';
+}
+function hideTooltip() { tooltip.classList.remove('visible'); }
+
+// ── DETAIL PANEL ───────────────────────────────────────────────
+const detailPanel  = document.getElementById('detail-panel');
+const collapseTab  = document.getElementById('collapse-tab');
+const dBadge       = document.getElementById('d-badge');
+const dTitle       = document.getElementById('d-title');
+const panelContent = document.getElementById('panel-content');
+const panelScroll  = document.getElementById('panel-scroll');
+
+collapseTab.addEventListener('click', () => {
+  detailPanel.classList.toggle('open');
+});
+
+document.addEventListener('keydown', e => {
+  if (e.key === 'Escape') detailPanel.classList.remove('open');
+});
+
+function showDetail(id) {
+  const d = nodes[id]; if (!d) return;
+  const color = catColors[d.cat] || '#888';
+
+  dBadge.textContent = d.catLabel;
+  dBadge.style.background = color + '22';
+  dBadge.style.color = color;
+  dBadge.style.border = '1px solid ' + color + '55';
+  dTitle.textContent = d.label;
+
+  let relsHTML = '';
+  if (d.details.relations && d.details.relations.length) {
+    const items = d.details.relations.map(r => `
+      <li>
+        <span class="rel-dot" style="background:${relColors[r.type]||'#888'}"></span>
+        <span class="rel-info">
+          <span class="rel-target">${r.target}</span>
+          <span class="rel-type">${relLabels[r.type]||r.type}</span>
+          <span class="rel-label">${r.label}</span>
+        </span>
+      </li>`).join('');
+    relsHTML = `<div class="d-section"><h3>Relations</h3><ul class="d-relations">${items}</ul></div>`;
+  }
+  const tags = (d.details.tags||[]).map(t => `<span class="d-tag">${t}</span>`).join('');
+
+  panelContent.innerHTML = `
+    <div class="d-section"><h3>Contexte</h3><p>${d.details.contexte}</p> </div>
+    <div class="d-section"><h3>Enjeux Clés</h3><p><strong>${d.details.enjeux}</strong></p> </div>
+    ${relsHTML}
+    ${tags ? `<div class="d-section"><h3>Mots-clés</h3><div>${tags}</div></div>` : ''}
+  `;
+  panelScroll.scrollTop = 0;
+  detailPanel.classList.add('open');
+}
+
+// ── NODE EVENTS ────────────────────────────────────────────────
+document.querySelectorAll('.node-group').forEach(el => {
+  const id = el.dataset.id;
+  el.addEventListener('mouseenter', e => showTooltip(e, id));
+  el.addEventListener('mousemove',  moveTooltip);
+  el.addEventListener('mouseleave', hideTooltip);
+  el.addEventListener('click', () => { hideTooltip(); showDetail(id); });
+});
+
+// ── FILTERS ────────────────────────────────────────────────────
+let activeCats = new Set(['state','industry','civil','science','territory']);
+let activeRels = new Set(['finance','regulation','influence','support','expertise','tension']);
+
+document.querySelectorAll('.filter-btn[data-cat]').forEach(btn => {
+  btn.addEventListener('click', () => {
+    const cat = btn.dataset.cat;
+    if (cat === 'all') {
+      if (activeCats.size === 5) {
+        activeCats.clear();
+        document.querySelectorAll('.filter-btn[data-cat]:not([data-cat="all"])').forEach(b => b.classList.remove('active'));
+      } else {
+        activeCats = new Set(['state','industry','civil','science','territory']);
+        document.querySelectorAll('.filter-btn[data-cat]').forEach(b => b.classList.add('active'));
+      }
+    } else {
+      activeCats.has(cat) ? (activeCats.delete(cat), btn.classList.remove('active'))
+                          : (activeCats.add(cat),    btn.classList.add('active'));
+      const allBtn = document.querySelector('.filter-btn[data-cat="all"]');
+      activeCats.size === 5 ? allBtn.classList.add('active') : allBtn.classList.remove('active');
+    }
+    applyFilters();
+  });
+});
+
+document.querySelectorAll('.legend-item[data-rel]').forEach(item => {
+  item.addEventListener('click', () => {
+    const rel = item.dataset.rel;
+    activeRels.has(rel) ? (activeRels.delete(rel), item.classList.remove('active'))
+                        : (activeRels.add(rel),    item.classList.add('active'));
+    applyFilters();
+  });
+});
+
+function applyFilters() {
+  document.querySelectorAll('.node-group').forEach(el => {
+    const cat = el.dataset.cat;
+    const show = !cat || activeCats.has(cat);
+    el.style.opacity = show ? '' : '0.06';
+    el.style.pointerEvents = show ? '' : 'none';
+  });
+  document.querySelectorAll('.link').forEach(el => {
+    const rel = el.dataset.rel;
+    el.style.opacity = (!rel || activeRels.has(rel)) ? '' : '0.04';
+  });
+}
+</script>
+</body>
+</html>

@@ -844,7 +844,7 @@
 
       <!-- ========== RANGÉE 3 · CARTOGRAPHIE INTERACTIVE ==========
            La cartographie vit dans son propre fichier : l'iframe isole ses styles
-           et ses scripts. Sous 720px, l'image statique prend le relais. -->
+           et ses scripts, sur ordinateur comme sur mobile. -->
       <section class="card cs-method cs-map" aria-labelledby="carto-title">
         <div class="cs-method-head">
           <div class="cs-map-title">
@@ -857,13 +857,6 @@
         <div class="cs-map-frame">
           <iframe src="cartographie-groenland.html"
             title="Cartographie interactive des acteurs autour des métaux rares du Groenland" loading="lazy"></iframe>
-          <div class="cs-map-fallback">
-            <img class="cs-img" src="Images/groenland_cartographie.webp"
-              alt="Cartographie des acteurs et des rapports de force autour des métaux rares du Groenland"
-              loading="lazy" />
-            <button type="button" class="zoom-btn" data-zoom-src="Images/groenland_cartographie.webp"
-              aria-label="Agrandir la cartographie des acteurs du projet Groenland"></button>
-          </div>
           <a class="hero-action" href="cartographie-groenland.html" target="_blank" rel="noopener"
             aria-label="Ouvrir la cartographie des acteurs en plein écran, nouvel onglet">
             Plein écran

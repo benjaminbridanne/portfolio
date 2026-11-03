@@ -1122,10 +1122,6 @@
   border: 0;
 }
 
-.cs-map-fallback {
-  display: none;
-}
-
 .cs-map-frame > .hero-action {
   top: 12px;
   right: 12px;
@@ -1152,29 +1148,10 @@
   }
 }
 
-/* Mobile : la cartographie n'est pas lisible dans 360px, l'image statique la remplace */
+/* Mobile : la cartographie reste interactive, sur un cadre plus haut que large */
 @media (max-width: 720px) {
   .cs-map-frame {
-    height: auto;
-    background: var(--card-bg-solid);
-  }
-
-  .cs-map-frame > iframe {
-    display: none;
-  }
-
-  .cs-map-fallback {
-    display: block;
-    position: relative;
-    aspect-ratio: 36 / 25;
-  }
-
-  .cs-map-fallback > .cs-img {
-    position: absolute;
-    inset: 0;
-    width: 100%;
-    height: 100%;
-    object-fit: contain;
+    height: 600px;
   }
 
   .cs-grid > .cs-mosaic--three {
