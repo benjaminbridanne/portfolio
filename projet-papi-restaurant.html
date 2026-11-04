@@ -692,6 +692,156 @@
         grid-template-columns: 1fr;
       }
     }
+
+    /* =========================================================
+       IDENTITÉ VISUELLE ET WIREFRAMES
+       ========================================================= */
+    /* Bandeau pleine largeur (texte à gauche, couleurs et typos à droite),
+       puis logotype et couleurs côte à côte, puis les applications en grand */
+    .cs-grid > .cs-da-intro {
+      grid-column: 1 / -1;
+    }
+
+    .card.cs-da-intro {
+      display: grid;
+      grid-template-columns: minmax(0, 1.2fr) minmax(0, 1fr);
+      gap: 20px 48px;
+      align-items: end;
+    }
+
+    .cs-da-text,
+    .cs-da-specs {
+      display: flex;
+      flex-direction: column;
+      gap: 14px;
+    }
+
+    /* Mosaïque : logotype et couleurs empilés à gauche, applications en grand
+       à droite. Mêmes formats 16/10 : les deux colonnes ont la même hauteur */
+    .cs-grid > .cs-da-boards {
+      grid-column: 1 / -1;
+      display: grid;
+      grid-template-columns: repeat(3, minmax(0, 1fr));
+      gap: var(--gap);
+    }
+
+    /* Format exact des planches (2400 × 1500) : rien n'est recadré */
+    .card.cs-da-visual {
+      aspect-ratio: 16 / 10;
+    }
+
+    .card.cs-da-visual--full {
+      grid-column: 2 / 4;
+      grid-row: 1 / 3;
+      aspect-ratio: auto;
+    }
+
+    .cs-da-palette {
+      list-style: none;
+      display: flex;
+      flex-wrap: wrap;
+      gap: 8px;
+    }
+
+    .cs-da-palette li {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      padding: 6px 12px 6px 6px;
+      border-radius: 999px;
+      background: var(--pill-bg);
+      border: 1px solid var(--pill-border);
+      font-size: 0.75rem;
+      font-weight: 500;
+      color: var(--text-secondary);
+    }
+
+    .cs-da-dot {
+      width: 18px;
+      height: 18px;
+      border-radius: 50%;
+      border: 1px solid var(--card-border);
+    }
+
+    .cs-da-fonts {
+      display: grid;
+      grid-template-columns: repeat(3, minmax(0, 1fr));
+      gap: 12px;
+      padding-top: 14px;
+      border-top: 1px solid var(--line);
+    }
+
+    .cs-da-fonts dt {
+      font-size: 0.6875rem;
+      font-weight: 500;
+      text-transform: uppercase;
+      letter-spacing: 0.12em;
+      color: var(--eyebrow);
+    }
+
+    .cs-da-fonts dd {
+      margin-top: 3px;
+      font-size: 0.8125rem;
+      font-weight: 600;
+      color: var(--text);
+    }
+
+    /* Wireframes : texte et deux écrans sur une rangée */
+    .cs-grid > .cs-wf-intro,
+    .cs-grid > .cs-wf-visual {
+      grid-column: span 4;
+    }
+
+    .card.cs-wf-visual {
+      aspect-ratio: auto;
+      height: 420px;
+    }
+
+    @media (max-width: 1100px) {
+      .card.cs-da-intro {
+        grid-template-columns: 1fr;
+      }
+
+      /* Tablette : les deux planches côte à côte, les applications dessous */
+      .cs-grid > .cs-da-boards {
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+      }
+
+      .card.cs-da-visual--full {
+        grid-column: 1 / -1;
+        grid-row: auto;
+        aspect-ratio: 16 / 10;
+      }
+
+      .cs-grid > .cs-wf-intro {
+        grid-column: 1 / -1;
+      }
+
+      .cs-grid > .cs-wf-visual {
+        grid-column: span 6;
+      }
+
+      .card.cs-wf-visual {
+        height: auto;
+        aspect-ratio: 3 / 4;
+      }
+    }
+
+    @media (max-width: 720px) {
+      .cs-grid > .cs-da-boards {
+        grid-template-columns: 1fr;
+      }
+
+      .cs-grid > .cs-wf-visual {
+        grid-column: 1 / -1;
+      }
+    }
+
+    @media (max-width: 480px) {
+      .cs-da-fonts {
+        grid-template-columns: 1fr;
+      }
+    }
   </style>
   <link rel="stylesheet" href="css/site-pages.css" />
   <script defer src="https://cloud.umami.is/script.js" data-website-id="c992974a-48c8-47e4-9625-85ab5eca2ac3"></script>
@@ -875,39 +1025,98 @@
         </ol>
       </section>
 
-      <!-- ========== RANGÉE 4 · GALERIE ========== -->
-      <div class="cs-mosaic cs-mosaic--row">
-
-        <div class="card cs-media cs-media--wide">
-          <img class="cs-img" src="Images/papi_chartegraphique.webp"
-            alt="Charte graphique conçue pour le futur site de Papi Restaurant" width="2440" height="1600"
-            loading="lazy" />
-          <button type="button" class="zoom-btn" data-zoom-src="Images/papi_chartegraphique.webp"
-            aria-label="Agrandir l’image : charte graphique conçue pour le futur site de Papi Restaurant"></button>
-          <span class="cs-media-label" aria-hidden="true">Charte graphique</span>
+      <!-- ========== RANGÉE 4 · IDENTITÉ VISUELLE ========== -->
+      <article class="card cs-step cs-da-intro" aria-labelledby="identite-title">
+        <div class="cs-da-text">
+          <h2 class="cs-label" id="identite-title"><span class="cs-num">05</span> L'identité visuelle</h2>
+          <p class="cs-lead">
+            Une cantine de quartier, chaleureuse et sans chichis.
+          </p>
+          <p class="cs-body">
+            Un logotype aux lettres rondes, des pictogrammes dessinés à la main et une palette resserrée en trois
+            couleurs&nbsp;: l'univers du lieu, décliné de la carte du midi jusqu'à Instagram.
+          </p>
         </div>
-
-        <div class="card cs-media cs-media--portrait">
-          <img class="cs-img cs-img--top" src="Images/papi_wareframe1.webp"
-            alt="Premier wireframe vertical conçu pour le futur site de Papi Restaurant" width="2400" height="3600"
-            loading="lazy" />
-          <button type="button" class="zoom-btn" data-zoom-src="Images/papi_wareframe1.webp"
-            aria-label="Agrandir l’image : premier wireframe vertical conçu pour le futur site de Papi Restaurant"></button>
-          <span class="cs-media-label" aria-hidden="true">Wireframe · accueil</span>
+        <div class="cs-da-specs">
+        <ul class="cs-da-palette" role="list">
+          <li><span class="cs-da-dot" style="background:#112919" aria-hidden="true"></span>Vert profond</li>
+          <li><span class="cs-da-dot" style="background:#C8B8A8" aria-hidden="true"></span>Beige naturel</li>
+          <li><span class="cs-da-dot" style="background:#FCFBF8" aria-hidden="true"></span>Blanc cassé</li>
+        </ul>
+        <dl class="cs-da-fonts">
+          <div>
+            <dt>Titres</dt>
+            <dd>Bricolage Grotesque</dd>
+          </div>
+          <div>
+            <dt>Textes</dt>
+            <dd>DM Sans</dd>
+          </div>
+          <div>
+            <dt>Accent</dt>
+            <dd>Caveat</dd>
+          </div>
+        </dl>
         </div>
+      </article>
 
-        <div class="card cs-media cs-media--portrait">
-          <img class="cs-img cs-img--top" src="Images/papi_wareframe2.webp"
-            alt="Deuxième wireframe vertical conçu pour le futur site de Papi Restaurant" width="2400" height="3600"
-            loading="lazy" />
-          <button type="button" class="zoom-btn" data-zoom-src="Images/papi_wareframe2.webp"
-            aria-label="Agrandir l’image : deuxième wireframe vertical conçu pour le futur site de Papi Restaurant"></button>
-          <span class="cs-media-label" aria-hidden="true">Wireframe · page intérieure</span>
-        </div>
-
+      <div class="cs-da-boards">
+      <div class="card cs-media cs-da-visual">
+        <img class="cs-img" src="Images/papi-01-logotype.webp"
+          alt="Logotype Papi, cantine de quartier : version inversée avec pictogrammes, version principale, version beige et mot seul"
+          width="2400" height="1500" loading="lazy" />
+        <button type="button" class="zoom-btn" data-zoom-src="Images/papi-01-logotype.webp"
+          aria-label="Agrandir l’image : logotype de Papi Restaurant et ses déclinaisons"></button>
       </div>
 
-      <!-- ========== RANGÉE 5 · APPEL À L'ACTION ========== -->
+      <div class="card cs-media cs-da-visual">
+        <img class="cs-img" src="Images/papi-02-couleurs-typographie.webp"
+          alt="Palette de Papi (vert profond, beige naturel, blanc cassé) et typographies Bricolage Grotesque, DM Sans et Caveat"
+          width="2400" height="1500" loading="lazy" />
+        <button type="button" class="zoom-btn" data-zoom-src="Images/papi-02-couleurs-typographie.webp"
+          aria-label="Agrandir l’image : couleurs et typographies de Papi Restaurant"></button>
+      </div>
+
+      <div class="card cs-media cs-da-visual cs-da-visual--full">
+        <img class="cs-img" src="Images/papi-03-univers-applications.webp"
+          alt="Applications de l’identité Papi : pictogrammes, menu du midi, carte de réservation, publication et profil Instagram"
+          width="2400" height="1500" loading="lazy" />
+        <button type="button" class="zoom-btn" data-zoom-src="Images/papi-03-univers-applications.webp"
+          aria-label="Agrandir l’image : univers graphique et applications de Papi Restaurant"></button>
+      </div>
+      </div>
+
+      <!-- ========== RANGÉE 5 · WIREFRAMES ========== -->
+      <article class="card cs-step cs-wf-intro" aria-labelledby="wireframes-title">
+        <h2 class="cs-label" id="wireframes-title"><span class="cs-num">06</span> Les wireframes</h2>
+        <p class="cs-lead">
+          La structure du futur site, avant tout habillage.
+        </p>
+        <p class="cs-body">
+          Esquissés à la main à partir de l'arborescence, avant le passage dans Figma&nbsp;: navigation, menu du midi,
+          produits locaux et photos trouvent leur place dès la page d'accueil.
+        </p>
+      </article>
+
+      <div class="card cs-media cs-wf-visual">
+        <img class="cs-img cs-img--top" src="Images/papi_wareframe1.webp"
+          alt="Premier wireframe vertical conçu pour le futur site de Papi Restaurant" width="2400" height="3600"
+          loading="lazy" />
+        <button type="button" class="zoom-btn" data-zoom-src="Images/papi_wareframe1.webp"
+          aria-label="Agrandir l’image : premier wireframe vertical conçu pour le futur site de Papi Restaurant"></button>
+        <span class="cs-media-label" aria-hidden="true">Wireframe · accueil</span>
+      </div>
+
+      <div class="card cs-media cs-wf-visual">
+        <img class="cs-img cs-img--top" src="Images/papi_wareframe2.webp"
+          alt="Deuxième wireframe vertical conçu pour le futur site de Papi Restaurant" width="2400" height="3600"
+          loading="lazy" />
+        <button type="button" class="zoom-btn" data-zoom-src="Images/papi_wareframe2.webp"
+          aria-label="Agrandir l’image : deuxième wireframe vertical conçu pour le futur site de Papi Restaurant"></button>
+        <span class="cs-media-label" aria-hidden="true">Wireframe · page intérieure</span>
+      </div>
+
+      <!-- ========== RANGÉE 6 · APPEL À L'ACTION ========== -->
       <aside class="card cs-cta" aria-label="Me contacter">
         <div class="cs-cta-text">
           <p class="cs-cta-title">Votre établissement est introuvable en ligne&nbsp;?</p>
@@ -922,7 +1131,7 @@
         </a>
       </aside>
 
-      <!-- ========== RANGÉE 5 · NAVIGATION ENTRE PROJETS ========== -->
+      <!-- ========== RANGÉE 6 · NAVIGATION ENTRE PROJETS ========== -->
       <nav class="project-pager" aria-label="Navigation entre les projets">
         <a href="/projet-zeste-miette" class="pager-link pager-prev">
           <span class="pager-arrow" aria-hidden="true">←</span>
