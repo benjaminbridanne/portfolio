@@ -51,8 +51,8 @@ Hébergé sur **GitHub Pages** depuis la branche `main`. Tout push sur `main` me
 ## Contact
 
 - **Portfolio :** [benjaminbridanne.fr](https://benjaminbridanne.fr/)
-- **LinkedIn :** à compléter
-- **Mail :** à compléter
+- **LinkedIn :** Benjamin Bridanne
+- **Mail :** benjaminbridanne@gmail.com
 
 ---
 
