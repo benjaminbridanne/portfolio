@@ -1,4 +1,4 @@
-# Portfolio — Benjamin Bridanne
+# Portfolio - Benjamin Bridanne
 
 Portfolio personnel de **Benjamin Bridanne**, chargé de communication digitale et éditoriale.
 
