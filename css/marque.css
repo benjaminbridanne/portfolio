@@ -1,0 +1,89 @@
+/* =========================================================
+   MARQUE BRIEF & BOLD - palette, police manuscrite, note Caveat
+   Chargé par toutes les pages, avant leur <style> : les tokens
+   de chaque page (--bg, --text, --card-border...) pointent ici.
+   Aucune autre teinte n'est autorisée sur le site.
+   Proportions : 60 % blanc, 30 % encre, 10 % bleu.
+   ========================================================= */
+:root {
+  /* Couleurs de base */
+  --papier: #FFFFFF;
+  --encre: #0B0D12;
+  --bleu: #0A6CFF;
+
+  /* Couleurs d'interface */
+  --encre-douce: #555D6E;
+  --bleu-fonce: #0852C7;
+  --bleu-pale: #E8F0FF;
+  --contour: #DDE2EA;
+  --succes: #16794A;
+  --erreur: #C8281E;
+
+  /* Gamme bleue */
+  --bleu-100: #E8F0FF;
+  --bleu-200: #C7DBFF;
+  --bleu-300: #94BAFF;
+  --bleu-400: #5895FF;
+  --bleu-500: #0A6CFF;
+  --bleu-600: #0858D6;
+  --bleu-700: #0745A8;
+  --bleu-800: #06347C;
+  --bleu-900: #052451;
+
+  /* Aplats et boutons bleus : texte blanc sur #0A6CFF = 4,56:1.
+     Le texte secondaire y reste en Papier (Bleu 100 n'atteint que 3,99:1). */
+  --aplat-bleu: var(--bleu);
+  --aplat-bleu-survol: var(--bleu-600);
+
+  /* Voiles et ombres : transparences d'Encre uniquement */
+  --voile-encre: rgba(11, 13, 18, 0.86);
+  --ombre-encre: rgba(11, 13, 18, 0.14);
+
+  /* Cartes en mode sombre, deux variantes possibles :
+     A (active) : fond Bleu 900, bordure Bleu 900
+     B          : fond Encre, bordure Bleu 800 */
+  --carte-sombre: var(--bleu-900);
+  --carte-sombre-bord: var(--bleu-900);
+}
+
+/* Variante B des cartes sombres : ajouter data-cartes="encre" sur <html> */
+:root[data-cartes="encre"] {
+  --carte-sombre: var(--encre);
+  --carte-sombre-bord: var(--bleu-800);
+}
+
+/* =========================================================
+   POLICE MANUSCRITE : Caveat 600, sous-ensemble latin auto-hébergé
+   ========================================================= */
+@font-face {
+  font-family: "Caveat";
+  font-style: normal;
+  font-weight: 600;
+  font-display: swap;
+  src: url("../fonts/caveat-600-latin.woff2") format("woff2");
+}
+
+/* =========================================================
+   NOTE MANUSCRITE : la « voix Brief »
+   Une seule par page, six mots au plus, au-dessus du titre
+   qu'elle introduit. Jamais sous 30 px, jamais hors de son bloc.
+   ========================================================= */
+.note-main {
+  display: block;
+  max-width: 100%;
+  margin: 0;
+  font-family: "Caveat", "Segoe Print", "Bradley Hand", cursive;
+  font-size: 30px;
+  font-weight: 600;
+  line-height: 1.1;
+  letter-spacing: 0;
+  text-transform: none;
+  color: var(--bleu);
+  transform: rotate(-3deg);
+  transform-origin: left center;
+  overflow-wrap: anywhere;
+}
+
+[data-theme="dark"] .note-main {
+  color: var(--bleu-400);
+}

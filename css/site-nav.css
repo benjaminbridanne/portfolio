@@ -7,15 +7,15 @@
 /* Page active : bleu de la charte, transparent pour rester discret.
    Le texte garde la couleur principale de la page (contraste ≈ 16:1 en clair, 12:1 en sombre). */
 [data-theme="light"] {
-  --site-nav-hover-bg: rgba(60, 60, 67, 0.05);
-  --site-nav-active-bg: rgba(0, 122, 255, 0.16);
-  --site-nav-active-text: #0a0a0d;
+  --site-nav-hover-bg: var(--bleu-pale);
+  --site-nav-active-bg: var(--bleu-pale);
+  --site-nav-active-text: var(--bleu-fonce);
 }
 
 [data-theme="dark"] {
-  --site-nav-hover-bg: #151517;
-  --site-nav-active-bg: rgba(10, 132, 255, 0.22);
-  --site-nav-active-text: #F5F5F7;
+  --site-nav-hover-bg: var(--bleu-900);
+  --site-nav-active-bg: var(--bleu-800);
+  --site-nav-active-text: var(--papier);
 }
 
 .site-nav {

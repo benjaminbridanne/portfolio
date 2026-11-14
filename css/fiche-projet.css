@@ -6,13 +6,13 @@
    --eyebrow, --text, --text-secondary, --radius-sm, --gap.
    ========================================================= */
 [data-theme="light"] {
-  --fiche-accent: #007AFF;
-  --fiche-accent-shadow: rgba(0, 122, 255, 0.22);
+  --fiche-accent: var(--bleu);
+  --fiche-accent-shadow: var(--ombre-encre);
 }
 
 [data-theme="dark"] {
-  --fiche-accent: #0A84FF;
-  --fiche-accent-shadow: rgba(10, 132, 255, 0.22);
+  --fiche-accent: var(--bleu-400);
+  --fiche-accent-shadow: var(--ombre-encre);
 }
 
 /* ---------- Bloc d'infos ---------- */
@@ -29,11 +29,9 @@
 
 .project-facts dt {
   padding-top: 2px;
-  font-size: 0.6875rem;
+  font-size: 0.8125rem;
   font-weight: 500;
   color: var(--eyebrow);
-  text-transform: uppercase;
-  letter-spacing: 0.1em;
 }
 
 .project-facts dd {
@@ -115,7 +113,7 @@
   padding: 11px 20px;
   border-radius: 999px;
   background: var(--fiche-accent);
-  color: #fff;
+  color: var(--papier);
   font-size: 0.875rem;
   font-weight: 600;
   white-space: nowrap;
@@ -167,10 +165,10 @@
    .card > * de chaque fiche est déclarée après ce fichier.
    ========================================================= */
 :root {
-  /* Même bleu plein que la carte profil de l'accueil (blanc 5,97:1) */
-  --cs-cta-bg: #0A5ECF;
-  --cs-cta-text-soft: #D6E6FB;
-  --cs-available: #34C759;
+  /* Même bleu plein que la carte profil de l'accueil (blanc 4,56:1) */
+  --cs-cta-bg: var(--aplat-bleu);
+  --cs-cta-text-soft: var(--papier);
+  --cs-available: var(--succes);
 }
 
 /* ---------- Pastille de disponibilité (barre de navigation) ---------- */
@@ -194,7 +192,7 @@
   height: 7px;
   border-radius: 50%;
   background: var(--cs-available);
-  box-shadow: 0 0 0 3px rgba(52, 199, 89, 0.18);
+  box-shadow: 0 0 0 3px rgba(22, 121, 74, 0.18);
 }
 
 /* ---------- Grille ---------- */
@@ -239,10 +237,6 @@
   line-height: 1.02;
 }
 
-.cs-title-accent {
-  color: var(--fiche-accent);
-}
-
 .cs-pitch {
   font-size: 0.9375rem;
   color: var(--text-secondary);
@@ -261,11 +255,9 @@
 
 .cs-facts dt {
   margin-bottom: 5px;
-  font-size: 0.6875rem;
+  font-size: 0.8125rem;
   font-weight: 500;
   color: var(--eyebrow);
-  text-transform: uppercase;
-  letter-spacing: 0.1em;
 }
 
 .cs-facts dd {
@@ -379,22 +371,18 @@
 
 /* Résultats : carte sombre dans les deux thèmes */
 .card.cs-results {
-  background: #0a0a0d;
-  border-color: rgba(255, 255, 255, 0.08);
-  color: #F5F5F7;
+  background: var(--encre);
+  border-color: var(--encre);
+  color: var(--papier);
 }
 
 [data-theme="dark"] .card.cs-results {
-  background: #1c1c1e;
-  border-color: rgba(255, 255, 255, 0.12);
+  background: var(--encre);
+  border-color: var(--bleu-800);
 }
 
 .cs-results .cs-label {
-  color: #F5F5F7;
-}
-
-.cs-results .cs-num {
-  color: #0A84FF;
+  color: var(--papier);
 }
 
 .cs-figure {
@@ -407,7 +395,7 @@
 .cs-figure-label {
   margin-top: -6px;
   font-size: 0.8125rem;
-  color: rgba(235, 235, 245, 0.62);
+  color: var(--bleu-200);
 }
 
 .cs-tiles {
@@ -423,8 +411,8 @@
   gap: 3px;
   padding: 12px 14px;
   border-radius: var(--radius-sm);
-  background: rgba(255, 255, 255, 0.07);
-  border: 1px solid rgba(255, 255, 255, 0.10);
+  background: var(--bleu-900);
+  border: 1px solid var(--bleu-800);
 }
 
 .cs-tile-value {
@@ -435,7 +423,7 @@
 
 .cs-tile-label {
   font-size: 0.75rem;
-  color: rgba(235, 235, 245, 0.62);
+  color: var(--bleu-200);
 }
 
 /* ---------- Rangée 3 : citation et supports ---------- */
@@ -502,7 +490,7 @@
   padding: 24px 30px;
   background: var(--cs-cta-bg);
   border-color: rgba(255, 255, 255, 0.16);
-  color: #fff;
+  color: var(--papier);
   backdrop-filter: none;
   -webkit-backdrop-filter: none;
 }
@@ -530,8 +518,8 @@
   gap: 8px;
   padding: 11px 20px;
   border-radius: 999px;
-  background: #fff;
-  color: #0a0a0d;
+  background: var(--papier);
+  color: var(--encre);
   font-size: 0.875rem;
   font-weight: 600;
   white-space: nowrap;
@@ -546,7 +534,7 @@
 
 .cs-cta-link:hover {
   transform: translateY(-1px);
-  box-shadow: 0 10px 24px rgba(0, 0, 0, 0.18);
+  box-shadow: 0 10px 24px rgba(11, 13, 18, 0.18);
 }
 
 .cs-cta-link:hover svg {
@@ -554,7 +542,7 @@
 }
 
 .cs-cta-link:focus-visible {
-  outline-color: #fff;
+  outline-color: var(--papier);
 }
 
 /* Cibles tactiles d'au moins 44px pour les boutons posés sur les visuels */
@@ -577,7 +565,7 @@
 }
 
 .cs-results .cs-body {
-  color: rgba(235, 235, 245, 0.72);
+  color: var(--bleu-200);
 }
 
 .cs-tile--tag {
@@ -709,18 +697,18 @@
 
 .cs-actions .hero-action--light {
   background: rgba(255, 255, 255, 0.94);
-  border-color: rgba(0, 0, 0, 0.08);
-  color: #0a0a0d;
+  border-color: rgba(11, 13, 18, 0.08);
+  color: var(--encre);
 }
 
 .cs-actions .hero-action--light:hover {
-  background: #fff;
-  border-color: rgba(0, 0, 0, 0.16);
+  background: var(--papier);
+  border-color: rgba(11, 13, 18, 0.16);
 }
 
 /* Anneau sombre sous le contour blanc : le focus reste visible sur la pastille claire */
 .cs-actions .hero-action--light:focus-visible {
-  box-shadow: 0 0 0 3px #0a0a0d;
+  box-shadow: 0 0 0 3px var(--encre);
 }
 
 /* ---------- Galerie latérale (2/3 de la largeur, 3 colonnes) ---------- */
@@ -823,8 +811,8 @@
   width: 7px;
   height: 7px;
   border-radius: 50%;
-  /* Gris système Apple : lisible en clair comme en sombre, sans dépendre des tokens de la page */
-  background: #8E8E93;
+  /* Encre douce : visible en clair comme en sombre */
+  background: var(--encre-douce);
 }
 
 .cs-compare-item--after .cs-compare-caption {
@@ -845,11 +833,11 @@
 .cs-results-note {
   font-size: 0.75rem;
   line-height: 1.45;
-  color: rgba(235, 235, 245, 0.62);
+  color: var(--bleu-200);
 }
 
 .cs-results-note strong {
-  color: #F5F5F7;
+  color: var(--papier);
   font-weight: 600;
 }
 
@@ -899,11 +887,11 @@
   padding: 5px 10px;
   border-radius: 999px;
   background: rgba(255, 255, 255, 0.94);
-  color: #0a0a0d;
+  color: var(--encre);
   font-size: 0.75rem;
   font-weight: 600;
   line-height: 1.3;
-  box-shadow: 0 4px 14px rgba(0, 0, 0, 0.16);
+  box-shadow: 0 4px 14px rgba(11, 13, 18, 0.16);
   pointer-events: none;
 }
 
@@ -1084,9 +1072,9 @@
   align-items: center;
   padding: 3px 10px;
   border-radius: 999px;
-  /* Bleu plein de l'appel à l'action : blanc lisible (5,97:1) */
+  /* Bleu plein de l'appel à l'action : blanc lisible (4,56:1) */
   background: var(--cs-cta-bg);
-  color: #fff;
+  color: var(--papier);
   font-size: 0.6875rem;
   font-weight: 600;
   letter-spacing: 0.01em;
@@ -1112,7 +1100,7 @@
   overflow: hidden;
   border-radius: var(--radius-sm);
   border: 1px solid var(--card-border);
-  background: #080c18;
+  background: var(--encre);
 }
 
 .cs-map-frame > iframe {
@@ -1229,11 +1217,11 @@
 }
 
 .cs-logo--light {
-  background: #FDFDFD;
+  background: var(--papier);
 }
 
 .cs-logo--dark {
-  background: #000;
+  background: var(--encre);
 }
 
 .cs-logo > img {
@@ -1264,7 +1252,7 @@
 
 /* Visuels sur fond noir : les marges du « contain » se fondent dans l'image */
 .card.cs-media--dark {
-  background: #000;
+  background: var(--encre);
 }
 
 .cs-media > .cs-img.cs-img--contain {
@@ -1361,15 +1349,15 @@
   aspect-ratio: 1123 / 794;
   overflow: hidden;
   border-radius: var(--radius-sm);
-  background: #0a0a0a;
+  background: var(--encre);
   border: 1px solid var(--card-border);
-  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.14);
+  box-shadow: 0 10px 30px rgba(11, 13, 18, 0.14);
   transition: transform var(--transition-med), box-shadow var(--transition-med);
 }
 
 .cs-flyer-media:hover {
   transform: translateY(-3px);
-  box-shadow: 0 16px 40px rgba(0, 0, 0, 0.22);
+  box-shadow: 0 16px 40px rgba(11, 13, 18, 0.22);
 }
 
 .cs-flyer-media > img {
@@ -1418,7 +1406,7 @@
   height: 8px;
   border-radius: 50%;
   background: var(--flyer-accent);
-  box-shadow: 0 0 0 1px rgba(0, 0, 0, 0.18);
+  box-shadow: 0 0 0 1px rgba(11, 13, 18, 0.18);
 }
 
 @media (max-width: 720px) {
@@ -1438,14 +1426,6 @@
   }
 }
 
-/* ---------- Pastille + surtitre sur une ligne ---------- */
-.cs-kicker {
-  display: flex;
-  align-items: center;
-  flex-wrap: wrap;
-  gap: 8px 12px;
-}
-
 .cs-pitch.cs-pitch--lead {
   font-size: 1.125rem;
   line-height: 1.5;
@@ -1457,7 +1437,7 @@
 
 /* Bloc mis en avant dans la carte sombre */
 .cs-tile.cs-tile--accent {
-  border-color: #0A84FF;
+  border-color: var(--bleu-400);
 }
 
 /* ---------- Lecteurs vidéo ---------- */
@@ -1502,7 +1482,7 @@
   overflow: hidden;
   border-radius: var(--radius-sm);
   border: 1px solid var(--card-border);
-  background: #0a0a0d;
+  background: var(--encre);
 }
 
 .cs-player--vertical .cs-player-frame {
@@ -1523,7 +1503,7 @@
 
 .cs-player-frame > video {
   object-fit: contain;
-  background: #000;
+  background: var(--encre);
 }
 
 /* Toute la miniature lance la lecture ; le rond blanc n'est qu'un repère */
@@ -1546,8 +1526,8 @@
   height: 64px;
   border-radius: 50%;
   background: rgba(255, 255, 255, 0.94);
-  color: #0a0a0d;
-  box-shadow: 0 8px 24px rgba(0, 0, 0, 0.35);
+  color: var(--encre);
+  box-shadow: 0 8px 24px rgba(11, 13, 18, 0.35);
   transition: transform var(--transition-fast);
 }
 
@@ -1562,7 +1542,7 @@
 }
 
 .cs-play:focus-visible {
-  outline: 2px solid #fff;
+  outline: 2px solid var(--papier);
   outline-offset: -6px;
 }
 
@@ -1573,8 +1553,8 @@
   z-index: 3;
   padding: 3px 8px;
   border-radius: 6px;
-  background: rgba(0, 0, 0, 0.78);
-  color: #fff;
+  background: rgba(11, 13, 18, 0.78);
+  color: var(--papier);
   font-size: 0.75rem;
   font-weight: 600;
   pointer-events: none;
@@ -1586,8 +1566,8 @@
   align-items: center;
   justify-content: center;
   background:
-    repeating-linear-gradient(135deg, rgba(255, 255, 255, 0.035) 0 14px, transparent 14px 28px),
-    #141416;
+    repeating-linear-gradient(135deg, var(--bleu-900) 0 14px, transparent 14px 28px),
+    var(--encre);
 }
 
 .cs-player-empty {
@@ -1678,9 +1658,9 @@
   color: var(--text);
 }
 
-/* Bleu foncé en clair (5,97:1 sur blanc), bleu système en sombre */
+/* Bleu foncé en clair (6,9:1 sur blanc), Bleu 400 en sombre */
 .cs-switch-btn[aria-pressed="true"] {
-  color: var(--cs-cta-bg);
+  color: var(--bleu-fonce);
   text-decoration: underline 2px;
 }
 
@@ -1742,7 +1722,7 @@
   overflow: hidden;
   border-radius: var(--radius-sm);
   border: 1px solid var(--card-border);
-  background: #fff;
+  background: var(--papier);
 }
 
 .cs-compare-item--after .cs-browser {
@@ -1755,8 +1735,8 @@
   align-items: center;
   gap: 12px;
   padding: 9px 12px;
-  background: #ECECEF;
-  border-bottom: 1px solid #DCDCE0;
+  background: var(--bleu-pale);
+  border-bottom: 1px solid var(--contour);
 }
 
 .cs-browser-dots {
@@ -1769,7 +1749,7 @@
   width: 9px;
   height: 9px;
   border-radius: 50%;
-  background: #C4C4CA;
+  background: var(--bleu-200);
 }
 
 .cs-browser-url {
@@ -1777,8 +1757,8 @@
   min-width: 0;
   padding: 4px 12px;
   border-radius: 999px;
-  background: #fff;
-  color: #55555C;
+  background: var(--papier);
+  color: var(--encre-douce);
   font-size: 0.75rem;
   line-height: 1.3;
   overflow: hidden;
@@ -1794,7 +1774,7 @@
   height: 520px;
   padding: 0;
   overflow: hidden;
-  background: #fff;
+  background: var(--papier);
   cursor: zoom-in;
 }
 
@@ -1820,7 +1800,7 @@
   right: 0;
   bottom: 0;
   height: 38%;
-  background: linear-gradient(to bottom, rgba(255, 255, 255, 0), #fff 92%);
+  background: linear-gradient(to bottom, rgba(255, 255, 255, 0), var(--papier) 92%);
   pointer-events: none;
 }
 
@@ -1834,8 +1814,8 @@
   min-height: 44px;
   padding: 0 18px;
   border-radius: 999px;
-  background: rgba(12, 12, 14, 0.88);
-  color: #fff;
+  background: rgba(11, 13, 18, 0.88);
+  color: var(--papier);
   font-size: 0.8125rem;
   font-weight: 600;
   white-space: nowrap;
@@ -1848,7 +1828,7 @@
 }
 
 .cs-peek:hover .cs-peek-label {
-  background: #0c0c0e;
+  background: var(--encre);
 }
 
 /* Bleu sur l'image : visible sur le blanc du fondu comme sur la capture */
@@ -1866,9 +1846,9 @@
   justify-content: center;
   gap: 10px;
   background:
-    repeating-linear-gradient(135deg, rgba(0, 0, 0, 0.045) 0 12px, transparent 12px 24px),
-    #F6F6F8;
-  color: #5C5C63;
+    repeating-linear-gradient(135deg, var(--contour) 0 12px, transparent 12px 24px),
+    var(--bleu-pale);
+  color: var(--encre-douce);
   font-size: 0.8125rem;
   font-weight: 500;
   text-align: center;
@@ -1906,7 +1886,7 @@
   overflow: hidden;
   border-radius: var(--radius-sm);
   border: 1px solid var(--card-border);
-  background: #fff;
+  background: var(--papier);
 }
 
 .cs-doc-media > img {
@@ -1972,7 +1952,7 @@
 
 /* La craie est presque blanche : un filet la détache du fond clair */
 .cs-dot--outline {
-  box-shadow: inset 0 0 0 1px rgba(0, 0, 0, 0.18);
+  box-shadow: inset 0 0 0 1px rgba(11, 13, 18, 0.18);
 }
 
 .cs-identity .cs-doc-media {
@@ -2004,7 +1984,7 @@
   max-width: 1000px;
   margin: 0 auto;
   padding: 12px 0;
-  background: linear-gradient(to bottom, rgba(10, 10, 12, 0.96) 70%, rgba(10, 10, 12, 0));
+  background: linear-gradient(to bottom, rgba(11, 13, 18, 0.96) 70%, rgba(11, 13, 18, 0));
 }
 
 .lightbox--page .lightbox-title {
@@ -2015,7 +1995,7 @@
   overflow: visible;
   clip: auto;
   white-space: normal;
-  color: #fff;
+  color: var(--papier);
   font-size: 0.875rem;
   font-weight: 600;
   line-height: 1.4;
