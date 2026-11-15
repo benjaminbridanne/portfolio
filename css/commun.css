@@ -206,7 +206,7 @@
 }
 
 /* h1 de l'accueil et des pages principales : 54 px, 40 px en mobile */
-:is(.profile-name, .svc-title, .projects-title, .hero-title):is(h1) {
+:is(.profile-name, .projects-title, .hero-title):is(h1) {
   font-size: var(--fs-54-40);
 }
 
@@ -216,7 +216,7 @@
 }
 
 /* h2 de section en pleine largeur : 40 px, 30 px en mobile */
-h2:is(.svc-name, .svc-cta-title, .form-title) {
+h2:is(.form-title) {
   font-size: var(--fs-40-30);
 }
 
