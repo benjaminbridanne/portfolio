@@ -29,14 +29,14 @@
 
 .project-facts dt {
   padding-top: 2px;
-  font-size: 0.8125rem;
+  font-size: 17px;
   font-weight: 500;
   color: var(--eyebrow);
 }
 
 .project-facts dd {
   margin: 0;
-  font-size: 0.8125rem;
+  font-size: 17px;
   color: var(--text);
   line-height: 1.45;
 }
@@ -50,34 +50,10 @@
   }
 }
 
-/* ---------- Résultat chiffré ---------- */
-.result-figure {
-  font-size: clamp(1.75rem, 2.6vw, 2.25rem);
-  font-weight: 700;
-  color: var(--text);
-  letter-spacing: -0.03em;
-  line-height: 1.05;
-}
-
-.result-figure span {
-  display: block;
-  margin-top: 4px;
-  font-size: 0.8125rem;
-  font-weight: 500;
-  color: var(--text-secondary);
-  letter-spacing: 0;
-}
-
-.result-caption {
-  font-size: 0.75rem;
-  color: var(--text-secondary);
-  line-height: 1.5;
-}
-
 .result-link {
   align-self: flex-start;
   margin-top: auto;
-  font-size: 0.8125rem;
+  font-size: 17px;
   font-weight: 600;
   color: var(--fiche-accent);
 }
@@ -99,7 +75,7 @@
 }
 
 .cta-text {
-  font-size: clamp(1.0625rem, 1.6vw, 1.3125rem);
+  font-size: var(--fs-23-17);
   font-weight: 600;
   color: var(--text);
   letter-spacing: -0.02em;
@@ -114,15 +90,14 @@
   border-radius: 999px;
   background: var(--fiche-accent);
   color: var(--papier);
-  font-size: 0.875rem;
+  font-size: 17px;
   font-weight: 600;
   white-space: nowrap;
-  transition: transform 250ms ease, box-shadow 250ms ease;
+  transition: transform 250ms ease;
 }
 
 .cta-link:hover {
   transform: translateY(-1px);
-  box-shadow: 0 10px 24px var(--fiche-accent-shadow);
 }
 
 @media (max-width: 720px) {
@@ -171,30 +146,6 @@
   --cs-available: var(--succes);
 }
 
-/* ---------- Pastille de disponibilité (barre de navigation) ---------- */
-.nav-status {
-  display: inline-flex;
-  align-items: center;
-  gap: 8px;
-  flex: none;
-  padding: 6px 12px;
-  border-radius: 999px;
-  background: var(--card-bg);
-  border: 1px solid var(--card-border);
-  color: var(--text-secondary);
-  font-size: 0.75rem;
-  font-weight: 500;
-  white-space: nowrap;
-}
-
-.nav-status-dot {
-  width: 7px;
-  height: 7px;
-  border-radius: 50%;
-  background: var(--cs-available);
-  box-shadow: 0 0 0 3px rgba(22, 121, 74, 0.18);
-}
-
 /* ---------- Grille ---------- */
 .cs-grid {
   display: grid;
@@ -211,6 +162,16 @@
 .cs-step,
 .cs-quote {
   grid-column: span 4;
+}
+
+/* Défi et réponse côte à côte ; les chiffres prennent toute la largeur,
+   pour que le grand chiffre garde ses 96 px */
+.cs-step:not(.cs-results) {
+  grid-column: span 6;
+}
+
+.cs-grid > .cs-results {
+  grid-column: 1 / -1;
 }
 
 .cs-poster {
@@ -231,14 +192,14 @@
 }
 
 .cs-title {
-  font-size: clamp(2.25rem, 4vw, 3.25rem);
+  font-size: var(--fs-54-40);
   font-weight: 700;
   letter-spacing: -0.035em;
   line-height: 1.02;
 }
 
 .cs-pitch {
-  font-size: 0.9375rem;
+  font-size: 17px;
   color: var(--text-secondary);
   line-height: 1.6;
   max-width: 56ch;
@@ -255,14 +216,14 @@
 
 .cs-facts dt {
   margin-bottom: 5px;
-  font-size: 0.8125rem;
+  font-size: 17px;
   font-weight: 500;
   color: var(--eyebrow);
 }
 
 .cs-facts dd {
   margin: 0;
-  font-size: 0.8125rem;
+  font-size: 17px;
   font-weight: 500;
   color: var(--text);
   line-height: 1.4;
@@ -298,21 +259,21 @@
   display: flex;
   align-items: baseline;
   gap: 10px;
-  font-size: 0.95rem;
+  font-size: 17px;
   font-weight: 600;
   letter-spacing: -0.01em;
   color: var(--text);
 }
 
 .cs-num {
-  font-size: 0.75rem;
+  font-size: 17px;
   font-weight: 700;
   color: var(--fiche-accent);
   letter-spacing: 0.02em;
 }
 
 .cs-lead {
-  font-size: 1.1875rem;
+  font-size: 17px;
   font-weight: 700;
   letter-spacing: -0.02em;
   line-height: 1.3;
@@ -320,7 +281,7 @@
 }
 
 .cs-body {
-  font-size: 0.87rem;
+  font-size: 17px;
   color: var(--text-secondary);
   line-height: 1.55;
 }
@@ -343,7 +304,7 @@
   grid-template-columns: 26px 1fr;
   gap: 12px;
   align-items: start;
-  font-size: 0.87rem;
+  font-size: 17px;
   color: var(--text-secondary);
   line-height: 1.5;
   counter-increment: cs-step;
@@ -355,75 +316,19 @@
   align-items: center;
   justify-content: center;
   width: 26px;
-  height: 26px;
-  border-radius: 50%;
-  background: var(--pill-bg);
-  border: 1px solid var(--pill-border);
-  color: var(--text);
-  font-size: 0.75rem;
-  font-weight: 600;
+  color: var(--bleu-fonce);
+  font-size: 17px;
+  font-weight: 700;
+  line-height: 1.5;
+}
+
+[data-theme="dark"] .cs-steps li::before {
+  color: var(--bleu-400);
 }
 
 .cs-steps strong {
   color: var(--text);
   font-weight: 600;
-}
-
-/* Résultats : carte sombre dans les deux thèmes */
-.card.cs-results {
-  background: var(--encre);
-  border-color: var(--encre);
-  color: var(--papier);
-}
-
-[data-theme="dark"] .card.cs-results {
-  background: var(--encre);
-  border-color: var(--bleu-800);
-}
-
-.cs-results .cs-label {
-  color: var(--papier);
-}
-
-.cs-figure {
-  font-size: clamp(2.75rem, 5vw, 4rem);
-  font-weight: 700;
-  letter-spacing: -0.04em;
-  line-height: 1;
-}
-
-.cs-figure-label {
-  margin-top: -6px;
-  font-size: 0.8125rem;
-  color: var(--bleu-200);
-}
-
-.cs-tiles {
-  display: grid;
-  grid-template-columns: repeat(2, minmax(0, 1fr));
-  gap: 10px;
-  margin-top: auto;
-}
-
-.cs-tile {
-  display: flex;
-  flex-direction: column;
-  gap: 3px;
-  padding: 12px 14px;
-  border-radius: var(--radius-sm);
-  background: var(--bleu-900);
-  border: 1px solid var(--bleu-800);
-}
-
-.cs-tile-value {
-  font-size: 1.25rem;
-  font-weight: 700;
-  letter-spacing: -0.02em;
-}
-
-.cs-tile-label {
-  font-size: 0.75rem;
-  color: var(--bleu-200);
 }
 
 /* ---------- Rangée 3 : citation et supports ---------- */
@@ -449,7 +354,7 @@
 }
 
 .cs-quote blockquote p {
-  font-size: 1rem;
+  font-size: 17px;
   font-weight: 500;
   line-height: 1.55;
   letter-spacing: -0.01em;
@@ -458,7 +363,7 @@
 
 .cs-quote footer {
   margin-top: auto;
-  font-size: 0.6875rem;
+  font-size: 13px;
   font-weight: 500;
   color: var(--eyebrow);
   text-transform: uppercase;
@@ -500,7 +405,7 @@
 }
 
 .cs-cta-title {
-  font-size: clamp(1.0625rem, 1.5vw, 1.25rem);
+  font-size: var(--fs-23-17);
   font-weight: 700;
   letter-spacing: -0.02em;
   line-height: 1.25;
@@ -508,7 +413,7 @@
 
 .cs-cta-sub {
   margin-top: 4px;
-  font-size: 0.8125rem;
+  font-size: 17px;
   color: var(--cs-cta-text-soft);
 }
 
@@ -520,25 +425,14 @@
   border-radius: 999px;
   background: var(--papier);
   color: var(--encre);
-  font-size: 0.875rem;
+  font-size: 17px;
   font-weight: 600;
   white-space: nowrap;
-  transition: transform var(--transition-fast), box-shadow var(--transition-fast);
-}
-
-.cs-cta-link svg {
-  width: 14px;
-  height: 14px;
   transition: transform var(--transition-fast);
 }
 
 .cs-cta-link:hover {
   transform: translateY(-1px);
-  box-shadow: 0 10px 24px rgba(11, 13, 18, 0.18);
-}
-
-.cs-cta-link:hover svg {
-  transform: translateX(2px);
 }
 
 .cs-cta-link:focus-visible {
@@ -558,23 +452,10 @@
 
 /* ---------- Carte sombre : phrase forte et étiquettes ---------- */
 .cs-statement {
-  font-size: clamp(1.625rem, 2.6vw, 2.125rem);
+  font-size: var(--fs-30-23);
   font-weight: 700;
   letter-spacing: -0.03em;
   line-height: 1.1;
-}
-
-.cs-results .cs-body {
-  color: var(--bleu-200);
-}
-
-.cs-tile--tag {
-  justify-content: center;
-  min-height: 44px;
-  padding: 10px 14px;
-  font-size: 0.8125rem;
-  font-weight: 600;
-  line-height: 1.3;
 }
 
 /* ---------- Liste à coches ---------- */
@@ -589,7 +470,7 @@
   display: grid;
   grid-template-columns: 18px 1fr;
   gap: 10px;
-  font-size: 0.87rem;
+  font-size: 17px;
   color: var(--text-secondary);
   line-height: 1.5;
 }
@@ -627,7 +508,7 @@
 }
 
 .cs-method-sub {
-  font-size: 0.8125rem;
+  font-size: 17px;
   color: var(--text-secondary);
 }
 
@@ -653,7 +534,7 @@
 }
 
 .cs-method-title {
-  font-size: 0.875rem;
+  font-size: 17px;
   font-weight: 600;
   letter-spacing: -0.01em;
   line-height: 1.3;
@@ -661,7 +542,7 @@
 }
 
 .cs-method-detail {
-  font-size: 0.75rem;
+  font-size: 17px;
   line-height: 1.45;
   color: var(--text-secondary);
 }
@@ -749,7 +630,7 @@
 }
 
 .cs-compare-group-title {
-  font-size: 0.6875rem;
+  font-size: 17px;
   font-weight: 500;
   color: var(--eyebrow);
   text-transform: uppercase;
@@ -794,14 +675,13 @@
 
 .cs-compare-item--after .cs-compare-media {
   border: 2px solid var(--fiche-accent);
-  box-shadow: 0 10px 28px var(--fiche-accent-shadow);
 }
 
 .cs-compare-caption {
   display: inline-flex;
   align-items: center;
   gap: 8px;
-  font-size: 0.8125rem;
+  font-size: 13px;
   font-weight: 500;
   color: var(--text-secondary);
 }
@@ -827,18 +707,6 @@
 /* Document paysage dans une case haute : on garde le titre et la première colonne */
 .cs-media > .cs-img.cs-img--start {
   object-position: left top;
-}
-
-/* ---------- Résultats : note complémentaire ---------- */
-.cs-results-note {
-  font-size: 0.75rem;
-  line-height: 1.45;
-  color: var(--bleu-200);
-}
-
-.cs-results-note strong {
-  color: var(--papier);
-  font-weight: 600;
 }
 
 /* ---------- Galerie en mosaïque (4 colonnes, 2 lignes) ---------- */
@@ -885,13 +753,12 @@
   z-index: 5;
   max-width: calc(100% - 24px);
   padding: 5px 10px;
-  border-radius: 999px;
+  border-radius: 8px;
   background: rgba(255, 255, 255, 0.94);
   color: var(--encre);
-  font-size: 0.75rem;
+  font-size: 13px;
   font-weight: 600;
   line-height: 1.3;
-  box-shadow: 0 4px 14px rgba(11, 13, 18, 0.16);
   pointer-events: none;
 }
 
@@ -960,13 +827,6 @@
 }
 
 @media (max-width: 720px) {
-  .project-nav .nav-status {
-    margin-left: auto;
-  }
-
-  .project-nav .theme-toggle-btn {
-    margin-left: 0;
-  }
 
   .cs-step:not(.cs-results) {
     grid-column: 1 / -1;
@@ -981,7 +841,7 @@
   }
 
   .cs-title {
-    font-size: clamp(1.875rem, 8.5vw, 2.5rem);
+    font-size: var(--fs-40-30);
   }
 
   .cs-facts {
@@ -1039,28 +899,18 @@
   }
 }
 
-/* Petits téléphones : la pastille garde seulement l'essentiel */
-@media (max-width: 440px) {
-  .nav-status-more {
-    display: none;
-  }
-}
-
 @media (prefers-reduced-motion: reduce) {
   .cs-poster:hover > .cs-img,
-  .cs-cta-link:hover,
-  .cs-cta-link:hover svg {
+.cs-cta-link:hover {
     transform: none;
   }
 }
 
 /* ---------- Problématique en encadré ---------- */
 .cs-question {
-  padding: 12px 14px;
-  border-radius: var(--radius-sm);
-  background: var(--pill-bg);
-  border: 1px solid var(--pill-border);
-  font-size: 0.8125rem;
+  padding-left: 16px;
+  border-left: 2px solid var(--bleu);
+  font-size: 17px;
   font-style: italic;
   line-height: 1.5;
   color: var(--text);
@@ -1070,14 +920,15 @@
 .cs-badge {
   display: inline-flex;
   align-items: center;
-  padding: 3px 10px;
-  border-radius: 999px;
-  /* Bleu plein de l'appel à l'action : blanc lisible (4,56:1) */
-  background: var(--cs-cta-bg);
-  color: var(--papier);
-  font-size: 0.6875rem;
+  /* Information écrite en texte, pas en pilule */
+  color: var(--bleu-fonce);
+  font-size: 13px;
   font-weight: 600;
   letter-spacing: 0.01em;
+}
+
+[data-theme="dark"] .cs-badge {
+  color: var(--bleu-400);
 }
 
 /* ---------- Cartographie interactive (iframe) ---------- */
@@ -1152,11 +1003,6 @@
   }
 }
 
-/* ---------- Trois étiquettes sur une ligne ---------- */
-.cs-tiles--3 {
-  grid-template-columns: repeat(3, minmax(0, 1fr));
-}
-
 /* ---------- Système visuel : nuanciers et logos ---------- */
 .cs-system {
   display: grid;
@@ -1188,14 +1034,14 @@
 
 .cs-swatch-name {
   padding: 12px 12px 0;
-  font-size: 0.875rem;
+  font-size: 13px;
   font-weight: 600;
   color: var(--text);
 }
 
 .cs-swatch-text {
   padding: 4px 12px 14px;
-  font-size: 0.75rem;
+  font-size: 17px;
   line-height: 1.45;
   color: var(--text-secondary);
 }
@@ -1351,13 +1197,11 @@
   border-radius: var(--radius-sm);
   background: var(--encre);
   border: 1px solid var(--card-border);
-  box-shadow: 0 10px 30px rgba(11, 13, 18, 0.14);
-  transition: transform var(--transition-med), box-shadow var(--transition-med);
+  transition: transform var(--transition-med);
 }
 
 .cs-flyer-media:hover {
   transform: translateY(-3px);
-  box-shadow: 0 16px 40px rgba(11, 13, 18, 0.22);
 }
 
 .cs-flyer-media > img {
@@ -1374,7 +1218,7 @@
   align-items: baseline;
   flex-wrap: wrap;
   gap: 4px 10px;
-  font-size: 0.8125rem;
+  font-size: 13px;
   line-height: 1.45;
   color: var(--text-secondary);
 }
@@ -1393,7 +1237,7 @@
   display: inline-flex;
   align-items: center;
   gap: 8px;
-  font-size: 0.6875rem;
+  font-size: 17px;
   font-weight: 600;
   color: var(--text);
   text-transform: uppercase;
@@ -1427,17 +1271,12 @@
 }
 
 .cs-pitch.cs-pitch--lead {
-  font-size: 1.125rem;
+  font-size: 17px;
   line-height: 1.5;
 }
 
 .cs-facts--2 {
   grid-template-columns: repeat(2, minmax(0, 1fr));
-}
-
-/* Bloc mis en avant dans la carte sombre */
-.cs-tile.cs-tile--accent {
-  border-color: var(--bleu-400);
 }
 
 /* ---------- Lecteurs vidéo ---------- */
@@ -1527,7 +1366,6 @@
   border-radius: 50%;
   background: rgba(255, 255, 255, 0.94);
   color: var(--encre);
-  box-shadow: 0 8px 24px rgba(11, 13, 18, 0.35);
   transition: transform var(--transition-fast);
 }
 
@@ -1555,7 +1393,7 @@
   border-radius: 6px;
   background: rgba(11, 13, 18, 0.78);
   color: var(--papier);
-  font-size: 0.75rem;
+  font-size: 17px;
   font-weight: 600;
   pointer-events: none;
 }
@@ -1572,7 +1410,7 @@
 
 .cs-player-empty {
   color: rgba(255, 255, 255, 0.72);
-  font-size: 0.8125rem;
+  font-size: 17px;
   font-weight: 600;
 }
 
@@ -1580,7 +1418,7 @@
   display: flex;
   align-items: center;
   gap: 8px;
-  font-size: 0.8125rem;
+  font-size: 13px;
   color: var(--text-secondary);
 }
 
@@ -1590,7 +1428,7 @@
   background: var(--pill-bg);
   border: 1px solid var(--pill-border);
   color: var(--text);
-  font-size: 0.6875rem;
+  font-size: 17px;
   font-weight: 600;
 }
 
@@ -1611,7 +1449,7 @@
   background: var(--card-bg-solid);
   border: 1px solid var(--card-border);
   color: var(--text);
-  font-size: 0.8125rem;
+  font-size: 17px;
   font-weight: 500;
   line-height: 1.35;
 }
@@ -1648,7 +1486,7 @@
   padding: 0 8px;
   border-radius: 8px;
   color: var(--text-secondary);
-  font-size: 0.875rem;
+  font-size: 17px;
   font-weight: 600;
   text-underline-offset: 6px;
   transition: color var(--transition-fast);
@@ -1671,7 +1509,7 @@
 .cs-footnote {
   grid-column: 1 / -1;
   padding: 0 4px;
-  font-size: 0.75rem;
+  font-size: 13px;
   font-style: italic;
   line-height: 1.5;
   color: var(--text-secondary);
@@ -1707,7 +1545,6 @@
   }
 }
 
-
 /* ---------- Aperçu de page dans un cadre de navigateur ----------
    Les cadres gardent leurs vraies couleurs dans les deux thèmes. */
 .cs-shots {
@@ -1727,7 +1564,6 @@
 
 .cs-compare-item--after .cs-browser {
   border: 2px solid var(--fiche-accent);
-  box-shadow: 0 10px 28px var(--fiche-accent-shadow);
 }
 
 .cs-browser-bar {
@@ -1756,10 +1592,10 @@
   flex: 1;
   min-width: 0;
   padding: 4px 12px;
-  border-radius: 999px;
+  border-radius: 6px;
   background: var(--papier);
   color: var(--encre-douce);
-  font-size: 0.75rem;
+  font-size: 13px;
   line-height: 1.3;
   overflow: hidden;
   text-overflow: ellipsis;
@@ -1816,7 +1652,7 @@
   border-radius: 999px;
   background: rgba(11, 13, 18, 0.88);
   color: var(--papier);
-  font-size: 0.8125rem;
+  font-size: 13px;
   font-weight: 600;
   white-space: nowrap;
   transform: translateX(-50%);
@@ -1849,7 +1685,7 @@
     repeating-linear-gradient(135deg, var(--contour) 0 12px, transparent 12px 24px),
     var(--bleu-pale);
   color: var(--encre-douce);
-  font-size: 0.8125rem;
+  font-size: 17px;
   font-weight: 500;
   text-align: center;
   cursor: default;
@@ -1882,10 +1718,9 @@
 
 .cs-doc-media {
   position: relative;
-  margin-top: 4px;
+  margin: 4px -26px -26px;
   overflow: hidden;
-  border-radius: var(--radius-sm);
-  border: 1px solid var(--card-border);
+  border-top: 1px solid var(--card-border);
   background: var(--papier);
 }
 
@@ -1996,7 +1831,7 @@
   clip: auto;
   white-space: normal;
   color: var(--papier);
-  font-size: 0.875rem;
+  font-size: 17px;
   font-weight: 600;
   line-height: 1.4;
 }
@@ -2048,5 +1883,394 @@
 @media (prefers-reduced-motion: reduce) {
   .cs-peek:hover > img {
     transform: none;
+  }
+}
+
+/* =========================================================
+   GRAND ÉCART : un seul chiffre réel, énorme, puis le reste en texte
+   ========================================================= */
+.cs-big-figure {
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+}
+
+.cs-big {
+  font-family: var(--font-titre);
+  font-size: 96px;
+  font-weight: 900;
+  letter-spacing: -0.02em;
+  line-height: 1;
+  color: var(--bleu);
+  overflow-wrap: anywhere;
+}
+
+[data-theme="dark"] .cs-big {
+  color: var(--bleu-400);
+}
+
+.cs-big-line {
+  font-size: 17px;
+  line-height: 1.5;
+  color: var(--encre-douce);
+}
+
+[data-theme="dark"] .cs-big-line {
+  color: var(--bleu-200);
+}
+
+/* Les autres chiffres : une liste de texte, sans sous-cartes */
+.cs-more {
+  list-style: none;
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+  margin: 8px 0 0;
+  padding: 14px 0 0;
+  border-top: 1px solid var(--line);
+  font-size: 17px;
+  line-height: 1.5;
+  color: var(--text-secondary);
+}
+
+.cs-more strong {
+  color: var(--text);
+  font-weight: 700;
+}
+
+/* Livrables : une ligne de texte, séparée par des virgules */
+.cs-deliverables {
+  padding-top: 14px;
+  border-top: 1px solid var(--line);
+  font-size: 17px;
+  line-height: 1.5;
+  color: var(--text-secondary);
+}
+
+@media (max-width: 720px) {
+  .cs-big {
+    font-size: 54px;
+  }
+
+  .cs-doc-media {
+    margin: 4px -20px -22px;
+  }
+}
+
+/* Bloc de chiffres en pleine largeur : le chiffre à gauche, le reste à droite */
+@media (min-width: 721px) {
+  .card.cs-results {
+    display: grid;
+    grid-template-columns: minmax(0, 1fr) minmax(0, 1fr);
+    grid-auto-flow: row dense;
+    column-gap: 56px;
+    row-gap: 14px;
+    align-items: start;
+  }
+
+  .cs-results > h2 {
+    grid-column: 1 / -1;
+  }
+
+  .cs-results > .cs-big-figure {
+    grid-column: 1;
+  }
+
+  .cs-results > .cs-more,
+  .cs-results > .cs-body,
+  .cs-results > .cs-deliverables {
+    grid-column: 2;
+  }
+
+  /* Sans grand chiffre (livrables) : le texte à gauche, la liste à droite */
+  .cs-results:not(:has(.cs-big-figure)) > .cs-body {
+    grid-column: 1;
+  }
+
+  .cs-results > .cs-more,
+  .cs-results > .cs-deliverables {
+    margin-top: 0;
+    padding-top: 0;
+    border-top: 0;
+  }
+}
+
+/* Mobile : les deux boutons posés sur le visuel s'empilent sans se chevaucher */
+@media (max-width: 720px) {
+  .cs-visual > .cs-actions {
+    left: 16px;
+    flex-direction: column;
+    align-items: flex-end;
+    flex-wrap: nowrap;
+  }
+
+  .cs-visual > .cs-actions .hero-action {
+    max-width: 100%;
+  }
+
+  .card.cs-visual {
+    min-width: 0;
+  }
+
+  /* Le ratio imposerait une largeur plus grande que l'écran : hauteur fixe à la place */
+  .card.cs-visual:has(> .cs-actions) {
+    aspect-ratio: auto;
+    height: 240px;
+    min-height: 0;
+  }
+}
+
+/* =========================================================
+   DÉFI, RÉPONSE, RÉSULTAT : 3 tuiles de même largeur et de même
+   hauteur sur une ligne, empilées sous 900 px.
+   Police système partout (pas de Mona Sans) : titres 700 / 23 px,
+   texte 17 px, chiffre principal 800 / 40 px en bleu.
+   ========================================================= */
+.cs-grid > .card.cs-step--trio {
+  grid-column: span 4;
+  align-self: stretch;
+  display: flex;
+  flex-direction: column;
+  gap: 14px;
+}
+
+.cs-grid > .card.cs-step--trio h2 {
+  display: block;
+  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
+  font-size: 23px;
+  font-weight: 700;
+  letter-spacing: -0.01em;
+  line-height: 1.25;
+  hyphens: manual;
+  -webkit-hyphens: manual;
+}
+
+.cs-step--trio :is(.cs-body, .cs-question, .cs-steps li, .cs-checks li, .cs-more, .cs-big-line, .cs-deliverables) {
+  font-size: 17px;
+}
+
+.cs-step--trio .cs-big {
+  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
+  font-size: 40px;
+  font-weight: 800;
+  letter-spacing: -0.02em;
+  line-height: 1.05;
+  color: var(--bleu);
+}
+
+[data-theme="dark"] .cs-step--trio .cs-big {
+  color: var(--bleu-400);
+}
+
+/* Les autres chiffres et les livrables : une simple liste sous un filet */
+.cs-grid > .cs-step--trio > :is(.cs-more, .cs-deliverables) {
+  margin: 0;
+  padding-top: 14px;
+  border-top: 1px solid var(--line);
+}
+
+@media (max-width: 900px) {
+  .cs-grid > .card.cs-step--trio {
+    grid-column: 1 / -1;
+  }
+}
+
+/* =========================================================
+   BLOC D'INFORMATIONS : une seule ligne, le commanditaire
+   ========================================================= */
+.cs-facts--1 {
+  grid-template-columns: minmax(0, 1fr);
+}
+
+/* =========================================================
+   LIENS DU PROJET (voir le site, les supports, le livrable...) :
+   liens texte dans la tuile de présentation, sans flèche
+   ========================================================= */
+.cs-links {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0 24px;
+  margin-top: -6px;
+}
+
+.cs-link {
+  display: inline-flex;
+  align-items: center;
+  min-height: 44px;
+  color: var(--bleu-fonce);
+  font-size: 17px;
+  font-weight: 650;
+  text-decoration: underline;
+  text-decoration-thickness: 1px;
+  text-underline-offset: 4px;
+}
+
+.cs-link:hover {
+  text-decoration-thickness: 2px;
+}
+
+[data-theme="dark"] .cs-link {
+  color: var(--bleu-400);
+}
+
+/* =========================================================
+   TUILE RÉSULTAT « GRAND CHIFFRE » (classe commune .cs-result)
+   De haut en bas : note « au final : », titre, texte, puis en bas la
+   liste à gauche (45 %) et le grand chiffre à droite.
+   Le chiffre et sa légende sont en position absolue : ils ne réservent
+   aucune place, la hauteur de la tuile vient uniquement du texte.
+   Ils se calent en bas de la tuile ; si la place manque, ils restent
+   juste sous le paragraphe et le chiffre est davantage coupé par le bas.
+   Taille : suit la largeur de la tuile (cqi) et le nombre de caractères
+   (data-chars), avec un plafond en pixels.
+   ========================================================= */
+.cs-grid > .card.cs-result {
+  position: relative;
+  overflow: hidden;
+  container-type: inline-size;
+  gap: 12px;
+  padding: 36px 36px 30px;
+  border-radius: 22px;
+  box-shadow: none;
+}
+
+.cs-result-note,
+.cs-grid > .card.cs-step--trio h2.cs-reponse-title {
+  display: block;
+  margin: 0;
+  font-family: "Caveat", "Segoe Print", "Bradley Hand", cursive;
+  font-size: 34px;
+  font-weight: 600;
+  line-height: 1.1;
+  letter-spacing: 0;
+  color: var(--bleu);
+  transform: rotate(-3deg);
+  transform-origin: left center;
+}
+
+[data-theme="dark"] :is(.cs-result-note, .cs-grid > .card.cs-step--trio h2.cs-reponse-title) {
+  color: var(--bleu-400);
+}
+
+/* Papi : la phrase d'origine reste sous « ma réponse : » */
+.cs-reponse-lead {
+  font-size: 17px;
+  font-weight: 700;
+  line-height: 1.4;
+  color: var(--text);
+}
+
+.cs-grid > .card.cs-result h2.cs-result-title {
+  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
+  font-size: 28px;
+  font-weight: 800;
+  line-height: 1.12;
+  letter-spacing: -0.01em;
+  color: var(--text);
+}
+
+.cs-result-text {
+  font-size: 17px;
+  line-height: 1.55;
+  color: var(--text-secondary);
+}
+
+/* Bas de tuile : s'étend du paragraphe jusqu'au bas de la tuile.
+   Sa hauteur minimale est celle de la liste ; le chiffre n'y prend aucune place. */
+.cs-result-bottom {
+  position: relative;
+  flex: 1 1 auto;
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-end;
+  padding-top: 8px;
+}
+
+.cs-result-list {
+  position: relative;
+  z-index: 1;
+  width: 45%;
+  margin: 0 0 4px;
+  padding: 0;
+  list-style: none;
+}
+
+.cs-result-list li {
+  padding: 9px 0;
+  border-top: 1px solid var(--line);
+  font-size: 15px;
+  line-height: 1.35;
+  color: var(--text);
+}
+
+.cs-result-list strong {
+  font-weight: 700;
+}
+
+/* Colonne du chiffre : de 49 % au bord droit, du haut de la zone jusqu'au-delà
+   du bas de la tuile (la tuile coupe ce qui dépasse). Le contenu est poussé en
+   bas par une marge automatique : s'il ne tient pas, il part du haut de la zone
+   (sous le paragraphe) et déborde par le bas, jamais vers le texte. */
+.cs-result-figure {
+  position: absolute;
+  z-index: 0;
+  top: 8px;
+  right: 0;
+  bottom: -30px;
+  left: 49%;
+  display: flex;
+  flex-direction: column;
+  align-items: flex-end;
+  text-align: right;
+}
+
+/* Marge haute automatique : légende et chiffre se calent en bas de la colonne */
+.cs-result-legend {
+  flex: none;
+  margin: auto 0 6px;
+  font-family: "Caveat", "Segoe Print", "Bradley Hand", cursive;
+  font-size: 32px;
+  font-weight: 600;
+  line-height: 1;
+  color: var(--bleu);
+  transform: rotate(-3deg);
+  transform-origin: right center;
+}
+
+/* Le chiffre dépasse par le bas : la tuile (overflow: hidden) le coupe */
+.cs-result-number {
+  --chiffre: min(44cqi, 220px);
+  flex: none;
+  margin: 0 0 -0.16em;
+  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
+  font-size: var(--chiffre);
+  font-weight: 800;
+  line-height: 0.9;
+  letter-spacing: -0.04em;
+  white-space: nowrap;
+  color: var(--bleu);
+}
+
+/* data-chars : nombre de caractères affichés, espaces compris.
+   Tailles calculées pour que le chiffre tienne dans sa colonne (51 % de la tuile). */
+.cs-result-number[data-chars="2"] { --chiffre: min(32cqi, 170px); }
+.cs-result-number[data-chars="3"] { --chiffre: min(24cqi, 125px); }
+.cs-result-number[data-chars="4"] { --chiffre: min(18cqi, 95px); }
+.cs-result-number[data-chars="5"] { --chiffre: min(15cqi, 80px); }
+.cs-result-number[data-chars="6"] { --chiffre: min(14cqi, 72px); }
+.cs-result-number[data-chars="7"] { --chiffre: min(13cqi, 66px); }
+.cs-result-number[data-chars="8"] { --chiffre: min(12.5cqi, 62px); }
+
+[data-theme="dark"] :is(.cs-result-legend, .cs-result-number) {
+  color: var(--bleu-400);
+}
+
+@media (max-width: 720px) {
+  .cs-grid > .card.cs-result {
+    padding: 28px 24px 24px;
+  }
+
+  .cs-result-figure {
+    bottom: -24px;
   }
 }

@@ -26,6 +26,8 @@
 
   <meta name="twitter:card" content="summary_large_image" />
   <link rel="stylesheet" href="css/fiche-projet.css" />
+  <link rel="preload" href="fonts/mona-sans-expanded-900.woff2" as="font" type="font/woff2" crossorigin />
+  <link rel="stylesheet" href="css/marque.css" />
   <style>
     /* =========================================================
        TOKENS (identiques à l'accueil : cohérence stricte)
@@ -40,73 +42,73 @@
       --transition-fast: 250ms var(--ease);
       --transition-med: 400ms var(--ease);
 
-      --sun-moon: #F7E27B;
+      --sun-moon: var(--bleu-200);
     }
 
     /* -------- Light mode -------- */
     [data-theme="light"] {
-      --bg: #f2f2f4;
-      --bg-halo-1: rgba(205, 214, 232, 0.30);
-      --bg-halo-2: rgba(214, 220, 234, 0.24);
+      --bg: var(--papier);
+      --bg-halo-1: transparent;
+      --bg-halo-2: transparent;
 
-      --card-bg: rgba(255, 255, 255, 0.74);
-      --card-bg-soft: rgba(255, 255, 255, 0.56);
-      --card-bg-solid: #ffffff;
-      --card-border: rgba(60, 60, 67, 0.16);
-      --card-border-hover: rgba(60, 60, 67, 0.28);
-      --card-edge: rgba(255, 255, 255, 0.95);
-      --card-shadow: 0 4px 20px rgba(0, 0, 0, 0.05);
-      --card-shadow-hover: 0 14px 38px rgba(0, 0, 0, 0.09);
-      --card-highlight-top: rgba(255, 255, 255, 0.9);
+      --card-bg: var(--papier);
+      --card-bg-soft: var(--papier);
+      --card-bg-solid: var(--papier);
+      --card-border: var(--contour);
+      --card-border-hover: var(--bleu-200);
+      --card-edge: transparent;
+      --card-shadow: none;
+      --card-shadow-hover: none;
+      --card-highlight-top: transparent;
       --card-blur: 18px;
 
-      --text: #0a0a0d;
-      --text-secondary: rgba(60, 60, 67, 0.62);
-      --eyebrow: rgba(60, 60, 67, 0.58);
-      --line: rgba(60, 60, 67, 0.12);
+      --text: var(--encre);
+      --text-secondary: var(--encre-douce);
+      --eyebrow: var(--encre-douce);
+      --line: var(--contour);
 
-      --toggle-track-bg: #e8e8ea;
-      --toggle-track-border: rgba(60, 60, 67, 0.22);
-      --toggle-thumb-bg: #0a0a0d;
+      --toggle-track-bg: var(--bleu-pale);
+      --toggle-track-border: var(--contour);
+      --toggle-thumb-bg: var(--encre);
 
-      --nav-bg: rgba(242, 242, 244, 0.72);
-      --nav-border: rgba(60, 60, 67, 0.12);
+      --nav-bg: var(--papier);
+      --nav-border: var(--contour);
 
-      --pill-bg: rgba(0, 0, 0, 0.04);
-      --pill-border: rgba(60, 60, 67, 0.14);
+      --pill-bg: var(--bleu-pale);
+      --pill-border: var(--bleu-200);
     }
 
     /* -------- Dark mode -------- */
     [data-theme="dark"] {
-      --bg: #000000;
-      --bg-halo-1: rgba(44, 44, 52, 0.22);
-      --bg-halo-2: rgba(24, 34, 52, 0.18);
+      --bg: var(--encre);
+      --bg-halo-1: transparent;
+      --bg-halo-2: transparent;
 
-      --card-bg: rgba(18, 18, 20, 0.74);
-      --card-bg-soft: rgba(20, 20, 22, 0.56);
-      --card-bg-solid: #0e0e10;
-      --card-border: rgba(255, 255, 255, 0.10);
-      --card-border-hover: rgba(255, 255, 255, 0.20);
-      --card-edge: rgba(255, 255, 255, 0.28);
-      --card-shadow: 0 6px 26px rgba(0, 0, 0, 0.50);
-      --card-shadow-hover: 0 18px 46px rgba(0, 0, 0, 0.62);
-      --card-highlight-top: rgba(255, 255, 255, 0.14);
+      --card-bg: var(--carte-sombre);
+      --card-bg-soft: var(--carte-sombre);
+      --card-bg-solid: var(--carte-sombre);
+      --card-border: var(--carte-sombre-bord);
+      --card-border-hover: var(--bleu-700);
+      --card-edge: transparent;
+      --card-shadow: none;
+      --card-shadow-hover: none;
+      --card-highlight-top: transparent;
       --card-blur: 16px;
 
-      --text: #F5F5F7;
-      --text-secondary: rgba(235, 235, 245, 0.62);
-      --eyebrow: rgba(235, 235, 245, 0.56);
-      --line: rgba(255, 255, 255, 0.10);
+      --text: var(--papier);
+      --text-secondary: var(--bleu-200);
+      --eyebrow: var(--bleu-200);
+      --line: var(--bleu-800);
 
-      --toggle-track-bg: #1c1c1e;
-      --toggle-track-border: rgba(255, 255, 255, 0.16);
-      --toggle-thumb-bg: #0a0a0a;
+      --toggle-track-bg: var(--bleu-900);
+      --toggle-track-border: var(--bleu-800);
+      --toggle-thumb-bg: var(--encre);
 
-      --nav-bg: rgba(0, 0, 0, 0.62);
-      --nav-border: rgba(255, 255, 255, 0.08);
+      --nav-bg: var(--encre);
+      --nav-border: var(--bleu-800);
 
-      --pill-bg: rgba(255, 255, 255, 0.05);
-      --pill-border: rgba(255, 255, 255, 0.10);
+      --pill-bg: var(--bleu-900);
+      --pill-border: var(--bleu-800);
     }
 
     /* =========================================================
@@ -189,14 +191,12 @@
       border-radius: var(--radius);
       background: var(--card-bg);
       border: 1px solid var(--card-border);
-      box-shadow: var(--card-shadow);
       padding: 22px;
       overflow: hidden;
       backdrop-filter: blur(var(--card-blur)) saturate(118%);
       -webkit-backdrop-filter: blur(var(--card-blur)) saturate(118%);
       transition:
         transform var(--transition-med),
-        box-shadow var(--transition-med),
         border-color var(--transition-med),
         background var(--transition-med);
     }
@@ -208,9 +208,9 @@
       padding: 1px;
       border-radius: inherit;
       background: linear-gradient(145deg, var(--card-edge), transparent 42%);
-      -webkit-mask: linear-gradient(#000 0 0) content-box, linear-gradient(#000 0 0);
+      -webkit-mask: linear-gradient(var(--encre) 0 0) content-box, linear-gradient(var(--encre) 0 0);
       -webkit-mask-composite: xor;
-      mask: linear-gradient(#000 0 0) content-box, linear-gradient(#000 0 0);
+      mask: linear-gradient(var(--encre) 0 0) content-box, linear-gradient(var(--encre) 0 0);
       mask-composite: exclude;
       opacity: 0.75;
       pointer-events: none;
@@ -237,7 +237,6 @@
       transform: scale(1.015);
       z-index: 6;
       border-color: var(--card-border-hover);
-      box-shadow: var(--card-shadow-hover);
     }
 
     .card>* {
@@ -247,116 +246,6 @@
 
     .card--soft {
       background: var(--card-bg-soft);
-    }
-
-    /* =========================================================
-       HEADER STICKY
-       ========================================================= */
-    .project-nav {
-      position: sticky;
-      top: 0;
-      z-index: 30;
-      display: flex;
-      align-items: center;
-      gap: 20px;
-      padding: 12px 24px;
-      background: var(--nav-bg);
-      border-bottom: 1px solid var(--nav-border);
-      backdrop-filter: blur(18px) saturate(130%);
-      -webkit-backdrop-filter: blur(18px) saturate(130%);
-    }
-
-    .nav-back {
-      display: inline-flex;
-      align-items: center;
-      gap: 8px;
-      font-size: 0.875rem;
-      font-weight: 500;
-      color: var(--text);
-      padding: 6px 10px;
-      border-radius: 10px;
-      transition: background var(--transition-fast);
-    }
-
-    .nav-back:hover {
-      background: var(--card-bg-soft);
-    }
-
-    .nav-back svg {
-      width: 16px;
-      height: 16px;
-    }
-
-    .nav-crumb {
-      font-size: 0.8125rem;
-      color: var(--text-secondary);
-      flex: 1;
-      min-width: 0;
-      overflow: hidden;
-      text-overflow: ellipsis;
-      white-space: nowrap;
-    }
-
-    .nav-crumb strong {
-      color: var(--text);
-      font-weight: 500;
-    }
-
-    /* Toggle iOS */
-    .theme-toggle-btn {
-      display: inline-flex;
-      align-items: center;
-      justify-content: center;
-      padding: 0;
-    }
-
-    .toggle-switch {
-      position: relative;
-      width: 52px;
-      height: 28px;
-      border-radius: 999px;
-      background: var(--toggle-track-bg);
-      border: 1px solid var(--toggle-track-border);
-      transition: background var(--transition-med), border-color var(--transition-med);
-    }
-
-    .toggle-thumb {
-      position: absolute;
-      top: 50%;
-      left: 3px;
-      width: 22px;
-      height: 22px;
-      border-radius: 50%;
-      background: var(--toggle-thumb-bg);
-      transform: translateY(-50%);
-      transition: left var(--transition-med), background var(--transition-med);
-      display: flex;
-      align-items: center;
-      justify-content: center;
-    }
-
-    .toggle-thumb svg {
-      width: 12px;
-      height: 12px;
-      color: var(--sun-moon);
-      position: absolute;
-      transition: opacity var(--transition-fast);
-    }
-
-    [data-theme="dark"] .toggle-thumb {
-      left: 3px;
-    }
-
-    [data-theme="light"] .toggle-thumb {
-      left: calc(100% - 25px);
-    }
-
-    [data-theme="dark"] .icon-sun {
-      opacity: 0;
-    }
-
-    [data-theme="light"] .icon-moon {
-      opacity: 0;
     }
 
     /* =========================================================
@@ -370,32 +259,17 @@
       z-index: 1;
     }
 
-    .hero-eyebrow {
-      font-size: 0.75rem;
-      font-weight: 500;
-      color: var(--eyebrow);
-      text-transform: uppercase;
-      letter-spacing: 0.14em;
-    }
-
+    /* Étiquettes : une ligne de texte, 13 px */
     .hero-tags {
-      display: flex;
-      flex-wrap: wrap;
-      gap: 8px;
+      font-size: 13px;
+      line-height: 1.5;
+      color: var(--encre-douce);
     }
 
-    .hero-tag {
-      display: inline-flex;
-      align-items: center;
-      padding: 6px 12px;
-      border-radius: 999px;
-      background: var(--pill-bg);
-      border: 1px solid var(--pill-border);
-      font-size: 0.75rem;
-      font-weight: 500;
-      color: var(--text-secondary);
-      letter-spacing: 0.01em;
+    [data-theme="dark"] .hero-tags {
+      color: var(--bleu-200);
     }
+
 
     /* Bouton pose sur le visuel : lisible dans les deux themes */
     .hero-action {
@@ -409,10 +283,10 @@
       max-width: calc(100% - 32px);
       padding: 9px 15px;
       border-radius: 999px;
-      background: rgba(12, 12, 14, 0.78);
+      background: rgba(11, 13, 18, 0.78);
       border: 1px solid rgba(255, 255, 255, 0.24);
-      color: #fff;
-      font-size: 0.8125rem;
+      color: var(--papier);
+      font-size: 17px;
       font-weight: 600;
       letter-spacing: -0.005em;
       -webkit-backdrop-filter: blur(10px);
@@ -423,20 +297,14 @@
         transform var(--transition-med);
     }
 
-    .hero-action svg {
-      width: 14px;
-      height: 14px;
-      flex: none;
-    }
-
     .hero-action:hover {
-      background: rgba(12, 12, 14, 0.9);
+      background: rgba(11, 13, 18, 0.9);
       border-color: rgba(255, 255, 255, 0.45);
       transform: translateY(-1px);
     }
 
     .hero-action:focus-visible {
-      outline: 2px solid #fff;
+      outline: 2px solid var(--papier);
       outline-offset: 3px;
     }
 
@@ -470,13 +338,13 @@
       align-items: center;
       justify-content: center;
       padding: clamp(16px, 4vw, 48px);
-      background: rgba(0, 0, 0, 0.86);
+      background: rgba(11, 13, 18, 0.86);
       -webkit-backdrop-filter: blur(6px);
       backdrop-filter: blur(6px);
     }
 
     [data-theme="light"] .lightbox {
-      background: rgba(20, 20, 24, 0.82);
+      background: rgba(11, 13, 18, 0.82);
     }
 
     .lightbox[hidden] {
@@ -490,7 +358,6 @@
       height: auto;
       object-fit: contain;
       border-radius: var(--radius-sm);
-      box-shadow: 0 24px 70px rgba(0, 0, 0, 0.55);
     }
 
     .lightbox-close {
@@ -505,7 +372,7 @@
       border-radius: 50%;
       background: rgba(255, 255, 255, 0.12);
       border: 1px solid rgba(255, 255, 255, 0.28);
-      color: #fff;
+      color: var(--papier);
       transition: background var(--transition-fast), border-color var(--transition-fast);
     }
 
@@ -520,7 +387,7 @@
     }
 
     .lightbox-close:focus-visible {
-      outline: 2px solid #fff;
+      outline: 2px solid var(--papier);
       outline-offset: 3px;
     }
 
@@ -541,7 +408,7 @@
       }
 
       html {
-        font-size: 18px;
+        font-size: 17px;
       }
 
       .project-main {
@@ -551,25 +418,6 @@
 
     /* Mobile */
     @media (max-width: 720px) {
-      /* Le fil d'ariane passe sur sa propre ligne plutôt que d'être tronqué */
-      .project-nav {
-        flex-wrap: wrap;
-        padding: 10px 16px;
-        gap: 6px 12px;
-      }
-
-      .theme-toggle-btn {
-        margin-left: auto;
-      }
-
-      .nav-crumb {
-        order: 3;
-        flex: 1 0 100%;
-        white-space: normal;
-        overflow: visible;
-        text-overflow: clip;
-        line-height: 1.4;
-      }
 
       .project-main {
         padding: 20px 16px 40px;
@@ -593,8 +441,7 @@
 
       .card:hover,
       .hero-action:hover,
-      .pager-link:hover,
-      .pager-link:hover .pager-arrow {
+      .pager-link:hover {
         transform: none;
       }
     }
@@ -616,20 +463,17 @@
       border-radius: var(--radius);
       background: var(--card-bg);
       border: 1px solid var(--card-border);
-      box-shadow: var(--card-shadow);
       backdrop-filter: blur(var(--card-blur)) saturate(118%);
       -webkit-backdrop-filter: blur(var(--card-blur)) saturate(118%);
       color: var(--text);
       transition:
         transform var(--transition-med),
-        box-shadow var(--transition-med),
         border-color var(--transition-med);
     }
 
     .pager-link:hover {
       transform: scale(1.015);
       border-color: var(--card-border-hover);
-      box-shadow: var(--card-shadow-hover);
     }
 
     .pager-prev {
@@ -649,9 +493,7 @@
     }
 
     .pager-label {
-      font-size: 12px;
-      letter-spacing: 0.04em;
-      text-transform: uppercase;
+      font-size: 13px;
       color: var(--eyebrow);
     }
 
@@ -659,25 +501,6 @@
       font-size: 17px;
       font-weight: 600;
       color: var(--text);
-    }
-
-    .pager-arrow {
-      font-size: 22px;
-      line-height: 1;
-      color: var(--text-secondary);
-      transition: transform var(--transition-fast), color var(--transition-fast);
-    }
-
-    .pager-link:hover .pager-arrow {
-      color: var(--text);
-    }
-
-    .pager-prev:hover .pager-arrow {
-      transform: translateX(-4px);
-    }
-
-    .pager-next:hover .pager-arrow {
-      transform: translateX(4px);
     }
 
     /* Responsive : sur mobile, on empile */
@@ -743,7 +566,7 @@
 
     .zig-swatch-hex {
       padding: 2px 12px 0;
-      font-size: 0.75rem;
+      font-size: 13px;
       color: var(--text-secondary);
       font-variant-numeric: tabular-nums;
     }
@@ -751,11 +574,7 @@
     .zig-share {
       display: inline-block;
       margin-left: 6px;
-      padding: 1px 7px;
-      border-radius: 999px;
-      background: var(--pill-bg);
-      border: 1px solid var(--pill-border);
-      font-size: 0.6875rem;
+      font-size: 17px;
       font-weight: 600;
       color: var(--text-secondary);
       font-variant-numeric: tabular-nums;
@@ -840,14 +659,14 @@
 
     .zig-type-name {
       display: block;
-      font-size: 0.875rem;
+      font-size: 13px;
       font-weight: 600;
     }
 
     .zig-type-use {
       display: block;
       margin-top: 2px;
-      font-size: 0.75rem;
+      font-size: 13px;
       line-height: 1.4;
       /* Noir à 78 % sur papier : 11:1 */
       color: rgba(23, 23, 23, 0.78);
@@ -881,14 +700,14 @@
 
     .zig-motif-name {
       padding: 10px 12px 0;
-      font-size: 0.8125rem;
+      font-size: 17px;
       font-weight: 600;
       color: var(--text);
     }
 
     .zig-motif-use {
       padding: 2px 12px 12px;
-      font-size: 0.75rem;
+      font-size: 17px;
       line-height: 1.4;
       color: var(--text-secondary);
     }
@@ -996,7 +815,7 @@
       }
 
       .zig-type-sample {
-        font-size: 2.25rem;
+        font-size: 40px;
       }
 
       .zig-motifs {
@@ -1041,7 +860,9 @@
     }
   </style>
   <link rel="stylesheet" href="css/site-pages.css" />
+  <link rel="stylesheet" href="css/commun.css" />
   <script defer src="https://cloud.umami.is/script.js" data-website-id="c992974a-48c8-47e4-9625-85ab5eca2ac3"></script>
+  <script src="js/site.js" defer></script>
 </head>
 
 <body>
@@ -1049,40 +870,33 @@
   <!-- =============================================================
        BARRE DE NAV STICKY : retour vers Réalisations, fil d’ariane, theme
        ============================================================= -->
-  <nav class="project-nav" aria-label="Navigation principale">
-    <a href="/realisations" class="nav-back">
-      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"
-        stroke-linejoin="round" aria-hidden="true">
-        <path d="M19 12H5M12 19l-7-7 7-7" />
-      </svg>
-      Réalisations
+  <header class="site-header">
+    <a class="brand" href="/" aria-label="Accueil, Brief &amp; Bold">
+      <span class="brand-brief" aria-hidden="true">brief&amp;</span><span class="brand-bold" aria-hidden="true">BOLD</span>
     </a>
-
-    <span class="nav-crumb">Projet 04 · <strong>ZIG</strong></span>
-
-    <span class="nav-status">
-      <span class="nav-status-dot" aria-hidden="true"></span>
-      <span>Disponible<span class="nav-status-more"> pour de nouvelles missions</span></span>
-    </span>
-
-    <button id="theme-toggle" class="theme-toggle-btn" aria-label="Basculer entre le mode sombre et le mode clair"
-      type="button">
+    <nav class="site-menu" aria-label="Navigation principale">
+      <ul>
+        <li><a href="/">Accueil</a></li>
+        <li><a href="/services">Services</a></li>
+        <li><a href="/realisations" aria-current="true">Réalisations</a></li>
+        <li><a data-umami-event="clic-contact" href="/contact">Contact</a></li>
+      </ul>
+    </nav>
+    <button type="button" class="theme-btn" id="theme-toggle" aria-label="Passer en mode sombre">
       <span class="sr-only" id="theme-toggle-label">Passer en mode sombre</span>
-      <span class="toggle-switch" aria-hidden="true">
-        <span class="toggle-thumb">
-          <svg class="icon-sun" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"
-            stroke-linecap="round" stroke-linejoin="round">
+      <span class="theme-track" aria-hidden="true">
+        <span class="theme-thumb">
+          <svg class="theme-sun" viewBox="0 0 24 24">
             <circle cx="12" cy="12" r="4" />
-            <path
-              d="M12 2v2M12 20v2M4.93 4.93l1.41 1.41M17.66 17.66l1.41 1.41M2 12h2M20 12h2M4.93 19.07l1.41-1.41M17.66 6.34l1.41-1.41" />
+            <path d="M12 2v2M12 20v2M4.93 4.93l1.41 1.41M17.66 17.66l1.41 1.41M2 12h2M20 12h2M4.93 19.07l1.41-1.41M17.66 6.34l1.41-1.41" />
           </svg>
-          <svg class="icon-moon" viewBox="0 0 24 24" fill="currentColor">
-            <path d="M20.354 15.354A9 9 0 018.646 3.646 9.003 9.003 0 0012 21a9.003 9.003 0 008.354-5.646z" />
+          <svg class="theme-moon" viewBox="0 0 24 24">
+            <path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z" />
           </svg>
         </span>
       </span>
     </button>
-  </nav>
+  </header>
 
 
   <main class="project-main" id="top">
@@ -1090,9 +904,9 @@
 
       <!-- ========== RANGÉE 1 · PRÉSENTATION ========== -->
       <article class="card cs-intro" aria-labelledby="hero-title">
-        <span class="hero-eyebrow">04 · Identité visuelle et campagne print</span>
+        <p class="note-main">ZIG :</p>
         <h1 class="cs-title" id="hero-title">
-          Trois lettres. <span class="cs-title-accent">Qui sortent du cadre.</span>
+          Le logo et la campagne d'ouverture d'un atelier de sérigraphie toulousain
         </h1>
 
         <p class="cs-pitch">
@@ -1100,26 +914,15 @@
           d’ouverture, à partir d’un brief fourni par le commanditaire&nbsp;: logo et déclinaisons, charte graphique, affiche A3 et flyer A5 recto verso pour le week-end d’ouverture.
         </p>
 
-        <div class="hero-tags">
-          <span class="hero-tag">Identité visuelle</span>
-          <span class="hero-tag">Charte graphique</span>
-          <span class="hero-tag">Direction artistique</span>
-          <span class="hero-tag">Print</span>
-          <span class="hero-tag">Campagne</span>
-        </div>
+        <p class="hero-tags">Identité visuelle, Charte graphique, Direction artistique, Print, Campagne</p>
+        <p class="cs-links">
+          <a class="cs-link" href="#applications">Voir les supports</a>
+        </p>
 
-        <dl class="cs-facts cs-facts--3">
+        <dl class="cs-facts cs-facts--1">
           <div>
-            <dt>Type</dt>
-            <dd>Commande</dd>
-          </div>
-          <div>
-            <dt>Brief</dt>
-            <dd>Atelier de sérigraphie,<br />Toulouse</dd>
-          </div>
-          <div>
-            <dt>Livrables</dt>
-            <dd>Charte, affiche A3, flyer A5</dd>
+            <dt>Commanditaire</dt>
+            <dd>Atelier de sérigraphie, Toulouse</dd>
           </div>
         </dl>
       </article>
@@ -1131,21 +934,11 @@
           width="1600" height="1000" fetchpriority="high" />
         <button type="button" class="zoom-btn" data-zoom-src="Images/zig-couverture.webp"
           aria-label="Agrandir l’image : le logo ZIG et sa signature"></button>
-        <a class="hero-action" href="#applications">
-          Voir les supports
-          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"
-            stroke-linejoin="round" aria-hidden="true">
-            <path d="M12 5v14M5 12l7 7 7-7" />
-          </svg>
-        </a>
       </div>
 
       <!-- ========== RANGÉE 2 · LE BRIEF ========== -->
-      <article class="card cs-step" aria-labelledby="brief-title">
-        <h2 class="cs-label" id="brief-title"><span class="cs-num">01</span> Le brief</h2>
-        <p class="cs-lead">
-          Donner envie d’imprimer à ceux qui pensent ne pas être créatifs.
-        </p>
+      <article class="card cs-step cs-step--trio" aria-labelledby="brief-title">
+        <h2 class="cs-lead" id="brief-title">Donner envie d’imprimer à ceux qui pensent ne pas être créatifs.</h2>
         <p class="cs-body">
           ZIG ouvre son atelier à Toulouse. La campagne devait se faire remarquer dans la rue, faire comprendre
           l’activité en un regard et lever le frein des 18-35&nbsp;ans&nbsp;: «&nbsp;ce n’est pas pour moi, je ne sais
@@ -1154,8 +947,8 @@
       </article>
 
       <!-- ========== RANGÉE 2 · MA RÉPONSE ========== -->
-      <article class="card cs-step" aria-labelledby="reponse-title">
-        <h2 class="cs-label" id="reponse-title"><span class="cs-num">02</span> Ma réponse</h2>
+      <article class="card cs-step cs-step--trio" aria-labelledby="reponse-title">
+        <h2 class="cs-reponse-title" id="reponse-title">ma réponse&nbsp;:</h2>
         <ol class="cs-steps">
           <li><span><strong>Un mot qui zigzague</strong>&nbsp;: le Z coupé à mi-hauteur, le I décroché. Le logo
               dessine le mouvement à lui seul.</span></li>
@@ -1167,27 +960,32 @@
       </article>
 
       <!-- ========== RANGÉE 2 · LE LIVRABLE ========== -->
-      <article class="card cs-step cs-results" aria-labelledby="livrable-title">
-        <h2 class="cs-label" id="livrable-title"><span class="cs-num">03</span> Le livrable</h2>
-        <p class="cs-statement">Une campagne prête à imprimer.</p>
-        <p class="cs-body">
-          PDF avec 3&nbsp;mm de fond perdu, option sérigraphie en deux encres fluo, versions RVB pour le web.
-        </p>
-        <ul class="cs-tiles" role="list">
-          <li class="cs-tile cs-tile--tag">Logo et déclinaisons</li>
-          <li class="cs-tile cs-tile--tag">Charte graphique</li>
-          <li class="cs-tile cs-tile--tag">Affiche A3</li>
-          <li class="cs-tile cs-tile--tag">Flyer A5 recto verso</li>
-          <li class="cs-tile cs-tile--tag">Palette et typographies</li>
-          <li class="cs-tile cs-tile--tag">Éléments graphiques</li>
-        </ul>
+      <article class="card cs-step cs-step--trio cs-result" aria-labelledby="livrable-title">
+        <p class="cs-result-note">au final&nbsp;:</p>
+        <h2 class="cs-result-title" id="livrable-title">Une campagne prête à imprimer.</h2>
+        <p class="cs-result-text">PDF avec 3&nbsp;mm de fond perdu, option sérigraphie en deux encres fluo, versions RVB pour le web.</p>
+        <div class="cs-result-bottom">
+          <ul class="cs-result-list">
+            <li>Logo et déclinaisons</li>
+            <li>Charte graphique</li>
+            <li>Affiche A3</li>
+            <li>Flyer A5 recto verso</li>
+            <li>Palette et typographies</li>
+            <li>Éléments graphiques</li>
+          </ul>
+          <div class="cs-result-figure" aria-hidden="true">
+            <p class="cs-result-legend">supports livrés</p>
+            <p class="cs-result-number" data-chars="1">6</p>
+          </div>
+        </div>
+        <p class="sr-only">6 supports livrés</p>
       </article>
 
       <!-- ========== RANGÉE 3 · LE SYSTÈME VISUEL ==========
            Nuanciers, logos, typographies et motifs gardent leurs couleurs de marque dans les deux thèmes. -->
       <section class="card cs-method" aria-labelledby="systeme-title">
         <div class="cs-method-head">
-          <h2 class="cs-label" id="systeme-title"><span class="cs-num">04</span> Le système visuel</h2>
+          <h2 class="cs-label" id="systeme-title">Le système visuel</h2>
           <p class="cs-method-sub">Une couleur domine, le zigzag traverse, l’encre fait la matière</p>
         </div>
 
@@ -1196,7 +994,7 @@
             <li class="cs-swatch">
               <span class="cs-swatch-color" style="background: #FF286E;" aria-hidden="true"></span>
               <span class="cs-swatch-name">Rose électrique <span class="zig-share">≥ 50&nbsp;%</span></span>
-              <span class="zig-swatch-hex">#FF286E · Pantone 806 C</span>
+              <span class="zig-swatch-hex">#FF286E, Pantone 806 C</span>
               <span class="cs-swatch-text">Signature, grands aplats.</span>
             </li>
             <li class="cs-swatch">
@@ -1214,7 +1012,7 @@
             <li class="cs-swatch">
               <span class="cs-swatch-color" style="background: #E7FF38;" aria-hidden="true"></span>
               <span class="cs-swatch-name">Jaune acide <span class="zig-share">≤ 10&nbsp;%</span></span>
-              <span class="zig-swatch-hex">#E7FF38 · Pantone 803 C</span>
+              <span class="zig-swatch-hex">#E7FF38, Pantone 803 C</span>
               <span class="cs-swatch-text">Accents, appels à l’action.</span>
             </li>
           </ul>
@@ -1228,14 +1026,14 @@
             <div class="cs-media zig-tile zig-tile--noir zig-tile--logo">
               <img src="Images/zig-logo-signe.webp" alt="Signe ZIG : le Z rose sur fond noir" width="472" height="490"
                 loading="lazy" decoding="async" />
-              <span class="cs-media-label" aria-hidden="true">Signe · petits usages</span>
+              <span class="cs-media-label" aria-hidden="true">Signe, petits usages</span>
             </div>
             <div class="zig-tile zig-tile--wide zig-type">
               <p class="zig-type-row">
                 <span class="zig-type-sample zig-type-sample--bricolage" aria-hidden="true">Aa</span>
                 <span>
                   <span class="zig-type-name">Bricolage Grotesque ExtraBold</span>
-                  <span class="zig-type-use">Accroches, titres, dates · largeur 75&nbsp;%</span>
+                  <span class="zig-type-use">Accroches, titres, dates, largeur 75&nbsp;%</span>
                 </span>
               </p>
               <p class="zig-type-row">
@@ -1298,7 +1096,7 @@
             width="1800" height="1275" loading="lazy" decoding="async" />
           <button type="button" class="zoom-btn" data-zoom-src="Images/zig-flyer-a-plat.webp"
             aria-label="Agrandir le flyer A5 recto verso"></button>
-          <span class="cs-media-label" aria-hidden="true">Flyer A5 recto verso · 148 × 210 mm</span>
+          <span class="cs-media-label" aria-hidden="true">Flyer A5 recto verso, 148 × 210 mm</span>
         </div>
 
         <div class="card cs-media zig-media--affiche">
@@ -1307,7 +1105,7 @@
             height="1413" loading="lazy" decoding="async" />
           <button type="button" class="zoom-btn" data-zoom-src="Images/zig-affiche-a3.webp"
             aria-label="Agrandir l’affiche A3 du week-end d’ouverture"></button>
-          <span class="cs-media-label" aria-hidden="true">Affiche A3 · 297 × 420 mm</span>
+          <span class="cs-media-label" aria-hidden="true">Affiche A3, 297 × 420 mm</span>
         </div>
 
 
@@ -1317,7 +1115,7 @@
             height="1125" loading="lazy" decoding="async" />
           <button type="button" class="zoom-btn" data-zoom-src="Images/zig-charte-logo-construction.webp"
             aria-label="Agrandir la planche de construction du logo"></button>
-          <span class="cs-media-label" aria-hidden="true">Charte · Construction du logo</span>
+          <span class="cs-media-label" aria-hidden="true">Charte, Construction du logo</span>
         </div>
 
         <div class="card cs-media zig-media--half zig-media--sheet">
@@ -1326,7 +1124,7 @@
             width="1800" height="1125" loading="lazy" decoding="async" />
           <button type="button" class="zoom-btn" data-zoom-src="Images/zig-charte-logo-declinaisons.webp"
             aria-label="Agrandir la planche des déclinaisons du logo"></button>
-          <span class="cs-media-label" aria-hidden="true">Charte · Déclinaisons du logo</span>
+          <span class="cs-media-label" aria-hidden="true">Charte, Déclinaisons du logo</span>
         </div>
 
         <div class="card cs-media zig-media--third zig-media--sheet">
@@ -1335,7 +1133,7 @@
             width="1800" height="1125" loading="lazy" decoding="async" />
           <button type="button" class="zoom-btn" data-zoom-src="Images/zig-charte-couleurs.webp"
             aria-label="Agrandir la planche des couleurs"></button>
-          <span class="cs-media-label" aria-hidden="true">Charte · Couleurs et contrastes</span>
+          <span class="cs-media-label" aria-hidden="true">Charte, Couleurs et contrastes</span>
         </div>
 
         <div class="card cs-media zig-media--third zig-media--sheet">
@@ -1344,7 +1142,7 @@
             width="1800" height="1125" loading="lazy" decoding="async" />
           <button type="button" class="zoom-btn" data-zoom-src="Images/zig-charte-elements.webp"
             aria-label="Agrandir la planche des éléments graphiques"></button>
-          <span class="cs-media-label" aria-hidden="true">Charte · Éléments graphiques</span>
+          <span class="cs-media-label" aria-hidden="true">Charte, Éléments graphiques</span>
         </div>
 
         <div class="card cs-media zig-media--third zig-media--sheet">
@@ -1353,7 +1151,7 @@
             width="1800" height="1125" loading="lazy" decoding="async" />
           <button type="button" class="zoom-btn" data-zoom-src="Images/zig-charte-composition.webp"
             aria-label="Agrandir la planche des règles de composition"></button>
-          <span class="cs-media-label" aria-hidden="true">Charte · Règles de composition</span>
+          <span class="cs-media-label" aria-hidden="true">Charte, Règles de composition</span>
         </div>
 
       </div>
@@ -1366,29 +1164,23 @@
         </div>
         <a data-umami-event="clic-contact" class="cs-cta-link" href="/contact">
           Me contacter
-          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"
-            stroke-linejoin="round" aria-hidden="true">
-            <path d="M5 12h14M12 5l7 7-7 7" />
-          </svg>
         </a>
       </aside>
 
       <!-- ========== RANGÉE 5 · NAVIGATION ENTRE PROJETS ========== -->
       <nav class="project-pager" aria-label="Navigation entre les projets">
         <a href="/projet-papi-restaurant" class="pager-link pager-prev">
-          <span class="pager-arrow" aria-hidden="true">←</span>
           <span class="pager-text">
             <span class="pager-label">Projet précédent</span>
-            <span class="pager-title">Projet 03</span>
+            <span class="pager-title">Papi Restaurant</span>
           </span>
         </a>
 
         <a href="/projet-communication-culturelle" class="pager-link pager-next">
           <span class="pager-text">
             <span class="pager-label">Projet suivant</span>
-            <span class="pager-title">Projet 05</span>
+            <span class="pager-title">Médiathèque de Saint-Nazaire</span>
           </span>
-          <span class="pager-arrow" aria-hidden="true">→</span>
         </a>
       </nav>
 
@@ -1414,7 +1206,7 @@
        FOOTER MINIMAL
        ============================================================= -->
   <footer class="site-footer">
-    <p class="footer-identity">Benjamin Bridanne · Chargé de communication digitale</p>
+    <p class="footer-identity">Benjamin Bridanne, chargé de communication digitale</p>
     <div class="footer-links">
       <a href="/realisations">Réalisations</a>
       <a href="/politique-confidentialite">Confidentialité</a>
@@ -1425,29 +1217,6 @@
   </footer>
 
   <script>
-    /* =========================================================
-       THEME SOMBRE / CLAIR : clé localStorage bb-theme partagée
-       ========================================================= */
-    (function () {
-      const root = document.documentElement;
-      const btn = document.getElementById('theme-toggle');
-      const label = document.getElementById('theme-toggle-label');
-      /* Thème déjà appliqué dans le <head> : clair sauf choix explicite du sombre */
-      const initial = root.getAttribute('data-theme') === 'dark' ? 'dark' : 'light';
-      updateLabel(initial);
-
-      btn.addEventListener('click', () => {
-        const current = root.getAttribute('data-theme');
-        const next = current === 'dark' ? 'light' : 'dark';
-        root.setAttribute('data-theme', next);
-        try { localStorage.setItem('bb-theme', next); } catch { /* Le thème fonctionne sans mémorisation. */ }
-        updateLabel(next);
-      });
-
-      function updateLabel(mode) {
-        label.textContent = mode === 'dark' ? 'Passer en mode clair' : 'Passer en mode sombre';
-      }
-    })();
 
     /* =========================================================
        AGRANDISSEMENT DES IMAGES

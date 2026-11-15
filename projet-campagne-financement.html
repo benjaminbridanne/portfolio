@@ -10,7 +10,7 @@
       if (localStorage.getItem('bb-theme') === 'dark') document.documentElement.setAttribute('data-theme', 'dark');
     } catch { /* Stockage indisponible : thème clair par défaut. */ }
   </script>
-  <title>La Place des Matériaux · Projet de Benjamin Bridanne</title>
+  <title>La Place des Matériaux | Projet de Benjamin Bridanne</title>
   <meta name="description"
     content="La Coopérative ÉcoHabitat devait réunir 70 000 € auprès du grand public pour ouvrir La Place des Matériaux. Stratégie de communication de la campagne et création des supports, de la veille au lancement." />
   <link rel="canonical" href="https://benjaminbridanne.fr/projet-campagne-financement" />
@@ -26,6 +26,8 @@
 
   <meta name="twitter:card" content="summary_large_image" />
   <link rel="stylesheet" href="css/fiche-projet.css" />
+  <link rel="preload" href="fonts/mona-sans-expanded-900.woff2" as="font" type="font/woff2" crossorigin />
+  <link rel="stylesheet" href="css/marque.css" />
   <style>
     /* =========================================================
        TOKENS (identiques à l'accueil : cohérence stricte)
@@ -40,75 +42,75 @@
       --transition-fast: 250ms var(--ease);
       --transition-med: 400ms var(--ease);
 
-      --sun-moon: #F7E27B;
+      --sun-moon: var(--bleu-200);
     }
 
     /* -------- Light mode -------- */
     [data-theme="light"] {
-      --bg: #f2f2f4;
-      --bg-halo-1: rgba(205, 214, 232, 0.30);
-      --bg-halo-2: rgba(214, 220, 234, 0.24);
+      --bg: var(--papier);
+      --bg-halo-1: transparent;
+      --bg-halo-2: transparent;
 
-      --card-bg: rgba(255, 255, 255, 0.74);
-      --card-bg-soft: rgba(255, 255, 255, 0.56);
-      --card-bg-solid: #ffffff;
-      --card-border: rgba(60, 60, 67, 0.16);
-      --card-border-hover: rgba(60, 60, 67, 0.28);
-      --card-edge: rgba(255, 255, 255, 0.95);
-      --card-shadow: 0 4px 20px rgba(0, 0, 0, 0.05);
-      --card-shadow-hover: 0 14px 38px rgba(0, 0, 0, 0.09);
-      --card-highlight-top: rgba(255, 255, 255, 0.9);
+      --card-bg: var(--papier);
+      --card-bg-soft: var(--papier);
+      --card-bg-solid: var(--papier);
+      --card-border: var(--contour);
+      --card-border-hover: var(--bleu-200);
+      --card-edge: transparent;
+      --card-shadow: none;
+      --card-shadow-hover: none;
+      --card-highlight-top: transparent;
       --card-blur: 18px;
 
-      --text: #0a0a0d;
-      --text-secondary: rgba(60, 60, 67, 0.62);
-      --text-muted: rgba(60, 60, 67, 0.34);
-      --eyebrow: rgba(60, 60, 67, 0.58);
-      --line: rgba(60, 60, 67, 0.12);
+      --text: var(--encre);
+      --text-secondary: var(--encre-douce);
+      --text-muted: var(--encre-douce);
+      --eyebrow: var(--encre-douce);
+      --line: var(--contour);
 
-      --toggle-track-bg: #e8e8ea;
-      --toggle-track-border: rgba(60, 60, 67, 0.22);
-      --toggle-thumb-bg: #0a0a0d;
+      --toggle-track-bg: var(--bleu-pale);
+      --toggle-track-border: var(--contour);
+      --toggle-thumb-bg: var(--encre);
 
-      --nav-bg: rgba(242, 242, 244, 0.72);
-      --nav-border: rgba(60, 60, 67, 0.12);
+      --nav-bg: var(--papier);
+      --nav-border: var(--contour);
 
-      --pill-bg: rgba(0, 0, 0, 0.04);
-      --pill-border: rgba(60, 60, 67, 0.14);
+      --pill-bg: var(--bleu-pale);
+      --pill-border: var(--bleu-200);
     }
 
     /* -------- Dark mode -------- */
     [data-theme="dark"] {
-      --bg: #000000;
-      --bg-halo-1: rgba(44, 44, 52, 0.22);
-      --bg-halo-2: rgba(24, 34, 52, 0.18);
+      --bg: var(--encre);
+      --bg-halo-1: transparent;
+      --bg-halo-2: transparent;
 
-      --card-bg: rgba(18, 18, 20, 0.74);
-      --card-bg-soft: rgba(20, 20, 22, 0.56);
-      --card-bg-solid: #0e0e10;
-      --card-border: rgba(255, 255, 255, 0.10);
-      --card-border-hover: rgba(255, 255, 255, 0.20);
-      --card-edge: rgba(255, 255, 255, 0.28);
-      --card-shadow: 0 6px 26px rgba(0, 0, 0, 0.50);
-      --card-shadow-hover: 0 18px 46px rgba(0, 0, 0, 0.62);
-      --card-highlight-top: rgba(255, 255, 255, 0.14);
+      --card-bg: var(--carte-sombre);
+      --card-bg-soft: var(--carte-sombre);
+      --card-bg-solid: var(--carte-sombre);
+      --card-border: var(--carte-sombre-bord);
+      --card-border-hover: var(--bleu-700);
+      --card-edge: transparent;
+      --card-shadow: none;
+      --card-shadow-hover: none;
+      --card-highlight-top: transparent;
       --card-blur: 16px;
 
-      --text: #F5F5F7;
-      --text-secondary: rgba(235, 235, 245, 0.62);
-      --text-muted: rgba(235, 235, 245, 0.34);
-      --eyebrow: rgba(235, 235, 245, 0.56);
-      --line: rgba(255, 255, 255, 0.10);
+      --text: var(--papier);
+      --text-secondary: var(--bleu-200);
+      --text-muted: var(--bleu-200);
+      --eyebrow: var(--bleu-200);
+      --line: var(--bleu-800);
 
-      --toggle-track-bg: #1c1c1e;
-      --toggle-track-border: rgba(255, 255, 255, 0.16);
-      --toggle-thumb-bg: #0a0a0a;
+      --toggle-track-bg: var(--bleu-900);
+      --toggle-track-border: var(--bleu-800);
+      --toggle-thumb-bg: var(--encre);
 
-      --nav-bg: rgba(0, 0, 0, 0.62);
-      --nav-border: rgba(255, 255, 255, 0.08);
+      --nav-bg: var(--encre);
+      --nav-border: var(--bleu-800);
 
-      --pill-bg: rgba(255, 255, 255, 0.05);
-      --pill-border: rgba(255, 255, 255, 0.10);
+      --pill-bg: var(--bleu-900);
+      --pill-border: var(--bleu-800);
     }
 
     /* =========================================================
@@ -191,14 +193,12 @@
       border-radius: var(--radius);
       background: var(--card-bg);
       border: 1px solid var(--card-border);
-      box-shadow: var(--card-shadow);
       padding: 22px;
       overflow: hidden;
       backdrop-filter: blur(var(--card-blur)) saturate(118%);
       -webkit-backdrop-filter: blur(var(--card-blur)) saturate(118%);
       transition:
         transform var(--transition-med),
-        box-shadow var(--transition-med),
         border-color var(--transition-med),
         background var(--transition-med);
     }
@@ -210,9 +210,9 @@
       padding: 1px;
       border-radius: inherit;
       background: linear-gradient(145deg, var(--card-edge), transparent 42%);
-      -webkit-mask: linear-gradient(#000 0 0) content-box, linear-gradient(#000 0 0);
+      -webkit-mask: linear-gradient(var(--encre) 0 0) content-box, linear-gradient(var(--encre) 0 0);
       -webkit-mask-composite: xor;
-      mask: linear-gradient(#000 0 0) content-box, linear-gradient(#000 0 0);
+      mask: linear-gradient(var(--encre) 0 0) content-box, linear-gradient(var(--encre) 0 0);
       mask-composite: exclude;
       opacity: 0.75;
       pointer-events: none;
@@ -239,7 +239,6 @@
       transform: scale(1.015);
       z-index: 6;
       border-color: var(--card-border-hover);
-      box-shadow: var(--card-shadow-hover);
     }
 
     .card>* {
@@ -249,116 +248,6 @@
 
     .card--soft {
       background: var(--card-bg-soft);
-    }
-
-    /* =========================================================
-       HEADER STICKY
-       ========================================================= */
-    .project-nav {
-      position: sticky;
-      top: 0;
-      z-index: 30;
-      display: flex;
-      align-items: center;
-      gap: 20px;
-      padding: 12px 24px;
-      background: var(--nav-bg);
-      border-bottom: 1px solid var(--nav-border);
-      backdrop-filter: blur(18px) saturate(130%);
-      -webkit-backdrop-filter: blur(18px) saturate(130%);
-    }
-
-    .nav-back {
-      display: inline-flex;
-      align-items: center;
-      gap: 8px;
-      font-size: 0.875rem;
-      font-weight: 500;
-      color: var(--text);
-      padding: 6px 10px;
-      border-radius: 10px;
-      transition: background var(--transition-fast);
-    }
-
-    .nav-back:hover {
-      background: var(--card-bg-soft);
-    }
-
-    .nav-back svg {
-      width: 16px;
-      height: 16px;
-    }
-
-    .nav-crumb {
-      font-size: 0.8125rem;
-      color: var(--text-secondary);
-      flex: 1;
-      min-width: 0;
-      overflow: hidden;
-      text-overflow: ellipsis;
-      white-space: nowrap;
-    }
-
-    .nav-crumb strong {
-      color: var(--text);
-      font-weight: 500;
-    }
-
-    /* Toggle iOS */
-    .theme-toggle-btn {
-      display: inline-flex;
-      align-items: center;
-      justify-content: center;
-      padding: 0;
-    }
-
-    .toggle-switch {
-      position: relative;
-      width: 52px;
-      height: 28px;
-      border-radius: 999px;
-      background: var(--toggle-track-bg);
-      border: 1px solid var(--toggle-track-border);
-      transition: background var(--transition-med), border-color var(--transition-med);
-    }
-
-    .toggle-thumb {
-      position: absolute;
-      top: 50%;
-      left: 3px;
-      width: 22px;
-      height: 22px;
-      border-radius: 50%;
-      background: var(--toggle-thumb-bg);
-      transform: translateY(-50%);
-      transition: left var(--transition-med), background var(--transition-med);
-      display: flex;
-      align-items: center;
-      justify-content: center;
-    }
-
-    .toggle-thumb svg {
-      width: 12px;
-      height: 12px;
-      color: var(--sun-moon);
-      position: absolute;
-      transition: opacity var(--transition-fast);
-    }
-
-    [data-theme="dark"] .toggle-thumb {
-      left: 3px;
-    }
-
-    [data-theme="light"] .toggle-thumb {
-      left: calc(100% - 25px);
-    }
-
-    [data-theme="dark"] .icon-sun {
-      opacity: 0;
-    }
-
-    [data-theme="light"] .icon-moon {
-      opacity: 0;
     }
 
     /* =========================================================
@@ -373,31 +262,24 @@
     }
 
     .hero-eyebrow {
-      font-size: 0.75rem;
+      font-size: 17px;
       font-weight: 500;
       color: var(--eyebrow);
       text-transform: uppercase;
       letter-spacing: 0.14em;
     }
 
+    /* Étiquettes : une ligne de texte, 13 px */
     .hero-tags {
-      display: flex;
-      flex-wrap: wrap;
-      gap: 8px;
+      font-size: 13px;
+      line-height: 1.5;
+      color: var(--encre-douce);
     }
 
-    .hero-tag {
-      display: inline-flex;
-      align-items: center;
-      padding: 6px 12px;
-      border-radius: 999px;
-      background: var(--pill-bg);
-      border: 1px solid var(--pill-border);
-      font-size: 0.75rem;
-      font-weight: 500;
-      color: var(--text-secondary);
-      letter-spacing: 0.01em;
+    [data-theme="dark"] .hero-tags {
+      color: var(--bleu-200);
     }
+
 
     /* Bouton pose sur une image : lisible dans les deux themes */
     .hero-action {
@@ -411,10 +293,10 @@
       max-width: calc(100% - 32px);
       padding: 9px 15px;
       border-radius: 999px;
-      background: rgba(12, 12, 14, 0.78);
+      background: rgba(11, 13, 18, 0.78);
       border: 1px solid rgba(255, 255, 255, 0.24);
-      color: #fff;
-      font-size: 0.8125rem;
+      color: var(--papier);
+      font-size: 17px;
       font-weight: 600;
       letter-spacing: -0.005em;
       -webkit-backdrop-filter: blur(10px);
@@ -425,20 +307,14 @@
         transform var(--transition-med);
     }
 
-    .hero-action svg {
-      width: 14px;
-      height: 14px;
-      flex: none;
-    }
-
     .hero-action:hover {
-      background: rgba(12, 12, 14, 0.9);
+      background: rgba(11, 13, 18, 0.9);
       border-color: rgba(255, 255, 255, 0.45);
       transform: translateY(-1px);
     }
 
     .hero-action:focus-visible {
-      outline: 2px solid #fff;
+      outline: 2px solid var(--papier);
       outline-offset: 3px;
     }
 
@@ -447,7 +323,7 @@
       flex-direction: column;
       gap: 5px;
       list-style: none;
-      font-size: 0.87rem;
+      font-size: 17px;
       color: var(--text-secondary);
       line-height: 1.5;
     }
@@ -498,13 +374,13 @@
       align-items: center;
       justify-content: center;
       padding: clamp(16px, 4vw, 48px);
-      background: rgba(0, 0, 0, 0.86);
+      background: rgba(11, 13, 18, 0.86);
       -webkit-backdrop-filter: blur(6px);
       backdrop-filter: blur(6px);
     }
 
     [data-theme="light"] .lightbox {
-      background: rgba(20, 20, 24, 0.82);
+      background: rgba(11, 13, 18, 0.82);
     }
 
     .lightbox[hidden] {
@@ -518,7 +394,6 @@
       height: auto;
       object-fit: contain;
       border-radius: var(--radius-sm);
-      box-shadow: 0 24px 70px rgba(0, 0, 0, 0.55);
     }
 
     .lightbox-close {
@@ -533,7 +408,7 @@
       border-radius: 50%;
       background: rgba(255, 255, 255, 0.12);
       border: 1px solid rgba(255, 255, 255, 0.28);
-      color: #fff;
+      color: var(--papier);
       transition: background var(--transition-fast), border-color var(--transition-fast);
     }
 
@@ -548,7 +423,7 @@
     }
 
     .lightbox-close:focus-visible {
-      outline: 2px solid #fff;
+      outline: 2px solid var(--papier);
       outline-offset: 3px;
     }
 
@@ -570,7 +445,6 @@
       border-radius: var(--radius);
       background: var(--card-bg-solid);
       color: var(--text);
-      box-shadow: 0 24px 70px rgba(0, 0, 0, 0.45);
       overflow: hidden;
     }
 
@@ -582,7 +456,7 @@
 
     /* Les variables ne sont pas heritees par ::backdrop sur tous les navigateurs */
     .veille-dialog::backdrop {
-      background: rgba(0, 0, 0, 0.72);
+      background: rgba(11, 13, 18, 0.72);
       -webkit-backdrop-filter: blur(6px);
       backdrop-filter: blur(6px);
     }
@@ -616,14 +490,14 @@
     }
 
     .veille-title {
-      font-size: 1.25rem;
+      font-size: 23px;
       font-weight: 700;
       letter-spacing: -0.02em;
       line-height: 1.15;
     }
 
     .veille-sub {
-      font-size: 0.8125rem;
+      font-size: 13px;
       color: var(--text-secondary);
       line-height: 1.45;
     }
@@ -663,7 +537,7 @@
     }
 
     .veille-section-title {
-      font-size: 0.75rem;
+      font-size: 17px;
       font-weight: 600;
       color: var(--eyebrow);
       text-transform: uppercase;
@@ -689,14 +563,14 @@
     }
 
     .veille-stat-value {
-      font-size: 1.35rem;
+      font-size: 23px;
       font-weight: 700;
       letter-spacing: -0.03em;
       line-height: 1.05;
     }
 
     .veille-stat-label {
-      font-size: 0.75rem;
+      font-size: 13px;
       color: var(--text-secondary);
       line-height: 1.35;
     }
@@ -737,7 +611,7 @@
 
     .veille-name {
       display: block;
-      font-size: 0.9rem;
+      font-size: 17px;
       font-weight: 600;
       letter-spacing: -0.01em;
     }
@@ -745,7 +619,7 @@
     .veille-meta {
       display: block;
       margin-top: 2px;
-      font-size: 0.75rem;
+      font-size: 13px;
       color: var(--text-secondary);
       line-height: 1.4;
     }
@@ -756,7 +630,7 @@
 
     .veille-rate {
       display: block;
-      font-size: 0.95rem;
+      font-size: 17px;
       font-weight: 700;
       letter-spacing: -0.02em;
       font-variant-numeric: tabular-nums;
@@ -769,7 +643,7 @@
     .veille-amount {
       display: block;
       margin-top: 1px;
-      font-size: 0.72rem;
+      font-size: 17px;
       color: var(--text-secondary);
       font-variant-numeric: tabular-nums;
       white-space: nowrap;
@@ -793,7 +667,7 @@
     }
 
     .veille-detail dt {
-      font-size: 0.7rem;
+      font-size: 17px;
       font-weight: 600;
       color: var(--eyebrow);
       text-transform: uppercase;
@@ -802,7 +676,7 @@
 
     .veille-detail dd {
       margin-top: 3px;
-      font-size: 0.84rem;
+      font-size: 17px;
       color: var(--text-secondary);
       line-height: 1.5;
     }
@@ -835,7 +709,7 @@
     }
 
     .veille-note {
-      font-size: 0.75rem;
+      font-size: 13px;
       color: var(--text-muted);
       line-height: 1.5;
       padding-top: 14px;
@@ -859,20 +733,17 @@
       border-radius: var(--radius);
       background: var(--card-bg);
       border: 1px solid var(--card-border);
-      box-shadow: var(--card-shadow);
       backdrop-filter: blur(var(--card-blur)) saturate(118%);
       -webkit-backdrop-filter: blur(var(--card-blur)) saturate(118%);
       color: var(--text);
       transition:
         transform var(--transition-med),
-        box-shadow var(--transition-med),
         border-color var(--transition-med);
     }
 
     .pager-link:hover {
       transform: scale(1.015);
       border-color: var(--card-border-hover);
-      box-shadow: var(--card-shadow-hover);
     }
 
     .pager-prev {
@@ -892,9 +763,7 @@
     }
 
     .pager-label {
-      font-size: 12px;
-      letter-spacing: 0.04em;
-      text-transform: uppercase;
+      font-size: 13px;
       color: var(--eyebrow);
     }
 
@@ -902,25 +771,6 @@
       font-size: 17px;
       font-weight: 600;
       color: var(--text);
-    }
-
-    .pager-arrow {
-      font-size: 22px;
-      line-height: 1;
-      color: var(--text-secondary);
-      transition: transform var(--transition-fast), color var(--transition-fast);
-    }
-
-    .pager-link:hover .pager-arrow {
-      color: var(--text);
-    }
-
-    .pager-prev:hover .pager-arrow {
-      transform: translateX(-4px);
-    }
-
-    .pager-next:hover .pager-arrow {
-      transform: translateX(4px);
     }
 
     /* =========================================================
@@ -935,7 +785,7 @@
       }
 
       html {
-        font-size: 18px;
+        font-size: 17px;
       }
 
       .project-main {
@@ -945,25 +795,6 @@
 
     /* Mobile */
     @media (max-width: 720px) {
-      /* Le fil d'ariane passe sur sa propre ligne plutôt que d'être tronqué */
-      .project-nav {
-        flex-wrap: wrap;
-        padding: 10px 16px;
-        gap: 6px 12px;
-      }
-
-      .theme-toggle-btn {
-        margin-left: auto;
-      }
-
-      .nav-crumb {
-        order: 3;
-        flex: 1 0 100%;
-        white-space: normal;
-        overflow: visible;
-        text-overflow: clip;
-        line-height: 1.4;
-      }
 
       .project-main {
         padding: 20px 16px 40px;
@@ -1039,14 +870,15 @@
 
       .card:hover,
       .hero-action:hover,
-      .pager-link:hover,
-      .pager-link:hover .pager-arrow {
+      .pager-link:hover {
         transform: none;
       }
     }
   </style>
   <link rel="stylesheet" href="css/site-pages.css" />
+  <link rel="stylesheet" href="css/commun.css" />
   <script defer src="https://cloud.umami.is/script.js" data-website-id="c992974a-48c8-47e4-9625-85ab5eca2ac3"></script>
+  <script src="js/site.js" defer></script>
 </head>
 
 <body>
@@ -1054,49 +886,42 @@
   <!-- =============================================================
        BARRE DE NAV STICKY : retour vers Réalisations, fil d’ariane, theme
        ============================================================= -->
-  <nav class="project-nav" aria-label="Navigation principale">
-    <a href="/realisations" class="nav-back">
-      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"
-        stroke-linejoin="round" aria-hidden="true">
-        <path d="M19 12H5M12 19l-7-7 7-7" />
-      </svg>
-      Réalisations
+  <header class="site-header">
+    <a class="brand" href="/" aria-label="Accueil, Brief &amp; Bold">
+      <span class="brand-brief" aria-hidden="true">brief&amp;</span><span class="brand-bold" aria-hidden="true">BOLD</span>
     </a>
-
-    <span class="nav-crumb">Projet 06 · <strong>La Place des Matériaux</strong></span>
-
-    <span class="nav-status">
-      <span class="nav-status-dot" aria-hidden="true"></span>
-      <span>Disponible<span class="nav-status-more"> pour de nouvelles missions</span></span>
-    </span>
-
-    <button id="theme-toggle" class="theme-toggle-btn" aria-label="Basculer entre le mode sombre et le mode clair"
-      type="button">
+    <nav class="site-menu" aria-label="Navigation principale">
+      <ul>
+        <li><a href="/">Accueil</a></li>
+        <li><a href="/services">Services</a></li>
+        <li><a href="/realisations" aria-current="true">Réalisations</a></li>
+        <li><a data-umami-event="clic-contact" href="/contact">Contact</a></li>
+      </ul>
+    </nav>
+    <button type="button" class="theme-btn" id="theme-toggle" aria-label="Passer en mode sombre">
       <span class="sr-only" id="theme-toggle-label">Passer en mode sombre</span>
-      <span class="toggle-switch" aria-hidden="true">
-        <span class="toggle-thumb">
-          <svg class="icon-sun" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"
-            stroke-linecap="round" stroke-linejoin="round">
+      <span class="theme-track" aria-hidden="true">
+        <span class="theme-thumb">
+          <svg class="theme-sun" viewBox="0 0 24 24">
             <circle cx="12" cy="12" r="4" />
-            <path
-              d="M12 2v2M12 20v2M4.93 4.93l1.41 1.41M17.66 17.66l1.41 1.41M2 12h2M20 12h2M4.93 19.07l1.41-1.41M17.66 6.34l1.41-1.41" />
+            <path d="M12 2v2M12 20v2M4.93 4.93l1.41 1.41M17.66 17.66l1.41 1.41M2 12h2M20 12h2M4.93 19.07l1.41-1.41M17.66 6.34l1.41-1.41" />
           </svg>
-          <svg class="icon-moon" viewBox="0 0 24 24" fill="currentColor">
-            <path d="M20.354 15.354A9 9 0 018.646 3.646 9.003 9.003 0 0012 21a9.003 9.003 0 008.354-5.646z" />
+          <svg class="theme-moon" viewBox="0 0 24 24">
+            <path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z" />
           </svg>
         </span>
       </span>
     </button>
-  </nav>
+  </header>
 
   <main class="project-main" id="top">
     <div class="cs-grid">
 
       <!-- ========== RANGÉE 1 · PRÉSENTATION ========== -->
       <article class="card cs-intro" aria-labelledby="hero-title">
-        <span class="hero-eyebrow">06 · Étude de cas</span>
+        <p class="note-main">La Place des Matériaux :</p>
         <h1 class="cs-title" id="hero-title">
-          Un projet solide. <span class="cs-title-accent">Encore fallait-il l’expliquer.</span>
+          Expliquer un lieu de réemploi pour réunir 70&nbsp;000&nbsp;€
         </h1>
 
         <p class="cs-pitch">
@@ -1105,25 +930,15 @@
           parts sociales, dons et relais locaux.
         </p>
 
-        <div class="hero-tags">
-          <span class="hero-tag">Stratégie de campagne</span>
-          <span class="hero-tag">Emailing</span>
-          <span class="hero-tag">Print</span>
-          <span class="hero-tag">Veille</span>
-        </div>
+        <p class="hero-tags">Stratégie de campagne, Emailing, Print, Veille</p>
+        <p class="cs-links">
+          <a class="cs-link" href="https://www.ecohabitat.coop/financement-participatif/" target="_blank" rel="noopener noreferrer" aria-label="Voir la page web de la campagne (nouvel onglet)">Voir la page web</a>
+        </p>
 
-        <dl class="cs-facts cs-facts--3">
+        <dl class="cs-facts cs-facts--1">
           <div>
-            <dt>Structure</dt>
+            <dt>Commanditaire</dt>
             <dd>Coopérative ÉcoHabitat</dd>
-          </div>
-          <div>
-            <dt>Rôle</dt>
-            <dd>Chargé de communication</dd>
-          </div>
-          <div>
-            <dt>Ouverture</dt>
-            <dd>Janvier 2027</dd>
           </div>
         </dl>
       </article>
@@ -1137,24 +952,12 @@
           width="1200" height="640" loading="eager" decoding="async" />
         <button type="button" class="zoom-btn" data-zoom-src="Images/campagne-couverture-1200.webp"
           aria-label="Agrandir l’image : page web de la campagne affichée sur un écran d’ordinateur"></button>
-        <a class="hero-action" href="https://www.ecohabitat.coop/financement-participatif/" target="_blank"
-          rel="noopener noreferrer" aria-label="Voir la page web de la campagne (nouvel onglet)">
-          Voir la page web
-          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"
-            stroke-linejoin="round" aria-hidden="true">
-            <path d="M7 17L17 7" />
-            <path d="M8 7h9v9" />
-          </svg>
-        </a>
       </div>
 
       <!-- ========== RANGÉE 2 · LE DÉFI ========== -->
-      <article class="card cs-step" aria-labelledby="defi-title">
-        <h2 class="cs-label" id="defi-title"><span class="cs-num">01</span> Le défi</h2>
-        <p class="cs-lead">
-          Une jeune coopérative de bénévoles, sans salarié dédié à la communication, devait convaincre le grand public
-          de réunir 70&nbsp;000&nbsp;€.
-        </p>
+      <article class="card cs-step cs-step--trio" aria-labelledby="defi-title">
+        <h2 class="cs-lead" id="defi-title">Une jeune coopérative de bénévoles, sans salarié dédié à la communication, devait convaincre le grand public
+          de réunir 70&nbsp;000&nbsp;€.</h2>
         <p class="cs-body">
           Trois messages à faire passer&nbsp;: la coopérative et le lieu sont deux entités distinctes, devenir sociétaire
           est un engagement avec ses propres règles, et chaque public attend autre chose. Le tout pendant que la
@@ -1163,8 +966,8 @@
       </article>
 
       <!-- ========== RANGÉE 2 · MA RÉPONSE ========== -->
-      <article class="card cs-step" aria-labelledby="reponse-title">
-        <h2 class="cs-label" id="reponse-title"><span class="cs-num">02</span> Ma réponse</h2>
+      <article class="card cs-step cs-step--trio" aria-labelledby="reponse-title">
+        <h2 class="cs-reponse-title" id="reponse-title">ma réponse&nbsp;:</h2>
         <ol class="cs-steps">
           <li><span><strong>Une veille de 10 campagnes</strong>&nbsp;: de coopératives et de structures de l’ESS,
               synthétisée en recommandations pour le groupe communication.</span></li>
@@ -1176,32 +979,22 @@
       </article>
 
       <!-- ========== RANGÉE 2 · EN CHIFFRES ========== -->
-      <article class="card cs-step cs-results" aria-labelledby="chiffres-title">
-        <h2 class="cs-label" id="chiffres-title"><span class="cs-num">03</span> En chiffres</h2>
-        <p class="cs-figure">70&nbsp;000&nbsp;€</p>
-        <p class="cs-figure-label">objectif de collecte auprès du grand public</p>
-        <div class="cs-tiles" role="list">
-          <div class="cs-tile" role="listitem">
-            <span class="cs-tile-value">10</span>
-            <span class="cs-tile-label">campagnes analysées</span>
-          </div>
-          <div class="cs-tile" role="listitem">
-            <span class="cs-tile-value">8</span>
-            <span class="cs-tile-label">canaux dans la banque d’idées</span>
-          </div>
-          <div class="cs-tile" role="listitem">
-            <span class="cs-tile-value">3</span>
-            <span class="cs-tile-label">cercles de diffusion (proches et sociétaires, territoire, réseaux de l’ESS)</span>
-          </div>
-          <div class="cs-tile" role="listitem">
-            <span class="cs-tile-value">≈&nbsp;6&nbsp;%</span>
-            <span class="cs-tile-label">de l’objectif atteint en 2 semaines</span>
+      <article class="card cs-step cs-step--trio cs-result" aria-labelledby="chiffres-title">
+        <p class="cs-result-note">au final&nbsp;:</p>
+        <h2 class="cs-result-title" id="chiffres-title">En chiffres</h2>
+        <div class="cs-result-bottom">
+          <ul class="cs-result-list">
+            <li><strong>10</strong> campagnes analysées</li>
+            <li><strong>8</strong> canaux dans la banque d’idées</li>
+            <li><strong>3</strong> cercles de diffusion (proches et sociétaires, territoire, réseaux de l’ESS)</li>
+            <li><strong>environ 6&nbsp;%</strong> de l’objectif atteint en 2 semaines (4&nbsp;120&nbsp;€ collectés)</li>
+          </ul>
+          <div class="cs-result-figure" aria-hidden="true">
+            <p class="cs-result-legend">objectif de collecte</p>
+            <p class="cs-result-number" data-chars="8">70&nbsp;000&nbsp;€</p>
           </div>
         </div>
-        <!-- Montant de la campagne en cours, à mettre à jour -->
-        <p class="cs-results-note">
-          <strong>Campagne en cours&nbsp;:</strong> 4&nbsp;120&nbsp;€ collectés au cours des deux premières semaines.
-        </p>
+        <p class="sr-only">70 000 € objectif de collecte auprès du grand public</p>
       </article>
 
       <!-- ========== RANGÉE 3 · GALERIE EN MOSAÏQUE ========== -->
@@ -1231,11 +1024,6 @@
           <a class="hero-action" href="Images/banque-idees-contenus.pdf" target="_blank" rel="noopener"
             aria-label="Ouvrir la banque d’idées de contenus au format PDF (nouvel onglet)">
             Ouvrir
-            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"
-              stroke-linejoin="round" aria-hidden="true">
-              <path d="M7 17L17 7" />
-              <path d="M8 7h9v9" />
-            </svg>
           </a>
           <span class="cs-media-label" aria-hidden="true">Banque d’idées</span>
         </div>
@@ -1283,7 +1071,7 @@
             width="2000" height="1414" loading="lazy" decoding="async" />
           <button type="button" class="zoom-btn" data-zoom-src="Images/campagne-plaquette-recto.webp"
             aria-label="Agrandir l’image : plaquette financière de la campagne, recto"></button>
-          <span class="cs-media-label" aria-hidden="true">Plaquette financière · recto</span>
+          <span class="cs-media-label" aria-hidden="true">Plaquette financière, recto</span>
         </div>
 
         <!-- Colonne 4, ligne 2 : plaquette financière verso -->
@@ -1295,7 +1083,7 @@
             width="2000" height="1414" loading="lazy" decoding="async" />
           <button type="button" class="zoom-btn" data-zoom-src="Images/campagne-plaquette-verso.webp"
             aria-label="Agrandir l’image : plaquette financière de la campagne, verso"></button>
-          <span class="cs-media-label" aria-hidden="true">Plaquette financière · verso</span>
+          <span class="cs-media-label" aria-hidden="true">Plaquette financière, verso</span>
         </div>
 
       </div>
@@ -1308,29 +1096,23 @@
         </div>
         <a data-umami-event="clic-contact" class="cs-cta-link" href="/contact">
           Me contacter
-          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"
-            stroke-linejoin="round" aria-hidden="true">
-            <path d="M5 12h14M12 5l7 7-7 7" />
-          </svg>
         </a>
       </aside>
 
       <!-- ========== RANGÉE 4 · NAVIGATION ENTRE PROJETS ========== -->
       <nav class="project-pager" aria-label="Navigation entre les projets">
         <a href="/projet-communication-culturelle" class="pager-link pager-prev">
-          <span class="pager-arrow" aria-hidden="true">←</span>
           <span class="pager-text">
             <span class="pager-label">Projet précédent</span>
-            <span class="pager-title">Projet 05</span>
+            <span class="pager-title">Médiathèque de Saint-Nazaire</span>
           </span>
         </a>
 
         <a href="/projet-handi-tolosa" class="pager-link pager-next">
           <span class="pager-text">
             <span class="pager-label">Projet suivant</span>
-            <span class="pager-title">Projet 07</span>
+            <span class="pager-title">Handi Tolosa</span>
           </span>
-          <span class="pager-arrow" aria-hidden="true">→</span>
         </a>
       </nav>
 
@@ -1362,7 +1144,7 @@
       <div class="veille-head-text">
         <span class="hero-eyebrow">Veille comparative</span>
         <h2 class="veille-title" id="veille-title">Financement participatif : 10 campagnes de coopératives</h2>
-        <p class="veille-sub">Coopératives et structures de l’ESS · sources consultées en août 2026</p>
+        <p class="veille-sub">Coopératives et structures de l’ESS, sources consultées en août 2026</p>
       </div>
       <button type="button" class="veille-close" id="veille-close" aria-label="Fermer la veille comparative">
         <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round"
@@ -1408,7 +1190,7 @@
               <summary>
                 <span>
                   <span class="veille-name">Le Plateau Circulaire</span>
-                  <span class="veille-meta">SAS de l’ESS · Réemploi de matériaux du bâtiment · Ulule · Don avec
+                  <span class="veille-meta">SAS de l’ESS, Réemploi de matériaux du bâtiment, Ulule, Don avec
                     contrepartie</span>
                 </span>
                 <span class="veille-result">
@@ -1458,12 +1240,11 @@
               <summary>
                 <span>
                   <span class="veille-name">HOUSELF</span>
-                  <span class="veille-meta">SCOP · Écoconstruction et rénovation écologique · GoFundMe · Don ·
-                    2020</span>
+                  <span class="veille-meta">SCOP, Écoconstruction et rénovation écologique, GoFundMe, Don, 2020</span>
                 </span>
                 <span class="veille-result">
                   <span class="veille-rate">88,7&nbsp;%</span>
-                  <span class="veille-amount">11&nbsp;970 / 13&nbsp;500&nbsp;€ · 109 dons</span>
+                  <span class="veille-amount">11&nbsp;970 / 13&nbsp;500&nbsp;€, 109 dons</span>
                 </span>
                 <svg class="veille-chevron" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
                   stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
@@ -1508,12 +1289,11 @@
               <summary>
                 <span>
                   <span class="veille-name">Foncière Terres Habitées</span>
-                  <span class="veille-meta">Foncière citoyenne agréée ESUS · Habitat coopératif · CredoFunding ·
-                    Souscription au capital · 2025</span>
+                  <span class="veille-meta">Foncière citoyenne agréée ESUS, Habitat coopératif, CredoFunding, Souscription au capital, 2025</span>
                 </span>
                 <span class="veille-result">
                   <span class="veille-rate">100,9&nbsp;%</span>
-                  <span class="veille-amount">353&nbsp;000 / 350&nbsp;000&nbsp;€ · 72 investisseurs</span>
+                  <span class="veille-amount">353&nbsp;000 / 350&nbsp;000&nbsp;€, 72 investisseurs</span>
                 </span>
                 <svg class="veille-chevron" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
                   stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
@@ -1538,7 +1318,7 @@
                 </div>
                 <div class="veille-reco">
                   <dt>Pour ÉcoHabitat</dt>
-                  <dd>Un schéma très court : votre contribution → ce que nous aménageons → le service rendu → l’impact
+                  <dd>Un schéma très court : votre contribution, puis ce que nous aménageons, puis le service rendu, puis l’impact
                     territorial.</dd>
                 </div>
                 <div>
@@ -1556,12 +1336,11 @@
               <summary>
                 <span>
                   <span class="veille-name">Villages Vivants</span>
-                  <span class="veille-meta">SCIC immobilière rurale et solidaire · LITA.co · Investissement ·
-                    2021</span>
+                  <span class="veille-meta">SCIC immobilière rurale et solidaire, LITA.co, Investissement, 2021</span>
                 </span>
                 <span class="veille-result">
                   <span class="veille-rate">200,1&nbsp;%</span>
-                  <span class="veille-amount">400&nbsp;100 / 200&nbsp;000&nbsp;€ · 158 investisseurs</span>
+                  <span class="veille-amount">400&nbsp;100 / 200&nbsp;000&nbsp;€, 158 investisseurs</span>
                 </span>
                 <svg class="veille-chevron" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
                   stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
@@ -1604,12 +1383,11 @@
               <summary>
                 <span>
                   <span class="veille-name">Bellevilles</span>
-                  <span class="veille-meta">Foncière responsable agréée ESUS · Immobilier à impact · LITA.co ·
-                    Obligations à 5&nbsp;% · 2020</span>
+                  <span class="veille-meta">Foncière responsable agréée ESUS, Immobilier à impact, LITA.co, Obligations à 5&nbsp;%, 2020</span>
                 </span>
                 <span class="veille-result">
                   <span class="veille-rate">400&nbsp;%</span>
-                  <span class="veille-amount">2&nbsp;M / 500&nbsp;000&nbsp;€ · 728 investisseurs</span>
+                  <span class="veille-amount">2&nbsp;M / 500&nbsp;000&nbsp;€, 728 investisseurs</span>
                 </span>
                 <svg class="veille-chevron" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
                   stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
@@ -1653,12 +1431,12 @@
               <summary>
                 <span>
                   <span class="veille-name">Ôkhra</span>
-                  <span class="veille-meta">SCIC culturelle · Patrimoine ocrier · KissKissBankBank · Don avec
-                    contrepartie · 2019</span>
+                  <span class="veille-meta">SCIC culturelle, Patrimoine ocrier, KissKissBankBank, Don avec
+                    contrepartie, 2019</span>
                 </span>
                 <span class="veille-result">
                   <span class="veille-rate">183,3&nbsp;%</span>
-                  <span class="veille-amount">27&nbsp;492 / 15&nbsp;000&nbsp;€ · 203 contributeurs</span>
+                  <span class="veille-amount">27&nbsp;492 / 15&nbsp;000&nbsp;€, 203 contributeurs</span>
                 </span>
                 <svg class="veille-chevron" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
                   stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
@@ -1702,11 +1480,11 @@
               <summary>
                 <span>
                   <span class="veille-name">La Maison écologique</span>
-                  <span class="veille-meta">SCOP · Média de l’habitat écologique · KissKissBankBank · 2016</span>
+                  <span class="veille-meta">SCOP, Média de l’habitat écologique, KissKissBankBank, 2016</span>
                 </span>
                 <span class="veille-result">
                   <span class="veille-rate">158,1&nbsp;%</span>
-                  <span class="veille-amount">47&nbsp;441 / 30&nbsp;000&nbsp;€ · 919 contributions</span>
+                  <span class="veille-amount">47&nbsp;441 / 30&nbsp;000&nbsp;€, 919 contributions</span>
                 </span>
                 <svg class="veille-chevron" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
                   stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
@@ -1749,12 +1527,11 @@
               <summary>
                 <span>
                   <span class="veille-name">MontCapel</span>
-                  <span class="veille-meta">SCIC · Chapellerie coopérative · KissKissBankBank · Don avec contrepartie
-                    · 2020</span>
+                  <span class="veille-meta">SCIC, Chapellerie coopérative, KissKissBankBank, Don avec contrepartie, 2020</span>
                 </span>
                 <span class="veille-result">
                   <span class="veille-rate">111,5&nbsp;%</span>
-                  <span class="veille-amount">16&nbsp;726 / 15&nbsp;000&nbsp;€ · 201 contributions</span>
+                  <span class="veille-amount">16&nbsp;726 / 15&nbsp;000&nbsp;€, 201 contributions</span>
                 </span>
                 <svg class="veille-chevron" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
                   stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
@@ -1795,12 +1572,11 @@
               <summary>
                 <span>
                   <span class="veille-name">wOrk’Lys</span>
-                  <span class="veille-meta">SCIC · Tiers-lieu et coworking à Armentières · KissKissBankBank ·
-                    2019</span>
+                  <span class="veille-meta">SCIC, Tiers-lieu et coworking à Armentières, KissKissBankBank, 2019</span>
                 </span>
                 <span class="veille-result">
                   <span class="veille-rate">104,9&nbsp;%</span>
-                  <span class="veille-amount">3&nbsp;670 / 3&nbsp;500&nbsp;€ · 44 contributions</span>
+                  <span class="veille-amount">3&nbsp;670 / 3&nbsp;500&nbsp;€, 44 contributions</span>
                 </span>
                 <svg class="veille-chevron" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
                   stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
@@ -1842,11 +1618,11 @@
               <summary>
                 <span>
                   <span class="veille-name">Le Crouz’Art</span>
-                  <span class="veille-meta">SCIC en formation · Lieu rural collectif · KissKissBankBank · 2024</span>
+                  <span class="veille-meta">SCIC en formation, Lieu rural collectif, KissKissBankBank, 2024</span>
                 </span>
                 <span class="veille-result">
                   <span class="veille-rate">111,8&nbsp;%</span>
-                  <span class="veille-amount">2&nbsp;963 / 2&nbsp;650&nbsp;€ · 43 contributions</span>
+                  <span class="veille-amount">2&nbsp;963 / 2&nbsp;650&nbsp;€, 43 contributions</span>
                 </span>
                 <svg class="veille-chevron" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
                   stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
@@ -1925,7 +1701,7 @@
        FOOTER MINIMAL
        ============================================================= -->
   <footer class="site-footer">
-    <p class="footer-identity">Benjamin Bridanne · Chargé de communication digitale</p>
+    <p class="footer-identity">Benjamin Bridanne, chargé de communication digitale</p>
     <div class="footer-links">
       <a href="/realisations">Réalisations</a>
       <a href="/politique-confidentialite">Confidentialité</a>
@@ -1936,29 +1712,6 @@
   </footer>
 
   <script>
-    /* =========================================================
-       THEME SOMBRE / CLAIR : clé localStorage bb-theme partagée
-       ========================================================= */
-    (function () {
-      const root = document.documentElement;
-      const btn = document.getElementById('theme-toggle');
-      const label = document.getElementById('theme-toggle-label');
-      /* Thème déjà appliqué dans le <head> : clair sauf choix explicite du sombre */
-      const initial = root.getAttribute('data-theme') === 'dark' ? 'dark' : 'light';
-      updateLabel(initial);
-
-      btn.addEventListener('click', () => {
-        const current = root.getAttribute('data-theme');
-        const next = current === 'dark' ? 'light' : 'dark';
-        root.setAttribute('data-theme', next);
-        try { localStorage.setItem('bb-theme', next); } catch (e) { }
-        updateLabel(next);
-      });
-
-      function updateLabel(mode) {
-        label.textContent = mode === 'dark' ? 'Passer en mode clair' : 'Passer en mode sombre';
-      }
-    })();
 
     /* =========================================================
        AGRANDISSEMENT DES IMAGES

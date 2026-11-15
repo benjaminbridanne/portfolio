@@ -26,8 +26,8 @@
 
   <meta name="twitter:card" content="summary_large_image" />
 
-  <link rel="stylesheet" href="css/site-nav.css" />
-
+  <link rel="preload" href="fonts/mona-sans-expanded-900.woff2" as="font" type="font/woff2" crossorigin />
+  <link rel="stylesheet" href="css/marque.css" />
   <style>
     /* =========================================================
        TOKENS (identiques à l'accueil)
@@ -41,89 +41,76 @@
       --transition-fast: 250ms var(--ease);
       --transition-med: 400ms var(--ease);
 
-      /* Carte de présentation : bleu plein, identique en clair et en sombre.
-         Contraste WCAG : blanc 5,97:1. */
-      --profile-bg: #0A5ECF;
-      --profile-border: rgba(255, 255, 255, 0.16);
-      --profile-text: #ffffff;
-      --profile-line: rgba(255, 255, 255, 0.28);
-
-      /* Bouton d'action : bleu plein, texte blanc lisible (5,97:1) en clair comme en sombre */
-      --cta-bg: #0A5ECF;
-      --cta-bg-hover: #094FAF;
-
-      /* Badge de disponibilité, posé sur la carte bleue : vert foncé sur blanc (5,4:1) */
-      --available-text: #157A36;
-      --available-dot: #34c759;
+      /* Bouton d'action : Bleu 600, texte blanc 6,2:1 en clair comme en sombre */
+      --cta-bg: var(--aplat-bleu);
+      --cta-bg-hover: var(--aplat-bleu-survol);
     }
 
     [data-theme="light"] {
-      --bg: #f2f2f4;
-      --bg-halo-1: rgba(205, 214, 232, 0.30);
-      --bg-halo-2: rgba(214, 220, 234, 0.24);
+      --bg: var(--papier);
+      --bg-halo-1: transparent;
+      --bg-halo-2: transparent;
 
-      --card-bg: rgba(255, 255, 255, 0.74);
-      --card-bg-solid: #ffffff;
-      --card-border: rgba(60, 60, 67, 0.16);
-      --card-border-hover: rgba(60, 60, 67, 0.28);
-      --card-edge: rgba(255, 255, 255, 0.95);
-      --card-shadow: 0 4px 20px rgba(0, 0, 0, 0.05);
-      --card-shadow-hover: 0 14px 38px rgba(0, 0, 0, 0.09);
-      --card-highlight-top: rgba(255, 255, 255, 0.9);
+      --card-bg: var(--papier);
+      --card-bg-solid: var(--papier);
+      --card-border: var(--contour);
+      --card-border-hover: var(--bleu-200);
+      --card-edge: transparent;
+      --card-shadow: none;
+      --card-shadow-hover: none;
+      --card-highlight-top: transparent;
 
-      --text: #0a0a0d;
-      --text-secondary: rgba(60, 60, 67, 0.62);
+      --text: var(--encre);
+      --text-secondary: var(--encre-douce);
       /* Texte gris des cartes : même valeur que les prestations de Services (5,71:1 sur blanc) */
-      --text-soft: #5B6370;
-      --eyebrow: #5B6370;
-      --line: rgba(60, 60, 67, 0.12);
+      --text-soft: var(--encre-douce);
+      --line: var(--contour);
 
-      --field-bg: #ffffff;
-      --field-border: rgba(60, 60, 67, 0.24);
-      --placeholder: #6B7280;
+      --field-bg: var(--papier);
+      --field-border: var(--encre-douce);
+      --placeholder: var(--encre-douce);
 
-      --pill-bg: rgba(60, 60, 67, 0.05);
-      --pill-bg-hover: rgba(60, 60, 67, 0.09);
+      --pill-bg: var(--bleu-pale);
+      --pill-bg-hover: var(--bleu-200);
 
-      --blue-ink: #0A5ECF;
-      --focus-ring: rgba(10, 94, 207, 0.22);
-      --error: #C4281C;
-      --success-bg: #E3F5E8;
-      --success-ink: #157A36;
+      --blue-ink: var(--bleu-fonce);
+      --focus-ring: var(--bleu-200);
+      --error: var(--erreur);
+      --success-bg: var(--bleu-pale);
+      --success-ink: var(--succes);
     }
 
     [data-theme="dark"] {
-      --bg: #000000;
-      --bg-halo-1: rgba(44, 44, 52, 0.22);
-      --bg-halo-2: rgba(24, 34, 52, 0.18);
+      --bg: var(--encre);
+      --bg-halo-1: transparent;
+      --bg-halo-2: transparent;
 
-      --card-bg: rgba(18, 18, 20, 0.74);
-      --card-bg-solid: #0e0e10;
-      --card-border: rgba(255, 255, 255, 0.10);
-      --card-border-hover: rgba(255, 255, 255, 0.20);
-      --card-edge: rgba(255, 255, 255, 0.28);
-      --card-shadow: 0 6px 26px rgba(0, 0, 0, 0.50);
-      --card-shadow-hover: 0 18px 46px rgba(0, 0, 0, 0.62);
-      --card-highlight-top: rgba(255, 255, 255, 0.14);
+      --card-bg: var(--carte-sombre);
+      --card-bg-solid: var(--carte-sombre);
+      --card-border: var(--carte-sombre-bord);
+      --card-border-hover: var(--bleu-700);
+      --card-edge: transparent;
+      --card-shadow: none;
+      --card-shadow-hover: none;
+      --card-highlight-top: transparent;
 
-      --text: #F5F5F7;
-      --text-secondary: rgba(235, 235, 245, 0.62);
-      --text-soft: rgba(235, 235, 245, 0.72);
-      --eyebrow: rgba(235, 235, 245, 0.72);
-      --line: rgba(255, 255, 255, 0.10);
+      --text: var(--papier);
+      --text-secondary: var(--bleu-200);
+      --text-soft: var(--bleu-200);
+      --line: var(--bleu-800);
 
-      --field-bg: rgba(255, 255, 255, 0.04);
-      --field-border: rgba(255, 255, 255, 0.18);
-      --placeholder: rgba(235, 235, 245, 0.55);
+      --field-bg: var(--encre);
+      --field-border: var(--bleu-300);
+      --placeholder: var(--bleu-200);
 
-      --pill-bg: #151517;
-      --pill-bg-hover: #1f1f22;
+      --pill-bg: var(--bleu-900);
+      --pill-bg-hover: var(--bleu-800);
 
-      --blue-ink: #4DA3FF;
-      --focus-ring: rgba(77, 163, 255, 0.28);
-      --error: #FF7A70;
-      --success-bg: rgba(48, 209, 88, 0.16);
-      --success-ink: #6EE08F;
+      --blue-ink: var(--bleu-400);
+      --focus-ring: var(--bleu-800);
+      --error: var(--papier);
+      --success-bg: var(--bleu-900);
+      --success-ink: var(--papier);
     }
 
     /* =========================================================
@@ -201,12 +188,12 @@
       border: 0;
     }
 
-    .card-eyebrow {
-      font-size: 0.72rem;
-      font-weight: 600;
-      color: var(--eyebrow);
-      letter-spacing: 0.13em;
-      text-transform: uppercase;
+    .card-heading {
+      font-size: 17px;
+      font-weight: 700;
+      line-height: 1.25;
+      letter-spacing: -0.015em;
+      color: var(--text);
     }
 
     /* =========================================================
@@ -240,7 +227,6 @@
       border-radius: var(--radius);
       background: var(--card-bg-solid);
       border: 1px solid var(--card-border);
-      box-shadow: var(--card-shadow);
       padding: 28px;
       overflow: hidden;
     }
@@ -252,9 +238,9 @@
       padding: 1px;
       border-radius: inherit;
       background: linear-gradient(145deg, var(--card-edge), transparent 42%);
-      -webkit-mask: linear-gradient(#000 0 0) content-box, linear-gradient(#000 0 0);
+      -webkit-mask: linear-gradient(var(--encre) 0 0) content-box, linear-gradient(var(--encre) 0 0);
       -webkit-mask-composite: xor;
-      mask: linear-gradient(#000 0 0) content-box, linear-gradient(#000 0 0);
+      mask: linear-gradient(var(--encre) 0 0) content-box, linear-gradient(var(--encre) 0 0);
       mask-composite: exclude;
       opacity: 0.75;
       pointer-events: none;
@@ -272,41 +258,17 @@
     }
 
     /* =========================================================
-       A. CARTE BLEUE
+       A. PRÉSENTATION (fond Papier : la note Caveat bleue s'y lit)
        ========================================================= */
     .card--hero {
       display: flex;
       flex-direction: column;
       padding: 44px;
-      background: var(--profile-bg);
-      border-color: var(--profile-border);
-      color: var(--profile-text);
-    }
-
-    .availability {
-      align-self: flex-start;
-      display: inline-flex;
-      align-items: center;
-      gap: 8px;
-      padding: 7px 14px 7px 12px;
-      border-radius: 999px;
-      background: #ffffff;
-      color: var(--available-text);
-      font-size: 0.8125rem;
-      font-weight: 600;
-    }
-
-    .availability-dot {
-      width: 9px;
-      height: 9px;
-      border-radius: 50%;
-      background: var(--available-dot);
-      box-shadow: 0 0 0 3px rgba(52, 199, 89, 0.22);
     }
 
     .hero-title {
-      margin-top: 24px;
-      font-size: clamp(2.5rem, 5vw, 3.6rem);
+      margin-top: 14px;
+      font-size: var(--fs-54-40);
       font-weight: 800;
       letter-spacing: -0.045em;
       line-height: 1.04;
@@ -315,7 +277,7 @@
     .hero-text {
       max-width: 620px;
       margin: 22px 0 30px;
-      font-size: 1.0625rem;
+      font-size: 17px;
       line-height: 1.6;
     }
 
@@ -326,8 +288,8 @@
       gap: 10px 28px;
       margin-top: auto;
       padding-top: 26px;
-      border-top: 1px solid var(--profile-line);
-      font-size: 0.9375rem;
+      border-top: 1px solid var(--line);
+      font-size: 17px;
       font-weight: 500;
     }
 
@@ -355,7 +317,7 @@
       max-width: 100%;
       margin-top: 3px;
       padding: 11px 0;
-      font-size: 1.0625rem;
+      font-size: 17px;
       font-weight: 600;
       letter-spacing: -0.01em;
       overflow-wrap: anywhere;
@@ -382,7 +344,7 @@
       border: 1px solid var(--field-border);
       border-radius: 999px;
       background: var(--card-bg-solid);
-      font-size: 0.875rem;
+      font-size: 17px;
       font-weight: 500;
       transition: border-color var(--transition-fast), background-color var(--transition-fast);
     }
@@ -427,17 +389,16 @@
     }
 
     a.quick-card {
-      transition: transform var(--transition-med), border-color var(--transition-med), box-shadow var(--transition-med);
+      transition: transform var(--transition-med), border-color var(--transition-med);
     }
 
     a.quick-card:hover {
       transform: translateY(-2px);
       border-color: var(--card-border-hover);
-      box-shadow: var(--card-shadow-hover);
     }
 
     .quick-label {
-      font-size: 0.9375rem;
+      font-size: 17px;
       font-weight: 600;
       line-height: 1.3;
     }
@@ -458,7 +419,7 @@
     .form-title,
     .success-title {
       margin-top: 10px;
-      font-size: clamp(1.6rem, 3vw, 2rem);
+      font-size: var(--fs-30-23);
       font-weight: 700;
       letter-spacing: -0.03em;
       line-height: 1.15;
@@ -475,13 +436,13 @@
     .form-label {
       display: block;
       margin-bottom: 10px;
-      font-size: 0.9375rem;
+      font-size: 17px;
       font-weight: 500;
     }
 
     .form-label {
       margin-bottom: 8px;
-      font-size: 0.875rem;
+      font-size: 17px;
     }
 
     .form-optional {
@@ -493,27 +454,41 @@
     .need-options {
       display: flex;
       flex-wrap: wrap;
-      gap: 10px;
+      gap: 8px;
     }
 
+    /* Capsule compacte (32 px visibles) ; la zone cliquable est agrandie à 40 px
+       par un pseudo-élément de 4 px au-dessus et au-dessous (l'écart de 8 px reste libre) */
     .need-btn {
+      position: relative;
       display: inline-flex;
       align-items: center;
-      gap: 8px;
-      min-height: 44px;
-      padding: 0 18px;
-      border: 1px solid var(--field-border);
+      gap: 6px;
+      padding: 6px 14px;
+      border: 1px solid var(--contour);
       border-radius: 999px;
       background: var(--card-bg-solid);
-      font-size: 0.875rem;
+      font-size: 15px;
+      line-height: 1.2;
       text-align: left;
       transition: background-color 280ms ease, color 280ms ease, border-color 280ms ease;
     }
 
+    .need-btn::after {
+      content: "";
+      position: absolute;
+      inset: -5px -1px;
+    }
+
+    /* Mode sombre : le contour clair resterait trop vif, on garde celui des champs */
+    [data-theme="dark"] .need-btn {
+      border-color: var(--field-border);
+    }
+
     .need-btn svg {
       display: none;
-      width: 15px;
-      height: 15px;
+      width: 13px;
+      height: 13px;
     }
 
     .need-btn:hover {
@@ -521,10 +496,17 @@
     }
 
     .need-btn[aria-pressed="true"] {
-      background: var(--cta-bg);
-      border-color: var(--cta-bg);
-      color: #fff;
+      background: var(--bleu-pale);
+      border-color: var(--bleu-fonce);
+      color: var(--bleu-fonce);
       font-weight: 600;
+    }
+
+    /* Bleu 900 serait identique au fond de la carte : Bleu 800, texte blanc lisible */
+    [data-theme="dark"] .need-btn[aria-pressed="true"] {
+      background: var(--bleu-800);
+      border-color: var(--bleu-400);
+      color: var(--papier);
     }
 
     .need-btn[aria-pressed="true"] svg {
@@ -544,9 +526,9 @@
       border: 1px solid var(--field-border);
       border-radius: 12px;
       background: var(--field-bg);
-      font-size: 0.9375rem;
+      font-size: 17px;
       text-overflow: ellipsis;
-      transition: border-color var(--transition-fast), box-shadow var(--transition-fast);
+      transition: border-color var(--transition-fast);
     }
 
     textarea.form-input {
@@ -576,7 +558,7 @@
     .field-error {
       margin-top: 7px;
       color: var(--error);
-      font-size: 0.8125rem;
+      font-size: 17px;
       font-weight: 500;
     }
 
@@ -603,7 +585,7 @@
     .form-note {
       max-width: 430px;
       color: var(--text-soft);
-      font-size: 0.8125rem;
+      font-size: 13px;
       line-height: 1.55;
     }
 
@@ -617,10 +599,28 @@
       padding: 0 28px;
       border-radius: 999px;
       background: var(--cta-bg);
-      color: #fff;
-      font-size: 1rem;
+      color: var(--papier);
+      font-size: 17px;
       font-weight: 600;
-      transition: background-color var(--transition-fast), transform var(--transition-med), box-shadow var(--transition-med);
+      transition: background-color var(--transition-fast), transform var(--transition-med);
+    }
+
+    /* Vous préférez en parler ? : bouton Calendly */
+    .card--call {
+      display: flex;
+      flex-direction: column;
+      align-items: flex-start;
+      gap: 14px;
+    }
+
+    .call-text {
+      font-size: 17px;
+      line-height: 1.5;
+      color: var(--text-secondary);
+    }
+
+    .call-btn {
+      margin-top: 4px;
     }
 
     .submit-btn svg,
@@ -634,7 +634,6 @@
     .primary-btn:hover {
       background: var(--cta-bg-hover);
       transform: translateY(-1px);
-      box-shadow: 0 10px 24px rgba(10, 94, 207, 0.24);
     }
 
     .submit-btn:hover svg,
@@ -646,7 +645,6 @@
       cursor: progress;
       opacity: 0.75;
       transform: none;
-      box-shadow: none;
     }
 
     .form-alert {
@@ -654,7 +652,7 @@
       border: 1px solid var(--error);
       border-radius: 12px;
       color: var(--text);
-      font-size: 0.875rem;
+      font-size: 17px;
       line-height: 1.5;
     }
 
@@ -707,7 +705,7 @@
       max-width: 520px;
       margin-top: 14px;
       color: var(--text-soft);
-      font-size: 1rem;
+      font-size: 17px;
       line-height: 1.6;
     }
 
@@ -721,7 +719,7 @@
     .success-actions .pill-btn {
       min-height: 52px;
       padding: 0 26px;
-      font-size: 1rem;
+      font-size: 17px;
       font-weight: 600;
     }
 
@@ -756,12 +754,12 @@
       border: 2px solid var(--blue-ink);
       border-radius: 50%;
       color: var(--blue-ink);
-      font-size: 0.875rem;
+      font-size: 13px;
       font-weight: 700;
     }
 
     .step-title {
-      font-size: 1rem;
+      font-size: 17px;
       font-weight: 600;
       letter-spacing: -0.01em;
       line-height: 1.3;
@@ -770,7 +768,7 @@
     .step-text {
       margin-top: 5px;
       color: var(--text-soft);
-      font-size: 0.875rem;
+      font-size: 17px;
       line-height: 1.5;
     }
 
@@ -814,7 +812,7 @@
       }
 
       .hero-text {
-        font-size: 1rem;
+        font-size: 17px;
       }
 
       .quick-card {
@@ -842,25 +840,46 @@
     }
   </style>
   <link rel="stylesheet" href="css/site-pages.css" />
+  <link rel="stylesheet" href="css/commun.css" />
   <script defer src="https://cloud.umami.is/script.js" data-website-id="c992974a-48c8-47e4-9625-85ab5eca2ac3"></script>
+  <script src="js/site.js" defer></script>
 </head>
 
 <body>
 
-  <nav class="site-nav" aria-label="Navigation principale">
-    <ul class="site-nav-list">
-      <li><a href="/" class="site-nav-link">Accueil</a></li>
-      <li><a href="/services" class="site-nav-link">Services</a></li>
-      <li><a href="/realisations" class="site-nav-link">Réalisations</a></li>
-      <li><a href="/contact" class="site-nav-link" aria-current="page">Contact</a></li>
-    </ul>
-  </nav>
+  <header class="site-header">
+    <a class="brand" href="/" aria-label="Accueil, Brief &amp; Bold">
+      <span class="brand-brief" aria-hidden="true">brief&amp;</span><span class="brand-bold" aria-hidden="true">BOLD</span>
+    </a>
+    <nav class="site-menu" aria-label="Navigation principale">
+      <ul>
+        <li><a href="/">Accueil</a></li>
+        <li><a href="/services">Services</a></li>
+        <li><a href="/realisations">Réalisations</a></li>
+        <li><a data-umami-event="clic-contact" href="/contact" aria-current="page">Contact</a></li>
+      </ul>
+    </nav>
+    <button type="button" class="theme-btn" id="theme-toggle" aria-label="Passer en mode sombre">
+      <span class="sr-only" id="theme-toggle-label">Passer en mode sombre</span>
+      <span class="theme-track" aria-hidden="true">
+        <span class="theme-thumb">
+          <svg class="theme-sun" viewBox="0 0 24 24">
+            <circle cx="12" cy="12" r="4" />
+            <path d="M12 2v2M12 20v2M4.93 4.93l1.41 1.41M17.66 17.66l1.41 1.41M2 12h2M20 12h2M4.93 19.07l1.41-1.41M17.66 6.34l1.41-1.41" />
+          </svg>
+          <svg class="theme-moon" viewBox="0 0 24 24">
+            <path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z" />
+          </svg>
+        </span>
+      </span>
+    </button>
+  </header>
 
   <main class="contact-layout">
 
     <!-- ============ A. PRÉSENTATION ============ -->
     <section class="card card--hero" aria-labelledby="contact-title">
-      <p class="availability"><span class="availability-dot" aria-hidden="true"></span>Disponible pour de nouvelles missions</p>
+      <p class="note-main">je réponds sous 48&nbsp;h&nbsp;:</p>
       <h1 class="hero-title" id="contact-title">Parlons de<br /> votre projet.</h1>
       <p class="hero-text">Supports visuels, site web, contenus pour vos réseaux sociaux ou stratégie de
         communication&nbsp;: décrivez votre besoin en quelques lignes. Je vous réponds sous 48&nbsp;h pour organiser un
@@ -886,7 +905,7 @@
     <!-- ============ B. E-MAIL, LINKEDIN, LOCALISATION ============ -->
     <div class="contact-side">
       <section class="card card--email" aria-labelledby="email-title">
-        <h2 class="card-eyebrow" id="email-title">Écrire directement</h2>
+        <h2 class="card-heading" id="email-title">Ou écrivez-moi directement</h2>
         <a data-umami-event="clic-contact" class="email-address" href="mailto:benjaminbridanne@gmail.com"
           id="email-address">benjaminbridanne@gmail.com</a>
         <div class="email-actions">
@@ -919,7 +938,7 @@
             <line x1="8" y1="8" x2="8" y2="8.01" />
             <path d="M12 16v-5M16 16v-3a2 2 0 0 0-4 0" />
           </svg>
-          <span class="quick-label">LinkedIn <span aria-hidden="true">↗</span><span class="sr-only"> (nouvel
+          <span class="quick-label">LinkedIn<span class="sr-only"> (nouvel
               onglet)</span></span>
         </a>
         <div class="card quick-card">
@@ -936,7 +955,6 @@
     <!-- ============ C. DEMANDE DE DEVIS ============ -->
     <section class="card card--form" aria-labelledby="form-title">
       <div id="form-view">
-        <p class="card-eyebrow">Demande de devis</p>
         <h2 class="form-title" id="form-title">Votre projet en 2&nbsp;minutes</h2>
 
         <!-- Envoi par Web3Forms (fetch, sans quitter la page) -->
@@ -1016,11 +1034,6 @@
                 href="/politique-confidentialite">En savoir plus</a></p>
             <button type="submit" class="submit-btn" id="submit-btn">
               <span id="submit-label">Envoyer ma demande</span>
-              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round"
-                stroke-linejoin="round" aria-hidden="true">
-                <line x1="5" y1="12" x2="19" y2="12" />
-                <polyline points="12 5 19 12 12 19" />
-              </svg>
             </button>
           </div>
         </form>
@@ -1039,20 +1052,23 @@
         <div class="success-actions">
           <a class="primary-btn" href="/realisations">
             Voir mes réalisations
-            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round"
-              stroke-linejoin="round" aria-hidden="true">
-              <line x1="5" y1="12" x2="19" y2="12" />
-              <polyline points="12 5 19 12 12 19" />
-            </svg>
           </a>
           <button type="button" class="pill-btn" id="new-request">Nouvelle demande</button>
         </div>
       </div>
     </section>
 
-    <!-- ============ D. ET ENSUITE ? ============ -->
+    <!-- ============ D. EN PARLER, PUIS ET ENSUITE ? ============ -->
+    <div class="contact-side">
+    <section class="card card--call" aria-labelledby="call-title">
+      <h2 class="card-heading" id="call-title">Vous préférez en parler&nbsp;?</h2>
+      <p class="call-text">Appel ou visio de 30&nbsp;minutes, gratuit et sans engagement.</p>
+      <a data-umami-event="clic-calendly" data-calendly href="https://calendly.com/benjaminbridanne/30min" target="_blank"
+        rel="noopener" class="primary-btn call-btn">Réserver un appel</a>
+    </section>
+
     <section class="card card--steps" aria-labelledby="steps-title">
-      <h2 class="card-eyebrow" id="steps-title">Et ensuite&nbsp;?</h2>
+      <h2 class="card-heading" id="steps-title">Ce qui se passe ensuite</h2>
       <ol class="steps">
         <li class="step">
           <span class="step-number" aria-hidden="true">01</span>
@@ -1077,10 +1093,11 @@
         </li>
       </ol>
     </section>
+    </div>
   </main>
 
   <footer class="site-footer">
-    <p class="footer-identity">Benjamin Bridanne · Chargé de communication digitale</p>
+    <p class="footer-identity">Benjamin Bridanne, chargé de communication digitale</p>
     <div class="footer-links">
       <a href="/realisations">Réalisations</a>
       <a href="/politique-confidentialite">Confidentialité</a>

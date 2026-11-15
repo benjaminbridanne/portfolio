@@ -26,6 +26,8 @@
 
   <meta name="twitter:card" content="summary_large_image" />
 
+  <link rel="preload" href="fonts/mona-sans-expanded-900.woff2" as="font" type="font/woff2" crossorigin />
+  <link rel="stylesheet" href="css/marque.css" />
   <style>
     /* =========================================================
        TOKENS (identiques aux autres pages)
@@ -37,55 +39,55 @@
       --transition-fast: 250ms var(--ease);
       --transition-med: 400ms var(--ease);
 
-      --sun-moon: #F7E27B;
+      --sun-moon: var(--bleu-200);
     }
 
     /* -------- Light mode -------- */
     [data-theme="light"] {
-      --bg: #f2f2f4;
-      --bg-halo-1: rgba(205, 214, 232, 0.30);
-      --bg-halo-2: rgba(214, 220, 234, 0.24);
+      --bg: var(--papier);
+      --bg-halo-1: transparent;
+      --bg-halo-2: transparent;
 
-      --card-bg: rgba(255, 255, 255, 0.74);
-      --card-bg-soft: rgba(255, 255, 255, 0.56);
-      --card-border: rgba(60, 60, 67, 0.16);
-      --card-shadow: 0 4px 20px rgba(0, 0, 0, 0.05);
+      --card-bg: var(--papier);
+      --card-bg-soft: var(--papier);
+      --card-border: var(--contour);
+      --card-shadow: none;
 
-      --text: #0a0a0d;
-      --text-secondary: rgba(60, 60, 67, 0.62);
-      --text-muted: rgba(60, 60, 67, 0.34);
-      --line: rgba(60, 60, 67, 0.12);
+      --text: var(--encre);
+      --text-secondary: var(--encre-douce);
+      --text-muted: var(--encre-douce);
+      --line: var(--contour);
 
-      --toggle-track-bg: #e8e8ea;
-      --toggle-track-border: rgba(60, 60, 67, 0.22);
-      --toggle-thumb-bg: #0a0a0d;
+      --toggle-track-bg: var(--bleu-pale);
+      --toggle-track-border: var(--contour);
+      --toggle-thumb-bg: var(--encre);
 
-      --nav-bg: rgba(242, 242, 244, 0.72);
-      --nav-border: rgba(60, 60, 67, 0.12);
+      --nav-bg: var(--papier);
+      --nav-border: var(--contour);
     }
 
     /* -------- Dark mode -------- */
     [data-theme="dark"] {
-      --bg: #000000;
-      --bg-halo-1: rgba(44, 44, 52, 0.22);
-      --bg-halo-2: rgba(24, 34, 52, 0.18);
+      --bg: var(--encre);
+      --bg-halo-1: transparent;
+      --bg-halo-2: transparent;
 
-      --card-bg: rgba(18, 18, 20, 0.74);
-      --card-bg-soft: rgba(20, 20, 22, 0.56);
-      --card-border: rgba(255, 255, 255, 0.10);
-      --card-shadow: 0 6px 26px rgba(0, 0, 0, 0.50);
+      --card-bg: var(--carte-sombre);
+      --card-bg-soft: var(--carte-sombre);
+      --card-border: var(--carte-sombre-bord);
+      --card-shadow: none;
 
-      --text: #F5F5F7;
-      --text-secondary: rgba(235, 235, 245, 0.62);
-      --text-muted: rgba(235, 235, 245, 0.34);
-      --line: rgba(255, 255, 255, 0.10);
+      --text: var(--papier);
+      --text-secondary: var(--bleu-200);
+      --text-muted: var(--bleu-200);
+      --line: var(--bleu-800);
 
-      --toggle-track-bg: #1c1c1e;
-      --toggle-track-border: rgba(255, 255, 255, 0.16);
-      --toggle-thumb-bg: #0a0a0a;
+      --toggle-track-bg: var(--bleu-900);
+      --toggle-track-border: var(--bleu-800);
+      --toggle-thumb-bg: var(--encre);
 
-      --nav-bg: rgba(0, 0, 0, 0.62);
-      --nav-border: rgba(255, 255, 255, 0.08);
+      --nav-bg: var(--encre);
+      --nav-border: var(--bleu-800);
     }
 
     /* =========================================================
@@ -154,97 +156,6 @@
     }
 
     /* =========================================================
-       NAV STICKY (identique aux pages projets)
-       ========================================================= */
-    .project-nav {
-      position: sticky;
-      top: 0;
-      z-index: 30;
-      display: flex;
-      align-items: center;
-      gap: 20px;
-      padding: 12px 24px;
-      background: var(--nav-bg);
-      border-bottom: 1px solid var(--nav-border);
-      backdrop-filter: blur(18px) saturate(130%);
-      -webkit-backdrop-filter: blur(18px) saturate(130%);
-    }
-
-    .nav-back {
-      display: inline-flex;
-      align-items: center;
-      gap: 8px;
-      font-size: 0.875rem;
-      font-weight: 500;
-      color: var(--text);
-      padding: 6px 10px;
-      border-radius: 10px;
-      transition: background var(--transition-fast);
-    }
-
-    .nav-back:hover { background: var(--card-bg-soft); }
-
-    .nav-back svg { width: 16px; height: 16px; }
-
-    .nav-crumb {
-      font-size: 0.8125rem;
-      color: var(--text-secondary);
-      flex: 1;
-      min-width: 0;
-      overflow: hidden;
-      text-overflow: ellipsis;
-      white-space: nowrap;
-    }
-
-    .nav-crumb strong { color: var(--text); font-weight: 500; }
-
-    /* Toggle iOS */
-    .theme-toggle-btn {
-      display: inline-flex;
-      align-items: center;
-      justify-content: center;
-      padding: 0;
-    }
-
-    .toggle-switch {
-      position: relative;
-      width: 52px;
-      height: 28px;
-      border-radius: 999px;
-      background: var(--toggle-track-bg);
-      border: 1px solid var(--toggle-track-border);
-      transition: background var(--transition-med), border-color var(--transition-med);
-    }
-
-    .toggle-thumb {
-      position: absolute;
-      top: 50%;
-      left: 3px;
-      width: 22px;
-      height: 22px;
-      border-radius: 50%;
-      background: var(--toggle-thumb-bg);
-      transform: translateY(-50%);
-      transition: left var(--transition-med), background var(--transition-med);
-      display: flex;
-      align-items: center;
-      justify-content: center;
-    }
-
-    .toggle-thumb svg {
-      width: 12px;
-      height: 12px;
-      color: var(--sun-moon);
-      position: absolute;
-      transition: opacity var(--transition-fast);
-    }
-
-    [data-theme="dark"] .toggle-thumb { left: 3px; }
-    [data-theme="light"] .toggle-thumb { left: calc(100% - 25px); }
-    [data-theme="dark"] .icon-sun { opacity: 0; }
-    [data-theme="light"] .icon-moon { opacity: 0; }
-
-    /* =========================================================
        CONTENU MENTIONS LEGALES
        ========================================================= */
     .legal-main {
@@ -256,7 +167,7 @@
     }
 
     .legal-eyebrow {
-      font-size: 0.75rem;
+      font-size: 13px;
       letter-spacing: 0.08em;
       text-transform: uppercase;
       color: var(--text-muted);
@@ -264,7 +175,7 @@
     }
 
     .legal-title {
-      font-size: clamp(2rem, 4vw, 2.75rem);
+      font-size: var(--fs-40-30);
       font-weight: 600;
       letter-spacing: -0.02em;
       line-height: 1.1;
@@ -272,7 +183,7 @@
     }
 
     .legal-intro {
-      font-size: 1rem;
+      font-size: 17px;
       color: var(--text-secondary);
       line-height: 1.6;
       margin-bottom: 40px;
@@ -284,14 +195,14 @@
     }
 
     .legal-section h2 {
-      font-size: 1.125rem;
+      font-size: 17px;
       font-weight: 600;
       letter-spacing: -0.01em;
       margin-bottom: 12px;
     }
 
     .legal-section p {
-      font-size: 0.9375rem;
+      font-size: 17px;
       color: var(--text-secondary);
       line-height: 1.65;
       margin-bottom: 10px;
@@ -312,7 +223,7 @@
     .legal-section address {
       font-style: normal;
       color: var(--text-secondary);
-      font-size: 0.9375rem;
+      font-size: 17px;
       line-height: 1.65;
     }
 
@@ -340,9 +251,8 @@
       border-radius: 999px;
       background: var(--card-bg);
       border: 1px solid var(--card-border);
-      box-shadow: var(--card-shadow);
       color: var(--text);
-      font-size: 0.875rem;
+      font-size: 17px;
       font-weight: 500;
       text-align: left;
       transition: border-color var(--transition-fast), background var(--transition-fast);
@@ -356,7 +266,7 @@
       margin-top: 40px;
       padding-top: 24px;
       border-top: 1px solid var(--line);
-      font-size: 0.8125rem;
+      font-size: 13px;
       color: var(--text-muted);
     }
 
@@ -368,12 +278,13 @@
        RESPONSIVE
        ========================================================= */
     @media (max-width: 640px) {
-      .project-nav { padding: 10px 16px; gap: 12px; }
       .legal-main { padding: 40px 20px 32px; }
     }
   </style>
   <link rel="stylesheet" href="css/site-pages.css" />
+  <link rel="stylesheet" href="css/commun.css" />
   <script defer src="https://cloud.umami.is/script.js" data-website-id="c992974a-48c8-47e4-9625-85ab5eca2ac3"></script>
+  <script src="js/site.js" defer></script>
 </head>
 
 <body>
@@ -381,33 +292,33 @@
   <!-- =============================================================
        NAV STICKY
        ============================================================= -->
-  <nav class="project-nav" aria-label="Navigation principale">
-    <a href="/" class="nav-back">
-      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"
-        stroke-linejoin="round" aria-hidden="true">
-        <line x1="19" y1="12" x2="5" y2="12" />
-        <polyline points="12 19 5 12 12 5" />
-      </svg>
-      Retour
+  <header class="site-header">
+    <a class="brand" href="/" aria-label="Accueil, Brief &amp; Bold">
+      <span class="brand-brief" aria-hidden="true">brief&amp;</span><span class="brand-bold" aria-hidden="true">BOLD</span>
     </a>
-    <span class="nav-crumb"><strong>Mentions légales</strong></span>
-    <button id="theme-toggle" class="theme-toggle-btn" aria-label="Basculer entre le mode sombre et le mode clair"
-      aria-live="polite">
+    <nav class="site-menu" aria-label="Navigation principale">
+      <ul>
+        <li><a href="/">Accueil</a></li>
+        <li><a href="/services">Services</a></li>
+        <li><a href="/realisations">Réalisations</a></li>
+        <li><a data-umami-event="clic-contact" href="/contact">Contact</a></li>
+      </ul>
+    </nav>
+    <button type="button" class="theme-btn" id="theme-toggle" aria-label="Passer en mode sombre">
       <span class="sr-only" id="theme-toggle-label">Passer en mode sombre</span>
-      <span class="toggle-switch" aria-hidden="true">
-        <span class="toggle-thumb">
-          <svg class="icon-moon" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true">
-            <path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z" />
-          </svg>
-          <svg class="icon-sun" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
-            stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+      <span class="theme-track" aria-hidden="true">
+        <span class="theme-thumb">
+          <svg class="theme-sun" viewBox="0 0 24 24">
             <circle cx="12" cy="12" r="4" />
             <path d="M12 2v2M12 20v2M4.93 4.93l1.41 1.41M17.66 17.66l1.41 1.41M2 12h2M20 12h2M4.93 19.07l1.41-1.41M17.66 6.34l1.41-1.41" />
+          </svg>
+          <svg class="theme-moon" viewBox="0 0 24 24">
+            <path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z" />
           </svg>
         </span>
       </span>
     </button>
-  </nav>
+  </header>
 
   <!-- =============================================================
        CONTENU
@@ -581,7 +492,7 @@
        FOOTER MINIMAL
        ============================================================= -->
   <footer class="site-footer">
-    <p class="footer-identity">Benjamin Bridanne · Chargé de communication digitale</p>
+    <p class="footer-identity">Benjamin Bridanne, chargé de communication digitale</p>
     <div class="footer-links">
       <a href="/realisations">Réalisations</a>
       <a href="/politique-confidentialite">Confidentialité</a>
@@ -592,29 +503,6 @@
   </footer>
 
   <script>
-    /* =========================================================
-       THEME SOMBRE / CLAIR - clé localStorage bb-theme partagée
-       ========================================================= */
-    (function () {
-      const root = document.documentElement;
-      const btn = document.getElementById('theme-toggle');
-      const label = document.getElementById('theme-toggle-label');
-      /* Thème déjà appliqué dans le <head> : clair sauf choix explicite du sombre */
-      const initial = root.getAttribute('data-theme') === 'dark' ? 'dark' : 'light';
-      updateLabel(initial);
-
-      btn.addEventListener('click', () => {
-        const current = root.getAttribute('data-theme');
-        const next = current === 'dark' ? 'light' : 'dark';
-        root.setAttribute('data-theme', next);
-        try { localStorage.setItem('bb-theme', next); } catch { /* Le thème fonctionne sans mémorisation. */ }
-        updateLabel(next);
-      });
-
-      function updateLabel(mode) {
-        label.textContent = mode === 'dark' ? 'Passer en mode clair' : 'Passer en mode sombre';
-      }
-    })();
 
     /* =========================================================
        MESURE D'AUDIENCE - clé localStorage umami.disabled lue par Umami

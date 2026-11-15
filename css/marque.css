@@ -53,6 +53,49 @@
 }
 
 /* =========================================================
+   POLICE DES TITRES : Mona Sans Expanded 800 et 900
+   github.com/github/mona-sans, licence SIL OFL (fonts/OFL-mona-sans.txt).
+   Sous-ensemble latin (pyftsubset) : 23 Ko par graisse.
+   ========================================================= */
+@font-face {
+  font-family: "Mona Sans Expanded";
+  font-style: normal;
+  font-weight: 800;
+  font-display: swap;
+  src: url("../fonts/mona-sans-expanded-800.woff2") format("woff2");
+}
+
+@font-face {
+  font-family: "Mona Sans Expanded";
+  font-style: normal;
+  font-weight: 900;
+  font-display: swap;
+  src: url("../fonts/mona-sans-expanded-900.woff2") format("woff2");
+}
+
+:root {
+  --font-titre: "Mona Sans Expanded", -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+
+  /* Échelle typographique (px) : 13, 17, 23, 30, 40, 54, 72.
+     Paliers responsives : valeur desktop, puis mobile sous 720 px. */
+  --fs-23-17: 23px;
+  --fs-30-23: 30px;
+  --fs-40-30: 40px;
+  --fs-54-40: 54px;
+  --fs-72-54: 72px;
+}
+
+@media (max-width: 720px) {
+  :root {
+    --fs-23-17: 17px;
+    --fs-30-23: 23px;
+    --fs-40-30: 30px;
+    --fs-54-40: 40px;
+    --fs-72-54: 54px;
+  }
+}
+
+/* =========================================================
    POLICE MANUSCRITE : Caveat 600, sous-ensemble latin auto-hébergé
    ========================================================= */
 @font-face {

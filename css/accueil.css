@@ -1,0 +1,256 @@
+/* =========================================================
+   ACCUEIL - chargé uniquement par index.html, après css/commun.css.
+   L'accueil garde sa mise en page et sa typographie d'origine (CSS
+   intégré à index.html) ; commun.css ne lui sert que pour l'en-tête.
+   Ce fichier :
+   1. annule pour l'accueil les règles de commun.css qui ne concernent
+      pas l'en-tête (titres en Mona Sans, langage des tuiles) ;
+   2. porte les ajouts : en-tête à la hauteur de l'ancien menu,
+      tuile « Réserver un appel », liste « Ce que je fais »,
+      nom en Caveat, parcours contenu dans sa tuile.
+   ========================================================= */
+
+/* ---------- 1. Retour aux réglages d'origine de l'accueil ---------- */
+
+/* Pas de Mona Sans sur l'accueil (seul « BOLD » du logo la garde) */
+:is(h1, h2):not(.project-name):not(.sr-only) {
+  font-family: inherit;
+  hyphens: manual;
+  -webkit-hyphens: manual;
+  overflow-wrap: normal;
+}
+
+/* Titres de tuiles : valeurs d'origine */
+.bento-grid h2.card-heading {
+  font-size: 1.1875rem;
+  font-weight: 700;
+  line-height: 1.25;
+  letter-spacing: -0.015em;
+}
+
+.bento-grid h2.cv-video-title {
+  font-size: 1.3rem;
+  font-weight: 600;
+  line-height: normal;
+  letter-spacing: -0.02em;
+}
+
+/* Tuiles : arrondi et reflets d'origine (commun.css les fige ou les retire) */
+.card {
+  border-radius: var(--radius);
+}
+
+.card::before,
+.card::after {
+  content: "";
+}
+
+@media (min-width: 1800px) {
+  :root {
+    --gap: 20px;
+    --radius: 26px;
+  }
+}
+
+/* ---------- 2. En-tête : même hauteur que l'ancien menu en pilule ----------
+   L'ancien menu faisait 18 px de marge + 40 px de pilule. L'en-tête (44 px de
+   contenu) prend exactement la même place : les tuiles gardent leur taille. */
+@media (min-width: 721px) {
+  body > .site-header {
+    padding-top: 14px;
+    padding-bottom: 0;
+  }
+}
+
+@media (min-width: 1101px) and (min-height: 640px) {
+  body > .site-header {
+    flex: none;
+    padding-top: calc(clamp(10px, 1.8vh, 18px) - 4px);
+  }
+}
+
+/* ---------- 3. Tuile « Réserver un appel » : icône et libellé ---------- */
+.icon-card--call {
+  flex-direction: column;
+  gap: 6px;
+  padding: 8px;
+  text-align: center;
+}
+
+.icon-card-label {
+  font-size: 0.8125rem;
+  font-weight: 600;
+  line-height: 1.2;
+}
+
+/* ---------- 4. Ce que je fais : liste verticale à gauche, description à droite ---------- */
+.skill-body {
+  flex: 1;
+  display: grid;
+  /* La liste prend la largeur de ses libellés, la description le reste */
+  grid-template-columns: max-content minmax(0, 1fr);
+  gap: 10px 24px;
+  align-items: start;
+  min-height: 0;
+}
+
+.skill-tabs {
+  display: flex;
+  flex-direction: column;
+  gap: 1px;
+  width: auto;
+  padding: 0;
+  border-radius: 0;
+  background: none;
+}
+
+.skill-tab {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  min-height: 30px;
+  width: auto;
+  padding: 0;
+  border-radius: 0;
+  background: none;
+  color: var(--encre-douce);
+  font-size: 0.9375rem;
+  font-weight: 500;
+  letter-spacing: -0.005em;
+  text-align: left;
+  transition: color 280ms ease;
+}
+
+[data-theme="dark"] .skill-tab {
+  color: var(--bleu-200);
+}
+
+.skill-tab:hover {
+  color: var(--text);
+}
+
+.skill-tab[aria-selected="true"] {
+  background: none;
+  color: var(--text);
+  font-weight: 700;
+}
+
+.skill-tab[aria-selected="true"] .skill-name {
+  text-decoration: underline 3px var(--bleu);
+  text-underline-offset: 6px;
+}
+
+/* Esperluette manuscrite dans une colonne de largeur fixe :
+   vide devant Graphisme, les 4 noms commencent au même endroit */
+.skill-amp {
+  flex: none;
+  display: inline-block;
+  width: 22px;
+  font-family: "Caveat", "Segoe Print", "Bradley Hand", cursive;
+  font-size: 30px;
+  font-weight: 600;
+  line-height: 1;
+  color: var(--bleu);
+  transform: rotate(-3deg);
+}
+
+[data-theme="dark"] .skill-amp {
+  color: var(--bleu-400);
+}
+
+/* Tuile étroite : la liste passe au-dessus de la description */
+@container (max-width: 400px) {
+  .skill-tabs {
+    border-radius: 0;
+  }
+
+  .skill-body {
+    grid-template-columns: minmax(0, 1fr);
+  }
+}
+
+/* Contenu centré verticalement sous le titre, et aéré selon la place disponible :
+   les écarts grandissent avec la hauteur de l'écran (plafonnés), sans jamais
+   agrandir la tuile. Mobile inchangé : la tuile y est déjà pleine. */
+@media (min-width: 721px) {
+  .card--skills .skill-body {
+    align-content: center;
+    align-items: center;
+  }
+
+  .card--skills .skill-tabs {
+    gap: clamp(1px, 0.9vh, 10px);
+  }
+
+  .card--skills .skill-panel {
+    gap: clamp(8px, 1.4vh, 16px);
+  }
+
+  .card--skills .skill-list {
+    gap: clamp(2px, 0.6vh, 8px);
+  }
+
+  .card--skills .skill-list li {
+    line-height: 1.55;
+  }
+}
+
+/* ---------- 5. Nom en Caveat, blanc, sans inclinaison ---------- */
+.card--profile h1.profile-name {
+  font-family: "Caveat", "Segoe Print", "Bradley Hand", cursive;
+  font-size: 64px;
+  font-weight: 600;
+  letter-spacing: 0;
+  line-height: 0.9;
+  color: var(--papier);
+  white-space: nowrap;
+}
+
+/* Le nom garde la hauteur de ligne de l'ancien titre (mêmes paliers qu'avant) :
+   la tuile profil ne change pas de hauteur. Caveat est dessiné en environ
+   1,6 fois cette hauteur (59 px en 1920 × 1080, 64 px au plus) ; le nom est
+   remonté dans la marge du haut pour que le « j » ne touche pas le sous-titre. */
+:root {
+  --nom-ancien: clamp(1.55rem, 2.5vw, 2rem);
+}
+
+@media (min-width: 1101px) and (min-height: 640px) and (max-height: 820px) {
+  :root {
+    --nom-ancien: 1.5rem;
+  }
+}
+
+@media (min-width: 1101px) and (min-height: 640px) and (max-height: 720px) {
+  :root {
+    --nom-ancien: 1.375rem;
+  }
+}
+
+.card--profile h1.profile-name {
+  --nom-ligne: calc(var(--nom-ancien) * 1.04);
+  position: relative;
+  top: calc(2px - var(--nom-ligne) * 0.4);
+  font-size: min(64px, calc(var(--nom-ligne) * 1.6));
+  line-height: var(--nom-ligne);
+}
+
+/* ---------- 6. Comment on travaille ensemble : tout dans la tuile ----------
+   L'annotation et le début du tracé débordaient à gauche, dans la marge de la carte.
+   Tout le parcours (tracé, pastilles, textes, annotation) glisse de 14 px vers la
+   droite sans changer de largeur : les positions relatives restent celles d'origine.
+   Le bouton reste à sa place, calé sur le bord droit de la marge intérieure. */
+@media (min-width: 721px) {
+  .card--journey .route {
+    margin-left: 14px;
+    margin-right: -14px;
+  }
+
+  .card--journey .route-cta {
+    right: 14px;
+  }
+
+  /* Textes sous les pastilles 01 et 03 : 4 px plus près, ils restent dans la marge du bas */
+  .card--journey .route-step--below .route-text {
+    top: calc(var(--dot) / 2 + 2px);
+  }
+}

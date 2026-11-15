@@ -1,0 +1,249 @@
+/* =========================================================
+   COMMUN - en-tête, titres et langage des tuiles
+   Chargé après le <style> de chaque page pour avoir le dernier mot.
+   Dépend de css/marque.css (palette, --font-titre, échelle).
+   ========================================================= */
+
+/* =========================================================
+   EN-TÊTE : logo à gauche, menu au centre, thème à droite
+   ========================================================= */
+.site-header {
+  position: relative;
+  z-index: 30;
+  display: grid;
+  grid-template-columns: minmax(120px, 1fr) auto minmax(120px, 1fr);
+  align-items: center;
+  gap: 16px 24px;
+  box-sizing: border-box;
+  width: 100%;
+  max-width: var(--max-width, 1280px);
+  margin: 0 auto;
+  padding: 18px 24px;
+}
+
+.brand {
+  justify-self: start;
+  display: inline-flex;
+  min-width: 120px;
+  min-height: 44px;
+  align-items: center;
+  color: var(--encre);
+  text-decoration: none;
+  white-space: nowrap;
+}
+
+.brand-brief {
+  font-family: "Caveat", "Segoe Print", "Bradley Hand", cursive;
+  font-weight: 600;
+  font-size: 30px;
+  line-height: 1;
+  color: var(--bleu);
+}
+
+.brand-bold {
+  font-family: var(--font-titre);
+  font-weight: 900;
+  font-size: 23px;
+  line-height: 1;
+  letter-spacing: -0.02em;
+  color: var(--encre);
+}
+
+[data-theme="dark"] .brand-brief {
+  color: var(--bleu-400);
+}
+
+[data-theme="dark"] .brand-bold {
+  color: var(--papier);
+}
+
+.site-menu ul {
+  display: flex;
+  gap: 8px 28px;
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+
+.site-menu a {
+  display: inline-flex;
+  align-items: center;
+  min-height: 44px;
+  border-bottom: 2px solid transparent;
+  color: var(--text);
+  font-size: 17px;
+  font-weight: 500;
+  text-decoration: none;
+  transition: border-color var(--transition-fast, 250ms ease), color var(--transition-fast, 250ms ease);
+}
+
+.site-menu a:hover {
+  border-bottom-color: var(--contour);
+}
+
+/* Page active, ou rubrique active (pages projet et légales) */
+.site-menu a[aria-current] {
+  font-weight: 650;
+  border-bottom-color: var(--bleu);
+}
+
+/* Interrupteur clair/sombre : rail en pilule (c'est un bouton), pastille encre.
+   Zone cliquable de 44 px de haut. Clair : pastille à droite, soleil.
+   Sombre : pastille à gauche, lune. */
+.theme-btn {
+  justify-self: end;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  min-width: 52px;
+  height: 44px;
+  padding: 0;
+  border: 0;
+  background: transparent;
+  cursor: pointer;
+}
+
+.theme-track {
+  position: relative;
+  display: block;
+  width: 52px;
+  height: 28px;
+  border-radius: 999px;
+  background: var(--bleu-pale);
+  border: 1px solid var(--contour);
+  transition: background var(--transition-med, 400ms ease), border-color var(--transition-med, 400ms ease);
+}
+
+[data-theme="dark"] .theme-track {
+  background: var(--bleu-900);
+  border-color: var(--bleu-800);
+}
+
+.theme-btn:hover .theme-track {
+  border-color: var(--bleu);
+}
+
+.theme-thumb {
+  position: absolute;
+  top: 50%;
+  left: calc(100% - 25px);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 22px;
+  height: 22px;
+  border-radius: 50%;
+  background: var(--encre);
+  transform: translateY(-50%);
+  transition: left var(--transition-med, 400ms ease);
+}
+
+[data-theme="dark"] .theme-thumb {
+  left: 2px;
+}
+
+.theme-thumb svg {
+  width: 13px;
+  height: 13px;
+  fill: none;
+  stroke: var(--bleu-200);
+  stroke-width: 2;
+  stroke-linecap: round;
+  stroke-linejoin: round;
+}
+
+/* Soleil en mode clair, lune en mode sombre */
+.theme-thumb .theme-moon,
+[data-theme="dark"] .theme-thumb .theme-sun {
+  display: none;
+}
+
+[data-theme="dark"] .theme-thumb .theme-moon {
+  display: block;
+  fill: var(--bleu-200);
+  stroke: none;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .theme-track,
+  .theme-thumb {
+    transition: none;
+  }
+}
+
+/* Mobile : logo et bouton sur la première ligne, menu dessous */
+@media (max-width: 720px) {
+  .site-header {
+    grid-template-columns: 1fr auto;
+    padding: 12px 16px 4px;
+    gap: 4px 12px;
+  }
+
+  .site-menu {
+    grid-column: 1 / -1;
+    grid-row: 2;
+  }
+
+  .site-menu ul {
+    justify-content: space-between;
+    gap: 4px 12px;
+  }
+}
+
+/* =========================================================
+   TITRES : Mona Sans Expanded sur les h1 et h2
+   Les noms de projets (.project-name) restent dans la police du texte.
+   ========================================================= */
+:is(h1, h2):not(.project-name):not(.sr-only) {
+  font-family: var(--font-titre);
+  font-weight: 900;
+  letter-spacing: -0.02em;
+  line-height: 1.04;
+  /* Mots longs en Expanded sur mobile : césure française plutôt que débordement */
+  hyphens: auto;
+  -webkit-hyphens: auto;
+  overflow-wrap: break-word;
+}
+
+/* h1 de l'accueil et des pages principales : 54 px, 40 px en mobile */
+:is(.profile-name, .svc-title, .projects-title, .hero-title):is(h1) {
+  font-size: var(--fs-54-40);
+}
+
+/* h1 des pages projet et des pages légales : 40 px, 30 px en mobile */
+:is(.cs-title, .legal-title):is(h1) {
+  font-size: var(--fs-40-30);
+}
+
+/* h2 de section en pleine largeur : 40 px, 30 px en mobile */
+h2:is(.svc-name, .svc-cta-title, .form-title) {
+  font-size: var(--fs-40-30);
+}
+
+/* h2 posés dans une petite tuile : 30 px, 23 px en mobile */
+h2:not([class]),
+h2:is(.card-heading, .cv-video-title, .success-title, .cs-label, .cs-lead, .cs-statement, .veille-title) {
+  font-size: var(--fs-30-23);
+  font-weight: 800;
+}
+
+/* =========================================================
+   LANGAGE DES TUILES
+   Arrondi 22 px, bordure 1 px Contour, sans ombre ni dégradé.
+   ========================================================= */
+:root {
+  --radius: 22px;
+  --gap: 14px;
+}
+
+.card {
+  border-radius: 22px;
+  backdrop-filter: none;
+  -webkit-backdrop-filter: none;
+}
+
+.card::before,
+.card::after {
+  content: none;
+}
+

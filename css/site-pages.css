@@ -24,7 +24,7 @@
 @media (min-width: 1800px) {
   :root:has(.project-main) {
     --max-width: 1920px;
-    font-size: 18px;
+    font-size: 17px;
   }
 
   .project-main {
@@ -33,7 +33,7 @@
 
   :root:has(.legal-main) {
     --max-width: 1440px;
-    font-size: 18px;
+    font-size: 17px;
   }
 }
 
@@ -46,41 +46,6 @@
 @media (min-width: 3400px) and (min-height: 1800px) {
   :root:has(.projects-grid, .svc-grid, .contact-layout) {
     zoom: 2;
-  }
-}
-
-/* Barre des études de cas : le fond couvre l'écran, mais le lien retour
-   et l'interrupteur s'alignent sur les bords du contenu */
-.project-nav {
-  padding-left: max(24px, calc((100% - var(--max-width)) / 2 + 24px));
-  padding-right: max(24px, calc((100% - var(--max-width)) / 2 + 24px));
-}
-
-/* Dès 1800 px, elle suit les marges de 36 px des études de cas */
-@media (min-width: 1800px) {
-  .project-nav:has(~ .project-main) {
-    padding-left: max(36px, calc((100% - var(--max-width)) / 2 + 36px));
-    padding-right: max(36px, calc((100% - var(--max-width)) / 2 + 36px));
-  }
-}
-
-@media (max-width: 720px) {
-  .project-nav {
-    padding-left: 16px;
-    padding-right: 16px;
-  }
-
-  /* Pages sans pastille « Disponible » : l'interrupteur reste au bord droit */
-  .project-nav:not(:has(.nav-status)) .theme-toggle-btn {
-    margin-left: auto;
-  }
-}
-
-/* Tablette : la pastille se réduit à « Disponible » pour que
-   le fil d'Ariane tienne en entier sur la ligne de la barre */
-@media (max-width: 1024px) {
-  .nav-status-more {
-    display: none;
   }
 }
 
@@ -121,7 +86,7 @@
 }
 
 .footer-identity {
-  font-size: 0.8125rem;
+  font-size: 13px;
   color: var(--text-secondary);
 }
 
@@ -132,7 +97,7 @@
 }
 
 .footer-links a {
-  font-size: 0.8125rem;
+  font-size: 13px;
   color: var(--text-secondary);
   transition: color var(--transition-fast);
 }
@@ -141,36 +106,8 @@
   color: var(--text);
 }
 
-/* =========================================================
-   ZONES TACTILES - au moins 44 px sans changer le visuel :
-   la zone cliquable déborde du lien (même principe que les filtres)
-   ========================================================= */
-.site-nav-link,
-.nav-back,
-.theme-toggle-btn,
 .footer-links a {
   position: relative;
-}
-
-/* Pastille de 30 px dans la nav de 40 px : 7 px de plus en haut et en bas */
-.site-nav-link::after {
-  content: "";
-  position: absolute;
-  inset: -7px 0;
-}
-
-/* Lien « Retour » de 31 px de haut */
-.nav-back::after {
-  content: "";
-  position: absolute;
-  inset: -7px -4px;
-}
-
-/* Interrupteur de thème de 52 × 28 px */
-.theme-toggle-btn::after {
-  content: "";
-  position: absolute;
-  inset: -8px -2px;
 }
 
 /* Boutons en capsule de 37 à 41 px des études de cas */
@@ -207,20 +144,6 @@
 @media (pointer: coarse) {
   .footer-links {
     row-gap: 28px;
-  }
-}
-
-/* =========================================================
-   TRÈS PETITS TÉLÉPHONES (320 px) - barre des études de cas :
-   « Réalisations », la pastille et l'interrupteur restent sur une ligne
-   ========================================================= */
-@media (max-width: 374px) {
-  .project-nav {
-    column-gap: 8px;
-  }
-
-  .nav-status {
-    padding: 6px 10px;
   }
 }
 
