@@ -463,58 +463,6 @@
       color: var(--text-secondary);
     }
 
-    .project-more {
-      flex: none;
-      font-size: 17px;
-      font-weight: 650;
-      color: var(--bleu-fonce);
-    }
-
-    [data-theme="dark"] .project-more {
-      color: var(--bleu-400);
-    }
-
-    /* =========================================================
-       PLEINE LARGEUR : image à gauche sur toute la hauteur
-       Avec un filtre actif, toutes les tuiles reprennent le même format.
-       ========================================================= */
-    .projects-grid:not(.is-filtered) .project-card--featured {
-      grid-column: span 2;
-      flex-direction: row;
-    }
-
-    .projects-grid:not(.is-filtered) .project-card--featured .project-thumb {
-      flex: 0 0 58%;
-      height: auto;
-      min-height: 240px;
-    }
-
-    .projects-grid:not(.is-filtered) .project-card--featured .project-info {
-      flex: 1 1 42%;
-      min-width: 0;
-      justify-content: center;
-      padding: 26px 26px 22px;
-      gap: 12px;
-    }
-
-    .projects-grid:not(.is-filtered) .project-card--featured .project-name {
-      font-size: 30px;
-      line-height: 1.15;
-    }
-
-    .projects-grid:not(.is-filtered) .project-card--featured .project-meta {
-      margin-top: 8px;
-    }
-
-    /* Le lien visuel n'existe que sur le format pleine largeur */
-    .project-card--featured .project-more {
-      display: none;
-    }
-
-    .projects-grid:not(.is-filtered) .project-card--featured .project-more {
-      display: inline;
-    }
-
     /* =========================================================
        APPEL À L'ACTION
        ========================================================= */
@@ -606,26 +554,15 @@
         padding: 0 16px;
       }
 
-      .project-thumb,
-      .projects-grid:not(.is-filtered) .project-card--featured .project-thumb {
+      .project-thumb {
         flex: none;
         height: 200px;
         min-height: 0;
       }
 
-      .projects-grid:not(.is-filtered) .project-card--featured {
-        grid-column: auto;
-        flex-direction: column;
-      }
-
-      .projects-grid:not(.is-filtered) .project-card--featured .project-info,
       .project-info {
         padding: 20px 20px 22px;
         gap: 10px;
-      }
-
-      .projects-grid:not(.is-filtered) .project-card--featured .project-name {
-        font-size: 23px;
       }
 
       .projects-cta {
@@ -735,7 +672,7 @@
     <section class="projects-grid" id="projects-grid" aria-label="Liste des projets">
 
       <!-- ========== PROJET 01 · La Coopérative ÉcoHabitat ========== -->
-      <article class="card project-card project-card--featured project-card--link"
+      <article class="card project-card project-card--link"
         data-categories="site-web identite-visuelle">
         <div class="project-thumb">
           <img src="Images/couverture_projet_site_cooperative.webp"
@@ -749,7 +686,6 @@
             éditoriale à la mise en ligne.</p>
           <div class="project-meta">
             <span class="project-context">Coopérative, Gers</span>
-            <span class="project-more" aria-hidden="true">Voir le projet</span>
           </div>
         </div>
         <a href="/projet-ecohabitat" class="card-link-overlay"

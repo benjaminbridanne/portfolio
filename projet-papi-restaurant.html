@@ -517,7 +517,7 @@
     }
 
     /* =========================================================
-       IDENTITÉ VISUELLE ET WIREFRAMES
+       IDENTITÉ VISUELLE ET MAQUETTES
        ========================================================= */
     /* Bandeau pleine largeur (texte à gauche, couleurs et typos à droite),
        puis logotype et couleurs côte à côte, puis les applications en grand */
@@ -605,15 +605,180 @@
       color: var(--text);
     }
 
-    /* Wireframes : texte et deux écrans sur une rangée */
-    .cs-grid > .cs-wf-intro,
-    .cs-grid > .cs-wf-visual {
-      grid-column: span 4;
+    /* =========================================================
+       LES MAQUETTES : desktop dans un cadre de navigateur (.cs-browser,
+       partagé avec ÉcoHabitat), mobile dans un cadre de téléphone.
+       Hauteur fixe et défilement interne : les pages ne sont jamais écrasées.
+       ========================================================= */
+    .card.cs-mockups {
+      grid-column: 1 / -1;
+      display: flex;
+      flex-direction: column;
+      gap: 28px;
+      padding: 24px 26px 28px;
     }
 
-    .card.cs-wf-visual {
-      aspect-ratio: auto;
-      height: 420px;
+    /* Une carte qui contient des zones défilantes ne grossit pas au survol */
+    .card.cs-mockups:hover {
+      transform: none;
+    }
+
+    .cs-mockup {
+      display: flex;
+      flex-direction: column;
+      gap: 14px;
+    }
+
+    .cs-mockup + .cs-mockup {
+      padding-top: 26px;
+      border-top: 1px solid var(--line);
+    }
+
+    .cs-mockup-pair {
+      display: grid;
+      grid-template-columns: minmax(0, 1fr) 300px;
+      align-items: stretch;
+      gap: 22px;
+    }
+
+    .cs-mockup-item {
+      min-width: 0;
+    }
+
+    /* Le cadre remplit la hauteur de la rangée : téléphone et navigateur alignés */
+    .cs-mockup-frame {
+      position: relative;
+      flex: 1;
+      min-height: 0;
+    }
+
+    .cs-mockup-scroll {
+      position: relative;
+      overflow-y: auto;
+      overflow-x: hidden;
+      background: var(--papier);
+      cursor: zoom-in;
+      scrollbar-width: thin;
+      scrollbar-color: var(--bleu-200) transparent;
+    }
+
+    .cs-mockup-scroll > img {
+      width: 100%;
+      height: auto;
+    }
+
+    .cs-browser > .cs-mockup-scroll {
+      height: 560px;
+    }
+
+    .cs-mockup-scroll:focus-visible {
+      outline: 3px solid var(--fiche-accent);
+      outline-offset: -3px;
+      border-radius: 0;
+    }
+
+    /* Le bouton reprend la pastille « Voir la page entière » d'ÉcoHabitat */
+    .cs-mockup-open {
+      z-index: 2;
+      font-family: inherit;
+      cursor: pointer;
+    }
+
+    .cs-mockup-open:hover {
+      background: var(--encre);
+    }
+
+    .cs-mockup-open:focus-visible {
+      outline: 3px solid var(--fiche-accent);
+      outline-offset: 3px;
+      border-radius: 999px;
+    }
+
+    /* Cadre de téléphone : bord encre, filet de carte pour le mode sombre */
+    .cs-phone {
+      display: flex;
+      flex-direction: column;
+      overflow: hidden;
+      border: 8px solid var(--encre);
+      border-radius: 36px;
+      background: var(--encre);
+      box-shadow: 0 0 0 1px var(--card-border);
+    }
+
+    /* À côté du navigateur, le téléphone prend la hauteur de la rangée
+       (height: 0 + flex : l'image très haute n'agrandit pas la rangée) */
+    .cs-mockup-item--mobile > .cs-phone {
+      height: 0;
+      flex: 1 1 auto;
+    }
+
+    .cs-phone-notch {
+      position: relative;
+      flex: none;
+      height: 22px;
+    }
+
+    .cs-phone-notch::before {
+      content: "";
+      position: absolute;
+      top: 6px;
+      left: 50%;
+      width: 72px;
+      height: 8px;
+      border-radius: 999px;
+      background: var(--encre-douce);
+      transform: translateX(-50%);
+    }
+
+    .cs-phone > .cs-mockup-scroll {
+      flex: 1;
+      min-height: 0;
+      border-radius: 0 0 26px 26px;
+    }
+
+    .cs-mockup-legend {
+      max-width: 75ch;
+    }
+
+    @media (max-width: 1100px) {
+      .cs-mockup-pair {
+        grid-template-columns: minmax(0, 1fr) 260px;
+      }
+
+      .cs-browser > .cs-mockup-scroll {
+        height: 500px;
+      }
+    }
+
+    /* Mobile : desktop puis téléphone, empilés */
+    @media (max-width: 720px) {
+      .card.cs-mockups {
+        padding: 22px 20px 24px;
+      }
+
+      .cs-mockup-pair {
+        grid-template-columns: minmax(0, 1fr);
+      }
+
+      .cs-browser > .cs-mockup-scroll {
+        height: 420px;
+      }
+
+      .cs-mockup-item--mobile {
+        width: 100%;
+        max-width: 280px;
+        justify-self: center;
+      }
+
+      .cs-mockup-item--mobile > .cs-phone {
+        height: auto;
+        flex: none;
+      }
+
+      .cs-phone > .cs-mockup-scroll {
+        flex: none;
+        height: 500px;
+      }
     }
 
     @media (max-width: 1100px) {
@@ -631,28 +796,11 @@
         grid-row: auto;
         aspect-ratio: 16 / 10;
       }
-
-      .cs-grid > .cs-wf-intro {
-        grid-column: 1 / -1;
-      }
-
-      .cs-grid > .cs-wf-visual {
-        grid-column: span 6;
-      }
-
-      .card.cs-wf-visual {
-        height: auto;
-        aspect-ratio: 3 / 4;
-      }
     }
 
     @media (max-width: 720px) {
       .cs-grid > .cs-da-boards {
         grid-template-columns: 1fr;
-      }
-
-      .cs-grid > .cs-wf-visual {
-        grid-column: 1 / -1;
       }
     }
 
@@ -733,7 +881,7 @@
       <!-- ========== RANGÉE 1 · VISUEL PRINCIPAL ET LIVRABLE ========== -->
       <div class="card cs-visual">
         <img class="cs-img" src="Images/site-papi-restaurant.webp"
-          alt="Maquette de la future page d’accueil du site de Papi Restaurant" width="1827" height="960"
+          alt="Maquette de la future page d’accueil du site de Papi Restaurant" width="1600" height="900"
           loading="eager" />
         <button type="button" class="zoom-btn" data-zoom-src="Images/site-papi-restaurant.webp"
           aria-label="Agrandir l’image : maquette de la future page d’accueil du site de Papi Restaurant"></button>
@@ -770,7 +918,7 @@
             <li>Audit &amp; benchmark</li>
             <li>Stratégie SEO</li>
             <li>Cahier des charges</li>
-            <li>Maquettes Figma</li>
+            <li>Maquettes web desktop &amp; mobile</li>
           </ul>
           <div class="cs-result-figure" aria-hidden="true">
             <p class="cs-result-legend">livrables</p>
@@ -779,6 +927,99 @@
         </div>
         <p class="sr-only">4 livrables</p>
       </article>
+
+      <!-- ========== RANGÉE 3 · LES MAQUETTES ==========
+           Chaque page en desktop (cadre de navigateur) et en mobile (cadre de téléphone).
+           Les cadres ont une hauteur fixe et défilent à l'intérieur ; le bouton (ou un clic
+           sur l'image) ouvre la page entière dans la modale (data-zoom-mode="page"). -->
+      <section class="card cs-mockups" aria-labelledby="maquettes-title">
+        <div class="cs-method-head">
+          <h2 class="cs-label" id="maquettes-title">Les maquettes</h2>
+          <p class="cs-method-sub">Deux pages, en desktop et en mobile. Faites défiler, ou ouvrez la page en entier.</p>
+        </div>
+
+        <div class="cs-mockup" role="group" aria-labelledby="maquette-accueil-title">
+          <h3 class="cs-label" id="maquette-accueil-title"><span class="cs-num">01</span> · Accueil</h3>
+          <div class="cs-mockup-pair">
+            <figure class="cs-compare-item cs-mockup-item">
+              <div class="cs-browser cs-mockup-frame">
+                <div class="cs-browser-bar" aria-hidden="true">
+                  <span class="cs-browser-dots"><span></span><span></span><span></span></span>
+                  <span class="cs-browser-url">restaurantpapi.fr</span>
+                </div>
+                <div class="cs-mockup-scroll" tabindex="0" role="region"
+                  aria-label="Maquette de l’accueil, version desktop (zone défilante)">
+                  <img src="Images/papi-maquette-accueil-desktop.webp"
+                    alt="Maquette de la page d’accueil du site de Papi, version desktop" width="1440" height="6342"
+                    loading="lazy" />
+                </div>
+                <button type="button" class="cs-peek-label cs-mockup-open"
+                  data-zoom-src="Images/papi-maquette-accueil-desktop.webp" data-zoom-mode="page"
+                  aria-label="Voir en entier la maquette de l’accueil, version desktop">Voir la page entière</button>
+              </div>
+              <figcaption class="cs-compare-caption">Desktop · 1440 px</figcaption>
+            </figure>
+
+            <figure class="cs-compare-item cs-mockup-item cs-mockup-item--mobile">
+              <div class="cs-phone cs-mockup-frame">
+                <span class="cs-phone-notch" aria-hidden="true"></span>
+                <div class="cs-mockup-scroll" tabindex="0" role="region"
+                  aria-label="Maquette de l’accueil, version mobile (zone défilante)">
+                  <img src="Images/papi-maquette-accueil-mobile.webp"
+                    alt="Maquette de la page d’accueil du site de Papi, version mobile" width="390" height="6500"
+                    loading="lazy" />
+                </div>
+                <button type="button" class="cs-peek-label cs-mockup-open"
+                  data-zoom-src="Images/papi-maquette-accueil-mobile.webp" data-zoom-mode="page"
+                  aria-label="Voir en entier la maquette de l’accueil, version mobile">Page entière</button>
+              </div>
+              <figcaption class="cs-compare-caption">Mobile · 390 px</figcaption>
+            </figure>
+          </div>
+          <p class="cs-body cs-mockup-legend">Header fixe, carte en onglets Midi / Soir / Vins, présentation du duo, accès et horaires.</p>
+        </div>
+
+        <div class="cs-mockup" role="group" aria-labelledby="maquette-marche-title">
+          <h3 class="cs-label" id="maquette-marche-title"><span class="cs-num">02</span> · Marché local</h3>
+          <div class="cs-mockup-pair">
+            <figure class="cs-compare-item cs-mockup-item">
+              <div class="cs-browser cs-mockup-frame">
+                <div class="cs-browser-bar" aria-hidden="true">
+                  <span class="cs-browser-dots"><span></span><span></span><span></span></span>
+                  <span class="cs-browser-url">restaurantpapi.fr/marche-local</span>
+                </div>
+                <div class="cs-mockup-scroll" tabindex="0" role="region"
+                  aria-label="Maquette de la page Marché local, version desktop (zone défilante)">
+                  <img src="Images/papi-maquette-marche-desktop.webp"
+                    alt="Maquette de la page Marché local du site de Papi, version desktop" width="1440" height="6182"
+                    loading="lazy" />
+                </div>
+                <button type="button" class="cs-peek-label cs-mockup-open"
+                  data-zoom-src="Images/papi-maquette-marche-desktop.webp" data-zoom-mode="page"
+                  aria-label="Voir en entier la maquette de la page Marché local, version desktop">Voir la page entière</button>
+              </div>
+              <figcaption class="cs-compare-caption">Desktop · 1440 px</figcaption>
+            </figure>
+
+            <figure class="cs-compare-item cs-mockup-item cs-mockup-item--mobile">
+              <div class="cs-phone cs-mockup-frame">
+                <span class="cs-phone-notch" aria-hidden="true"></span>
+                <div class="cs-mockup-scroll" tabindex="0" role="region"
+                  aria-label="Maquette de la page Marché local, version mobile (zone défilante)">
+                  <img src="Images/papi-maquette-marche-mobile.webp"
+                    alt="Maquette de la page Marché local du site de Papi, version mobile" width="390" height="5800"
+                    loading="lazy" />
+                </div>
+                <button type="button" class="cs-peek-label cs-mockup-open"
+                  data-zoom-src="Images/papi-maquette-marche-mobile.webp" data-zoom-mode="page"
+                  aria-label="Voir en entier la maquette de la page Marché local, version mobile">Page entière</button>
+              </div>
+              <figcaption class="cs-compare-caption">Mobile · 390 px</figcaption>
+            </figure>
+          </div>
+          <p class="cs-body cs-mockup-legend">Produits filtrables par catégorie, carte de proximité, calendrier des saisons.</p>
+        </div>
+      </section>
 
       <!-- ========== RANGÉE 3 · LA MÉTHODE ========== -->
       <section class="card cs-method" aria-labelledby="methode-title">
@@ -881,41 +1122,11 @@
       </div>
       </div>
 
-      <!-- ========== RANGÉE 5 · WIREFRAMES ========== -->
-      <article class="card cs-step cs-wf-intro" aria-labelledby="wireframes-title">
-        <h2 class="cs-label" id="wireframes-title">Les wireframes</h2>
-        <p class="cs-lead">
-          La structure du futur site, avant tout habillage.
-        </p>
-        <p class="cs-body">
-          Esquissés à la main à partir de l'arborescence, avant le passage dans Figma&nbsp;: navigation, menu du midi,
-          produits locaux et photos trouvent leur place dès la page d'accueil.
-        </p>
-      </article>
-
-      <div class="card cs-media cs-wf-visual">
-        <img class="cs-img cs-img--top" src="Images/papi_wareframe1.webp"
-          alt="Premier wireframe vertical conçu pour le futur site de Papi Restaurant" width="2400" height="3600"
-          loading="lazy" />
-        <button type="button" class="zoom-btn" data-zoom-src="Images/papi_wareframe1.webp"
-          aria-label="Agrandir l’image : premier wireframe vertical conçu pour le futur site de Papi Restaurant"></button>
-        <span class="cs-media-label" aria-hidden="true">Wireframe, accueil</span>
-      </div>
-
-      <div class="card cs-media cs-wf-visual">
-        <img class="cs-img cs-img--top" src="Images/papi_wareframe2.webp"
-          alt="Deuxième wireframe vertical conçu pour le futur site de Papi Restaurant" width="2400" height="3600"
-          loading="lazy" />
-        <button type="button" class="zoom-btn" data-zoom-src="Images/papi_wareframe2.webp"
-          aria-label="Agrandir l’image : deuxième wireframe vertical conçu pour le futur site de Papi Restaurant"></button>
-        <span class="cs-media-label" aria-hidden="true">Wireframe, page intérieure</span>
-      </div>
-
-      <!-- ========== RANGÉE 6 · LE FLYER RECTO / VERSO ==========
+      <!-- ========== EN BONUS · LE FLYER RECTO / VERSO (en bas de page) ==========
            Format paysage exact des fichiers (1123 × 794) : rien n'est recadré. -->
       <section class="card cs-flyer cs-flyer--papi" aria-labelledby="flyer-title">
         <div class="cs-method-head">
-          <h2 class="cs-label" id="flyer-title">Le flyer</h2>
+          <h2 class="cs-label" id="flyer-title">En bonus&nbsp;: les flyers</h2>
           <p class="cs-method-sub">Un dépliant trois volets qui prolonge l'identité sur papier</p>
         </div>
 
@@ -985,14 +1196,16 @@
        MODALE D’AGRANDISSEMENT
        ============================================================= -->
   <div class="lightbox" id="lightbox" role="dialog" aria-modal="true" aria-labelledby="lightbox-title" hidden>
-    <p class="sr-only" id="lightbox-title">Image agrandie</p>
-    <button type="button" class="lightbox-close" id="lightbox-close" aria-label="Fermer l’image agrandie">
-      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round"
-        aria-hidden="true">
-        <line x1="6" y1="6" x2="18" y2="18" />
-        <line x1="18" y1="6" x2="6" y2="18" />
-      </svg>
-    </button>
+    <div class="lightbox-head">
+      <p class="sr-only lightbox-title" id="lightbox-title">Image agrandie</p>
+      <button type="button" class="lightbox-close" id="lightbox-close" aria-label="Fermer l’image agrandie">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round"
+          aria-hidden="true">
+          <line x1="6" y1="6" x2="18" y2="18" />
+          <line x1="18" y1="6" x2="6" y2="18" />
+        </svg>
+      </button>
+    </div>
     <img class="lightbox-img" id="lightbox-img" src="" alt="" />
   </div>
 
@@ -1022,7 +1235,7 @@
       const image = document.getElementById('lightbox-img');
       const title = document.getElementById('lightbox-title');
       const closeBtn = document.getElementById('lightbox-close');
-      const triggers = [...document.querySelectorAll('.zoom-btn')];
+      const triggers = [...document.querySelectorAll('.zoom-btn, .cs-mockup-open')];
       if (!lightbox || !image || !closeBtn || !triggers.length) return;
 
       let lastFocused = null;
@@ -1037,13 +1250,17 @@
         image.setAttribute('alt', description);
         title.textContent = description || 'Image agrandie';
 
+        /* Maquettes très hautes : la modale défile et montre la page entière */
+        lightbox.classList.toggle('lightbox--page', trigger.dataset.zoomMode === 'page');
         lightbox.hidden = false;
+        lightbox.scrollTop = 0;
         document.body.classList.add('is-locked');
         closeBtn.focus();
       }
 
       function close() {
         lightbox.hidden = true;
+        lightbox.classList.remove('lightbox--page');
         document.body.classList.remove('is-locked');
         image.setAttribute('src', '');
         image.setAttribute('alt', '');
@@ -1057,11 +1274,18 @@
         trigger.addEventListener('click', () => open(trigger));
       });
 
+      /* Maquettes : un clic sur l'image défilante ouvre aussi la page entière
+         (au clavier, c'est le bouton « Voir la page entière » qui le fait) */
+      document.querySelectorAll('.cs-mockup-scroll').forEach(area => {
+        const opener = area.parentElement.querySelector('.cs-mockup-open');
+        if (opener) area.addEventListener('click', () => open(opener));
+      });
+
       closeBtn.addEventListener('click', close);
 
-      /* Clic sur le fond assombri, jamais sur l’image elle-meme */
+      /* Clic sur le fond assombri (ou le bandeau du titre), jamais sur l’image elle-meme */
       lightbox.addEventListener('click', event => {
-        if (event.target === lightbox) close();
+        if (event.target === lightbox || event.target.classList.contains('lightbox-head')) close();
       });
 
       document.addEventListener('keydown', event => {
